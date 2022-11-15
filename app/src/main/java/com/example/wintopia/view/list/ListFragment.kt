@@ -31,6 +31,7 @@ class ListFragment : Fragment() {
         binding.rvList.adapter = ListVOAdapter(data)
 
 
+        
         return binding.root
     }
 
