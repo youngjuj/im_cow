@@ -24,5 +24,5 @@ class LoginActivity : AppCompatActivity() {
 }
 
 //class LoginViewModel : ViewModel() {
-//    val name = MutableLiveData<string>()
+//    val name = MutableLiveData<String>()
 //}
