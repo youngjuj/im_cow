@@ -19,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.vm = User("로그인")
         binding.lifecycleOwner = this
+
         
     }
 }
