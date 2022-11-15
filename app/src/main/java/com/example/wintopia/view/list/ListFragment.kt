@@ -10,6 +10,7 @@ import com.example.wintopia.R
 
 class ListFragment : Fragment() {
 
+    
 //    lateinit var adapter: ListVOAdapter
     private var mBinding: FragmentListBinding? = null
     private val binding get() = mBinding!!
