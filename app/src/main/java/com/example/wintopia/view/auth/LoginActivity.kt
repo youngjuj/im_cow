@@ -20,11 +20,10 @@ class LoginActivity : AppCompatActivity() {
         binding.vm = User("로그인")
         binding.lifecycleOwner = this
 
-
-
+        
     }
 }
 
 //class LoginViewModel : ViewModel() {
-//    val name = MutableLiveData<string>()
+//    val name = MutableLiveData<String>()
 //}
