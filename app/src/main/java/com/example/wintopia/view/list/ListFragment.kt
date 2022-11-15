@@ -30,7 +30,6 @@ class ListFragment : Fragment() {
         binding.rvList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvList.adapter = ListVOAdapter(data)
 
-
         
         return binding.root
     }
