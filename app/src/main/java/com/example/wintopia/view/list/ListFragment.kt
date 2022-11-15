@@ -8,10 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wintopia.R
+import com.example.wintopia.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
 
-//    lateinit var adapter: ListVOAdapter
+    //    lateinit var adapter: ListVOAdapter
     private var mBinding: FragmentListBinding? = null
     private val binding get() = mBinding!!
 
@@ -24,12 +25,12 @@ class ListFragment : Fragment() {
 
         var data = arrayListOf<ListVO>()
         data.add(ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
-        "분홍얼룩이", "22111001"))
+            "분홍얼룩이", "22111001"))
 
         binding.rvList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvList.adapter = ListVOAdapter(data)
 
-        
+
         return binding.root
     }
 
