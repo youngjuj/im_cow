@@ -11,6 +11,7 @@ import com.example.wintopia.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
 
+    
 //    lateinit var adapter: ListVOAdapter
     private var mBinding: FragmentListBinding? = null
     private val binding get() = mBinding!!
