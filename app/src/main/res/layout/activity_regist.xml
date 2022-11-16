@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.example.wintopia.view.camera.RegistViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.camera.RegistActivity">
+
+    <ImageView
+        android:id="@+id/imgRegistFace"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <ImageView
+        android:id="@+id/imgRegistLeft"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="132dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.233"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <ImageView
+        android:id="@+id/imgRegistRight"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="132dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <ImageView
+        android:id="@+id/imgRegistCow"
+        android:layout_width="216dp"
+        android:layout_height="271dp"
+        android:alpha="0.3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/standingcow" />
+
+    <EditText
+        android:id="@+id/etRegistBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="출생일: 20201110"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:text="@={vm.registBirth}"
+        app:layout_constraintEnd_toEndOf="@+id/etRegistId"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etRegistId"
+        app:layout_constraintTop_toBottomOf="@+id/etRegistId" />
+
+    <EditText
+        android:id="@+id/etRegistName"
+        android:layout_width="101dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="48dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="얼룩이"
+        android:textSize="34sp"
+        android:text="@={vm.registName}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48" />
+
+    <EditText
+        android:id="@+id/etRegistId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="고유번호: 20111001"
+        android:textSize="20sp"
+        android:text="@={vm.registId}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRegistName" />
+
+    <EditText
+        android:id="@+id/etRegistTel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="Tel.062.573-4591"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:text="@={vm.registTel}"
+        app:layout_constraintTop_toBottomOf="@+id/etRegistStatus"
+        tools:layout_editor_absoluteX="49dp" />
+
+    <EditText
+        android:id="@+id/etRegistStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="건강상태: 양호"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:text="@={vm.registStatus}"
+        app:layout_constraintEnd_toEndOf="@+id/etRegistBirth"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etRegistBirth"
+        app:layout_constraintTop_toBottomOf="@+id/etRegistBirth" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/star"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toEndOf="@+id/etRegistName"
+        app:layout_constraintTop_toTopOf="@+id/etRegistName" />
+
+
+    <EditText
+        android:id="@+id/etRegistFax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Fax.062.512.4591"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:text="@={vm.registFax}"
+        app:layout_constraintEnd_toEndOf="@+id/etRegistTel"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etRegistTel"
+        app:layout_constraintTop_toTopOf="@+id/etRegistTel" />
+
+    <Button
+        android:id="@+id/btnRegistCancel"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/background_radius"
+        android:text="취소하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnRegistRegist"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_radius"
+        android:text="등록하기"
+        app:layout_constraintBottom_toBottomOf="@+id/btnRegistCancel"
+        app:layout_constraintEnd_toStartOf="@+id/btnRegistCancel"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRegistFax"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

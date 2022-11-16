@@ -57,7 +57,7 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/TextView"
+            android:id="@+id/etRegistId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -69,10 +69,10 @@
             android:text="고유번호: 20111001"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+            app:layout_constraintTop_toBottomOf="@+id/etRegistName" />
 
         <TextView
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/etRegistStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -82,13 +82,13 @@
 
             android:text="건강상태: 양호"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistBirth"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+            app:layout_constraintStart_toStartOf="@+id/etRegistBirth"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistBirth" />
 
         <TextView
-            android:id="@+id/editTextTextPersonName5"
+            android:id="@+id/etRegistBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -98,13 +98,13 @@
 
             android:text="출생일: 20201110"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/TextView"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistId"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/TextView"
-            app:layout_constraintTop_toBottomOf="@+id/TextView" />
+            app:layout_constraintStart_toStartOf="@+id/etRegistId"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistId" />
 
         <TextView
-            android:id="@+id/editTextTextPersonName6"
+            android:id="@+id/etRegistName"
             android:layout_width="200dp"
             android:layout_height="67dp"
             android:layout_marginStart="40dp"
@@ -125,11 +125,11 @@
             android:src="@drawable/star"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.159"
-            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName6"
-            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName6" />
+            app:layout_constraintStart_toEndOf="@+id/etRegistName"
+            app:layout_constraintTop_toTopOf="@+id/etRegistName" />
 
         <TextView
-            android:id="@+id/editTextTextPersonName7"
+            android:id="@+id/etRegistFax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
@@ -137,13 +137,13 @@
             android:inputType="textPersonName"
             android:text="Fax.062.512.4591"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName8"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistTel"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName8"
-            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName8" />
+            app:layout_constraintStart_toStartOf="@+id/etRegistTel"
+            app:layout_constraintTop_toTopOf="@+id/etRegistTel" />
 
         <TextView
-            android:id="@+id/editTextTextPersonName8"
+            android:id="@+id/etRegistTel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -153,10 +153,10 @@
             android:inputType="textPersonName"
             android:text="Tel.062.573-4591"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName4"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistStatus"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+            app:layout_constraintStart_toStartOf="@+id/etRegistStatus"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistStatus" />
 
         <Button
             android:id="@+id/btnEdit"
@@ -170,7 +170,7 @@
             app:layout_constraintEnd_toStartOf="@+id/button3"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistFax"
             app:layout_constraintVertical_bias="1.0" />
 
         <Button
