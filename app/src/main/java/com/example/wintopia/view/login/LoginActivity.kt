@@ -2,7 +2,6 @@ package com.example.wintopia.view.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityLoginBinding

@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.wintopia">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,10 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wintopia"
-        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
             android:name=".EditActivity"
             android:exported="false" />
         <activity
@@ -28,18 +23,7 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-=======
->>>>>>> 83967626ea384242b797ee2c63d5c0e82e916f52
             android:name=".view.main.MainActivity"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".view.signup.SignUpActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".view.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
