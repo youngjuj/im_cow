@@ -1,4 +1,4 @@
-package com.example.wintopia.view.auth
+package com.example.wintopia.view.signup
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
