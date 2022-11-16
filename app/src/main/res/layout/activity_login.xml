@@ -7,16 +7,16 @@
         <import type="android.view.View"/>
         <variable
             name="activity"
-            type="com.example.wintopia.view.auth.LoginActivity" />
+            type="com.example.wintopia.view.login.LoginActivity" />
         <variable
             name="vm"
-            type="com.example.wintopia.view.auth.User"/>
+            type="com.example.wintopia.view.login.LoginViewModel"/>
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.auth.LoginActivity">
+    tools:context=".view.login.LoginActivity">
 
 
     <LinearLayout
@@ -36,9 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
-        android:text="@{vm.text}"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
+        android:text="로그인"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -67,6 +67,7 @@
             android:ems="10"
             android:hint="ID 입력"
             android:inputType="text"
+            android:text="@={vm.id}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
@@ -95,6 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:inputType="textPassword"
+            android:text="@={vm.pw}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etJoinId_layout" />

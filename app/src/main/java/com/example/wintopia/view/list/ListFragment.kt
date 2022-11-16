@@ -11,10 +11,10 @@ import com.example.wintopia.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
 
-    
-//    lateinit var adapter: ListVOAdapter
-//    private var mBinding: FragmentListBinding? = null
-//    private val binding get() = mBinding!!
+
+    //    lateinit var adapter: ListVOAdapter
+    private var mBinding: FragmentListBinding? = null
+    private val binding get() = mBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,13 +25,13 @@ class ListFragment : Fragment() {
 
         var data = arrayListOf<ListVO>()
         data.add(ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
-        "분홍얼룩이", "22111001"))
+            "분홍얼룩이", "22111001"))
 
 //        binding.rvList.layoutManager = LinearLayoutManager(requireContext())
 //        binding.rvList.adapter = ListVOAdapter(data)
 
-        
-        return container
+
+        return binding.root
     }
 
 }
