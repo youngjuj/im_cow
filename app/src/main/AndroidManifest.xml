@@ -15,10 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wintopia"
-        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".RegistActivity"
+            android:name=".view.camera.RegistActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".view.mypage.EditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.signup.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".view.main.MainActivity"
@@ -29,12 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.signup.SignUpActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".view.login.LoginActivity"
-            android:exported="true"></activity>
+
     </application>
 
 </manifest>
