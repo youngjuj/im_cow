@@ -11,16 +11,11 @@ import com.example.wintopia.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
 
-<<<<<<< HEAD
+
+
     //    lateinit var adapter: ListVOAdapter
     private var mBinding: FragmentListBinding? = null
     private val binding get() = mBinding!!
-=======
-    
-//    lateinit var adapter: ListVOAdapter
-//    private var mBinding: FragmentListBinding? = null
-//    private val binding get() = mBinding!!
->>>>>>> 96d07cae4b7bbd1a7f6f11c6d711ff10ae14468a
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,13 +31,8 @@ class ListFragment : Fragment() {
 //        binding.rvList.layoutManager = LinearLayoutManager(requireContext())
 //        binding.rvList.adapter = ListVOAdapter(data)
 
-<<<<<<< HEAD
 
         return binding.root
-=======
-        
-        return container
->>>>>>> 96d07cae4b7bbd1a7f6f11c6d711ff10ae14468a
     }
 
 }
