@@ -1,4 +1,4 @@
-package com.example.wintopia.view.mypage
+package com.example.wintopia.view.info
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
