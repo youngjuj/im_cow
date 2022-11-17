@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".view.info.InfoActivity">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -14,51 +15,37 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </LinearLayout>
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/imageView9"-->
-    <!--        android:layout_width="50dp"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:layout_marginStart="16dp"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:src="@drawable/back"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/tvEdit"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
         android:layout_marginTop="16dp"
-        android:text="수정하기"
+        app:layout_constraintStart_toEndOf="@+id/imgInfoBack"
+        android:text="상세정보"
         android:textColor="#0D7ACF"
-
         android:textSize="38dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <WebView
-        android:id="@+id/wvEditPhoto"
+        android:id="@+id/wvInfoPhto"
         android:layout_width="350dp"
         android:layout_height="153dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEdit"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:src="@tools:sample/avatars" />
 
-    <EditText
-        android:id="@+id/etEditId"
+    <TextView
+        android:id="@+id/tvInfoId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginStart="40dp"
+
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:ems="10"
@@ -66,122 +53,141 @@
         android:text="고유번호: 20111001"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEditName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoName" />
 
-    <EditText
-        android:id="@+id/etEditStatus"
+    <TextView
+        android:id="@+id/tvInfoStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:ems="10"
-
         android:inputType="textPersonName"
+
         android:text="건강상태: 양호"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/etEditBirth"
+        app:layout_constraintEnd_toEndOf="@+id/tvInfoBirth"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/etEditBirth"
-        app:layout_constraintTop_toBottomOf="@+id/etEditBirth" />
+        app:layout_constraintStart_toStartOf="@+id/tvInfoBirth"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoBirth" />
 
-    <EditText
-        android:id="@+id/etEditBirth"
+    <TextView
+        android:id="@+id/tvInfoBirth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:ems="10"
-
         android:inputType="textPersonName"
+
         android:text="출생일: 20201110"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/etEditId"
+        app:layout_constraintEnd_toEndOf="@+id/tvInfoId"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/etEditId"
-        app:layout_constraintTop_toBottomOf="@+id/etEditId" />
+        app:layout_constraintStart_toStartOf="@+id/tvInfoId"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoId" />
 
-    <EditText
-        android:id="@+id/etEditName"
+    <TextView
+        android:id="@+id/tvInfoName"
         android:layout_width="200dp"
         android:layout_height="67dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-
+        android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
+
         android:ems="10"
         android:inputType="textPersonName"
         android:text="얼룩이"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wvEditPhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/wvInfoPhto" />
 
     <ImageView
-        android:id="@+id/imgEditStar"
+        android:id="@+id/imgInfoStar"
         android:layout_width="58dp"
         android:layout_height="67dp"
         android:src="@drawable/star"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.159"
-        app:layout_constraintStart_toEndOf="@+id/etEditName"
-        app:layout_constraintTop_toTopOf="@+id/etEditName" />
+        app:layout_constraintStart_toEndOf="@+id/tvInfoName"
+        app:layout_constraintTop_toTopOf="@+id/tvInfoName" />
 
-    <EditText
-        android:id="@+id/etEditFax"
+    <TextView
+        android:id="@+id/tvInfoFax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-
-        android:background="@android:color/transparent"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Fax.062.512.4591"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/etEditTel"
+        app:layout_constraintEnd_toEndOf="@+id/tvInfoTel"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etEditTel"
-        app:layout_constraintTop_toTopOf="@+id/etEditTel" />
+        app:layout_constraintStart_toStartOf="@+id/tvInfoTel"
+        app:layout_constraintTop_toTopOf="@+id/tvInfoTel" />
 
-    <EditText
-        android:id="@+id/etEditTel"
+    <TextView
+        android:id="@+id/tvInfoTel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
+
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Tel.062.573-4591"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/etEditStatus"
+        app:layout_constraintEnd_toEndOf="@+id/tvInfoStatus"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etEditStatus"
-        app:layout_constraintTop_toBottomOf="@+id/etEditStatus" />
+        app:layout_constraintStart_toStartOf="@+id/tvInfoStatus"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoStatus" />
 
     <Button
-        android:id="@+id/btnEditEdit"
+        android:id="@+id/btnInfoEdit"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/background_radius"
-        android:text="확인"
-        app:layout_constraintBottom_toBottomOf="@+id/btnEditCancel"
-        app:layout_constraintEnd_toStartOf="@+id/btnEditCancel"
+        android:text="수정하기"
+        app:layout_constraintBottom_toBottomOf="@+id/btnInfoDelete"
+        app:layout_constraintEnd_toStartOf="@+id/btnInfoDelete"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEditFax"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoFax"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnEditCancel"
+        android:id="@+id/btnInfoDelete"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="52dp"
         android:background="@drawable/background_radius"
-        android:text="취소"
+        android:text="삭제하기"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintHorizontal_bias="0.793"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgInfoBack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/imageView9"-->
+    <!--            android:layout_width="50dp"-->
+    <!--            android:layout_height="50dp"-->
+    <!--            android:layout_marginStart="16dp"-->
+    <!--            android:layout_marginTop="16dp"-->
+    <!--            android:src="@drawable/back"-->
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

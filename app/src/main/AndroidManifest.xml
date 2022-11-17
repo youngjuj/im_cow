@@ -15,9 +15,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wintopia"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
-            android:name=".view.mypage.EditActivity"
+            android:name=".view.info.InfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.camera.RegistActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.info.EditActivity"
             android:exported="false" />
         <activity
             android:name=".view.signup.SignUpActivity"
@@ -32,12 +38,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.camera.RegistActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.main.MainActivity"
             android:exported="true">
-
         </activity>
     </application>
 
