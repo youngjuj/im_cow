@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<FrameLayout
+    android:id="@+id/flCamera"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.camera.CameraFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="젖소 키우는 꿀팁?"
+        android:textSize="40sp" />
+
+    <ImageView
+        android:id="@+id/img_cattle"
+        android:layout_width="match_parent"
+        android:layout_height="276dp"
+        android:layout_marginTop="100dp"
+        tools:src="@tools:sample/avatars" />
+<!--    <TextView-->
+<!--        android:id="@+id/tvCameraVi"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="visible"-->
+<!--        android:visibility="invisible"/>-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbCameraCam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="240dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/camera"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbCameraGal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginLeft="120dp"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="bottom"
+        android:src="@drawable/gallery"
+        />
+
 
 </FrameLayout>
+</layout>
