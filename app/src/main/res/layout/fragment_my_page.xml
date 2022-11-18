@@ -1,14 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.mypage.MyPageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:background="#B4DAF8"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="16dp"
+            android:text="상세정보"
+            android:textColor="#0D7ACF"
+            android:textSize="38dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView9"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <WebView
+            android:id="@+id/imageView10"
+            android:layout_width="350dp"
+            android:layout_height="153dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/etRegistId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="고유번호: 20111001"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistName" />
+
+        <TextView
+            android:id="@+id/etRegistStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:inputType="textPersonName"
+
+            android:text="건강상태: 양호"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistBirth"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/etRegistBirth"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistBirth" />
+
+        <TextView
+            android:id="@+id/etRegistBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:inputType="textPersonName"
+
+            android:text="출생일: 20201110"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistId"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/etRegistId"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistId" />
+
+        <TextView
+            android:id="@+id/etRegistName"
+            android:layout_width="200dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="68dp"
+            android:background="@android:color/transparent"
+
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="얼룩이"
+            android:textSize="34sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="58dp"
+            android:layout_height="67dp"
+            android:src="@drawable/star"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.159"
+            app:layout_constraintStart_toEndOf="@+id/etRegistName"
+            app:layout_constraintTop_toTopOf="@+id/etRegistName" />
+
+        <TextView
+            android:id="@+id/etRegistFax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Fax.062.512.4591"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistTel"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/etRegistTel"
+            app:layout_constraintTop_toTopOf="@+id/etRegistTel" />
+
+        <TextView
+            android:id="@+id/etRegistTel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Tel.062.573-4591"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistStatus"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/etRegistStatus"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistStatus" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_radius"
+            android:text="수정하기"
+            app:layout_constraintBottom_toBottomOf="@+id/button3"
+            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistFax"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="48dp"
+            android:text="삭제하기"
+            android:background="@drawable/background_radius"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.789"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

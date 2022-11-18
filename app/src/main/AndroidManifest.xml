@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.wintopia">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,19 +15,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wintopia"
+<<<<<<< HEAD
         android:usesCleartextTraffic="true"
         android:hardwareAccelerated="true"
         android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
+=======
+        tools:targetApi="31" >
+>>>>>>> master
         <activity
-            android:name=".view.main.MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:name=".view.info.InfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.camera.RegistActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.info.EditActivity"
+            android:exported="false" />
         <activity
             android:name=".view.signup.SignUpActivity"
-            android:exported="true">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="true">
@@ -37,7 +44,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".view.main.MainActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

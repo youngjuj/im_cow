@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:background="#B4DAF8"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageView9"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:src="@drawable/back"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <TextView
+        android:id="@+id/tvEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="수정하기"
+        android:textColor="#0D7ACF"
+
+        android:textSize="38dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <WebView
+        android:id="@+id/wvEditPhoto"
+        android:layout_width="350dp"
+        android:layout_height="153dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEdit"
+        tools:src="@tools:sample/avatars" />
+
+    <EditText
+        android:id="@+id/etEditId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="고유번호: 20111001"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEditName" />
+
+    <EditText
+        android:id="@+id/etEditStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+
+        android:inputType="textPersonName"
+        android:text="건강상태: 양호"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/etEditBirth"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/etEditBirth"
+        app:layout_constraintTop_toBottomOf="@+id/etEditBirth" />
+
+    <EditText
+        android:id="@+id/etEditBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+
+        android:inputType="textPersonName"
+        android:text="출생일: 20201110"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/etEditId"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/etEditId"
+        app:layout_constraintTop_toBottomOf="@+id/etEditId" />
+
+    <EditText
+        android:id="@+id/etEditName"
+        android:layout_width="200dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="얼룩이"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wvEditPhoto" />
+
+    <ImageView
+        android:id="@+id/imgEditStar"
+        android:layout_width="58dp"
+        android:layout_height="67dp"
+        android:src="@drawable/star"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toEndOf="@+id/etEditName"
+        app:layout_constraintTop_toTopOf="@+id/etEditName" />
+
+    <EditText
+        android:id="@+id/etEditFax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Fax.062.512.4591"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/etEditTel"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etEditTel"
+        app:layout_constraintTop_toTopOf="@+id/etEditTel" />
+
+    <EditText
+        android:id="@+id/etEditTel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Tel.062.573-4591"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/etEditStatus"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etEditStatus"
+        app:layout_constraintTop_toBottomOf="@+id/etEditStatus" />
+
+    <Button
+        android:id="@+id/btnEditEdit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_radius"
+        android:text="확인"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEditCancel"
+        app:layout_constraintEnd_toStartOf="@+id/btnEditCancel"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEditFax"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/btnEditCancel"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/background_radius"
+        android:text="취소"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

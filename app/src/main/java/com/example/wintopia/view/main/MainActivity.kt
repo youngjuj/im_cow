@@ -4,28 +4,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityMainBinding
 import com.example.wintopia.view.camera.CameraFragment
+import com.example.wintopia.view.camera.RegistViewModel
 import com.example.wintopia.view.list.ListFragment
 import com.example.wintopia.view.mypage.MyPageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-    private var mBinding: ActivityMainBinding? = null
-    private val binding get() = mBinding!!
+
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.lifecycleOwner = this
 
-        setContentView(binding.root)
         supportFragmentManager.beginTransaction().replace(
             R.id.fl, ListFragment()
         ).commit()
-        binding.bnv.setOnItemReselectedListener { item ->
+        binding.bnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tab1 -> {
                     Toast.makeText(this, "List화면", Toast.LENGTH_SHORT).show()
@@ -53,9 +55,6 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
-        fun onDestroy() {
-            mBinding = null
-            super.onDestroy()
-        }
+
     }
 }
