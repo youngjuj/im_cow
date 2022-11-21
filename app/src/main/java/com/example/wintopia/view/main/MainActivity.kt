@@ -55,13 +55,13 @@ class MainActivity : AppCompatActivity() {
                 R.id.tab2 -> {
 //                    var intent = Intent(this, CameraFragment::class.java)
 //                    intent.putExtra("show", show)
-                    show = !show
 //                    startActivity(intent)
+
 
                     Toast.makeText(this, "카메라 화면", Toast.LENGTH_SHORT).show()
 
                     setDataAtFragment(CameraFragment(), show)
-
+                    show = !show
 //                    var fragment = CameraFragment()
 //
 //                    val bundle = Bundle()

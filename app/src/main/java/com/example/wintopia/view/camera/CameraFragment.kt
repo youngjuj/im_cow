@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -27,19 +28,31 @@ class CameraFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_camera, container, false)
         arguments?.let {
             show = it.getBoolean("data") }
 
+        binding.fbCameraCam.setOnClickListener{
+            Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
+        }
+        Log.v("CF show", show.toString())
+
+        if (show!!) {
+            binding.fbCameraCam.visibility = View.VISIBLE
+            binding.fbCameraGal.visibility = View.VISIBLE
+        } else {
+            binding.fbCameraCam.visibility = View.GONE
+            binding.fbCameraGal.visibility = View.GONE
+        }
 
 
-//            binding.fbCameraCam.isVisible = show == true
-//            binding.fbCameraGal.isVisible =
+
 
 
 
             // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.fragment_camera, container, false)
+            return binding.root
         }
     }
 
