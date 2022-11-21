@@ -8,10 +8,12 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.ListFragment
+import androidx.fragment.app.Fragment
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityInfoBinding
+import com.example.wintopia.view.list.ListFragment
 import com.example.wintopia.view.utils.Constants.TAG
+import androidx.fragment.app.ListFragment as ListFra
 
 class InfoActivity : AppCompatActivity() {
 
@@ -60,11 +62,18 @@ class InfoActivity : AppCompatActivity() {
         binding.btnInfoDelete.setOnClickListener {
             Log.d(TAG, " 삭제하기 버튼 클릭")
             // 전체 리스트 페이지 이동
-            val intent = Intent(baseContext, ListFragment::class.java)
-            startActivity(intent)
+//            val intent = Intent()
+//            val intent = Intent(baseContext, ListFragment::getActivity::class.java)
+//            startActivity(intent)
             finish()
 
             Toast.makeText(this, "삭제하기", Toast.LENGTH_SHORT).show()
         }
+    }
+    fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(fragment.id, fragment)
+        fragmentTransaction.commit()
     }
 }

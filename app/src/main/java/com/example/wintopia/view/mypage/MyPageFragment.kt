@@ -43,7 +43,7 @@ class MyPageFragment : Fragment() {
                 Log.d(TAG, "MyPage check 버튼클릭")
                 Log.d(TAG, "MyPage check ${savedCheckBox}")
 
-                val intent = Intent(context, LoginActivity::class.java)
+                val intent = Intent(requireActivity(), LoginActivity::class.java)
                 startActivity(intent)
             }
 

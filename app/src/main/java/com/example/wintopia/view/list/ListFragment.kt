@@ -1,10 +1,12 @@
 package com.example.wintopia.view.list
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.TranslateAnimation
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wintopia.R
@@ -30,8 +32,9 @@ class ListFragment : Fragment() {
 
         binding.rvList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvList.adapter = ListVOAdapter(data)
-
+        binding.rvList.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            Log.d("ListFragment", "scrolly : $scrollY")
+        }
         return binding.root
     }
-
 }
