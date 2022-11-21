@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
 //        sharedPreferences = getSharedPreferences("other", 0)
 //        editor = sharedPreferences.edit()
 
-        if (savedChceckBox == false){
+        if (savedChceckBox != true){
 
         } else {
             val intent = Intent(this, MainActivity::class.java)
@@ -129,9 +129,6 @@ class LoginActivity : AppCompatActivity() {
 //                Toast.makeText(this, "ID 혹은 비밀번호를 확인해 주세요.", Toast.LENGTH_SHORT).show()
 //            }
         }
-
-
-
 
         // pw 텍스트가 변경이 되었을때 스크롤
         binding.etLoginPw.onMyTextChanged {
