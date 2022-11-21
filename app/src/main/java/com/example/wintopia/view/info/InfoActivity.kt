@@ -7,7 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.ListFragment
+import androidx.fragment.app.Fragment
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityInfoBinding
 
@@ -69,5 +69,11 @@ class InfoActivity : AppCompatActivity() {
 
             Toast.makeText(this, "삭제하기", Toast.LENGTH_SHORT).show()
         }
+    }
+    fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(fragment.id, fragment)
+        fragmentTransaction.commit()
     }
 }
