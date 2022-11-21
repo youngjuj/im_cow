@@ -4,7 +4,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ListItemBinding
@@ -17,7 +19,7 @@ data class ListVO (val pic: String = "", // 이미지 url 주소
 
 // RecyclerView 사용에 필수인 Adapter
 class ListVOAdapter(private val data:MutableList<ListVO>):
-    RecyclerView.Adapter<ListVOAdapter.ListVOViewHolder>(){
+    RecyclerView.Adapter<ListVOAdapter.ListVOViewHolder>(), ItemTouchHelperListener{
 
     // RecyclerView ViewHolder
     class ListVOViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -53,6 +55,18 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
     }
 
     override fun getItemCount(): Int = data.size
+    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean = false
+
+    override fun onItemSwipe(position: Int) {
+    }
+
+    override fun onLeftClick(position: Int, viewHolder: RecyclerView.ViewHolder?) {
+        Toast.makeText(viewHolder?.itemView?.context, "leftClick", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onRightClick(position: Int, viewHolder: RecyclerView.ViewHolder?) {
+        Toast.makeText(viewHolder?.itemView?.context, "rightClick", Toast.LENGTH_SHORT).show()
+    }
 
 
 }
