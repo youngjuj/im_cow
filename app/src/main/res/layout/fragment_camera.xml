@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 <FrameLayout
     android:id="@+id/flCamera"
@@ -8,7 +9,7 @@
     tools:context=".view.camera.CameraFragment">
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tvCameraTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -16,18 +17,7 @@
         android:text="젖소 키우는 꿀팁?"
         android:textSize="40sp" />
 
-    <ImageView
-        android:id="@+id/img_cattle"
-        android:layout_width="match_parent"
-        android:layout_height="276dp"
-        android:layout_marginTop="100dp"
-        tools:src="@tools:sample/avatars" />
-<!--    <TextView-->
-<!--        android:id="@+id/tvCameraVi"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="visible"-->
-<!--        android:visibility="invisible"/>-->
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbCameraCam"
@@ -49,6 +39,13 @@
         android:layout_gravity="bottom"
         android:src="@drawable/gallery"
         />
+
+    <ImageView
+        android:id="@+id/imgCameraPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/standingcow" />
 
 
 </FrameLayout>

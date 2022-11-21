@@ -6,40 +6,18 @@
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/drawable/background_radius.xml" value="0.1675" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2225" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/activity_edit.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/activity_info.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/activity_regist.xml" value="0.1" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/activity_sign_up.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/fragment_blank.xml" value="0.1" />
-        <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/fragment_camera.xml" value="0.1" />
+        <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/fragment_camera.xml" value="0.16" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/fragment_list.xml" value="0.264" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/fragment_my_page.xml" value="0.2046875" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/list_item.xml" value="0.4" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/menu/select.xml" value="0.1" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/drawable/background_radius.xml" value="0.1905" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/drawable/styles.xml" value="0.224" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_main.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_sign_up.xml" value="0.23596014492753623" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/fragment_camera.xml" value="0.2" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/fragment_list.xml" value="0.12239583333333333" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/fragment_my_page.xml" value="0.3670520231213873" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/list_item.xml" value="0.176" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/xml/network_security_config.xml" value="0.1078125" />
->>>>>>> phy
-=======
-        <entry key="..\:/Users/gjaischool/Desktop/Winter/wintopia/app/src/main/res/layout/activity_info.xml" value="0.11955420466058764" />
-        <entry key="..\:/Users/gjaischool/Desktop/Winter/wintopia/app/src/main/res/layout/activity_login.xml" value="0.24365942028985507" />
-        <entry key="..\:/Users/gjaischool/Desktop/Winter/wintopia/app/src/main/res/layout/activity_main.xml" value="0.24365942028985507" />
-        <entry key="..\:/Users/gjaischool/Desktop/Winter/wintopia/app/src/main/res/layout/activity_regist.xml" value="0.24365942028985507" />
-        <entry key="..\:/Users/gjaischool/Desktop/Winter/wintopia/app/src/main/res/layout/activity_sign_up.xml" value="0.24365942028985507" />
-        <entry key="..\:/Users/gjaischool/Desktop/Winter/wintopia/app/src/main/res/layout/fragment_camera.xml" value="0.24365942028985507" />
-        <entry key="..\:/Users/gjaischool/Desktop/Winter/wintopia/app/src/main/res/layout/fragment_list.xml" value="0.24365942028985507" />
-        <entry key="..\:/Users/gjaischool/Desktop/Winter/wintopia/app/src/main/res/layout/fragment_my_page.xml" value="0.264" />
->>>>>>> 7b7ef02dfd9551d9746bf231b762828847de96df
+        <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/xml/filepaths.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>
