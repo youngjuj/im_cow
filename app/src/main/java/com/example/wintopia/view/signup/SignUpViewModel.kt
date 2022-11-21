@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 class SignUpViewModel: ViewModel() {
 
     // Create a LiveData with a String
-    val id = MutableLiveData<String>()
-    val pw = MutableLiveData<String>()
-
+    val signUpId = MutableLiveData<String>()
+    val signUpPw1 = MutableLiveData<String>()
+    val signUpPw2 = MutableLiveData<String>()
 }

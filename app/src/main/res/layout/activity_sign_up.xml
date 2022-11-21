@@ -5,9 +5,14 @@
 
     <data>
         <variable
-            name="vm"
+            name="SignUpvm"
             type="com.example.wintopia.view.signup.SignUpViewModel" />
     </data>
+
+    <ScrollView
+        android:id="@+id/svSignUpRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -62,7 +67,7 @@
                 android:ems="10"
                 android:hint="ID 입력"
                 android:inputType="text"
-                android:text="@={vm.id}"
+                android:text="@={SignUpvm.signUpId}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -90,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:inputType="textPassword"
+                android:text="@={SignUpvm.signUpPw1}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etJoinId_layout" />
@@ -97,19 +103,20 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etJoinPw2_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:hint="PassWord 확인"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_gravity="right"
             app:boxStrokeColor="#00D4A3"
             app:counterEnabled="true"
             app:counterMaxLength="12"
             app:endIconMode="clear_text"
-            app:helperText="비밀번호를 확인해주세요"
+            app:helperText=""
+            app:helperTextTextColor="#F10606"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,9 +127,10 @@
                 android:id="@+id/etJoinPw2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="12"
+                android:layout_marginBottom="5dp"
                 android:inputType="textPassword"
-                android:layout_marginBottom="5dp" />
+                android:maxLength="12"
+                android:text="@={SignUpvm.signUpPw2}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -139,7 +147,6 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/background_radius"
                 android:text="회원가입"
@@ -153,7 +160,6 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/background_radius"
                 android:text="돌아가기"
@@ -174,5 +180,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
