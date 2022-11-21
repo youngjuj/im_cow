@@ -2,10 +2,9 @@ package com.example.wintopia.view.camera
 
 import android.Manifest.permission.CAMERA
 import android.app.Activity
-import android.content.ContentResolver
 import android.content.Intent
+import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -17,31 +16,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentCameraBinding
-import com.example.wintopia.view.main.MainViewModel
 import java.io.File
 import java.io.IOException
-import java.lang.Exception
-import java.sql.Date
 import java.text.SimpleDateFormat
-import java.util.jar.Manifest
 
 class CameraFragment : Fragment() {
     private var show:Boolean? = null
+
+    // 카메라 및 갤러리 연동 변수들
     private val REQUEST_IMAGE_CAPTURE = 1
-    private val GALLERY = 2
+    private val REQUEST_GALLERY = 2
     lateinit var currentPhotoPath: String
 
 
@@ -75,6 +66,10 @@ class CameraFragment : Fragment() {
             Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
             if(checkPermission()) dispatchTakePictureIntent() else requestPermission()
         }
+        binding.fbCameraGal.setOnClickListener{
+            Toast.makeText(requireActivity(), "fbCameraGal", Toast.LENGTH_SHORT).show()
+            if(checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+        }
 
 
             // Inflate the layout for this fragment
@@ -106,10 +101,10 @@ class CameraFragment : Fragment() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(requireContext(), "권한 설정 완료", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(), "권한 설정 완료", Toast.LENGTH_SHORT).show()
         }
         else {
-            Toast.makeText(requireContext(), "권한 설정 실패", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(), "권한 설정 실패", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -155,6 +150,16 @@ class CameraFragment : Fragment() {
         ).apply { currentPhotoPath = absolutePath }
     }
 
+    private fun dispatchSelectPictureIntent() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, REQUEST_GALLERY)
+        }
+
+
+
+
     // camera로 찍어서 저장한 파일 imageview로 띄워주기
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -173,9 +178,19 @@ class CameraFragment : Fragment() {
                         val bitmap = ImageDecoder.decodeBitmap(decode)
                         binding.imgCameraPic.setImageBitmap(bitmap)
                     }
+
                 }
             }
-        }
+            REQUEST_GALLERY -> {
+                val selectedImageURI: Uri? = data?.data
+
+                if(selectedImageURI != null) binding.imgCameraPic.setImageURI(selectedImageURI)
+                else Toast.makeText(requireActivity(), "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(requireActivity(), "잘못된 접근입니다..", Toast.LENGTH_SHORT).show()
+            }
+    }
     }
 }
 
