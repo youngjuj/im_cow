@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityEditBinding
-import com.example.wintopia.view.utils.Constants
+import com.example.wintopia.view.utilssd.Constants
 
 class EditActivity : AppCompatActivity() {
 

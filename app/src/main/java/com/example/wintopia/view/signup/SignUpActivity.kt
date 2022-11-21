@@ -10,13 +10,13 @@ import androidx.databinding.DataBindingUtil
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivitySignUpBinding
 import com.example.wintopia.view.login.LoginActivity
-import com.example.wintopia.view.login.RetrofitInterface
-import com.example.wintopia.view.login.UserList
+import com.example.wintopia.data.UserList
 import com.example.wintopia.view.main.MainActivity
-import com.example.wintopia.view.retrofit.RetrofitClient
-import com.example.wintopia.view.utils.API_
-import com.example.wintopia.view.utils.Constants
-import com.example.wintopia.view.utils.onMyTextChanged
+import com.example.wintopia.retrofit.RetrofitClient
+import com.example.wintopia.retrofit.RetrofitInterface
+import com.example.wintopia.view.utilssd.API_
+import com.example.wintopia.view.utilssd.Constants
+import com.example.wintopia.view.utilssd.onMyTextChanged
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,13 +60,13 @@ class SignUpActivity : AppCompatActivity() {
 
             //Retrofit 인스턴스 생성
             val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
-            val service = retrofit.create(SignUpInterface::class.java) // 레트로핏 인터페이스 객체 구현
+            val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
             // 서버 연결, id, pw 보내기
             val id = binding.etJoinId.text.toString()
             val pw = binding.etJoinPw2.text.toString()
 
-            val call: Call<UserList?>? = service.getName(id, pw)
+            val call: Call<UserList?>? = service.getSignUp(id, pw)
             call!!.enqueue(object : Callback<UserList?> {
                 override fun onResponse(call: Call<UserList?>?, response: Response<UserList?>) {
                     Log.d(Constants.TAG, "SignUp onResponse")

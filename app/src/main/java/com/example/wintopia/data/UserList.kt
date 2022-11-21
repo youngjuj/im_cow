@@ -1,4 +1,4 @@
-package com.example.wintopia.view.login
+package com.example.wintopia.data
 
 import com.google.gson.annotations.Expose
 

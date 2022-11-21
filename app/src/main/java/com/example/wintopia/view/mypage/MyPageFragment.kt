@@ -9,11 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentMyPageBinding
 import com.example.wintopia.view.login.LoginActivity
-import com.example.wintopia.view.utils.Constants.TAG
+import com.example.wintopia.view.utilssd.Constants.TAG
 
 class MyPageFragment : Fragment() {
 

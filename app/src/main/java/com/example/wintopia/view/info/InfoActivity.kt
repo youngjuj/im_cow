@@ -1,7 +1,6 @@
 package com.example.wintopia.view.info
 
 import android.content.Intent
-import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.ListFragment
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityInfoBinding
-import com.example.wintopia.view.utils.Constants.TAG
+import com.example.wintopia.view.utilssd.Constants.TAG
 
 class InfoActivity : AppCompatActivity() {
 

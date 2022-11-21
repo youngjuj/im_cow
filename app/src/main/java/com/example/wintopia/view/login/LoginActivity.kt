@@ -1,29 +1,26 @@
 package com.example.wintopia.view.login
 
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.util.Log
-import android.view.View
-import android.widget.CheckBox
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.wintopia.R
+import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ActivityLoginBinding
 import com.example.wintopia.view.main.MainActivity
-import com.example.wintopia.view.retrofit.RetrofitClient
+import com.example.wintopia.retrofit.RetrofitClient
+import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.signup.SignUpActivity
-import com.example.wintopia.view.utils.API_.BASE_URL
-import com.example.wintopia.view.utils.Constants.TAG
-import com.example.wintopia.view.utils.onMyTextChanged
+import com.example.wintopia.view.utilssd.API_.BASE_URL
+import com.example.wintopia.view.utilssd.Constants.TAG
+import com.example.wintopia.view.utilssd.onMyTextChanged
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.prefs.Preferences
 
 
 class LoginActivity : AppCompatActivity() {
