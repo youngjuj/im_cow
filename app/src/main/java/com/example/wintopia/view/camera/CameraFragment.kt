@@ -113,14 +113,7 @@ class CameraFragment : Fragment() {
         }
     }
 
-//    private fun dispatchTakePictureIntent() {
-//        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-//            takePictureIntent.resolveActivity(requireActivity().packageManager).also {
-//                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-//            }
-//        }
-//    }
-
+    // camera intent && image파일 생성
     private fun dispatchTakePictureIntent() {
                 Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
                     if (takePictureIntent.resolveActivity(requireActivity().packageManager) != null) {
@@ -151,6 +144,7 @@ class CameraFragment : Fragment() {
     }
     }
 
+    // camera로 찍은 파일 저장하기
     private fun createImageFile(): File {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(java.util.Date())
         val storageDir: File? = requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
@@ -161,6 +155,7 @@ class CameraFragment : Fragment() {
         ).apply { currentPhotoPath = absolutePath }
     }
 
+    // camera로 찍어서 저장한 파일 imageview로 띄워주기
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -181,23 +176,6 @@ class CameraFragment : Fragment() {
                 }
             }
         }
-
-//        if(requestCode == Activity.RESULT_OK) {
-//            if (requestCode == GALLERY) {
-//                var imageData: Uri? = data?.data
-//                Toast.makeText(requireContext(), imageData.toString(), Toast.LENGTH_SHORT).show()
-//                try {
-//                    val bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, imageData)
-//                    binding.imgCameraPic.setImageBitmap(bitmap)
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
-//            else if (requestCode == REQUEST_IMAGE_CAPTURE) {
-//                val imageBitmap: Bitmap? = data?.extras?.get("data") as Bitmap
-//                binding.imgCameraPic.setImageBitmap(imageBitmap)
-//            }
-//        }
     }
 }
 
