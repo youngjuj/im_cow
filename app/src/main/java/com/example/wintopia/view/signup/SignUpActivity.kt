@@ -16,6 +16,7 @@ import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.retrofit.RetrofitClient
 import com.example.wintopia.view.utils.API_
 import com.example.wintopia.view.utils.Constants
+import com.example.wintopia.view.utils.onMyTextChanged
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,15 +30,26 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_sign_up)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
-        binding.vm = viewModel
+        binding.signUpvm = viewModel
         binding.lifecycleOwner = this
 
-        observeData()
+        // pw 텍스트가 변경이 되었을때
+        binding.etJoinPw2.onMyTextChanged {
+            // 하나라도 입력된 글자가 있다면
+            if (it.toString().count() > 0){
+                binding.svSignUpRoot.scrollTo(0, 500)
+            }
+        }
 
-        // 로그인페이지로 돌아가기
-        binding.btnJoinback.setOnClickListener(){
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+        // signUpPw2를 관찰해서
+        viewModel.signUpPw2.observe(this){
+            binding.edt.text = it
+            // helper text 변경
+            if (it == binding.etJoinPw1.toString()){
+                binding.etJoinPw2Layout.helperText = ""
+            }else{
+                binding.etJoinPw2Layout.helperText = "비밀번호를 확인해주세요"
+            }
         }
 
         // 회원 가입을 위한 서버에서 받아온 값
@@ -91,16 +103,13 @@ class SignUpActivity : AppCompatActivity() {
                 }
             })
 
-
         }
 
-    }
-
-    fun observeData() {
-        viewModel.id.observe(this){
-            binding.edt.text = it
+        // 로그인페이지로 돌아가기
+        binding.btnJoinback.setOnClickListener(){
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
-
 
 }
