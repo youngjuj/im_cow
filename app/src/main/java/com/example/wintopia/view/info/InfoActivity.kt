@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.ListFragment
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityInfoBinding
+import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utils.Constants.TAG
 
 class InfoActivity : AppCompatActivity() {
@@ -60,7 +61,7 @@ class InfoActivity : AppCompatActivity() {
         binding.btnInfoDelete.setOnClickListener {
             Log.d(TAG, " 삭제하기 버튼 클릭")
             // 전체 리스트 페이지 이동
-            val intent = Intent(baseContext, ListFragment::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
 
