@@ -57,15 +57,15 @@ class LoginActivity : AppCompatActivity() {
         //1번째는 데이터 키 값이고 2번째는 키 값에 데이터가 존재하지않을때 대체 값 입니다.
         val savedId = pref.getString("userId", "").toString()
         val savedPw = pref.getString("userPw", "").toString()
-        val savedChceckBox = pref.getBoolean("checkBox", false).toString()
+        val savedChceckBox = pref.getBoolean("checkBox", false)
         Log.d(TAG, "savedId : ${savedId}, savedPw : ${savedPw}, savedCheckBox : ${savedChceckBox}")
 
-        sharedPreferences = getSharedPreferences("other", 0)
-        editor = sharedPreferences.edit()
+//        sharedPreferences = getSharedPreferences("other", 0)
+//        editor = sharedPreferences.edit()
 
-        if (savedId.equals("")){
+        if (savedChceckBox == false){
 
-        } else{
+        } else {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             Toast.makeText(this, "${savedId}님 반갑습니다.", Toast.LENGTH_SHORT).show()
@@ -95,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
                         binding.edt.text = "${response.body()?.geId()}"
                         userId = "${response.body()?.geId()}"
                         userPw = "${response.body()?.getPw()}"
-                        val checkBox = binding.checkbox.isChecked
+                        var checkBox = binding.checkbox.isChecked
 
                         // id, pw가 서버에서 받아온 userId, userPw와 같다면
                         if (id.equals(userId) && pw.equals(userPw)) {
@@ -168,10 +168,6 @@ class LoginActivity : AppCompatActivity() {
         edit.putBoolean("checkBox", checkBox)
         edit.apply() //적용하기
     }
-    private fun checkSharedPreference(){
-
-    }
-
 
 
 }
