@@ -225,20 +225,6 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <TextView
-            android:id="@+id/etRegistFax"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Fax.062.512.4591"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/etRegistTel"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/etRegistTel"
-            app:layout_constraintTop_toTopOf="@+id/etRegistTel" />
-
-        <TextView
             android:id="@+id/etRegistTel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -252,6 +238,20 @@
             app:layout_constraintHorizontal_bias="0.245"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etRegistId" />
+
+        <TextView
+            android:id="@+id/etRegistFax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Fax.062.512.4591"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistTel"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/etRegistTel"
+            app:layout_constraintTop_toTopOf="@+id/etRegistTel" />
 
         <Button
             android:id="@+id/btnMyPageLogout"
@@ -268,7 +268,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etRegistId" />
+            app:layout_constraintTop_toBottomOf="@+id/etRegistFax" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 </FrameLayout>

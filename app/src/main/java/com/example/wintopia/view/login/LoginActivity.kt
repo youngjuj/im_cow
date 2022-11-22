@@ -27,6 +27,9 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding
     val viewModel: LoginViewModel by viewModels()
+    lateinit var id: String
+    lateinit var pw: String
+    var checkBox: Boolean = false
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
@@ -38,17 +41,35 @@ class LoginActivity : AppCompatActivity() {
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
-//        observeData()
-
-        // 로그인을 위한 예비 아이디 비번
-//        val userId = "test"
-//        val userPw = "1234"
-        var userId = ""
-        var userPw = ""
-
-
         // 자동로그인
+        autoLogin()
 
+        // 로그인 버튼 눌렀을 때
+        loginButtonClick()
+        loginEvent()
+
+        // pw 텍스트가 변경이 되었을때 스크롤
+        autoScroll()
+
+        // 회원가입
+        binding.btnLoginJoin.setOnClickListener(){
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+
+    fun loginButtonClick() {
+        binding.btnLoginLgin.setOnClickListener(){
+            id = binding.etLoginId.text.toString()
+            pw = binding.etLoginPw.text.toString()
+            checkBox = binding.checkbox.isChecked
+
+            viewModel.login(id, pw)
+        }
+    }
+
+    fun autoLogin(){
         val pref = getSharedPreferences("userId", 0)
 
         //1번째는 데이터 키 값이고 2번째는 키 값에 데이터가 존재하지않을때 대체 값 입니다.
@@ -56,9 +77,6 @@ class LoginActivity : AppCompatActivity() {
         val savedPw = pref.getString("userPw", "").toString()
         val savedChceckBox = pref.getBoolean("checkBox", false)
         Log.d(TAG, "savedId : ${savedId}, savedPw : ${savedPw}, savedCheckBox : ${savedChceckBox}")
-
-//        sharedPreferences = getSharedPreferences("other", 0)
-//        editor = sharedPreferences.edit()
 
         if (savedChceckBox != true){
 
@@ -68,88 +86,8 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "${savedId}님 반갑습니다.", Toast.LENGTH_SHORT).show()
             finish()
         }
-
-
-        // 로그인 버튼 눌렀을 때
-        binding.btnLoginLgin.setOnClickListener(){
-            //Retrofit 인스턴스 생성
-            val retrofit = RetrofitClient.getInstnace(BASE_URL)
-            val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
-
-            // 서버 연결, id, pw 보내기
-            val id = binding.etLoginId.text.toString()
-            val pw = binding.etLoginPw.text.toString()
-
-            val call: Call<UserList?>? = service.getName(id, pw)
-            call!!.enqueue(object : Callback<UserList?> {
-                override fun onResponse(call: Call<UserList?>?, response: Response<UserList?>) {
-                    Log.d(TAG, "onResponse")
-                    if (response.isSuccessful()) {
-                        Log.e(TAG, "onResponse success")
-//                        val result: UserList? = response.body()
-
-                        // 서버에서 응답받은 데이터를 TextView에 넣어준다.
-                        binding.edt.text = "${response.body()?.geId()}"
-                        userId = "${response.body()?.geId()}"
-                        userPw = "${response.body()?.getPw()}"
-                        var checkBox = binding.checkbox.isChecked
-
-                        // id, pw가 서버에서 받아온 userId, userPw와 같다면
-                        if (id.equals(userId) && pw.equals(userPw)) {
-
-                            saveData(id, pw, checkBox)
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            startActivity(intent)
-
-                        } else {
-                            // 로그인 실패
-                            Toast.makeText(this@LoginActivity, "ID 혹은 비밀번호를 확인해 주세요11.", Toast.LENGTH_SHORT).show()
-                        }
-
-                    } else {
-                        // 서버통신 실패
-                        Log.e(TAG, "onResponse fail")
-                        Toast.makeText(this@LoginActivity, "로그인 통신상태가 불량입니다.", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onFailure(call: Call<UserList?>?, t: Throwable) {
-                    // 통신 실패
-                    Log.e(TAG, "onFailure: " + t.message)
-                }
-            })
-
-
-            // 로그인 성공
-//            if (id.equals(id) && pw.equals(pw)) {
-//                val intent = Intent(this, MainActivity::class.java)
-//                startActivity(intent)
-//            } else {
-//                // 로그인 실패
-//                Toast.makeText(this, "ID 혹은 비밀번호를 확인해 주세요.", Toast.LENGTH_SHORT).show()
-//            }
-        }
-
-        // pw 텍스트가 변경이 되었을때 스크롤
-        binding.etLoginPw.onMyTextChanged {
-            // 하나라도 입력된 글자가 있다면
-            if (it.toString().count() > 0){
-                binding.svLoginRoot.scrollTo(0, 500)
-            }
-        }
-
-        // 회원가입
-        binding.btnLoginJoin.setOnClickListener(){
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
     }
 
-    fun observeData() {
-        viewModel.id.observe(this){
-            binding.edt.text = it
-        }
-    }
 
     // 자동로그인을 위한 아이디 저장 함수
     fun saveData (userId : String, userPw: String, checkBox: Boolean){
@@ -163,6 +101,43 @@ class LoginActivity : AppCompatActivity() {
         edit.apply() //적용하기
     }
 
+    fun loginEvent() {
 
+        viewModel.event.observe(this){
+            when(it){
+                "success" ->{
+                    saveData(id, pw, checkBox)
+                    Toast.makeText(this, "${id}님 환영합니다.", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                "fail" -> {
+                    Toast.makeText(this, "ID 혹은 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
+                }
+                "fail1" ->{
+                    Toast.makeText(this, "로그인 통신상태가 불량입니다.", Toast.LENGTH_SHORT).show()
+                }
+                "fail2" ->{
+                    Toast.makeText(this, "로그인 통신 실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    fun autoScroll(){
+        binding.etLoginPw.onMyTextChanged {
+            // 하나라도 입력된 글자가 있다면
+            if (it.toString().count() > 0){
+                binding.svLoginRoot.scrollTo(0, 500)
+            }
+        }
+    }
+
+//    참고용
+//    fun observeData() {
+//        viewModel.id.observe(this){
+//            binding.edt.text = it
+//        }
+//    }
 }
 
