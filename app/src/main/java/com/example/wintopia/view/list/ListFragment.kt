@@ -1,7 +1,6 @@
 package com.example.wintopia.view.list
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import android.view.animation.TranslateAnimation
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentListBinding
 
@@ -34,12 +34,22 @@ class ListFragment : Fragment() {
             "분홍얼룩이", "22111001"))
 
 
-        binding.rvList.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvList.adapter = ListVOAdapter(data)
-        val itemTouchHelper = ItemTouchHelper(SwipeController(ListVOAdapter(data)))
+        val listAdapter = ListVOAdapter(data)
+
+        val swipeController = SwipeController().apply { setClamp(200f) }
+        val itemTouchHelper = ItemTouchHelper(swipeController)
         itemTouchHelper.attachToRecyclerView(binding.rvList)
 
+        binding.rvList.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = listAdapter
+            addItemDecoration(ItemDecoration())
 
+            setOnTouchListener { _, _ ->
+                swipeController.removePreviousClamp(this)
+                false
+            }
+        }
         return binding.root
     }
 }
