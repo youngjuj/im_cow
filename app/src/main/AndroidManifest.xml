@@ -33,7 +33,7 @@
             android:name=".view.camera.RegistActivity"
             android:exported="false" />
         <activity
-            android:name=".view.info.EditActivity"
+            android:name=".view.edit.EditActivity"
             android:exported="false" />
         <activity
             android:name=".view.signup.SignUpActivity"

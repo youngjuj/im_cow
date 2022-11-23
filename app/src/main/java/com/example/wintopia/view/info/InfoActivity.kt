@@ -10,6 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityInfoBinding
+import com.example.wintopia.view.edit.CowInfo
+import com.example.wintopia.view.edit.EditActivity
+import com.example.wintopia.view.edit.EditViewModel
+import com.example.wintopia.view.edit.MilkCowInfoModel
 
 import com.example.wintopia.view.utilssd.Constants.TAG
 import com.example.wintopia.view.main.MainActivity
@@ -30,9 +34,10 @@ class InfoActivity : AppCompatActivity() {
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
-
         // 데이터 바인딩(2)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_info)
+
+        setIntent(intent)
 
         // 즐겨찾기 별
         var switch: Int = 0
@@ -76,4 +81,19 @@ class InfoActivity : AppCompatActivity() {
         fragmentTransaction.replace(fragment.id, fragment)
         fragmentTransaction.commit()
     }
+
+    override fun setIntent(intent: Intent) {
+        val intent = intent
+        val cowInfo = intent.getSerializableExtra("TEXT") as CowInfo?
+        Log.d(TAG, "user 객체: $cowInfo")
+
+        binding.tvInfoName.text = (cowInfo?.name.toString())
+        binding.tvInfoBirth.text = (cowInfo?.birth.toString())
+        binding.tvInfoId.text = (cowInfo?.id.toString())
+        binding.tvInfoGender.text = (cowInfo?.gender.toString())
+        binding.tvInfoVaccine.text = (cowInfo?.vaccine.toString())
+        binding.tvInfoKind.text = (cowInfo?.kind.toString())
+
+    }
+
 }

@@ -40,7 +40,7 @@ class SignUpViewModel: ViewModel() {
 //                    val result: UserList? = response.body()
 
                     // 서버에서 응답받은 데이터를 TextView에 넣어준다.
-                    var userId = "${response.body()?.geId()}"
+                    var userId = "${response.body()?.getId()}"
                     var userPw = "${response.body()?.getPw()}"
 
                     // id, pw가 서버에서 받아온 userId, userPw와 같다면

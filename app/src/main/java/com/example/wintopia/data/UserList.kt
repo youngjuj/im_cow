@@ -17,7 +17,7 @@ class UserList {
     @Expose
     private val pw: String? = null
 
-    fun geId(): String? {
+    fun getId(): String? {
         return id
     }
 

@@ -1,6 +1,9 @@
 package com.example.wintopia.retrofit
 
+import androidx.lifecycle.MutableLiveData
 import com.example.wintopia.data.UserList
+import com.example.wintopia.view.edit.CowInfo
+import com.example.wintopia.view.edit.MilkCowInfoModel
 import retrofit2.Call
 import retrofit2.http.*
 import com.example.wintopia.view.utilssd.API_
@@ -17,5 +20,9 @@ interface RetrofitInterface {
     @POST("test/signUp")
     fun  // 모든 유저의 id값만 받아오는 메서드(id 중복체크를 위해)
             getSignUp(@Query("id") id: String?, @Query("pw") pw: String?): Call<UserList?>?
+
+//    @FormUrlEncoded
+    @POST("${API_.INFOOUT}")
+    fun getData(@Query("item") item: String?): Call<String>?
 
 }
