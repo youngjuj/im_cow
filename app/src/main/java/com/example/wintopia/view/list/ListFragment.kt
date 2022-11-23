@@ -1,5 +1,6 @@
 package com.example.wintopia.view.list
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentListBinding
+import com.example.wintopia.view.camera.RegistActivity
 
 class ListFragment : Fragment() {
 
@@ -50,6 +52,13 @@ class ListFragment : Fragment() {
                 false
             }
         }
+
+        binding.fbListRegist.setOnClickListener {
+            val intent = Intent(requireActivity(), RegistActivity::class.java)
+            startActivity(intent)
+        }
+
+
         return binding.root
     }
 }

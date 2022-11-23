@@ -108,15 +108,16 @@
         android:id="@+id/etRegistTel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="Tel.062.573-4591"
         android:inputType="textPersonName"
-        android:textSize="20sp"
         android:text="@={vm.registTel}"
-        app:layout_constraintTop_toBottomOf="@+id/etRegistStatus"
-        tools:layout_editor_absoluteX="49dp" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/etRegistStatus"
+        app:layout_constraintStart_toStartOf="@+id/etRegistStatus"
+        app:layout_constraintTop_toBottomOf="@+id/etRegistStatus" />
 
     <EditText
         android:id="@+id/etRegistStatus"

@@ -3,7 +3,6 @@ package com.example.wintopia.view.camera
 import android.Manifest.permission.CAMERA
 import android.app.Activity
 import android.content.Intent
-import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
 import android.graphics.ImageDecoder
 import android.net.Uri
