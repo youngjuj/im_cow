@@ -8,7 +8,6 @@ import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,7 +24,7 @@ class EditViewModel: ViewModel() {
     val event = MutableLiveData<String>()
 
 
-    fun infoOut(milkCowInfoModel: String){
+    fun infoOut(milkCowInfoModel: MilkCowInfoModel){
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현

@@ -23,6 +23,12 @@ interface RetrofitInterface {
 
 //    @FormUrlEncoded
     @POST("${API_.INFOOUT}")
-    fun getData(@Query("item") item: String?): Call<String>?
+//    fun getData(@Query("item") item: String?): Call<String>?
+    fun getData(@Body item: MilkCowInfoModel): Call<String>?
+
+
+
+//    @GET("users/{user}/repos")
+//    Call<List<Repo>> listRepos(@Path("user") String user);
 
 }

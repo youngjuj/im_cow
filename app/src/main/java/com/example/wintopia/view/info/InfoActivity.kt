@@ -34,10 +34,9 @@ class InfoActivity : AppCompatActivity() {
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
-        // 데이터 바인딩(2)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_info)
 
         setIntent(intent)
+
 
         // 즐겨찾기 별
         var switch: Int = 0
