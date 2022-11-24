@@ -2,20 +2,15 @@ package com.example.wintopia.view.list
 
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
-import com.example.wintopia.databinding.ItemSwipeBinding
 import com.example.wintopia.databinding.ListItemBinding
-import com.example.wintopia.view.camera.RegistActivity
+import com.example.wintopia.view.edit.EditActivity
 import com.example.wintopia.view.info.InfoActivity
-import com.google.android.material.snackbar.Snackbar
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -55,8 +50,8 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
                 hiddenBtnEdt = binding.hiddenBtnEdt
                 hiddenBtnDel = binding.hiddenBtnDel
 
-                hiddenBtnDel.setOnClickListener {
-                    val intent = Intent(binding.root.context, RegistActivity::class.java)
+                hiddenBtnEdt.setOnClickListener {
+                    val intent = Intent(binding.root.context, EditActivity::class.java)
                     binding.root.context.startActivity(intent)
                 }
 
