@@ -4,15 +4,19 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ItemSwipeBinding
 import com.example.wintopia.databinding.ListItemBinding
+import com.example.wintopia.view.camera.RegistActivity
 import com.example.wintopia.view.info.InfoActivity
 import com.google.android.material.snackbar.Snackbar
+import java.lang.ref.WeakReference
 import java.util.*
 
 // List에 뿌려줄 item 구성 정보들
@@ -23,14 +27,50 @@ data class ListVO (val pic: String = "", // 이미지 url 주소
 
 // RecyclerView 사용에 필수인 Adapter
 class ListVOAdapter(private val data:MutableList<ListVO>):
-    RecyclerView.Adapter<ListVOAdapter.ListVOViewHolder>(), ItemTouchHelperListener{
+    RecyclerView.Adapter<ListVOAdapter.ListVOViewHolder>(){
 
     private var listData = mutableListOf<ListVO>()
 
 
     // RecyclerView ViewHolder
     class ListVOViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val view = WeakReference(binding)
+        private lateinit var clItem: ConstraintLayout
+        private lateinit var hiddenBtnEdt: TextView
+        private lateinit var hiddenBtnDel: TextView
 
+        var index = 0
+
+        var onDeleteClick:((RecyclerView.ViewHolder) -> Unit)? = null
+
+        init {
+            binding.root.let {
+                binding.root.setOnClickListener{
+                    if(binding.root.scrollX != 0) {
+                        binding.root.scrollTo(0, 0)
+                    }
+                }
+
+                clItem = binding.clItem
+                hiddenBtnEdt = binding.hiddenBtnEdt
+                hiddenBtnDel = binding.hiddenBtnDel
+
+                hiddenBtnDel.setOnClickListener {
+                    val intent = Intent(binding.root.context, RegistActivity::class.java)
+                    binding.root.context.startActivity(intent)
+                }
+
+                hiddenBtnDel.setOnClickListener {
+                    onDeleteClick?.let{ onDeleteClick ->
+                        onDeleteClick(this)
+                    }
+                }
+            }
+        }
+
+        fun updateView() {
+            binding.root.scrollTo(0, 0)
+        }
     }
 
 
@@ -46,6 +86,9 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
         holder.binding.tvItemName.text = data[position].name
         holder.binding.tvItemId.text = "고유번호 : ${data[position].id}"
 
+        holder.onDeleteClick = {
+            removeItem(it)
+        }
 
         // webView에 띄울 이미지 관련 설정들
         holder.binding.wvItemImg.settings.useWideViewPort = true
@@ -61,34 +104,30 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
 
+        holder.updateView()
 
     }
 
+    fun reload(listdata: List<ListVO>) {
+        this.listData.clear()
+        this.listData.addAll(listdata)
+        notifyDataSetChanged()
+    }
 
 
 
     override fun getItemCount(): Int = data.size
 
-    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean = false
-
-    override fun onItemSwipe(position: Int) {
-    }
-
-    override fun onLeftClick(position: Int, viewHolder: RecyclerView.ViewHolder?) {
-        Toast.makeText(viewHolder?.itemView?.context, "leftClick", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onRightClick(position: Int, viewHolder: RecyclerView.ViewHolder?) {
-        Toast.makeText(viewHolder?.itemView?.context, "rightClick", Toast.LENGTH_SHORT).show()
-    }
 
     fun setListData(listData: MutableList<ListVO>) {
         this.listData = data
     }
 
-    fun removeData(position: Int) {
-        listData.removeAt(position)
+    fun removeItem(viewHolder: RecyclerView.ViewHolder) {
+        var position = viewHolder.adapterPosition
+        data.removeAt(position)
         notifyItemRemoved(position)
+
     }
 
     fun swapData(fromPosition: Int, toPosition: Int) {
