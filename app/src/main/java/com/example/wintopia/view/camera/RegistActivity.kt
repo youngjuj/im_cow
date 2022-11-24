@@ -2,7 +2,6 @@ package com.example.wintopia.view.camera
 
 import android.Manifest
 import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -16,7 +15,6 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -24,18 +22,20 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityRegistBinding
 import com.example.wintopia.databinding.RegistDialogBinding
 import java.io.File
 import java.io.IOException
+import java.io.Serializable
 import java.text.SimpleDateFormat
+import kotlin.properties.Delegates
 
-class RegistActivity : AppCompatActivity(), View.OnClickListener {
+class RegistActivity : AppCompatActivity(){
 
     // databinding
     lateinit var binding: ActivityRegistBinding
-    lateinit var dBinding: RegistDialogBinding
 
     val viewModel: RegistViewModel by viewModels()
 
@@ -43,12 +43,11 @@ class RegistActivity : AppCompatActivity(), View.OnClickListener {
     private val REQUEST_IMAGE_CAPTURE = 1
     private val REQUEST_GALLERY = 2
     lateinit var currentPhotoPath: String
+    var img: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_regist)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_regist)
-        dBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.regist_dialog, null, false)
 
         binding.vm = viewModel
         binding.lifecycleOwner = this
@@ -59,16 +58,53 @@ class RegistActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.btnRegistRegist.setOnClickListener {  }
 
-        binding.imgRegistFace.setOnClickListener(this)
-        binding.imgRegistLeft.setOnClickListener(this)
-        binding.imgRegistRight.setOnClickListener(this)
+        // 사진등록 onClickListener
+        binding.imgRegistFace.setOnClickListener {
+            val dialog = CamDialog(this)
+            dialog.camDialog()
+            dialog.setOnCamDialogClickListener{
+                // 여기로는 이벤트 반영 없음
+            }
+            img = binding.imgRegistFace
 
-        dBinding.tvRegistDCam.setOnClickListener(this)
-        dBinding.tvRegistDGal.setOnClickListener(this)
-        dBinding.tvRegistDCancel.setOnClickListener(this)
+        }
+        binding.imgRegistLeft.setOnClickListener {
+            val dialog = CamDialog(this)
+            dialog.camDialog()
+            dialog.setOnCamDialogClickListener{
+                // 여기로는 이벤트 반영 없음
+            }
+            img = binding.imgRegistLeft
+        }
+        binding.imgRegistRight.setOnClickListener {
+            val dialog = CamDialog(this)
+            dialog.camDialog()
+            dialog.setOnCamDialogClickListener{
+                // 여기로는 이벤트 반영 없음
+            }
+            img = binding.imgRegistRight
+        }
+
+
+        var req: Int? = intent.extras?.getInt("req")
+
+        try{// dialog 선택 후 실행 이벤트
+            Log.v("img_try", "${img?.id}")
+            if (req == 1) {
+                if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
+            } else if (req == 2) {
+                if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "오류오류", Toast.LENGTH_SHORT).show()
+        }
+
+
+
 
 
     }
+    // data변경 실시간 반영
     fun observeData() {
 
     }
@@ -148,6 +184,7 @@ class RegistActivity : AppCompatActivity(), View.OnClickListener {
         ).apply { currentPhotoPath = absolutePath }
     }
 
+    // gallery에서 사진 선택
     private fun dispatchSelectPictureIntent() {
         val intent = Intent()
         intent.type = "image/*"
@@ -156,16 +193,15 @@ class RegistActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-
-
     // camera로 찍어서 저장한 파일 imageview로 띄워주기
     lateinit var bitmap: Bitmap
-    lateinit var img: ImageView
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {
+                Log.v("순서", "onActivityResult img")
+                Log.v("img_request", "${img?.id}")
                 if(resultCode == Activity.RESULT_OK) {
                     val file = File(currentPhotoPath)
                     if (Build.VERSION.SDK_INT < 28) {
@@ -176,14 +212,14 @@ class RegistActivity : AppCompatActivity(), View.OnClickListener {
                             Uri.fromFile(file))
                         bitmap = ImageDecoder.decodeBitmap(decode)
                     }
-                    binding.imgRegistFace.setImageBitmap(bitmap)
+                    img?.setImageBitmap(bitmap)
 
                 }
             }
             REQUEST_GALLERY -> {
                 val selectedImageURI: Uri? = data?.data
 
-                if(selectedImageURI != null) binding.imgRegistFace.setImageURI(selectedImageURI)
+                if(selectedImageURI != null) img?.setImageURI(selectedImageURI)
                 else Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
             }
             else -> {
@@ -192,56 +228,41 @@ class RegistActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    override fun onClick(v: View?) {
-        when(v?.id) {
-            binding.imgRegistFace.id -> {
-                img = binding.imgRegistFace
-                camDialog()
-
-            }
-            binding.imgRegistLeft.id -> {
-                img = binding.imgRegistLeft
-                camDialog()
-            }
-            binding.imgRegistRight.id -> {
-                img = binding.imgRegistRight
-                camDialog()
-            }
-            dBinding.tvRegistDCam.id -> {
-                Toast.makeText(this, "사진클릭클릭", Toast.LENGTH_SHORT).show()
-                if(checkPermission()) dispatchTakePictureIntent() else requestPermission()
-            }
-            dBinding.tvRegistDGal.id -> {
-                if(checkPermission()) dispatchSelectPictureIntent() else requestPermission()
-            }
-        }
-
-    }
-
-    private fun camDialog() {
-        val dialog = Dialog(this)
-
-        dialog.setContentView(R.layout.regist_dialog)
-        dialog.window!!.setLayout(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT)
-        dialog.setCanceledOnTouchOutside(true)
-        dialog.setCancelable(true)
-        dialog.show()
-
-//        dBinding.tvRegistDCam.setOnClickListener {
-//            Toast.makeText(this, "사진클릭클릭", Toast.LENGTH_SHORT).show()
-//            if(checkPermission()) dispatchTakePictureIntent() else requestPermission()
-//        }
-//        dBinding.tvRegistDGal.setOnClickListener{
-//            if(checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+    // onClickListener 한꺼번에 달아주기
+//    override fun onClick(v: View?) {
 //
+//        when(v?.id) {
+//            binding.imgRegistFace.id -> {
+//                val dialog = CamDialog(this)
+//                dialog.camDialog()
+//                dialog.setOnCamDialogClickListener{
+//                    // 여기로는 이벤트 반영 없음
+//                }
+//                img = binding.imgRegistFace
+//
+//            }
+//            binding.imgRegistLeft.id -> {
+//                val dialog = CamDialog(this)
+//                dialog.camDialog()
+//                dialog.setOnCamDialogClickListener{
+//                    // 여기로는 이벤트 반영 없음
+//                }
+//                img = binding.imgRegistLeft
+//            }
+//            binding.imgRegistRight.id -> {
+//                val dialog = CamDialog(this)
+//                dialog.camDialog()
+//                dialog.setOnCamDialogClickListener{
+//                    // 여기로는 이벤트 반영 없음
+//                }
+//                img = binding.imgRegistRight
+//
+//            }
 //        }
-//        dBinding.tvRegistDCancel.setOnClickListener{
-//            dialog.closeOptionsMenu()
-//        }
+//    }
 
-
-    }
 
 }
+
+
+
