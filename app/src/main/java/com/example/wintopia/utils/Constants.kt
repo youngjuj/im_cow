@@ -16,9 +16,8 @@ object API_ {
 
     const val GIT_URL: String = "https://api.github.com/"
 
-    const val LOGIN : String = "loginstr/login"
+    const val LOGIN : String = "test/login"
 
     const val INFOOUT : String = "info/infoIn"
 
-    const val PHOTOINFOOUT : String = "image/upImages"
 }
