@@ -28,6 +28,7 @@ import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityRegistBinding
 import com.example.wintopia.databinding.RegistDialogBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
+import okhttp3.internal.wait
 import java.io.File
 import java.io.IOException
 import java.io.Serializable
@@ -38,7 +39,7 @@ class RegistActivity : AppCompatActivity(){
 
     // databinding
     lateinit var binding: ActivityRegistBinding
-
+    var resultNum: Int = 0
     val viewModel: RegistViewModel by viewModels()
 
     // 카메라 및 갤러리 연동 변수들
@@ -64,43 +65,73 @@ class RegistActivity : AppCompatActivity(){
         binding.imgRegistFace.setOnClickListener {
             val dialog = CamDialog(this)
             dialog.show()
-//            dialog.setOnCamDialogClickListener{
-//                // 여기로는 이벤트 반영 없음
-//            }
-//            ImagePicker.Companion.with(this)
-//                .crop()
-//                .compress(1024)
-//                .maxResultSize(1080, 1080)
-//                .start()
+            dialog.setOnCamDialogClickListener(object: CamDialog.CamDialogClickListener {
+                override fun onClick(req: Int) {
+                    resultNum = req
+                    try{// dialog 선택 후 실행 이벤트
+                        if (resultNum == 1) {
+                            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
+                            dialog.dismiss()
+                        } else if (resultNum == 2) {
+                            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+                            dialog.dismiss()
+                        } else{
+                            dialog.dismiss()
+                        }
+                    } catch (e: Exception) {
+                    }
+                }
+
+            })
             img = binding.imgRegistFace
 
-            try{// dialog 선택 후 실행 이벤트
-                var req: Int? = intent.extras?.getInt("req")
-                Log.v("img_try", "${img?.id}")
-                if (req == 1) {
-                    if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
-                } else if (req == 2) {
-                    if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(this, "오류오류", Toast.LENGTH_SHORT).show()
-            }
+
 
         }
         binding.imgRegistLeft.setOnClickListener {
             val dialog = CamDialog(this)
             dialog.show()
-//            dialog.setOnCamDialogClickListener{
-//                // 여기로는 이벤트 반영 없음
-//            }
+            dialog.setOnCamDialogClickListener(object: CamDialog.CamDialogClickListener {
+                override fun onClick(req: Int) {
+                    resultNum = req
+                    try{// dialog 선택 후 실행 이벤트
+                        if (resultNum == 1) {
+                            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
+                            dialog.dismiss()
+                        } else if (resultNum == 2) {
+                            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+                            dialog.dismiss()
+                        } else{
+                            dialog.dismiss()
+                        }
+                    } catch (e: Exception) {
+                    }
+                }
+
+            })
             img = binding.imgRegistLeft
         }
         binding.imgRegistRight.setOnClickListener {
             val dialog = CamDialog(this)
-            dialog.camDialog()
-//            dialog.setOnCamDialogClickListener{
-//                // 여기로는 이벤트 반영 없음
-//            }
+            dialog.show()
+            dialog.setOnCamDialogClickListener(object: CamDialog.CamDialogClickListener {
+                override fun onClick(req: Int) {
+                    resultNum = req
+                    try{// dialog 선택 후 실행 이벤트
+                        if (resultNum == 1) {
+                            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
+                            dialog.dismiss()
+                        } else if (resultNum == 2) {
+                            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+                            dialog.dismiss()
+                        } else{
+                            dialog.dismiss()
+                        }
+                    } catch (e: Exception) {
+                    }
+                }
+
+            })
             img = binding.imgRegistRight
         }
 
