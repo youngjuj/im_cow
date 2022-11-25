@@ -88,7 +88,7 @@ class CameraFragment : Fragment() {
 
         binding.imgCameraPic.setOnClickListener(){
             Toast.makeText(requireActivity(), "화면클릭", Toast.LENGTH_SHORT).show()
-            getProFileImage()
+//            getProFileImage()
         }
 
             // Inflate the layout for this fragment
@@ -187,6 +187,14 @@ class CameraFragment : Fragment() {
             REQUEST_IMAGE_CAPTURE -> {
                 if(resultCode == Activity.RESULT_OK) {
                     val file = File(currentPhotoPath)
+
+                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+                    val id = "123"
+                    Log.d(TAG, ""+body)
+
+                    sendImage(body)
+
                     if (Build.VERSION.SDK_INT < 28) {
                         val bitmap = MediaStore.Images.Media
                             .getBitmap(requireActivity().contentResolver, Uri.fromFile(file))
@@ -229,7 +237,7 @@ class CameraFragment : Fragment() {
 
                 Log.d(TAG,file.name)
 
-                sendImage("123", body)
+//                sendImage("123", body)
             }
         }
 
@@ -258,22 +266,21 @@ class CameraFragment : Fragment() {
 
 
     //웹서버로 이미지전송
-    fun sendImage(id: String, image: MultipartBody.Part) {
+    fun sendImage(image: MultipartBody.Part) {
         Log.d(TAG,"웹서버로 이미지전송")
 
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
-        val call = service.getPhoto(id, image)!! //통신 API 패스 설정
+        val call = service.getPhoto(image) //통신 API 패스 설정
 
-        call.enqueue(object : Callback<String?> {
+        call?.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.isSuccessful) {
                     Log.d("로그 ",""+response?.body().toString())
                     Toast.makeText(requireActivity(),"통신성공",Toast.LENGTH_SHORT).show()
-                }
-                else {
+                } else {
                     Toast.makeText(requireActivity(),"통신실패",Toast.LENGTH_SHORT).show()
                 }
             }

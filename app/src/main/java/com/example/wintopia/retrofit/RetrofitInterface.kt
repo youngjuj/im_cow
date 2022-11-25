@@ -1,14 +1,11 @@
 package com.example.wintopia.retrofit
 
-import com.example.wintopia.data.MilkCowPhoto
 import com.example.wintopia.data.UserList
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.API_
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.io.File
 
 import retrofit2.http.POST
 
@@ -27,7 +24,6 @@ interface RetrofitInterface {
     @GET("${API_.LOGIN}")
     fun  // 모든 유저의 id값만 받아오는 메서드(id 중복체크를 위해)
             getName(@Query("id") id: String?, @Query("pw") pw: String?): Call<UserList?>?
-    
     @POST("test/signUp")
     fun  // 모든 유저의 id값만 받아오는 메서드(id 중복체크를 위해)
             getSignUp(@Query("id") id: String?, @Query("pw") pw: String?): Call<UserList?>?
@@ -49,8 +45,8 @@ interface RetrofitInterface {
     @Multipart
     @POST("${API_.PHOTOINFOOUT}")
     fun getPhoto(
-        @Part id: String,
-        @Part photo: MultipartBody.Part): Call<String?>?
+        @Part file: MultipartBody.Part
+    ): Call<String?>?
 
 
 
