@@ -2,6 +2,7 @@ package com.example.wintopia.view.camera
 
 import android.Manifest
 import android.app.Activity
+import android.app.ActivityManager
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -26,6 +27,7 @@ import androidx.fragment.app.Fragment
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityRegistBinding
 import com.example.wintopia.databinding.RegistDialogBinding
+import com.github.dhaval2404.imagepicker.ImagePicker
 import java.io.File
 import java.io.IOException
 import java.io.Serializable
@@ -43,7 +45,7 @@ class RegistActivity : AppCompatActivity(){
     private val REQUEST_IMAGE_CAPTURE = 1
     private val REQUEST_GALLERY = 2
     lateinit var currentPhotoPath: String
-    var img: ImageView? = null
+    lateinit var img: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,43 +63,49 @@ class RegistActivity : AppCompatActivity(){
         // 사진등록 onClickListener
         binding.imgRegistFace.setOnClickListener {
             val dialog = CamDialog(this)
-            dialog.camDialog()
-            dialog.setOnCamDialogClickListener{
-                // 여기로는 이벤트 반영 없음
-            }
+            dialog.show()
+//            dialog.setOnCamDialogClickListener{
+//                // 여기로는 이벤트 반영 없음
+//            }
+//            ImagePicker.Companion.with(this)
+//                .crop()
+//                .compress(1024)
+//                .maxResultSize(1080, 1080)
+//                .start()
             img = binding.imgRegistFace
+
+            try{// dialog 선택 후 실행 이벤트
+                var req: Int? = intent.extras?.getInt("req")
+                Log.v("img_try", "${img?.id}")
+                if (req == 1) {
+                    if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
+                } else if (req == 2) {
+                    if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this, "오류오류", Toast.LENGTH_SHORT).show()
+            }
 
         }
         binding.imgRegistLeft.setOnClickListener {
             val dialog = CamDialog(this)
-            dialog.camDialog()
-            dialog.setOnCamDialogClickListener{
-                // 여기로는 이벤트 반영 없음
-            }
+            dialog.show()
+//            dialog.setOnCamDialogClickListener{
+//                // 여기로는 이벤트 반영 없음
+//            }
             img = binding.imgRegistLeft
         }
         binding.imgRegistRight.setOnClickListener {
             val dialog = CamDialog(this)
             dialog.camDialog()
-            dialog.setOnCamDialogClickListener{
-                // 여기로는 이벤트 반영 없음
-            }
+//            dialog.setOnCamDialogClickListener{
+//                // 여기로는 이벤트 반영 없음
+//            }
             img = binding.imgRegistRight
         }
 
 
-        var req: Int? = intent.extras?.getInt("req")
 
-        try{// dialog 선택 후 실행 이벤트
-            Log.v("img_try", "${img?.id}")
-            if (req == 1) {
-                if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
-            } else if (req == 2) {
-                if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
-            }
-        } catch (e: Exception) {
-            Toast.makeText(this, "오류오류", Toast.LENGTH_SHORT).show()
-        }
 
 
 
@@ -111,7 +119,7 @@ class RegistActivity : AppCompatActivity(){
 
 
     // camera 접근 권한 요청
-    private fun requestPermission() {
+    fun requestPermission() {
         ActivityCompat.requestPermissions(
             this,
             arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA),
@@ -119,7 +127,7 @@ class RegistActivity : AppCompatActivity(){
     }
 
     // camera 접근 권한 체크
-    private fun checkPermission(): Boolean {
+    fun checkPermission(): Boolean {
 
         return (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
@@ -128,6 +136,7 @@ class RegistActivity : AppCompatActivity(){
     }
 
     // 권한 요청 결과
+    lateinit var result: String
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -136,14 +145,16 @@ class RegistActivity : AppCompatActivity(){
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, "권한 설정 완료", Toast.LENGTH_SHORT).show()
+            result = "success"
         }
         else {
             Toast.makeText(this, "권한 설정 실패", Toast.LENGTH_SHORT).show()
+            result = "fail"
         }
     }
 
     // camera intent && image파일 생성
-    private fun dispatchTakePictureIntent() {
+    fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             if (takePictureIntent.resolveActivity(this.packageManager) != null) {
                 val photoFile: File? =
@@ -174,7 +185,7 @@ class RegistActivity : AppCompatActivity(){
     }
 
     // camera로 찍은 파일 저장하기
-    private fun createImageFile(): File {
+    fun createImageFile(): File {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(java.util.Date())
         val storageDir: File? = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
@@ -185,7 +196,7 @@ class RegistActivity : AppCompatActivity(){
     }
 
     // gallery에서 사진 선택
-    private fun dispatchSelectPictureIntent() {
+    fun dispatchSelectPictureIntent() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT

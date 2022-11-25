@@ -72,6 +72,9 @@ dependencies {
     // swipe에 필요한 라이브러리
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+    // 갤러리에서 이미지 가져올 때 필요
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
