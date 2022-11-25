@@ -84,10 +84,8 @@ class RegistActivity : AppCompatActivity(){
 
             })
             img = binding.imgRegistFace
-
-
-
         }
+
         binding.imgRegistLeft.setOnClickListener {
             val dialog = CamDialog(this)
             dialog.show()
@@ -111,6 +109,7 @@ class RegistActivity : AppCompatActivity(){
             })
             img = binding.imgRegistLeft
         }
+
         binding.imgRegistRight.setOnClickListener {
             val dialog = CamDialog(this)
             dialog.show()
@@ -134,20 +133,13 @@ class RegistActivity : AppCompatActivity(){
             })
             img = binding.imgRegistRight
         }
-
-
-
-
-
-
-
-
     }
+
+
     // data변경 실시간 반영
     fun observeData() {
 
     }
-
 
     // camera 접근 권한 요청
     fun requestPermission() {
@@ -269,41 +261,6 @@ class RegistActivity : AppCompatActivity(){
             }
         }
     }
-
-    // onClickListener 한꺼번에 달아주기
-//    override fun onClick(v: View?) {
-//
-//        when(v?.id) {
-//            binding.imgRegistFace.id -> {
-//                val dialog = CamDialog(this)
-//                dialog.camDialog()
-//                dialog.setOnCamDialogClickListener{
-//                    // 여기로는 이벤트 반영 없음
-//                }
-//                img = binding.imgRegistFace
-//
-//            }
-//            binding.imgRegistLeft.id -> {
-//                val dialog = CamDialog(this)
-//                dialog.camDialog()
-//                dialog.setOnCamDialogClickListener{
-//                    // 여기로는 이벤트 반영 없음
-//                }
-//                img = binding.imgRegistLeft
-//            }
-//            binding.imgRegistRight.id -> {
-//                val dialog = CamDialog(this)
-//                dialog.camDialog()
-//                dialog.setOnCamDialogClickListener{
-//                    // 여기로는 이벤트 반영 없음
-//                }
-//                img = binding.imgRegistRight
-//
-//            }
-//        }
-//    }
-
-
 }
 
 
