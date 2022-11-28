@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.TranslateAnimation
-import android.widget.ListAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -22,14 +20,12 @@ import com.example.wintopia.databinding.FragmentListBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.camera.RegistActivity
-import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
-import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory
-import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ListFragment : Fragment() {
 
@@ -37,6 +33,8 @@ class ListFragment : Fragment() {
         binding.swipeRefreschLayout
     }
     lateinit var binding: FragmentListBinding
+    lateinit var data: MutableList<ListVO>
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,33 +48,18 @@ class ListFragment : Fragment() {
         // Inflate the layout for this fragment
 //        mBinding = FragmentListBinding.inflate(inflater, container, false)
 
-//        cowInfo()
-        var data = arrayListOf<ListVO>()
-        data.add(ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
-            "분홍얼룩이", "22111001"))
-        data.add(
-            ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
-                "검정얼룩이", "22111002"))
-        data.add(
-            ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
-                "푸른얼룩이", "22111003"))
-        val listAdapter = ListVOAdapter(data)
+        cowInfo()
+//        data.add(ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
+//            "분홍얼룩이", "22111001"))
+//        data.add(
+//            ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
+//                "검정얼룩이", "22111002"))
+//        data.add(
+//            ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
+//                "푸른얼룩이", "22111003"))
 
-        listAdapter.reload(data)
 
-        binding.rvList.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = listAdapter
-            addItemDecoration(ItemDecoration())
 
-            swipeRefreshLayout.setOnRefreshListener {
-                swipeRefreshLayout.isRefreshing = false
-            }
-
-            setItemTouchHelper()
-
-//
-        }
 
         binding.fbListRegist.setOnClickListener {
             val intent = Intent(requireActivity(), RegistActivity::class.java)
@@ -189,15 +172,36 @@ class ListFragment : Fragment() {
 
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
+//        val retrofit = Retrofit.Builder().baseUrl(API_.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
         val call = service.cowListAll() //통신 API 패스 설정
 
-        call?.enqueue(object : Callback<MultipartBody?> {
-            override fun onResponse(call: Call<MultipartBody?>, response: Response<MultipartBody?>) {
+        call?.enqueue(object : Callback<MutableList<ListVO>> {
+            override fun onResponse(call: Call<MutableList<ListVO>>, response: Response<MutableList<ListVO>>) {
                 if (response.isSuccessful) {
-                    Log.d("로그 ",""+response?.body().toString())
+//                    Log.d("로그 ",""+response?.body().toString())
+                    data = response.body()!!
+
+                    val listAdapter = ListVOAdapter(data)
+
+                    listAdapter.reload(data)
+
+                    binding.rvList.apply {
+                        layoutManager = LinearLayoutManager(requireContext())
+                        adapter = listAdapter
+                        addItemDecoration(ItemDecoration())
+
+                        swipeRefreshLayout.setOnRefreshListener {
+                            swipeRefreshLayout.isRefreshing = false
+                        }
+
+                        setItemTouchHelper()
+
+//
+                    }
+//                    Log.d("로그 ",res)
                     Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_SHORT).show()
 
                 } else {
@@ -205,7 +209,7 @@ class ListFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<MultipartBody?>, t: Throwable) {
+            override fun onFailure(call: Call<MutableList<ListVO>>, t: Throwable) {
                 Log.d("로그",t.message.toString())
             }
         })
