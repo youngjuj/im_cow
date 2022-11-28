@@ -102,6 +102,7 @@ class InfoActivity : AppCompatActivity() {
     }
 
 
+    
 
     override fun setIntent(intent: Intent) {
         val intent = intent
