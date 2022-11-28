@@ -27,5 +27,7 @@ object API_ {
 
     const val PHOTOINFOOUT : String = "image/upImages"
 
+    const val COWIMG : String = "images/getImages"
+
 
 }

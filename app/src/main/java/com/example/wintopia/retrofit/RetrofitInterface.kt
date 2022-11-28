@@ -30,28 +30,21 @@ interface RetrofitInterface {
     fun  // 모든 유저의 id값만 받아오는 메서드(id 중복체크를 위해)
             getSignUp(@Query("id") id: String?, @Query("pw") pw: String?): Call<UserList?>?
 
+    //
 //    @FormUrlEncoded
     @POST("${API_.INFOOUT}")
 //    fun getData(@Query("item") item: String?): Call<String>?
     fun getData(@Body item: MilkCowInfoModel): Call<String>?
 
 
-
 //    @Multipart
+    // cow 전체 정보 불러오기
     @GET("${API_.INFOIN}")
 //    fun getData(@Query("item") item: String?): Call<String>?
     fun cowListAll(): Call<MutableList<ListVO>>
 
 
-    @Multipart
-    @POST("${API_.PHOTOINFOOUT}")
-    fun profileSend(
-        @Query ("id") id: String?,
-        @Part file: MultipartBody.Part
-    ): Call<String?>?
-
-
-    //api를 관리해주는 인터페이스
+    // 사진 하나 저장
     @Multipart
     @POST("${API_.PHOTOINFOOUT}")
     fun getPhoto(
@@ -60,6 +53,12 @@ interface RetrofitInterface {
     ): Call<String?>?
 
 
+    // cow_id에 맞는 사진 하나
+    @Multipart
+    @GET("${API_.INFOIN}")
+//    fun getData(@Query("item") item: String?): Call<String>?
+    fun cowImage(
+        @Query ("id") id: String): Call<MultipartBody.Part>
 
 
 //    @Multipart

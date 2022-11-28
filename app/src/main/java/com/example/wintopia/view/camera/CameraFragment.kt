@@ -54,6 +54,7 @@ class CameraFragment : Fragment() {
 
 
     lateinit var binding: FragmentCameraBinding
+    lateinit var res: MultipartBody
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -193,24 +194,24 @@ class CameraFragment : Fragment() {
                     val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                     val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-                    val id = "123"
+                    var id = "123"
                     Log.d(TAG, ""+body)
 
                     sendImage(id, body)
 
-
+//                    id = "3"
+//                    getCowImage(id)
 
                     if (Build.VERSION.SDK_INT < 28) {
                         val bitmap = MediaStore.Images.Media
                             .getBitmap(requireActivity().contentResolver, Uri.fromFile(file))
                         binding.imgCameraPic.setImageBitmap(bitmap)
-                        val file = File(currentPhotoPath)
-
-                        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                        val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-                        val id = "234"
-                        Log.d(TAG, ""+body)
-                        sendImage(id, body)
+//                        val file = File(currentPhotoPath)
+//                        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+//                        val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+//                        val id = "234"
+//                        Log.d(TAG, ""+body)
+//                        sendImage(id, body)
 
                     } else {
                         val decode = ImageDecoder.createSource(requireActivity().contentResolver,
@@ -304,6 +305,40 @@ class CameraFragment : Fragment() {
             }
         })
     }
+
+
+
+    //웹서버로 이미지전송
+    fun getCowImage(id:String) {
+        Log.d(TAG,"소 이미지 불러오기")
+
+        //Retrofit 인스턴스 생성
+        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
+        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
+
+
+        val call = service.cowImage(id) //통신 API 패스 설정
+
+        call?.enqueue(object : Callback<MultipartBody.Part?> {
+            override fun onResponse(call: Call<MultipartBody.Part?>, response: Response<MultipartBody.Part?>) {
+                if (response.isSuccessful) {
+                    res = response.body()?.body as MultipartBody
+                    Log.d("로그 ",""+res)
+
+                    Toast.makeText(requireActivity(),"통신성공",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireActivity(),"통신실패",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<MultipartBody.Part?>, t: Throwable) {
+                Log.d("로그",t.message.toString())
+            }
+        })
+    }
+
+
+
 
 }
 
