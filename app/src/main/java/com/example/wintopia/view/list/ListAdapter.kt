@@ -1,16 +1,24 @@
 package com.example.wintopia.view.list
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ListItemBinding
+import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.EditActivity
+import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
+import com.example.wintopia.view.utilssd.Constants
+import com.google.gson.Gson
+import org.json.JSONObject
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -101,8 +109,11 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
         // item 선택 onClickListener
         holder.itemView.setOnClickListener {
             // item선택시 InfoActivity로 이동
-            val intent = Intent(holder.itemView?.context, InfoActivity::class.java)
-            ContextCompat.startActivity(holder.itemView.context, intent, null)
+            putText(holder, position)
+//            val intent = Intent(holder.itemView?.context, InfoActivity::class.java)
+//            ContextCompat.startActivity(holder.itemView.context, intent, null)
+
+
         }
 
         holder.updateView()
@@ -134,6 +145,33 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
     fun swapData(fromPosition: Int, toPosition: Int) {
         Collections.swap(listData, fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
+    }
+
+    fun putText(holder: ListVOViewHolder, position: Int){
+        // 각 텍스트 가져오기
+        var infoName = data[position].name
+        var infoId = data[position].id
+        var infoBirth = data[position].birth
+        var infoGender = data[position].gender
+        var infoVaccine = data[position].vaccine
+        var infoKind = data[position].kind
+
+        var milkCowInfoModel = MilkCowInfoModel(infoName,
+            infoId,infoBirth,infoGender,infoVaccine,infoKind)
+
+
+        Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
+
+        // 수정 후 상세정보페이지 이동
+        val cowInfo = CowInfo(infoName,
+            infoId,infoBirth,infoGender,infoVaccine,infoKind)
+
+        val intent = Intent(holder.itemView?.context, InfoActivity::class.java)
+        intent.putExtra("where", "list")
+        intent.putExtra("infos", cowInfo)
+        ContextCompat.startActivity(holder.itemView.context, intent, null)
+
+
     }
 
 }

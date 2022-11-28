@@ -20,8 +20,13 @@ import com.example.wintopia.databinding.FragmentListBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.camera.RegistActivity
+import com.example.wintopia.view.edit.CowInfo
+import com.example.wintopia.view.edit.MilkCowInfoModel
+import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
+import com.google.gson.Gson
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -214,6 +219,5 @@ class ListFragment : Fragment() {
             }
         })
     }
-
 
 }

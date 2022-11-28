@@ -72,7 +72,7 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="얼룩이"
+        android:text="@={vm.name}"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wvEditPhoto" />
@@ -108,7 +108,7 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text=" 101"
+        android:text="@={vm.id}"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEditName" />
@@ -133,7 +133,7 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="20201110"
+        android:text="@={vm.birth}"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/etEditId"
         app:layout_constraintHorizontal_bias="1.0"
@@ -160,7 +160,7 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="암"
+        android:text="@={vm.gender}"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/etEditBirth"
         app:layout_constraintHorizontal_bias="1.0"
@@ -180,14 +180,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
     <EditText
-        android:id="@+id/etEditVaccin"
+        android:id="@+id/etEditVaccine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="유"
+        android:text="@={vm.vaccine}"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/etEditGender"
         app:layout_constraintTop_toBottomOf="@+id/etEditGender" />
@@ -212,12 +212,12 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="얼룩소"
+        android:text="@={vm.kind}"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/etEditVaccin"
+        app:layout_constraintEnd_toEndOf="@+id/etEditVaccine"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etEditVaccin"
-        app:layout_constraintTop_toBottomOf="@+id/etEditVaccin" />
+        app:layout_constraintStart_toStartOf="@+id/etEditVaccine"
+        app:layout_constraintTop_toBottomOf="@+id/etEditVaccine" />
 
     <Button
         android:id="@+id/btnEditCancel"
