@@ -12,6 +12,7 @@ enum class RESPONSE_STATE{
 }
 
 object API_ {
+//    10.0.2.2
     const val BASE_URL: String = "http://10.0.2.2:11112/"
 
     const val GIT_URL: String = "https://api.github.com/"

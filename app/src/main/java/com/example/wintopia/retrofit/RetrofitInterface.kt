@@ -2,6 +2,7 @@ package com.example.wintopia.retrofit
 
 import com.example.wintopia.data.UserList
 import com.example.wintopia.view.edit.MilkCowInfoModel
+import com.example.wintopia.view.list.ListVO
 import com.example.wintopia.view.utilssd.API_
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -35,7 +36,7 @@ interface RetrofitInterface {
 
 
     @Multipart
-    @POST("${API_.INFOIN}")
+    @GET("${API_.INFOIN}")
 //    fun getData(@Query("item") item: String?): Call<String>?
     fun cowListAll(): Call<MultipartBody>?
 
@@ -44,8 +45,9 @@ interface RetrofitInterface {
     @Multipart
     @POST("${API_.PHOTOINFOOUT}")
     fun profileSend(
-        @Part file : MultipartBody
-    ): Call<String>
+        @Query ("id") id: String?,
+        @Part file: MultipartBody.Part
+    ): Call<String?>?
 
 
     //api를 관리해주는 인터페이스
