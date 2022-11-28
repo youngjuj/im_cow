@@ -216,6 +216,15 @@
         app:layout_constraintStart_toStartOf="@+id/tvInfoVaccine"
         app:layout_constraintTop_toBottomOf="@+id/tvInfoVaccine" />
 
+
+
+    <View
+        android:id="@+id/viewView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toBottomOf="@id/tvInfoKind"
+        />
+
     <Button
         android:id="@+id/btnInfoEdit"
         android:layout_width="150dp"
@@ -228,9 +237,9 @@
         app:layout_constraintEnd_toStartOf="@+id/btnInfoDelete"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvInfoKind"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintTop_toBottomOf="@+id/viewView"
+        app:layout_constraintVertical_bias="0.0"
+        />
     <Button
         android:id="@+id/btnInfoDelete"
         android:layout_width="150dp"
@@ -241,7 +250,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.793"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewView"
+        />
 
     <ImageView
         android:id="@+id/imgInfoBack"
@@ -251,7 +262,8 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <!--        <ImageView-->
     <!--            android:id="@+id/imageView9"-->
@@ -262,11 +274,7 @@
     <!--            android:src="@drawable/back"-->
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:layout_constraintTop_toBottomOf="@id/btnInfoDelete"
-        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

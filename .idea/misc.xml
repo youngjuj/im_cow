@@ -3,22 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/fragment_blank.xml" value="0.1" />
-        <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/fragment_list.xml" value="0.264" />
-        <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/menu/select.xml" value="0.1" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/drawable/background_radius.xml" value="0.1905" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/drawable/styles.xml" value="0.224" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_edit.xml" value="0.16799999999999998" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_info.xml" value="0.2" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_login.xml" value="0.2" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_main.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/fragment_camera.xml" value="0.2" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/fragment_list.xml" value="0.12239583333333333" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/fragment_my_page.xml" value="0.2" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/list_item.xml" value="0.176" />
-        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/xml/network_security_config.xml" value="0.1078125" />
+        <entry key="..\:/Users/gjaischool61/project2/wintopia0/wintopia/app/src/main/res/layout/activity_info.xml" value="0.1838768115942029" />
+        <entry key="..\:/Users/gjaischool61/project2/wintopia0/wintopia/app/src/main/res/layout/activity_main.xml" value="0.23052536231884058" />
+        <entry key="..\:/Users/gjaischool61/project2/wintopia0/wintopia/app/src/main/res/layout/appbar.xml" value="0.128" />
+        <entry key="..\:/Users/gjaischool61/project2/wintopia0/wintopia/app/src/main/res/layout/fragment_camera.xml" value="0.13134057971014493" />
+        <entry key="..\:/Users/gjaischool61/project2/wintopia0/wintopia/app/src/main/res/menu/toolbar_menu.xml" value="0.23541666666666666" />
       </map>
     </option>
   </component>
@@ -27,12 +16,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="SuppressABINotification">
-    <option name="modulesWithSuppressedNotConfigured">
-      <set>
-        <option value="wintopia.app" />
-      </set>
-    </option>
   </component>
 </project>

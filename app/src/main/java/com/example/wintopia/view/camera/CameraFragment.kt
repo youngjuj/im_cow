@@ -2,9 +2,12 @@ package com.example.wintopia.view.camera
 
 import android.Manifest.permission.CAMERA
 import android.app.Activity
+import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
-import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
+import android.database.Cursor
+import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -12,17 +15,31 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentCameraBinding
+import com.example.wintopia.retrofit.RetrofitClient
+import com.example.wintopia.retrofit.RetrofitInterface
+import com.example.wintopia.view.utilssd.API_
+import com.example.wintopia.view.utilssd.Constants
+import com.example.wintopia.view.utilssd.Constants.TAG
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -71,6 +88,10 @@ class CameraFragment : Fragment() {
             if(checkPermission()) dispatchSelectPictureIntent() else requestPermission()
         }
 
+        binding.imgCameraPic.setOnClickListener(){
+            Toast.makeText(requireActivity(), "화면클릭", Toast.LENGTH_SHORT).show()
+//            getProFileImage()
+        }
 
             // Inflate the layout for this fragment
             return binding.root
@@ -168,10 +189,27 @@ class CameraFragment : Fragment() {
             REQUEST_IMAGE_CAPTURE -> {
                 if(resultCode == Activity.RESULT_OK) {
                     val file = File(currentPhotoPath)
+
+                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+                    val id = "123"
+                    Log.d(TAG, ""+body)
+
+                    sendImage(id, body)
+
                     if (Build.VERSION.SDK_INT < 28) {
                         val bitmap = MediaStore.Images.Media
                             .getBitmap(requireActivity().contentResolver, Uri.fromFile(file))
                         binding.imgCameraPic.setImageBitmap(bitmap)
+                        val file = File(currentPhotoPath)
+
+                        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                        val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+                        val id = "234"
+                        Log.d(TAG, ""+body)
+                        sendImage(id, body)
+
                     } else {
                         val decode = ImageDecoder.createSource(requireActivity().contentResolver,
                         Uri.fromFile(file))
@@ -184,7 +222,9 @@ class CameraFragment : Fragment() {
             REQUEST_GALLERY -> {
                 val selectedImageURI: Uri? = data?.data
 
-                if(selectedImageURI != null) binding.imgCameraPic.setImageURI(selectedImageURI)
+                if(selectedImageURI != null) {
+                    binding.imgCameraPic.setImageURI(selectedImageURI)
+                }
                 else Toast.makeText(requireActivity(), "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
             }
             else -> {
@@ -192,5 +232,75 @@ class CameraFragment : Fragment() {
             }
     }
     }
+
+
+
+    fun getProFileImage(){
+        Log.d(TAG,"사진변경 호출")
+
+        var launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val imagePath = result.data!!.data
+
+                val file = File(context?.let { absolutelyPath(imagePath, it.applicationContext) })
+                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                val body = MultipartBody.Part.createFormData("proFile", file.name, requestFile)
+
+                Log.d(TAG,file.name)
+
+//                sendImage("123", body)
+            }
+        }
+
+        val chooserIntent = Intent(Intent.ACTION_CHOOSER)
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        chooserIntent.putExtra(Intent.EXTRA_INTENT, intent)
+        chooserIntent.putExtra(Intent.EXTRA_TITLE,"사용할 앱을 선택해주세요.")
+
+
+        launcher.launch(chooserIntent)
+    }
+    // 절대경로 변환
+    fun absolutelyPath(path: Uri?, context : Context): String {
+        var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
+        var c: Cursor? = context.contentResolver.query(path!!, proj, null, null, null)
+        var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        c?.moveToFirst()
+
+        var result = c?.getString(index!!)
+
+        return result!!
+    }
+
+
+
+
+    //웹서버로 이미지전송
+    fun sendImage(id: String, image: MultipartBody.Part) {
+        Log.d(TAG,"웹서버로 이미지전송")
+
+        //Retrofit 인스턴스 생성
+        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
+        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
+
+        val call = service.getPhoto(id, image) //통신 API 패스 설정
+
+        call?.enqueue(object : Callback<String?> {
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                if (response.isSuccessful) {
+                    Log.d("로그 ",""+response?.body().toString())
+                    Toast.makeText(requireActivity(),"통신성공",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireActivity(),"통신실패",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                Log.d("로그",t.message.toString())
+            }
+        })
+    }
+
 }
 

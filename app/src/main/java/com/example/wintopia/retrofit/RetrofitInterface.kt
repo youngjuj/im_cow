@@ -1,12 +1,22 @@
 package com.example.wintopia.retrofit
 
-import androidx.lifecycle.MutableLiveData
+import com.example.wintopia.data.MilkCowPhoto
 import com.example.wintopia.data.UserList
-import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.MilkCowInfoModel
+import com.example.wintopia.view.utilssd.API_
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
-import com.example.wintopia.view.utilssd.API_
+import java.io.File
+
+import retrofit2.http.POST
+
+import retrofit2.http.Multipart
+
+
+
+
 
 interface RetrofitInterface {
 
@@ -27,8 +37,31 @@ interface RetrofitInterface {
     fun getData(@Body item: MilkCowInfoModel): Call<String>?
 
 
+    @Multipart
+    @POST("${API_.PHOTOINFOOUT}")
+    fun profileSend(
+        @Part file : MultipartBody
+    ): Call<String>
 
-//    @GET("users/{user}/repos")
-//    Call<List<Repo>> listRepos(@Path("user") String user);
+
+    //api를 관리해주는 인터페이스
+    @Multipart
+    @POST("${API_.PHOTOINFOOUT}")
+    fun getPhoto(
+        @Query ("id") id: String?,
+        @Part file: MultipartBody.Part
+    ): Call<String?>?
+
+
+
+
+//    @Multipart
+//    @POST("경로")
+//    fun writeStory(
+//        @Header("Authorization") Authorization: String,
+//        @Part imageList : List<MultipartBody.Part?>,
+//        @Part("postData") postData : RequestBody
+//    ) : Call<StoryResponse>
+
 
 }
