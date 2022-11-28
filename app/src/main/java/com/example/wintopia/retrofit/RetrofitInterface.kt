@@ -1,5 +1,6 @@
 package com.example.wintopia.retrofit
 
+import androidx.lifecycle.MutableLiveData
 import com.example.wintopia.data.UserList
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.list.ListVO
@@ -35,11 +36,11 @@ interface RetrofitInterface {
     fun getData(@Body item: MilkCowInfoModel): Call<String>?
 
 
-    @Multipart
+
+//    @Multipart
     @GET("${API_.INFOIN}")
 //    fun getData(@Query("item") item: String?): Call<String>?
-    fun cowListAll(): Call<MultipartBody>?
-
+    fun cowListAll(): Call<MutableList<ListVO>>
 
 
     @Multipart

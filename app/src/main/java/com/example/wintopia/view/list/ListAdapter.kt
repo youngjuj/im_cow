@@ -15,9 +15,14 @@ import java.lang.ref.WeakReference
 import java.util.*
 
 // List에 뿌려줄 item 구성 정보들
-data class ListVO (val pic: String = "", // 이미지 url 주소
+data class ListVO (
+//    val pic: String = "", // 이미지 url 주소
                    val name: String = "", // 젖소 이름
-                   val id: String = "") // 젖소 고유번호
+                   val id: String = "",// 젖소 고유번호
+                   val birth: String = "",// 젖소 출생일
+                   val gender: String = "", // 젖소 성별
+                   val vaccine: String = "", // 백신접종 여부
+                   val kind: String = "") // 젖소 종류
 
 
 // RecyclerView 사용에 필수인 Adapter
@@ -77,7 +82,8 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
 
     // RecyclerView에 뿌려줄 item 속 data들 지정
     override fun onBindViewHolder(holder: ListVOViewHolder, position: Int) {
-        holder.binding.wvItemImg.loadUrl(data[position].pic)
+//        holder.binding.wvItemImg.loadUrl(data[position].pic)
+        holder.binding.wvItemImg.loadUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU")
         holder.binding.tvItemName.text = data[position].name
         holder.binding.tvItemId.text = "고유번호 : ${data[position].id}"
 
