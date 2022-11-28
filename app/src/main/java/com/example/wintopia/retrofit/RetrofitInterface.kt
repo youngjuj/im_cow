@@ -1,14 +1,11 @@
 package com.example.wintopia.retrofit
 
-import com.example.wintopia.data.MilkCowPhoto
 import com.example.wintopia.data.UserList
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.API_
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.io.File
 
 import retrofit2.http.POST
 

@@ -198,6 +198,8 @@ class CameraFragment : Fragment() {
 
                     sendImage(id, body)
 
+
+
                     if (Build.VERSION.SDK_INT < 28) {
                         val bitmap = MediaStore.Images.Media
                             .getBitmap(requireActivity().contentResolver, Uri.fromFile(file))
@@ -277,12 +279,13 @@ class CameraFragment : Fragment() {
 
 
     //웹서버로 이미지전송
-    fun sendImage(id: String, image: MultipartBody.Part) {
+    fun sendImage(id:String, image: MultipartBody.Part) {
         Log.d(TAG,"웹서버로 이미지전송")
 
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
+
 
         val call = service.getPhoto(id, image) //통신 API 패스 설정
 
