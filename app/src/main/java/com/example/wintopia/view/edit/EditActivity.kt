@@ -29,6 +29,7 @@ class EditActivity : AppCompatActivity() {
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
+        setIntent(intent)
 
 
         // 수정하기 버튼
@@ -63,11 +64,11 @@ class EditActivity : AppCompatActivity() {
         var etEditId = binding.etEditId.text.toString()
         var etEditBirth = binding.etEditBirth.text.toString()
         var etEditGender = binding.etEditGender.text.toString()
-        var etEditVaccin = binding.etEditVaccin.text.toString()
+        var etEditVaccine = binding.etEditVaccine.text.toString()
         var etEditKind = binding.etEditKind.text.toString()
 
         var milkCowInfoModel = MilkCowInfoModel(etEditName,
-            etEditId,etEditBirth,etEditGender,etEditVaccin,etEditKind)
+            etEditId,etEditBirth,etEditGender,etEditVaccine,etEditKind)
 
         var jsonString = Gson().toJson(milkCowInfoModel)
         var cow = JSONObject()
@@ -75,7 +76,7 @@ class EditActivity : AppCompatActivity() {
         cow.put("id", etEditId)
         cow.put("birth", etEditBirth)
         cow.put("gender", etEditGender)
-        cow.put("vaccine", etEditVaccin)
+        cow.put("vaccine", etEditVaccine)
         cow.put("kind", etEditKind)
 
 
@@ -87,13 +88,25 @@ class EditActivity : AppCompatActivity() {
 
         // 수정 후 상세정보페이지 이동
         val cowInfo = CowInfo(etEditName,
-            etEditId,etEditBirth,etEditGender,etEditVaccin,etEditKind)
+            etEditId,etEditBirth,etEditGender,etEditVaccine,etEditKind)
         val intent = Intent(this, InfoActivity::class.java)
+        intent.putExtra("where", "edit")
         intent.putExtra("TEXT", cowInfo)
         startActivity(intent)
         finish()
 
         Toast.makeText(this, "수정하기", Toast.LENGTH_SHORT).show()
 
+    }
+
+    override fun setIntent(intent: Intent) {
+            val intent = intent
+            val cowInfo = intent.getSerializableExtra("cowInfo") as CowInfo?
+            binding.etEditName.hint = (cowInfo?.name.toString())
+            binding.etEditBirth.hint = (cowInfo?.birth.toString())
+            binding.etEditId.hint = (cowInfo?.id.toString())
+            binding.etEditGender.hint = (cowInfo?.gender.toString())
+            binding.etEditVaccine.hint = (cowInfo?.vaccine.toString())
+            binding.etEditKind.hint = (cowInfo?.kind.toString())
     }
 }

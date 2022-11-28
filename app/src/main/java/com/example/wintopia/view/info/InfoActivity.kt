@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.wintopia.R
@@ -20,10 +21,13 @@ import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.EditActivity
 import com.example.wintopia.view.edit.EditViewModel
+import com.example.wintopia.view.edit.MilkCowInfoModel
+import com.example.wintopia.view.list.ListVOAdapter
 
 import com.example.wintopia.view.utilssd.Constants.TAG
 import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utilssd.API_
+import com.example.wintopia.view.utilssd.Constants
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -39,6 +43,7 @@ class InfoActivity : AppCompatActivity() {
     // 데이터 바인딩(1)
     lateinit var binding: ActivityInfoBinding
     val viewModel: EditViewModel by viewModels()
+    lateinit var cowInfo: CowInfo
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +78,7 @@ class InfoActivity : AppCompatActivity() {
             Log.d(TAG, " 수정하기 버튼 클릭")
             //수정하기 페이지로 이동
             val intent = Intent(this, EditActivity::class.java)
+            intent.putExtra("cowInfo", cowInfo)
             startActivity(intent)
             finish()
         }
@@ -95,18 +101,59 @@ class InfoActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
+
+
     override fun setIntent(intent: Intent) {
         val intent = intent
-        val cowInfo = intent.getSerializableExtra("TEXT") as CowInfo?
-        Log.d(TAG, "user 객체: $cowInfo")
+        if(intent.getStringExtra("where").equals("list")) {
+            cowInfo = intent.getSerializableExtra("infos") as CowInfo
+            binding.tvInfoName.text = (cowInfo?.name.toString())
+            binding.tvInfoBirth.text = (cowInfo?.birth.toString())
+            binding.tvInfoId.text = (cowInfo?.id.toString())
+            binding.tvInfoGender.text = (cowInfo?.gender.toString())
+            binding.tvInfoVaccine.text = (cowInfo?.vaccine.toString())
+            binding.tvInfoKind.text = (cowInfo?.kind.toString())
 
-        binding.tvInfoName.text = (cowInfo?.name.toString())
-        binding.tvInfoBirth.text = (cowInfo?.birth.toString())
-        binding.tvInfoId.text = (cowInfo?.id.toString())
-        binding.tvInfoGender.text = (cowInfo?.gender.toString())
-        binding.tvInfoVaccine.text = (cowInfo?.vaccine.toString())
-        binding.tvInfoKind.text = (cowInfo?.kind.toString())
-
+        } else if(intent.getStringExtra("where").equals("edit")) {
+            cowInfo = intent.getSerializableExtra("TEXT") as CowInfo
+            binding.tvInfoName.text = (cowInfo?.name.toString())
+            binding.tvInfoBirth.text = (cowInfo?.birth.toString())
+            binding.tvInfoId.text = (cowInfo?.id.toString())
+            binding.tvInfoGender.text = (cowInfo?.gender.toString())
+            binding.tvInfoVaccine.text = (cowInfo?.vaccine.toString())
+            binding.tvInfoKind.text = (cowInfo?.kind.toString())
+        }
     }
+
+//    fun putText(intent: Intent){
+//        val cowInfo = intent.getSerializableExtra("infos") as CowInfo
+//
+//        // 각 텍스트 가져오기
+//        var infoName = cowInfo?.name.toString()
+//        var infoId = cowInfo?.id.toString()
+//        var infoBirth = cowInfo?.birth.toString()
+//        var infoGender = cowInfo?.gender.toString()
+//        var infoVaccine = cowInfo?.vaccine.toString()
+//        var infoKind = cowInfo?.kind.toString()
+//
+////        var milkCowInfoModel = MilkCowInfoModel(infoName,
+////            infoId,infoBirth,infoGender,infoVaccine,infoKind)
+//
+//        val info = CowInfo(infoName,
+//            infoId,infoBirth,infoGender,infoVaccine,infoKind)
+//
+//        val intent = Intent(this, EditActivity::class.java)
+//        intent.putExtra("info", info)
+//        finish()
+//
+//
+//    }
+
+//    참고용
+//    fun observeData() {
+//        viewModel.id.observe(this){
+//            binding.edt.text = it
+//        }
+//    }
 
 }
