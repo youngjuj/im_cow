@@ -57,6 +57,7 @@ class SignUpActivity : AppCompatActivity() {
     fun signUpEvent() {
 
         // signUpPw2를 관찰해서
+        observeData()
 //        viewModel.signUpPw2.observe(this){
 //            binding.edt.text = it
 //            // helper text 변경
@@ -101,6 +102,17 @@ class SignUpActivity : AppCompatActivity() {
         binding.btnJoinback.setOnClickListener(){
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    fun observeData() {
+        viewModel.signUpPw2.observe(this){
+            if (viewModel.signUpPw1.toString().equals(it)){
+                binding.etJoinPw2Layout.helperText = ""
+            }else{
+                binding.etJoinPw2Layout.helperText = "비밀번호를 확인해주세요"
+            }
+
         }
     }
 }

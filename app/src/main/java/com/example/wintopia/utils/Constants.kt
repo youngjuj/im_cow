@@ -12,10 +12,13 @@ enum class RESPONSE_STATE{
 }
 
 object API_ {
-    const val BASE_URL: String = "http://192.168.21.52:11112/"
+    const val BASE_URL: String = "http://10.0.2.2:11112/"
 
-    const val LOGIN : String = "test/login"
+    const val GIT_URL: String = "https://api.github.com/"
+
+    const val LOGIN : String = "loginstr/login"
 
     const val INFOOUT : String = "info/infoIn"
 
+    const val PHOTOINFOOUT : String = "image/upImages"
 }

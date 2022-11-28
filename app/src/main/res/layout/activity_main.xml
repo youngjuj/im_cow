@@ -8,6 +8,13 @@
     android:layout_height="match_parent"
     tools:context=".view.main.MainActivity">
 
+    <include
+        android:id="@+id/ic"
+        layout="@layout/appbar"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"

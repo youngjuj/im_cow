@@ -30,47 +30,10 @@ class EditActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
 
-        // 데이터 바인딩(2)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_edit)
 
         // 수정하기 버튼
         binding.btnEditEdit.setOnClickListener {
-            // 각 텍스트 가져오기
-            var etEditName = binding.etEditName.text.toString()
-            var etEditId = binding.etEditId.text.toString()
-            var etEditBirth = binding.etEditBirth.text.toString()
-            var etEditGender = binding.etEditGender.text.toString()
-            var etEditVaccin = binding.etEditVaccin.text.toString()
-            var etEditKind = binding.etEditKind.text.toString()
-
-            var milkCowInfoModel = milkcow(etEditName,
-                etEditId,etEditBirth,etEditGender,etEditVaccin,etEditKind)
-
-            var jsonString = Gson().toJson(milkCowInfoModel)
-            var cow = JSONObject()
-            cow.put("name", etEditName)
-            cow.put("id", etEditId)
-            cow.put("birth", etEditBirth)
-            cow.put("gender", etEditGender)
-            cow.put("vaccine", etEditVaccin)
-            cow.put("kind", etEditKind)
-
-
-            Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${jsonString}")
-            Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
-
-            viewModel.infoOut(jsonString.toString())
-
-
-            // 수정 후 상세정보페이지 이동
-            val cowInfo = CowInfo(etEditName,
-            etEditId,etEditBirth,etEditGender,etEditVaccin,etEditKind)
-            val intent = Intent(this, InfoActivity::class.java)
-            intent.putExtra("TEXT", cowInfo)
-            startActivity(intent)
-            finish()
-
-            Toast.makeText(this, "수정하기", Toast.LENGTH_SHORT).show()
+            getText()
         }
 
         // 취소버튼
@@ -91,5 +54,46 @@ class EditActivity : AppCompatActivity() {
             else {binding.imgEditStar.setImageResource(R.drawable.star)
             switch = 0}
         }
+
+    }
+
+    fun getText(){
+        // 각 텍스트 가져오기
+        var etEditName = binding.etEditName.text.toString()
+        var etEditId = binding.etEditId.text.toString()
+        var etEditBirth = binding.etEditBirth.text.toString()
+        var etEditGender = binding.etEditGender.text.toString()
+        var etEditVaccin = binding.etEditVaccin.text.toString()
+        var etEditKind = binding.etEditKind.text.toString()
+
+        var milkCowInfoModel = MilkCowInfoModel(etEditName,
+            etEditId,etEditBirth,etEditGender,etEditVaccin,etEditKind)
+
+        var jsonString = Gson().toJson(milkCowInfoModel)
+        var cow = JSONObject()
+        cow.put("name", etEditName)
+        cow.put("id", etEditId)
+        cow.put("birth", etEditBirth)
+        cow.put("gender", etEditGender)
+        cow.put("vaccine", etEditVaccin)
+        cow.put("kind", etEditKind)
+
+
+        Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${jsonString}")
+        Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
+
+//        viewModel.infoOut(jsonString.toString())
+        viewModel.infoOut(milkCowInfoModel)
+
+        // 수정 후 상세정보페이지 이동
+        val cowInfo = CowInfo(etEditName,
+            etEditId,etEditBirth,etEditGender,etEditVaccin,etEditKind)
+        val intent = Intent(this, InfoActivity::class.java)
+        intent.putExtra("TEXT", cowInfo)
+        startActivity(intent)
+        finish()
+
+        Toast.makeText(this, "수정하기", Toast.LENGTH_SHORT).show()
+
     }
 }

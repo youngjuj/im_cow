@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+        <variable
+            name="activity"
+            type="com.example.wintopia.view.signup.SignUpActivity" />
         <variable
             name="SignUpvm"
             type="com.example.wintopia.view.signup.SignUpViewModel" />
@@ -115,7 +119,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="12"
             app:endIconMode="clear_text"
-            app:helperText="@{SignUpvm.signUpPw2==SignUpvm.signUpPw1 ? @string/test :@string/test2}"
+            app:helperText="@{SignUpvm.signUpPw2==SignUpvm.signUpPw1 ? @string/test : @string/test2}"
             app:helperTextTextColor="#F10606"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

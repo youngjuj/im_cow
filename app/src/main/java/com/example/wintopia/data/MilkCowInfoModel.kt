@@ -10,7 +10,7 @@ import retrofit2.http.Query
 import java.io.Serializable
 
 data class MilkCowInfoModel(
-    @SerializedName("Name") var name: String,
+    @SerializedName("name") var name: String,
     @SerializedName("id") var id: String,
     @SerializedName("birth") var birth: String,
     @SerializedName("gender") var gender: String,
@@ -19,7 +19,7 @@ data class MilkCowInfoModel(
 )
 
 data class CowInfo(
-    @SerializedName("Name") var name: String,
+    @SerializedName("name") var name: String,
     @SerializedName("id") var id: String,
     @SerializedName("birth") var birth: String,
     @SerializedName("gender") var gender: String,
