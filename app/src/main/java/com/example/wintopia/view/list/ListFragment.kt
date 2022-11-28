@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Canvas
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
 import android.widget.ListAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,8 +19,17 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentListBinding
+import com.example.wintopia.retrofit.RetrofitClient
+import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.camera.RegistActivity
+import com.example.wintopia.view.edit.MilkCowInfoModel
+import com.example.wintopia.view.utilssd.API_
+import com.example.wintopia.view.utilssd.Constants
 import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory
+import okhttp3.MultipartBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ListFragment : Fragment() {
 
@@ -39,6 +50,7 @@ class ListFragment : Fragment() {
         // Inflate the layout for this fragment
 //        mBinding = FragmentListBinding.inflate(inflater, container, false)
 
+//        cowInfo()
         var data = arrayListOf<ListVO>()
         data.add(ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
             "분홍얼룩이", "22111001"))
@@ -170,4 +182,34 @@ class ListFragment : Fragment() {
     private fun dipToPx(dipValue: Float, context: Context): Int {
         return (dipValue * context.resources.displayMetrics.density).toInt()
     }
+
+    // 서버에서 전체 정보 가져오기
+    fun  cowInfo() {
+        Log.d(Constants.TAG,"웹서버에서 객체 정보 받아오기")
+
+        //Retrofit 인스턴스 생성
+        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
+        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
+
+
+        val call = service.cowListAll() //통신 API 패스 설정
+
+        call?.enqueue(object : Callback<MultipartBody?> {
+            override fun onResponse(call: Call<MultipartBody?>, response: Response<MultipartBody?>) {
+                if (response.isSuccessful) {
+                    Log.d("로그 ",""+response?.body().toString())
+                    Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_SHORT).show()
+
+                } else {
+                    Toast.makeText(requireActivity(),"통신실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<MultipartBody?>, t: Throwable) {
+                Log.d("로그",t.message.toString())
+            }
+        })
+    }
+
+
 }

@@ -20,5 +20,9 @@ object API_ {
 
     const val INFOOUT : String = "info/infoIn"
 
+    const val INFOIN : String = "info/infoOut"
+
     const val PHOTOINFOOUT : String = "image/upImages"
+
+
 }

@@ -2,7 +2,6 @@ package com.example.wintopia.view.camera
 
 import android.Manifest
 import android.app.Activity
-import android.app.ActivityManager
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -14,8 +13,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -23,17 +20,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityRegistBinding
-import com.example.wintopia.databinding.RegistDialogBinding
-import com.github.dhaval2404.imagepicker.ImagePicker
-import okhttp3.internal.wait
 import java.io.File
 import java.io.IOException
-import java.io.Serializable
 import java.text.SimpleDateFormat
-import kotlin.properties.Delegates
 
 class RegistActivity : AppCompatActivity(){
 

@@ -35,6 +35,13 @@ interface RetrofitInterface {
 
 
     @Multipart
+    @POST("${API_.INFOIN}")
+//    fun getData(@Query("item") item: String?): Call<String>?
+    fun cowListAll(): Call<MultipartBody>?
+
+
+
+    @Multipart
     @POST("${API_.PHOTOINFOOUT}")
     fun profileSend(
         @Part file : MultipartBody
