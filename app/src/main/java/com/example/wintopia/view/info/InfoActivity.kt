@@ -55,6 +55,7 @@ class InfoActivity : AppCompatActivity() {
 
 
         setIntent(intent)
+        observeData()
 
 
         // 즐겨찾기 별
@@ -100,6 +101,7 @@ class InfoActivity : AppCompatActivity() {
         fragmentTransaction.replace(fragment.id, fragment)
         fragmentTransaction.commit()
     }
+
 
 
 
@@ -150,10 +152,25 @@ class InfoActivity : AppCompatActivity() {
 //    }
 
 //    참고용
-//    fun observeData() {
-//        viewModel.id.observe(this){
-//            binding.edt.text = it
-//        }
-//    }
+    fun observeData() {
+        viewModel.id.observe(this){
+            binding.tvInfoId.text = it
+        }
+        viewModel.name.observe(this){
+        binding.tvInfoName.text = it
+        }
+        viewModel.birth.observe(this){
+            binding.tvInfoBirth.text = it
+        }
+        viewModel.gender.observe(this){
+            binding.tvInfoGender.text = it
+        }
+        viewModel.vaccine.observe(this){
+            binding.tvInfoVaccine.text = it
+        }
+        viewModel.kind.observe(this){
+            binding.tvInfoKind.text = it
+        }
+    }
 
 }
