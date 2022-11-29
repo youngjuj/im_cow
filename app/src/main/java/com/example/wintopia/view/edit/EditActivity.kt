@@ -102,7 +102,7 @@ class EditActivity : AppCompatActivity() {
         }
 
         var milkCowInfoModel = MilkCowInfoModel(etEditName,
-                etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch)
+                etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch,Integer.parseInt(UserList().getNum().toString()))
 
 //        var milkCowInfoModel = UserList().getNum()?.let {
 //            MilkCowInfoModel(etEditName,
@@ -120,7 +120,7 @@ class EditActivity : AppCompatActivity() {
         }
 
         val cowInfo = CowInfo(etEditName,
-            etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch)
+            etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch,Integer.parseInt(UserList().getNum().toString()))
 
         // 수정 후 상세정보페이지 이동
 //        val cowInfo = UserList().getNum()?.let {

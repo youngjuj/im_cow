@@ -190,6 +190,7 @@ class ListFragment : Fragment() {
                 if (response.isSuccessful) {
 //                    Log.d("로그 ",""+response?.body().toString())
                     data = response.body()!!
+                    Log.v("data 확인", "${ response.body()!![1].name }")
 
                     val listAdapter = ListVOAdapter(data)
 
@@ -209,9 +210,9 @@ class ListFragment : Fragment() {
 //
                     }
 //                    Log.d("로그 ",res)
-                    Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_LONG).show()
                 } else {
-                    Toast.makeText(requireActivity(),"통신실패", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(),"통신실패", Toast.LENGTH_LONG).show()
                 }
             }
 

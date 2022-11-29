@@ -8,9 +8,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
+import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ListItemBinding
 import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.EditActivity
@@ -25,16 +25,17 @@ import java.util.*
 // List에 뿌려줄 item 구성 정보들
 data class ListVO (
 //    val pic: String = "", // 이미지 url 주소
-                   val name: String = "", // 젖소 이름
-                   val id: String = "",// 젖소 고유번호
-                   val birth: String = "",// 젖소 출생일
-                   val variety: String = "", // 젖소 종류
-                   val gender: String = "", // 젖소 성별
-                   val vaccine: String = "", // 백신접종 여부
-                   val pregnancy: String = "", // 임신 여부
-                   val milk: String = "", // 건유 여부
-                   val castration: String = "", // 거세 여부
-                   val list: Int = 0,
+    val id: String = "",// 젖소 고유번호
+    val name: String = "", // 젖소 이름
+    val birth: String = "",// 젖소 출생일
+    val variety: String = "", // 젖소 종류
+    val gender: String = "", // 젖소 성별
+    val vaccine: String = "", // 백신접종 여부
+    val pregnancy: String = "", // 임신 여부
+    val milk: String = "", // 건유 여부
+    val castration: String = "", // 거세 여부
+    val list: Int = 0,
+    val userNum: Int = Integer.parseInt(UserList().getNum().toString()),
                     )
 
 
@@ -122,6 +123,7 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
         }
 
         holder.updateView()
+        reload(listData)
 
     }
 
@@ -164,24 +166,24 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
         var infoMilk = data[position].pregnancy
         var infoCastration = data[position].castration
         var infoWish = data[position].list
+        var userNum = data[position].userNum
 
         Log.v("data확인", data[position].name)
 
         var milkCowInfoModel = MilkCowInfoModel(infoName,
-            infoId,infoBirth,infoVariety,infoGender,infoVaccine, infoPregnancy, infoMilk, infoCastration, infoWish)
+            infoId,infoBirth,infoVariety,infoGender,infoVaccine, infoPregnancy, infoMilk, infoCastration, infoWish, userNum)
 
 
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
         // 수정 후 상세정보페이지 이동
         val cowInfo = CowInfo(infoName,
-            infoId,infoBirth,infoVariety,infoGender,infoVaccine,infoPregnancy,infoMilk,infoCastration, infoWish)
+            infoId,infoBirth,infoVariety,infoGender,infoVaccine,infoPregnancy,infoMilk,infoCastration, infoWish, userNum)
 
         val intent = Intent(holder.itemView?.context, InfoActivity::class.java)
         intent.putExtra("where", "list")
         intent.putExtra("infos", cowInfo)
         ContextCompat.startActivity(holder.itemView.context, intent, null)
-
 
     }
 

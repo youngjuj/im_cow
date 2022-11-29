@@ -20,7 +20,7 @@ data class MilkCowInfoModel(
     @SerializedName("cow_milk") var milk: String,
     @SerializedName("cow_castration") var castration: String,
     @SerializedName("wish_list") var list: Int,
-//    @SerializedName("user_num") var num: Int,
+    @SerializedName("user_num") var num: Int,
 )
 
 data class CowInfo(
@@ -34,6 +34,6 @@ data class CowInfo(
     @SerializedName("cow_milk") var milk: String,
     @SerializedName("cow_castration") var castration: String,
     @SerializedName("wish_list") var list: Int,
-//    @SerializedName("user_num") var num: Int,
+    @SerializedName("user_num") var num: Int,
 ): Serializable
 
