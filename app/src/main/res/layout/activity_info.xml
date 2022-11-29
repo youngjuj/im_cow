@@ -242,8 +242,7 @@
             app:layout_constraintEnd_toEndOf="@+id/tvInfoVariety"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tvInfoVariety"
-            app:layout_constraintTop_toBottomOf="@+id/tvInfoVariety"
-            android:clickable="false">
+            app:layout_constraintTop_toBottomOf="@+id/tvInfoVariety">
 
             <RadioButton
                 android:id="@+id/rbInfoFemale"
@@ -251,7 +250,8 @@
                 android:layout_height="wrap_content"
                 android:text="암컷"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="100dp" />
+                tools:layout_editor_absoluteY="100dp"
+                android:clickable="false"/>
 
             <RadioButton
                 android:id="@+id/rbInfoMale"
@@ -259,7 +259,9 @@
                 android:layout_height="wrap_content"
                 android:text="수컷"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="100dp" />
+                tools:layout_editor_absoluteY="100dp"
+                android:clickable="false"/>
+
         </RadioGroup>
         <RadioGroup
             android:id="@+id/rbInfoVaccine"
@@ -271,7 +273,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/rbInfoGender"
             app:layout_constraintTop_toBottomOf="@+id/rbInfoGender"
-            android:clickable="false">
+            >
 
             <RadioButton
                 android:id="@+id/rbInfoDid"
@@ -279,7 +281,9 @@
                 android:layout_height="wrap_content"
                 android:text="접종"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="100dp" />
+                tools:layout_editor_absoluteY="100dp"
+                android:clickable="false"/>
+
 
             <RadioButton
                 android:id="@+id/rbInfoDidnt"
@@ -287,7 +291,9 @@
                 android:layout_height="wrap_content"
                 android:text="미접종"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="100dp" />
+                tools:layout_editor_absoluteY="100dp"
+                android:clickable="false"/>
+
         </RadioGroup>
         <RadioGroup
             android:id="@+id/rbInfoPregnant"
@@ -299,7 +305,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/rbInfoVaccine"
             app:layout_constraintTop_toBottomOf="@+id/rbInfoVaccine"
-            android:clickable="false">
+            >
 
             <RadioButton
                 android:id="@+id/rbInfoPreg"
@@ -308,7 +314,9 @@
                 android:paddingRight="13dp"
                 android:text="유"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="100dp" />
+                tools:layout_editor_absoluteY="100dp"
+                android:clickable="false"/>
+
 
             <RadioButton
                 android:id="@+id/rbInfoNonP"
@@ -316,7 +324,9 @@
                 android:layout_height="wrap_content"
                 android:text="무"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="100dp" />
+                tools:layout_editor_absoluteY="100dp"
+                android:clickable="false"/>
+
         </RadioGroup>
         <RadioGroup
             android:id="@+id/rbInfoMilk"
@@ -328,7 +338,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/rbInfoPregnant"
             app:layout_constraintTop_toBottomOf="@+id/rbInfoPregnant"
-            android:clickable="false">
+            >
 
             <RadioButton
                 android:id="@+id/rbInfoMilkY"
@@ -337,7 +347,9 @@
                 android:paddingRight="13dp"
                 android:text="유"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="100dp" />
+                tools:layout_editor_absoluteY="100dp"
+                android:clickable="false"/>
+
 
             <RadioButton
                 android:id="@+id/rbInfoMilkN"
@@ -345,7 +357,9 @@
                 android:layout_height="wrap_content"
                 android:text="무"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="100dp" />
+                tools:layout_editor_absoluteY="100dp"
+                android:clickable="false"/>
+
         </RadioGroup>
         <RadioGroup
             android:id="@+id/rbInfoCas"
@@ -356,8 +370,7 @@
             app:layout_constraintEnd_toEndOf="@+id/rbInfoMilk"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/rbInfoMilk"
-            app:layout_constraintTop_toBottomOf="@+id/rbInfoMilk"
-            android:clickable="false">
+            app:layout_constraintTop_toBottomOf="@+id/rbInfoMilk">
 
             <RadioButton
                 android:id="@+id/rbInfoCasY"
@@ -366,7 +379,9 @@
                 android:paddingRight="13dp"
                 android:text="유"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="100dp" />
+                tools:layout_editor_absoluteY="100dp"
+                android:clickable="false"/>
+
 
             <RadioButton
                 android:id="@+id/rbInfoCasN"
@@ -374,7 +389,9 @@
                 android:layout_height="wrap_content"
                 android:text="무"
                 tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="100dp" />
+                tools:layout_editor_absoluteY="100dp"
+                android:clickable="false"/>
+
         </RadioGroup>
 
         <Button

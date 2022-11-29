@@ -5,22 +5,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
-import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ListItemBinding
 import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.EditActivity
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.utilssd.Constants
-import com.google.gson.Gson
-import org.json.JSONObject
+import com.google.gson.annotations.SerializedName
 import java.lang.ref.WeakReference
 import java.util.*
+import kotlin.collections.ArrayList
 
 // List에 뿌려줄 item 구성 정보들
 data class ListVO (
@@ -40,10 +38,10 @@ data class ListVO (
 
 
 // RecyclerView 사용에 필수인 Adapter
-class ListVOAdapter(private val data:MutableList<ListVO>):
+class ListVOAdapter(private val data:List<MilkCowInfoModel>):
     RecyclerView.Adapter<ListVOAdapter.ListVOViewHolder>(){
 
-    private var listData = mutableListOf<ListVO>()
+    private var listData = ArrayList<MilkCowInfoModel>()
 
 
     // RecyclerView ViewHolder
@@ -123,11 +121,11 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
         }
 
         holder.updateView()
-        reload(listData)
+//        reload(listData)
 
     }
 
-    fun reload(listdata: List<ListVO>) {
+    fun reload(listdata: List<MilkCowInfoModel>) {
         this.listData.clear()
         this.listData.addAll(listdata)
         notifyDataSetChanged()
@@ -138,13 +136,13 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
     override fun getItemCount(): Int = data.size
 
 
-    fun setListData(listData: MutableList<ListVO>) {
-        this.listData = data
+    fun setListData(listData: List<MilkCowInfoModel>) {
+        this.listData = listData as ArrayList<MilkCowInfoModel>
     }
 
     fun removeItem(viewHolder: RecyclerView.ViewHolder) {
         var position = viewHolder.adapterPosition
-        data.removeAt(position)
+        data.drop(position)
         notifyItemRemoved(position)
 
     }
@@ -163,7 +161,7 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
         var infoGender = data[position].gender
         var infoVaccine = data[position].vaccine
         var infoPregnancy = data[position].pregnancy
-        var infoMilk = data[position].pregnancy
+        var infoMilk = data[position].milk
         var infoCastration = data[position].castration
         var infoWish = data[position].list
         var userNum = data[position].num

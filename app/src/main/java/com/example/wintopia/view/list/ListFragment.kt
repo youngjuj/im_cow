@@ -16,24 +16,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.wintopia.R
-import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.FragmentListBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.camera.RegistActivity
-import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.MilkCowInfoModel
-import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import com.example.wintopia.view.utilssd.Constants.TAG
-import com.google.gson.Gson
-import okhttp3.MultipartBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.converter.gson.GsonConverterFactory
 
 class ListFragment : Fragment() {
 
@@ -41,7 +34,7 @@ class ListFragment : Fragment() {
         binding.swipeRefreschLayout
     }
     lateinit var binding: FragmentListBinding
-    lateinit var data: MutableList<ListVO>
+    lateinit var data: List<MilkCowInfoModel>
 
 
     override fun onCreateView(
@@ -191,25 +184,25 @@ class ListFragment : Fragment() {
             override fun onResponse(call: Call<List<MilkCowInfoModel>>, response: Response<List<MilkCowInfoModel>>) {
                 if (response.isSuccessful) {
                     Log.d(TAG,""+response?.body().toString())
-//                    data = response.body()!!
-//
-//                    val listAdapter = ListVOAdapter(data)
-//
-//                    listAdapter.reload(data)
-//
-//                    binding.rvList.apply {
-//                        layoutManager = LinearLayoutManager(requireContext())
-//                        adapter = listAdapter
-//                        addItemDecoration(ItemDecoration())
-//
-//                        swipeRefreshLayout.setOnRefreshListener {
-//                            swipeRefreshLayout.isRefreshing = false
-//                        }
-//
-//                        setItemTouchHelper()
-//
-////
-//                    }
+                    data = response?.body()!!
+
+                    val listAdapter = ListVOAdapter(data)
+
+                    listAdapter.reload(data)
+
+                    binding.rvList.apply {
+                        layoutManager = LinearLayoutManager(requireContext())
+                        adapter = listAdapter
+                        addItemDecoration(ItemDecoration())
+
+                        swipeRefreshLayout.setOnRefreshListener {
+                            swipeRefreshLayout.isRefreshing = false
+                        }
+
+                        setItemTouchHelper()
+
+
+                    }
 //                    Log.d("로그 ",res)
                     Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_LONG).show()
                 } else {

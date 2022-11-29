@@ -44,6 +44,7 @@ class InfoActivity : AppCompatActivity() {
     lateinit var binding: ActivityInfoBinding
     val viewModel: EditViewModel by viewModels()
     lateinit var cowInfo: CowInfo
+    var switch: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +60,6 @@ class InfoActivity : AppCompatActivity() {
 
 
         // 즐겨찾기 별
-        var switch: Int = 0
         binding.imgInfoStar.setOnClickListener {
             if (switch == 0) {
                 binding.imgInfoStar.setImageResource(R.drawable.filledstar)
@@ -112,32 +112,36 @@ class InfoActivity : AppCompatActivity() {
             binding.tvInfoName.text = (cowInfo?.name.toString())
             binding.tvInfoBirth.text = (cowInfo?.birth.toString())
             binding.tvInfoId.text = (cowInfo?.id.toString())
+            Log.d("로그ㅜ", "${cowInfo?.milk.toString()}")
             if (cowInfo?.gender.toString().equals("수컷")) {
                 binding.rbInfoMale.isChecked = true
-            } else {
+            } else if(cowInfo?.gender.toString().equals("암컷")) {
                 binding.rbInfoFemale.isChecked = true
             }
             if (cowInfo?.vaccine.toString().equals("접종")) {
                 binding.rbInfoDid.isChecked = true
-            } else {
+            } else if (cowInfo?.vaccine.toString().equals("미접종")) {
                 binding.rbInfoDidnt.isChecked = true
             }
-            if (cowInfo?.gender.toString().equals("유")) {
+            if (cowInfo?.pregnancy.toString().equals("유")) {
                 binding.rbInfoPreg.isChecked = true
-            } else {
+            } else if (cowInfo?.pregnancy.toString().equals("무")){
                 binding.rbInfoNonP.isChecked = true
             }
-            if (cowInfo?.gender.toString().equals("수컷")) {
+            if (cowInfo?.milk.toString().equals("유")) {
                 binding.rbInfoMilkY.isChecked = true
-            } else {
+            } else if (cowInfo?.milk.toString().equals("무")){
                 binding.rbInfoMilkN.isChecked = true
             }
-            if (cowInfo?.gender.toString().equals("수컷")) {
+            if (cowInfo?.castration.toString().equals("유")) {
                 binding.rbInfoCasY.isChecked = true
-            } else {
+            } else if (cowInfo?.castration.toString().equals("무")){
                 binding.rbInfoCasN.isChecked = true
             }
-
+            switch = Integer.parseInt(cowInfo?.list.toString())
+            if (switch == 1) {
+                binding.imgInfoStar.setImageResource(R.drawable.filledstar)
+            }
 
         } else if(intent.getStringExtra("where").equals("edit")) {
             cowInfo = intent.getSerializableExtra("TEXT") as CowInfo
@@ -146,29 +150,34 @@ class InfoActivity : AppCompatActivity() {
             binding.tvInfoId.text = (cowInfo?.id.toString())
             if (cowInfo?.gender.toString().equals("수컷")) {
                 binding.rbInfoMale.isChecked = true
-            } else {
+            } else if(cowInfo?.gender.toString().equals("암컷")) {
                 binding.rbInfoFemale.isChecked = true
             }
             if (cowInfo?.vaccine.toString().equals("접종")) {
                 binding.rbInfoDid.isChecked = true
-            } else {
+            } else if (cowInfo?.vaccine.toString().equals("미접종")) {
                 binding.rbInfoDidnt.isChecked = true
             }
-            if (cowInfo?.gender.toString().equals("유")) {
+            if (cowInfo?.pregnancy.toString().equals("유")) {
                 binding.rbInfoPreg.isChecked = true
-            } else {
+            } else if (cowInfo?.pregnancy.toString().equals("무")){
                 binding.rbInfoNonP.isChecked = true
             }
-            if (cowInfo?.gender.toString().equals("수컷")) {
+            if (cowInfo?.milk.toString().equals("유")) {
                 binding.rbInfoMilkY.isChecked = true
-            } else {
+            } else if (cowInfo?.milk.toString().equals("무")){
                 binding.rbInfoMilkN.isChecked = true
             }
-            if (cowInfo?.gender.toString().equals("수컷")) {
+            if (cowInfo?.castration.toString().equals("유")) {
                 binding.rbInfoCasY.isChecked = true
-            } else {
+            } else if (cowInfo?.castration.toString().equals("무")){
                 binding.rbInfoCasN.isChecked = true
             }
+            switch = Integer.parseInt(cowInfo?.list.toString())
+            if (switch == 1) {
+                binding.imgInfoStar.setImageResource(R.drawable.filledstar)
+            }
+
         }
     }
 
