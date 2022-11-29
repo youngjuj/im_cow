@@ -35,8 +35,8 @@ data class ListVO (
     val milk: String = "", // 건유 여부
     val castration: String = "", // 거세 여부
     val list: Int = 0,
-    val userNum: Int = Integer.parseInt(UserList().getNum().toString()),
-                    )
+    val num: Int = 0
+    )
 
 
 // RecyclerView 사용에 필수인 Adapter
@@ -166,7 +166,7 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
         var infoMilk = data[position].pregnancy
         var infoCastration = data[position].castration
         var infoWish = data[position].list
-        var userNum = data[position].userNum
+        var userNum = data[position].num
 
         Log.v("data확인", data[position].name)
 

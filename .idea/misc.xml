@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
+        <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_edit.xml" value="0.2" />
+=======
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/activity_edit.xml" value="0.4" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/activity_info.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/gjaischool-65/AndroidStudioProjects/wintopia/app/src/main/res/layout/activity_regist.xml" value="0.264" />
         <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_edit.xml" value="0.13677536231884058" />
+>>>>>>> jyj
         <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_info.xml" value="0.13677536231884058" />
         <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/activity_regist.xml" value="0.13677536231884058" />
         <entry key="..\:/Users/gjaischool61/project2/wintopia/wintopia/app/src/main/res/layout/fragment_camera.xml" value="0.13677536231884058" />

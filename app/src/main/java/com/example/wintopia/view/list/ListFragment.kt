@@ -26,7 +26,9 @@ import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
+import com.example.wintopia.view.utilssd.Constants.TAG
 import com.google.gson.Gson
+import okhttp3.MultipartBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -185,30 +187,29 @@ class ListFragment : Fragment() {
 
         val call = service.cowListAll(userId) //통신 API 패스 설정
 
-        call?.enqueue(object : Callback<MutableList<ListVO>> {
-            override fun onResponse(call: Call<MutableList<ListVO>>, response: Response<MutableList<ListVO>>) {
+        call?.enqueue(object : Callback<List<MilkCowInfoModel>> {
+            override fun onResponse(call: Call<List<MilkCowInfoModel>>, response: Response<List<MilkCowInfoModel>>) {
                 if (response.isSuccessful) {
-//                    Log.d("로그 ",""+response?.body().toString())
-                    data = response.body()!!
-                    Log.v("data 확인", "${ response.body()!![1].name }")
-
-                    val listAdapter = ListVOAdapter(data)
-
-                    listAdapter.reload(data)
-
-                    binding.rvList.apply {
-                        layoutManager = LinearLayoutManager(requireContext())
-                        adapter = listAdapter
-                        addItemDecoration(ItemDecoration())
-
-                        swipeRefreshLayout.setOnRefreshListener {
-                            swipeRefreshLayout.isRefreshing = false
-                        }
-
-                        setItemTouchHelper()
-
+                    Log.d(TAG,""+response?.body().toString())
+//                    data = response.body()!!
 //
-                    }
+//                    val listAdapter = ListVOAdapter(data)
+//
+//                    listAdapter.reload(data)
+//
+//                    binding.rvList.apply {
+//                        layoutManager = LinearLayoutManager(requireContext())
+//                        adapter = listAdapter
+//                        addItemDecoration(ItemDecoration())
+//
+//                        swipeRefreshLayout.setOnRefreshListener {
+//                            swipeRefreshLayout.isRefreshing = false
+//                        }
+//
+//                        setItemTouchHelper()
+//
+////
+//                    }
 //                    Log.d("로그 ",res)
                     Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_LONG).show()
                 } else {
@@ -216,7 +217,7 @@ class ListFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<MutableList<ListVO>>, t: Throwable) {
+            override fun onFailure(call: Call<List<MilkCowInfoModel>>, t: Throwable) {
                 Log.d("로그",t.message.toString())
             }
         })

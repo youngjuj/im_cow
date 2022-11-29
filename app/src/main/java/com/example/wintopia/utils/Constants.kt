@@ -18,7 +18,7 @@ object API_ {
 
     const val LOGIN : String = "loginstr/login"
 
-    const val INFOOUT : String = "info/infoIn"
+    const val INFOOUT : String = "info/cowInfoIn"
 
     const val INFOIN : String = "info/infoOut"
 

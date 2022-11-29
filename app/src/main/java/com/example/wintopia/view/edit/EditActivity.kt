@@ -22,6 +22,7 @@ class EditActivity : AppCompatActivity() {
     lateinit var binding: ActivityEditBinding
     val viewModel: EditViewModel by viewModels()
     var switch: Int = 0
+    var userNum: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,8 +102,9 @@ class EditActivity : AppCompatActivity() {
             }
         }
 
+
         var milkCowInfoModel = MilkCowInfoModel(etEditName,
-                etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch,Integer.parseInt(UserList().getNum().toString()))
+                etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
 
 //        var milkCowInfoModel = UserList().getNum()?.let {
 //            MilkCowInfoModel(etEditName,
@@ -110,7 +112,6 @@ class EditActivity : AppCompatActivity() {
 //                it
 //            )
 //        }
-
 
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
@@ -120,7 +121,7 @@ class EditActivity : AppCompatActivity() {
         }
 
         val cowInfo = CowInfo(etEditName,
-            etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch,Integer.parseInt(UserList().getNum().toString()))
+            etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
 
         // 수정 후 상세정보페이지 이동
 //        val cowInfo = UserList().getNum()?.let {
@@ -129,6 +130,7 @@ class EditActivity : AppCompatActivity() {
 //                it
 //            )
 //        }
+
         val intent = Intent(this, InfoActivity::class.java)
         intent.putExtra("where", "edit")
         intent.putExtra("TEXT", cowInfo)
@@ -178,5 +180,6 @@ class EditActivity : AppCompatActivity() {
                 binding.rbEditCasN.isChecked = true
 
             }
+
     }
 }
