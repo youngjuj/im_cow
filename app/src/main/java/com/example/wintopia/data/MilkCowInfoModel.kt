@@ -10,31 +10,30 @@ import retrofit2.http.Query
 import java.io.Serializable
 
 data class MilkCowInfoModel(
-    @SerializedName("cow_name") var name: String,
     @SerializedName("cow_id") var id: String,
-    @SerializedName("cow_birth") var birth: Int,
+    @SerializedName("cow_name") var name: String,
+    @SerializedName("cow_birth") var birth: String,
     @SerializedName("cow_variety") var variety: String,
-    @SerializedName("cow_gender") var gender: Int,
-    @SerializedName("cow_vaccination") var kind: Int,
-    @SerializedName("cow_pregnancy") var pregnancy: Int,
-    @SerializedName("cow_milk") var milk: Int,
-    @SerializedName("cow_castration") var castration: Int,
+    @SerializedName("cow_gender") var gender: String,
+    @SerializedName("cow_vaccination") var vaccine: String,
+    @SerializedName("cow_pregnancy") var pregnancy: String,
+    @SerializedName("cow_milk") var milk: String,
+    @SerializedName("cow_castration") var castration: String,
     @SerializedName("wish_list") var list: Int,
-    @SerializedName("user_num") var num: Int,
-
-    )
+//    @SerializedName("user_num") var num: Int,
+)
 
 data class CowInfo(
-    @SerializedName("cow_name") var name: String,
     @SerializedName("cow_id") var id: String,
-    @SerializedName("cow_birth") var birth: Int,
+    @SerializedName("cow_name") var name: String,
+    @SerializedName("cow_birth") var birth: String,
     @SerializedName("cow_variety") var variety: String,
-    @SerializedName("cow_gender") var gender: Int,
-    @SerializedName("cow_vaccination") var kind: Int,
-    @SerializedName("cow_pregnancy") var pregnancy: Int,
-    @SerializedName("cow_milk") var milk: Int,
-    @SerializedName("cow_castration") var castration: Int,
+    @SerializedName("cow_gender") var gender: String,
+    @SerializedName("cow_vaccination") var vaccine: String,
+    @SerializedName("cow_pregnancy") var pregnancy: String,
+    @SerializedName("cow_milk") var milk: String,
+    @SerializedName("cow_castration") var castration: String,
     @SerializedName("wish_list") var list: Int,
-    @SerializedName("user_num") var num: Int,
+//    @SerializedName("user_num") var num: Int,
 ): Serializable
 

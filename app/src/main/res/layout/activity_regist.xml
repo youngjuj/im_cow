@@ -167,17 +167,18 @@
                 app:layout_constraintEnd_toEndOf="@+id/textView42"
                 app:layout_constraintStart_toStartOf="@+id/textView42"
                 app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
             <EditText
-                android:id="@+id/etRegistKind"
+                android:id="@+id/etRegistVariety"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="43dp"
-                android:ems="10"
                 android:background="@android:color/transparent"
+                android:ems="10"
                 android:hint="품종 입력"
                 android:inputType="textPersonName"
-                android:textSize="20sp"
                 android:text="@={vm.registFax}"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/etRegistBirth"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/etRegistBirth"
@@ -256,24 +257,24 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnRegistCancel"
                 app:layout_constraintHorizontal_bias="0.36"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup5"
+                app:layout_constraintTop_toBottomOf="@+id/rbRegistCas"
                 app:layout_constraintVertical_bias="1.0" />
 
 
 
             <RadioGroup
-                android:id="@+id/radioGroup"
+                android:id="@+id/rbRegistGender"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="14dp"
-                app:layout_constraintEnd_toEndOf="@+id/etRegistKind"
+                app:layout_constraintEnd_toEndOf="@+id/etRegistVariety"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/etRegistKind"
-                app:layout_constraintTop_toBottomOf="@+id/etRegistKind">
+                app:layout_constraintStart_toStartOf="@+id/etRegistVariety"
+                app:layout_constraintTop_toBottomOf="@+id/etRegistVariety">
 
                 <RadioButton
-                    android:id="@+id/radioButton1"
+                    android:id="@+id/rbRegistMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="수컷"
@@ -281,7 +282,7 @@
                     tools:layout_editor_absoluteY="100dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/rbRegistFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="암컷"
@@ -289,18 +290,18 @@
                     tools:layout_editor_absoluteY="100dp" />
             </RadioGroup>
             <RadioGroup
-                android:id="@+id/radioGroup2"
+                android:id="@+id/rbRegistVaccine"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="13dp"
-                app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+                app:layout_constraintEnd_toEndOf="@+id/rbRegistGender"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/radioGroup"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+                app:layout_constraintStart_toStartOf="@+id/rbRegistGender"
+                app:layout_constraintTop_toBottomOf="@+id/rbRegistGender">
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
+                    android:id="@+id/rbRegistDid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="유"
@@ -308,7 +309,7 @@
                     tools:layout_editor_absoluteY="100dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton4"
+                    android:id="@+id/rbRegistDidnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="무"
@@ -316,18 +317,18 @@
                     tools:layout_editor_absoluteY="100dp" />
             </RadioGroup>
             <RadioGroup
-                android:id="@+id/radioGroup3"
+                android:id="@+id/rbRegistPregnant"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="13dp"
-                app:layout_constraintEnd_toEndOf="@+id/radioGroup2"
+                app:layout_constraintEnd_toEndOf="@+id/rbRegistVaccine"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/radioGroup2"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
+                app:layout_constraintStart_toStartOf="@+id/rbRegistVaccine"
+                app:layout_constraintTop_toBottomOf="@+id/rbRegistVaccine">
 
                 <RadioButton
-                    android:id="@+id/radioButton5"
+                    android:id="@+id/rbRegistPreg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="유"
@@ -335,35 +336,7 @@
                     tools:layout_editor_absoluteY="100dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="무"
-                    tools:layout_editor_absoluteX="100dp"
-                    tools:layout_editor_absoluteY="100dp" />
-            </RadioGroup>
-
-            <RadioGroup
-                android:id="@+id/radioGroup4"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="13dp"
-                app:layout_constraintEnd_toEndOf="@+id/radioGroup3"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/radioGroup3"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup3">
-
-                <RadioButton
-                    android:id="@+id/radioButton7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="유"
-                    tools:layout_editor_absoluteX="100dp"
-                    tools:layout_editor_absoluteY="100dp" />
-
-                <RadioButton
-                    android:id="@+id/radioButton8"
+                    android:id="@+id/rbRegistNonP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="무"
@@ -372,18 +345,18 @@
             </RadioGroup>
 
             <RadioGroup
-                android:id="@+id/radioGroup5"
+                android:id="@+id/rbRegistMilk"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="13dp"
-                app:layout_constraintEnd_toEndOf="@+id/radioGroup4"
+                app:layout_constraintEnd_toEndOf="@+id/rbRegistPregnant"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/radioGroup4"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup4">
+                app:layout_constraintStart_toStartOf="@+id/rbRegistPregnant"
+                app:layout_constraintTop_toBottomOf="@+id/rbRegistPregnant">
 
                 <RadioButton
-                    android:id="@+id/radioButton9"
+                    android:id="@+id/rbRegistMilkY"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="유"
@@ -391,7 +364,35 @@
                     tools:layout_editor_absoluteY="100dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton10"
+                    android:id="@+id/rbRegistMilkN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="무"
+                    tools:layout_editor_absoluteX="100dp"
+                    tools:layout_editor_absoluteY="100dp" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/rbRegistCas"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="13dp"
+                app:layout_constraintEnd_toEndOf="@+id/rbRegistMilk"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/rbRegistMilk"
+                app:layout_constraintTop_toBottomOf="@+id/rbRegistMilk">
+
+                <RadioButton
+                    android:id="@+id/rbRegistCasY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="유"
+                    tools:layout_editor_absoluteX="100dp"
+                    tools:layout_editor_absoluteY="100dp" />
+
+                <RadioButton
+                    android:id="@+id/rbRegistCasN"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="무"

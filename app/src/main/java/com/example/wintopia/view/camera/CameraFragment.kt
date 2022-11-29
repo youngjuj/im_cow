@@ -223,6 +223,12 @@ class CameraFragment : Fragment() {
             REQUEST_GALLERY -> {
                 val selectedImageURI: Uri? = data?.data
 
+//                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+//                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+//                val id = "234"
+//                Log.d(TAG, ""+body)
+//                sendImage(id, body)
+
                 val path = absolutelyPath(selectedImageURI, requireContext())
                 val file = File(path)
                 val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)

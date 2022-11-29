@@ -75,6 +75,10 @@ dependencies {
     // 갤러리에서 이미지 가져올 때 필요
     implementation 'com.github.dhaval2404:imagepicker:2.1'
 
+    // glide 사용하기
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
