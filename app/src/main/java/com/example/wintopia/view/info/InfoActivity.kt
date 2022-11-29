@@ -127,30 +127,6 @@ class InfoActivity : AppCompatActivity() {
         }
     }
 
-//    fun putText(intent: Intent){
-//        val cowInfo = intent.getSerializableExtra("infos") as CowInfo
-//
-//        // 각 텍스트 가져오기
-//        var infoName = cowInfo?.name.toString()
-//        var infoId = cowInfo?.id.toString()
-//        var infoBirth = cowInfo?.birth.toString()
-//        var infoGender = cowInfo?.gender.toString()
-//        var infoVaccine = cowInfo?.vaccine.toString()
-//        var infoKind = cowInfo?.kind.toString()
-//
-////        var milkCowInfoModel = MilkCowInfoModel(infoName,
-////            infoId,infoBirth,infoGender,infoVaccine,infoKind)
-//
-//        val info = CowInfo(infoName,
-//            infoId,infoBirth,infoGender,infoVaccine,infoKind)
-//
-//        val intent = Intent(this, EditActivity::class.java)
-//        intent.putExtra("info", info)
-//        finish()
-//
-//
-//    }
-
 //    참고용
     fun observeData() {
         viewModel.id.observe(this){
