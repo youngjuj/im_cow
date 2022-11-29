@@ -38,6 +38,7 @@ class RegistActivity : AppCompatActivity(){
     private val REQUEST_GALLERY = 2
     lateinit var currentPhotoPath: String
     lateinit var img: ImageView
+    lateinit var imgList: ArrayList<File>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -5,12 +5,12 @@ import android.content.Intent
 import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,25 +44,10 @@ class ListFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
+        cowInfo("test")
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false)
-        // Inflate the layout for this fragment
-//        mBinding = FragmentListBinding.inflate(inflater, container, false)
-
-
-        cowInfo("test")
-//        data.add(ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
-//            "분홍얼룩이", "22111001"))
-//        data.add(
-//            ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
-//                "검정얼룩이", "22111002"))
-//        data.add(
-//            ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
-//                "푸른얼룩이", "22111003"))
-
-
-
-
+        
         binding.fbListRegist.setOnClickListener {
             val intent = Intent(requireActivity(), RegistActivity::class.java)
             startActivity(intent)
