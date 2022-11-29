@@ -62,25 +62,12 @@ class EditActivity : AppCompatActivity() {
         // 각 텍스트 가져오기
         var etEditName = binding.etEditName.text.toString()
         var etEditId = binding.etEditId.text.toString()
-        var etEditBirth = binding.etEditBirth.text.toString()
+        var etEditBirth = Integer.parseInt(binding.etEditBirth.text.toString())
         var etEditGender = binding.etEditGender.text.toString()
-        var etEditVaccine = binding.etEditVaccine.text.toString()
-        var etEditKind = binding.etEditKind.text.toString()
 
         var milkCowInfoModel = MilkCowInfoModel(etEditName,
-            etEditId,etEditBirth,etEditGender,etEditVaccine,etEditKind)
+            etEditId,etEditBirth,etEditGender)
 
-        var jsonString = Gson().toJson(milkCowInfoModel)
-        var cow = JSONObject()
-        cow.put("name", etEditName)
-        cow.put("id", etEditId)
-        cow.put("birth", etEditBirth)
-        cow.put("gender", etEditGender)
-        cow.put("vaccine", etEditVaccine)
-        cow.put("kind", etEditKind)
-
-
-        Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${jsonString}")
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
 //        viewModel.infoOut(jsonString.toString())
@@ -88,7 +75,7 @@ class EditActivity : AppCompatActivity() {
 
         // 수정 후 상세정보페이지 이동
         val cowInfo = CowInfo(etEditName,
-            etEditId,etEditBirth,etEditGender,etEditVaccine,etEditKind)
+            etEditId,etEditBirth,etEditGender, )
         val intent = Intent(this, InfoActivity::class.java)
         intent.putExtra("where", "edit")
         intent.putExtra("TEXT", cowInfo)
@@ -106,7 +93,6 @@ class EditActivity : AppCompatActivity() {
             binding.etEditBirth.hint = (cowInfo?.birth.toString())
             binding.etEditId.hint = (cowInfo?.id.toString())
             binding.etEditGender.hint = (cowInfo?.gender.toString())
-            binding.etEditVaccine.hint = (cowInfo?.vaccine.toString())
-            binding.etEditKind.hint = (cowInfo?.kind.toString())
+
     }
 }
