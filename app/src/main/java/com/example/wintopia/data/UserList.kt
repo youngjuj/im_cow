@@ -21,7 +21,7 @@ class UserList {
     @Expose
     private val pw: String? = null
 
-    fun getNum(): Int? {
+    public fun getNum(): Int? {
         return num
     }
 

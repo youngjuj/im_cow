@@ -1,39 +1,35 @@
 package com.example.wintopia.view.list
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.wintopia.R
-import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.FragmentListBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.camera.RegistActivity
-import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.MilkCowInfoModel
-import com.example.wintopia.view.info.InfoActivity
+import com.example.wintopia.view.login.LoginActivity
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import com.example.wintopia.view.utilssd.Constants.TAG
-import com.google.gson.Gson
-import okhttp3.MultipartBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 class ListFragment : Fragment() {
 
@@ -51,13 +47,14 @@ class ListFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
+        cowInfo("test")
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false)
         // Inflate the layout for this fragment
 //        mBinding = FragmentListBinding.inflate(inflater, container, false)
 
 
-        cowInfo("test")
+
 //        data.add(ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
 //            "분홍얼룩이", "22111001"))
 //        data.add(
