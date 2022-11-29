@@ -22,6 +22,7 @@ class EditActivity : AppCompatActivity() {
     lateinit var binding: ActivityEditBinding
     val viewModel: EditViewModel by viewModels()
     var switch: Int = 0
+    var userNum: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,8 +102,9 @@ class EditActivity : AppCompatActivity() {
             }
         }
 
+
         var milkCowInfoModel = MilkCowInfoModel(etEditName,
-                etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch)
+                etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
 
 //        var milkCowInfoModel = UserList().getNum()?.let {
 //            MilkCowInfoModel(etEditName,
@@ -119,7 +121,7 @@ class EditActivity : AppCompatActivity() {
         }
 
         val cowInfo = CowInfo(etEditName,
-            etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch)
+            etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
 
         // 수정 후 상세정보페이지 이동
 //        val cowInfo = UserList().getNum()?.let {

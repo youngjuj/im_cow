@@ -44,7 +44,7 @@ interface RetrofitInterface {
     // cow 전체 정보 불러오기
     @GET("${API_.INFOIN}")
 //    fun getData(@Query("item") item: String?): Call<String>?
-    fun cowListAll(@Query ("user_id") user_id: String): Call<MutableList<ListVO>>
+    fun cowListAll(@Query ("user_id") user_id: String): Call<List<MilkCowInfoModel>>
 
 
     // 사진 하나 저장
