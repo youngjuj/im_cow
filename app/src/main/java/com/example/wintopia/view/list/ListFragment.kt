@@ -53,6 +53,7 @@ class ListFragment : Fragment() {
         // Inflate the layout for this fragment
 //        mBinding = FragmentListBinding.inflate(inflater, container, false)
 
+
         cowInfo()
 //        data.add(ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
 //            "분홍얼룩이", "22111001"))
@@ -173,7 +174,7 @@ class ListFragment : Fragment() {
 
     // 서버에서 전체 정보 가져오기
     fun  cowInfo() {
-        Log.d(Constants.TAG,"웹서버에서 객체 정보 받아오기")
+        Log.d(Constants.TAG,"웹서버로 이미지전송")
 
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
@@ -208,7 +209,6 @@ class ListFragment : Fragment() {
                     }
 //                    Log.d("로그 ",res)
                     Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_SHORT).show()
-
                 } else {
                     Toast.makeText(requireActivity(),"통신실패", Toast.LENGTH_SHORT).show()
                 }

@@ -5,7 +5,10 @@ import com.example.wintopia.data.UserList
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.list.ListVO
 import com.example.wintopia.view.utilssd.API_
+import com.google.gson.JsonObject
+import com.squareup.moshi.Json
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -30,6 +33,7 @@ interface RetrofitInterface {
     fun  // 모든 유저의 id값만 받아오는 메서드(id 중복체크를 위해)
             getSignUp(@Query("id") id: String?, @Query("pw") pw: String?): Call<UserList?>?
 
+    //
 //    @FormUrlEncoded
     @POST("${API_.INFOOUT}")
 //    fun getData(@Query("item") item: String?): Call<String>?
@@ -37,19 +41,13 @@ interface RetrofitInterface {
 
 
 //    @Multipart
+    // cow 전체 정보 불러오기
     @GET("${API_.INFOIN}")
 //    fun getData(@Query("item") item: String?): Call<String>?
     fun cowListAll(): Call<MutableList<ListVO>>
 
 
-    @Multipart
-    @POST("${API_.PHOTOINFOOUT}")
-    fun profileSend(
-        @Part file : MultipartBody
-    ): Call<String>
-
-
-    //api를 관리해주는 인터페이스
+    // 사진 하나 저장
     @Multipart
     @POST("${API_.PHOTOINFOOUT}")
     fun getPhoto(
@@ -58,6 +56,12 @@ interface RetrofitInterface {
     ): Call<String?>?
 
 
+    // cow_id에 맞는 사진 하나
+    @Multipart
+    @POST("${API_.COWIMG}")
+//    fun getData(@Query("item") item: String?): Call<String>?
+    fun cowImage(
+        @Part ("id") id: String): Call<MultipartBody.Part>
 
 
 //    @Multipart
