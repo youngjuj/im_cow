@@ -5,7 +5,10 @@ import com.example.wintopia.data.UserList
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.list.ListVO
 import com.example.wintopia.view.utilssd.API_
+import com.google.gson.JsonObject
+import com.squareup.moshi.Json
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -55,10 +58,10 @@ interface RetrofitInterface {
 
     // cow_id에 맞는 사진 하나
     @Multipart
-    @GET("${API_.INFOIN}")
+    @POST("${API_.COWIMG}")
 //    fun getData(@Query("item") item: String?): Call<String>?
     fun cowImage(
-        @Query ("id") id: String): Call<MultipartBody.Part>
+        @Part ("id") id: String): Call<MultipartBody.Part>
 
 
 //    @Multipart

@@ -32,14 +32,18 @@ import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import com.example.wintopia.view.utilssd.Constants.TAG
+import com.google.gson.JsonObject
+import com.squareup.moshi.Json
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Multipart
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -54,7 +58,7 @@ class CameraFragment : Fragment() {
 
 
     lateinit var binding: FragmentCameraBinding
-    lateinit var res: MultipartBody
+    lateinit var res: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,6 +85,8 @@ class CameraFragment : Fragment() {
 
         // camera floatting button onClickListener
         binding.fbCameraCam.setOnClickListener{
+            var id = "3"
+            getCowImage(id)
             Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
             if(checkPermission()) dispatchTakePictureIntent() else requestPermission()
         }
@@ -199,19 +205,11 @@ class CameraFragment : Fragment() {
 
                     sendImage(id, body)
 
-//                    id = "3"
-//                    getCowImage(id)
 
                     if (Build.VERSION.SDK_INT < 28) {
                         val bitmap = MediaStore.Images.Media
                             .getBitmap(requireActivity().contentResolver, Uri.fromFile(file))
                         binding.imgCameraPic.setImageBitmap(bitmap)
-//                        val file = File(currentPhotoPath)
-//                        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-//                        val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-//                        val id = "234"
-//                        Log.d(TAG, ""+body)
-//                        sendImage(id, body)
 
                     } else {
                         val decode = ImageDecoder.createSource(requireActivity().contentResolver,
@@ -225,7 +223,18 @@ class CameraFragment : Fragment() {
             REQUEST_GALLERY -> {
                 val selectedImageURI: Uri? = data?.data
 
+                val path = absolutelyPath(selectedImageURI, requireContext())
+                val file = File(path)
+                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+                var id = "123"
+                Log.d(TAG, "GALLERY"+body)
+
+
                 if(selectedImageURI != null) {
+                    sendImage(id, body)
+
                     binding.imgCameraPic.setImageURI(selectedImageURI)
                 }
                 else Toast.makeText(requireActivity(), "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
@@ -293,7 +302,7 @@ class CameraFragment : Fragment() {
         call?.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.isSuccessful) {
-                    Log.d("로그 ",""+response?.body().toString())
+                    Log.d("로그 ","이미지 전송 :"+response?.body().toString())
                     Toast.makeText(requireActivity(),"통신성공",Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(requireActivity(),"통신실패",Toast.LENGTH_SHORT).show()
@@ -319,11 +328,13 @@ class CameraFragment : Fragment() {
 
         val call = service.cowImage(id) //통신 API 패스 설정
 
-        call?.enqueue(object : Callback<MultipartBody.Part?> {
+        call?.enqueue(object : Callback<MultipartBody.Part> {
             override fun onResponse(call: Call<MultipartBody.Part?>, response: Response<MultipartBody.Part?>) {
+                Log.d(TAG, "제발..$response")
+
                 if (response.isSuccessful) {
-                    res = response.body()?.body as MultipartBody
-                    Log.d("로그 ",""+res)
+//                    res = response.toString()
+                    Log.d("로그 ","소 이미지 불러오기3 :"+ response.body().toString())
 
                     Toast.makeText(requireActivity(),"통신성공",Toast.LENGTH_SHORT).show()
                 } else {
@@ -336,6 +347,7 @@ class CameraFragment : Fragment() {
             }
         })
     }
+
 
 
 
