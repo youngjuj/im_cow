@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.wintopia.R
+import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.FragmentListBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
@@ -54,7 +55,7 @@ class ListFragment : Fragment() {
 //        mBinding = FragmentListBinding.inflate(inflater, container, false)
 
 
-        cowInfo()
+        cowInfo("test")
 //        data.add(ListVO("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU",
 //            "분홍얼룩이", "22111001"))
 //        data.add(
@@ -173,7 +174,7 @@ class ListFragment : Fragment() {
     }
 
     // 서버에서 전체 정보 가져오기
-    fun  cowInfo() {
+    fun  cowInfo(userId: String) {
         Log.d(Constants.TAG,"웹서버로 이미지전송")
 
         //Retrofit 인스턴스 생성
@@ -182,7 +183,7 @@ class ListFragment : Fragment() {
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
-        val call = service.cowListAll() //통신 API 패스 설정
+        val call = service.cowListAll(userId) //통신 API 패스 설정
 
         call?.enqueue(object : Callback<MutableList<ListVO>> {
             override fun onResponse(call: Call<MutableList<ListVO>>, response: Response<MutableList<ListVO>>) {

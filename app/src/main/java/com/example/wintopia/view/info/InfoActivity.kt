@@ -112,18 +112,63 @@ class InfoActivity : AppCompatActivity() {
             binding.tvInfoName.text = (cowInfo?.name.toString())
             binding.tvInfoBirth.text = (cowInfo?.birth.toString())
             binding.tvInfoId.text = (cowInfo?.id.toString())
-            binding.tvInfoGender.text = (cowInfo?.gender.toString())
-            binding.tvInfoVaccine.text = (cowInfo?.vaccine.toString())
-            binding.tvInfoKind.text = (cowInfo?.kind.toString())
+            if (cowInfo?.gender.toString().equals("수컷")) {
+                binding.rbInfoMale.isChecked = true
+            } else {
+                binding.rbInfoFemale.isChecked = true
+            }
+            if (cowInfo?.vaccine.toString().equals("접종")) {
+                binding.rbInfoDid.isChecked = true
+            } else {
+                binding.rbInfoDidnt.isChecked = true
+            }
+            if (cowInfo?.gender.toString().equals("유")) {
+                binding.rbInfoPreg.isChecked = true
+            } else {
+                binding.rbInfoNonP.isChecked = true
+            }
+            if (cowInfo?.gender.toString().equals("수컷")) {
+                binding.rbInfoMilkY.isChecked = true
+            } else {
+                binding.rbInfoMilkN.isChecked = true
+            }
+            if (cowInfo?.gender.toString().equals("수컷")) {
+                binding.rbInfoCasY.isChecked = true
+            } else {
+                binding.rbInfoCasN.isChecked = true
+            }
+
 
         } else if(intent.getStringExtra("where").equals("edit")) {
             cowInfo = intent.getSerializableExtra("TEXT") as CowInfo
             binding.tvInfoName.text = (cowInfo?.name.toString())
             binding.tvInfoBirth.text = (cowInfo?.birth.toString())
             binding.tvInfoId.text = (cowInfo?.id.toString())
-            binding.tvInfoGender.text = (cowInfo?.gender.toString())
-            binding.tvInfoVaccine.text = (cowInfo?.vaccine.toString())
-            binding.tvInfoKind.text = (cowInfo?.kind.toString())
+            if (cowInfo?.gender.toString().equals("수컷")) {
+                binding.rbInfoMale.isChecked = true
+            } else {
+                binding.rbInfoFemale.isChecked = true
+            }
+            if (cowInfo?.vaccine.toString().equals("접종")) {
+                binding.rbInfoDid.isChecked = true
+            } else {
+                binding.rbInfoDidnt.isChecked = true
+            }
+            if (cowInfo?.gender.toString().equals("유")) {
+                binding.rbInfoPreg.isChecked = true
+            } else {
+                binding.rbInfoNonP.isChecked = true
+            }
+            if (cowInfo?.gender.toString().equals("수컷")) {
+                binding.rbInfoMilkY.isChecked = true
+            } else {
+                binding.rbInfoMilkN.isChecked = true
+            }
+            if (cowInfo?.gender.toString().equals("수컷")) {
+                binding.rbInfoCasY.isChecked = true
+            } else {
+                binding.rbInfoCasN.isChecked = true
+            }
         }
     }
 
@@ -138,14 +183,14 @@ class InfoActivity : AppCompatActivity() {
         viewModel.birth.observe(this){
             binding.tvInfoBirth.text = it
         }
+        viewModel.variety.observe(this){
+            binding.tvInfoVariety.text = it
+        }
         viewModel.gender.observe(this){
-            binding.tvInfoGender.text = it
+            binding.rbInfoGender.checkedRadioButtonId
         }
         viewModel.vaccine.observe(this){
-            binding.tvInfoVaccine.text = it
-        }
-        viewModel.kind.observe(this){
-            binding.tvInfoKind.text = it
+            binding.rbInfoVaccine.checkedRadioButtonId
         }
     }
 

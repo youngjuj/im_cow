@@ -28,9 +28,14 @@ data class ListVO (
                    val name: String = "", // 젖소 이름
                    val id: String = "",// 젖소 고유번호
                    val birth: String = "",// 젖소 출생일
+                   val variety: String = "", // 젖소 종류
                    val gender: String = "", // 젖소 성별
                    val vaccine: String = "", // 백신접종 여부
-                   val kind: String = "") // 젖소 종류
+                   val pregnancy: String = "", // 임신 여부
+                   val milk: String = "", // 건유 여부
+                   val castration: String = "", // 거세 여부
+                   val list: Int = 0,
+                    )
 
 
 // RecyclerView 사용에 필수인 Adapter
@@ -152,19 +157,25 @@ class ListVOAdapter(private val data:MutableList<ListVO>):
         var infoName = data[position].name
         var infoId = data[position].id
         var infoBirth = data[position].birth
+        var infoVariety = data[position].variety
         var infoGender = data[position].gender
         var infoVaccine = data[position].vaccine
-        var infoKind = data[position].kind
+        var infoPregnancy = data[position].pregnancy
+        var infoMilk = data[position].pregnancy
+        var infoCastration = data[position].castration
+        var infoWish = data[position].list
+
+        Log.v("data확인", data[position].name)
 
         var milkCowInfoModel = MilkCowInfoModel(infoName,
-            infoId,infoBirth,infoGender,infoVaccine,infoKind)
+            infoId,infoBirth,infoVariety,infoGender,infoVaccine, infoPregnancy, infoMilk, infoCastration, infoWish)
 
 
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
         // 수정 후 상세정보페이지 이동
         val cowInfo = CowInfo(infoName,
-            infoId,infoBirth,infoGender,infoVaccine,infoKind)
+            infoId,infoBirth,infoVariety,infoGender,infoVaccine,infoPregnancy,infoMilk,infoCastration, infoWish)
 
         val intent = Intent(holder.itemView?.context, InfoActivity::class.java)
         intent.putExtra("where", "list")

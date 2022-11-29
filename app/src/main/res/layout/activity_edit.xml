@@ -156,7 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
             <EditText
-                android:id="@+id/etEditGender"
+                android:id="@+id/etEditVariety"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -182,18 +182,18 @@
                 app:layout_constraintStart_toStartOf="@+id/textView32"
                 app:layout_constraintTop_toBottomOf="@+id/textView32" />
             <RadioGroup
-                android:id="@+id/radioGroup6"
+                android:id="@+id/rbEditGender"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="14dp"
-                app:layout_constraintEnd_toEndOf="@+id/etEditGender"
+                app:layout_constraintEnd_toEndOf="@+id/etEditVariety"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/etEditGender"
-                app:layout_constraintTop_toBottomOf="@+id/etEditGender">
+                app:layout_constraintStart_toStartOf="@+id/etEditVariety"
+                app:layout_constraintTop_toBottomOf="@+id/etEditVariety">
 
                 <RadioButton
-                    android:id="@+id/radioButton11"
+                    android:id="@+id/rbEditMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="수컷"
@@ -201,7 +201,7 @@
                     tools:layout_editor_absoluteY="100dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton12"
+                    android:id="@+id/rbEditFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="암컷"
@@ -224,29 +224,29 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
             <RadioGroup
-                android:id="@+id/radioGroup7"
+                android:id="@+id/rbEditVaccine"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="14dp"
-                app:layout_constraintEnd_toEndOf="@+id/radioGroup6"
+                app:layout_constraintEnd_toEndOf="@+id/rbEditGender"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/radioGroup6"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup6">
+                app:layout_constraintStart_toStartOf="@+id/rbEditGender"
+                app:layout_constraintTop_toBottomOf="@+id/rbEditGender">
 
                 <RadioButton
-                    android:id="@+id/radioButton13"
+                    android:id="@+id/rbEditDid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="유"
+                    android:text="접종"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton14"
+                    android:id="@+id/rbEditDidnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="무"
+                    android:text="미접종"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
             </RadioGroup>
@@ -263,26 +263,27 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
             <RadioGroup
-                android:id="@+id/radioGroup8"
+                android:id="@+id/rbEditPregnant"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="14dp"
-                app:layout_constraintEnd_toEndOf="@+id/radioGroup7"
+                app:layout_constraintEnd_toEndOf="@+id/rbEditVaccine"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/radioGroup7"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup7">
+                app:layout_constraintStart_toStartOf="@+id/rbEditVaccine"
+                app:layout_constraintTop_toBottomOf="@+id/rbEditVaccine">
 
                 <RadioButton
-                    android:id="@+id/radioButton15"
+                    android:id="@+id/rbEditPreg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingRight="13dp"
                     android:text="유"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton16"
+                    android:id="@+id/rbEditNonP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="무"
@@ -303,26 +304,27 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <RadioGroup
-                android:id="@+id/radioGroup9"
+                android:id="@+id/rbEditMilk"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="13dp"
-                app:layout_constraintEnd_toEndOf="@+id/radioGroup8"
+                app:layout_constraintEnd_toEndOf="@+id/rbEditPregnant"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/radioGroup8"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup8">
+                app:layout_constraintStart_toStartOf="@+id/rbEditPregnant"
+                app:layout_constraintTop_toBottomOf="@+id/rbEditPregnant">
 
                 <RadioButton
-                    android:id="@+id/radioButton17"
+                    android:id="@+id/rbEditMilkY"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingRight="13dp"
                     android:text="유"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton18"
+                    android:id="@+id/rbEditMilkN"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="무"
@@ -341,18 +343,18 @@
                 app:layout_constraintStart_toStartOf="@+id/textView6"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
             <RadioGroup
-                android:id="@+id/radioGroup10"
+                android:id="@+id/rbEditCas"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="12dp"
-                app:layout_constraintEnd_toEndOf="@+id/radioGroup9"
+                app:layout_constraintEnd_toEndOf="@+id/rbEditMilk"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/radioGroup9"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup9">
+                app:layout_constraintStart_toStartOf="@+id/rbEditMilk"
+                app:layout_constraintTop_toBottomOf="@+id/rbEditMilk">
 
                 <RadioButton
-                    android:id="@+id/radioButton19"
+                    android:id="@+id/rbEditCasY"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="유"
@@ -360,7 +362,7 @@
                     tools:layout_editor_absoluteY="100dp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton20"
+                    android:id="@+id/rbEditCasN"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="무"
@@ -403,7 +405,7 @@
                 android:layout_height="150dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup10" />
+                app:layout_constraintTop_toBottomOf="@+id/rbEditCas" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
