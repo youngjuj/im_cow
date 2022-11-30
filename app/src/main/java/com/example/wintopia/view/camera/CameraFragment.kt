@@ -115,6 +115,8 @@ class CameraFragment : Fragment() {
                 == PackageManager.PERMISSION_GRANTED)
     }
 
+    lateinit var result: String
+
     // 권한 요청 결과
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -218,7 +220,7 @@ class CameraFragment : Fragment() {
             REQUEST_GALLERY -> {
                 val selectedImageURI: Uri? = data!!.data
 
-                val path = absolutelyPath(selectedImageURI)
+                val path = absolutelyPath(requireActivity(), selectedImageURI)
                 val file = File(path)
 
                 val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
@@ -292,19 +294,24 @@ class CameraFragment : Fragment() {
         launcher.launch(chooserIntent)
     }
     // 절대경로 변환
-    fun absolutelyPath(path: Uri?): String {
+    fun absolutelyPath(ctx: Activity, uri: Uri?): String {
         var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
-        var c: Cursor? = context?.contentResolver?.query(path!!, proj, null, null, null)
-        var index = c!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        c.moveToFirst()
+        var c: Cursor? = ctx.contentResolver.query(uri!!, proj, null, null, null)
+//        var index = c!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+//        c?.moveToFirst()
 
-        Log.d("절대경로cf", proj.toString())
-        Log.d("절대경로cf", c.toString())
-        Log.d("절대경로cf", index.toString())
-        var result = c.getColumnName(index)
+        if(c==null) {
+            result = uri?.path.toString()
+        } else {
+            c.moveToFirst()
+            var index = c.getColumnIndex(proj[0])
+            result = c.getString(index)
+            c.close()
+        }
+
+        Log.d("경로로그", result.toString())
 
         return result!!
-
     }
 
 
