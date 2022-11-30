@@ -113,7 +113,8 @@
                 android:text=" 101"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etEditName" />
+                app:layout_constraintTop_toBottomOf="@+id/etEditName"
+                android:clickable="false"/>
 
 
             <TextView
@@ -141,7 +142,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/etEditId"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/etEditId"
-                app:layout_constraintTop_toBottomOf="@+id/etEditId" />
+                app:layout_constraintTop_toBottomOf="@+id/etEditId"
+                android:clickable="false"/>
 
             <TextView
                 android:id="@+id/textView32"

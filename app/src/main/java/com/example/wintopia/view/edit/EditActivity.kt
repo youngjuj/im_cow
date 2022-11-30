@@ -11,6 +11,7 @@ import com.example.wintopia.R
 import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ActivityEditBinding
 import com.example.wintopia.view.info.InfoActivity
+import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import com.google.gson.Gson
 import com.google.gson.JsonParser
@@ -103,8 +104,8 @@ class EditActivity : AppCompatActivity() {
         }
 
 
-        var milkCowInfoModel = MilkCowInfoModel(etEditName,
-                etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
+        var milkCowInfoModel = MilkCowInfoModel(etEditId,
+                etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
 
 //        var milkCowInfoModel = UserList().getNum()?.let {
 //            MilkCowInfoModel(etEditName,
@@ -120,8 +121,8 @@ class EditActivity : AppCompatActivity() {
             viewModel.infoOut(milkCowInfoModel)
         }
 
-        val cowInfo = CowInfo(etEditName,
-            etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
+        val cowInfo = CowInfo(etEditId,
+            etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
 
         // 수정 후 상세정보페이지 이동
 //        val cowInfo = UserList().getNum()?.let {
@@ -143,8 +144,8 @@ class EditActivity : AppCompatActivity() {
     override fun setIntent(intent: Intent) {
             val intent = intent
             val cowInfo = intent.getSerializableExtra("cowInfo") as CowInfo?
-
-            binding.etEditName.hint = (cowInfo?.name.toString())
+        binding.wvEditPhoto.loadUrl("http:/${API_.BASE_URL}:11112/image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
+        binding.etEditName.hint = (cowInfo?.name.toString())
             binding.etEditId.hint = (cowInfo?.id.toString())
             binding.etEditBirth.hint = (cowInfo?.birth.toString())
             binding.etEditVariety.hint = (cowInfo?.variety.toString())

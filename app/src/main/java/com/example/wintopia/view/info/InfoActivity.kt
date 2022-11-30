@@ -54,6 +54,11 @@ class InfoActivity : AppCompatActivity() {
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
+        // webView에 띄울 이미지 관련 설정들
+        binding.wvInfoPhto.settings.useWideViewPort = true
+        binding.wvInfoPhto.settings.loadWithOverviewMode = true
+        binding.wvInfoPhto.settings.builtInZoomControls = true
+        binding.wvInfoPhto.settings.setSupportZoom(true)
 
         setIntent(intent)
         observeData()
@@ -109,6 +114,7 @@ class InfoActivity : AppCompatActivity() {
         val intent = intent
         if(intent.getStringExtra("where").equals("list")) {
             cowInfo = intent.getSerializableExtra("infos") as CowInfo
+            binding.wvInfoPhto.loadUrl("http:/${API_.BASE_URL}:11112/image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
             binding.tvInfoName.text = (cowInfo?.name.toString())
             binding.tvInfoBirth.text = (cowInfo?.birth.toString())
             binding.tvInfoId.text = (cowInfo?.id.toString())
@@ -145,6 +151,7 @@ class InfoActivity : AppCompatActivity() {
 
         } else if(intent.getStringExtra("where").equals("edit")) {
             cowInfo = intent.getSerializableExtra("TEXT") as CowInfo
+            binding.wvInfoPhto.loadUrl("http:/${API_.BASE_URL}:11112/image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
             binding.tvInfoName.text = (cowInfo?.name.toString())
             binding.tvInfoBirth.text = (cowInfo?.birth.toString())
             binding.tvInfoId.text = (cowInfo?.id.toString())
