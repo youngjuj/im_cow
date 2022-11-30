@@ -103,8 +103,8 @@ class EditActivity : AppCompatActivity() {
         }
 
 
-        var milkCowInfoModel = MilkCowInfoModel(etEditName,
-                etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
+        var milkCowInfoModel = MilkCowInfoModel(etEditId,etEditName,
+                etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
 
 //        var milkCowInfoModel = UserList().getNum()?.let {
 //            MilkCowInfoModel(etEditName,
@@ -120,8 +120,8 @@ class EditActivity : AppCompatActivity() {
             viewModel.infoOut(milkCowInfoModel)
         }
 
-        val cowInfo = CowInfo(etEditName,
-            etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
+        val cowInfo = CowInfo(etEditId,etEditName,
+            etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
 
         // 수정 후 상세정보페이지 이동
 //        val cowInfo = UserList().getNum()?.let {

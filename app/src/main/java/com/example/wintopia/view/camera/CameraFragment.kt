@@ -85,9 +85,6 @@ class CameraFragment : Fragment() {
 
         // camera floatting button onClickListener
         binding.fbCameraCam.setOnClickListener{
-            var cow_id = "100"
-            getCowImage("test", cow_id)
-
             Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
             if(checkPermission()) dispatchTakePictureIntent() else requestPermission()
         }

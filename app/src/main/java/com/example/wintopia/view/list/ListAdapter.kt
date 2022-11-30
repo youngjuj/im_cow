@@ -15,6 +15,7 @@ import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.EditActivity
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
+import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import com.google.gson.annotations.SerializedName
 import java.lang.ref.WeakReference
@@ -98,7 +99,7 @@ class ListVOAdapter(private val data:List<MilkCowInfoModel>):
 //        holder.binding.wvItemImg.loadUrl(data[position].pic)
         var cow_id = data[position].id
         var user_id = UserList().getId().toString()
-        holder.binding.wvItemImg.loadUrl("http://192.168.20.16:11112/image/getImages?user_id=test&cow_id=$cow_id")
+        holder.binding.wvItemImg.loadUrl("${API_.BASE_URL}image/getImages?user_id=test&cow_id=$cow_id")
         holder.binding.tvItemName.text = data[position].name
         holder.binding.tvItemId.text = "고유번호 : ${data[position].id}"
 
@@ -157,8 +158,8 @@ class ListVOAdapter(private val data:List<MilkCowInfoModel>):
 
     fun putText(holder: ListVOViewHolder, position: Int){
         // 각 텍스트 가져오기
-        var infoName = data[position].name
         var infoId = data[position].id
+        var infoName = data[position].name
         var infoBirth = data[position].birth
         var infoVariety = data[position].variety
         var infoGender = data[position].gender
@@ -171,15 +172,15 @@ class ListVOAdapter(private val data:List<MilkCowInfoModel>):
 
         Log.v("data확인", data[position].name)
 
-        var milkCowInfoModel = MilkCowInfoModel(infoName,
-            infoId,infoBirth,infoVariety,infoGender,infoVaccine, infoPregnancy, infoMilk, infoCastration, infoWish, userNum)
+        var milkCowInfoModel = MilkCowInfoModel(infoId,infoName,
+            infoBirth,infoVariety,infoGender,infoVaccine, infoPregnancy, infoMilk, infoCastration, infoWish, userNum)
 
 
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
         // 수정 후 상세정보페이지 이동
-        val cowInfo = CowInfo(infoName,
-            infoId,infoBirth,infoVariety,infoGender,infoVaccine,infoPregnancy,infoMilk,infoCastration, infoWish, userNum)
+        val cowInfo = CowInfo(infoId,infoName,
+            infoBirth,infoVariety,infoGender,infoVaccine,infoPregnancy,infoMilk,infoCastration, infoWish, userNum)
 
         val intent = Intent(holder.itemView?.context, InfoActivity::class.java)
         intent.putExtra("where", "list")
