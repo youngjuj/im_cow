@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import com.example.wintopia.R
+import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ActivityRegistBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
@@ -335,9 +336,9 @@ class RegistActivity : AppCompatActivity(){
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.isSuccessful) {
                     Log.d("로그 ","이미지 전송 :"+response?.body().toString())
-                    Toast.makeText(this@RegistActivity,"통신성공",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"통신성공",Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@RegistActivity,"통신실패",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"통신실패",Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -356,7 +357,7 @@ class RegistActivity : AppCompatActivity(){
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
-        val call = service.cowImage(user_id, cow_id) //통신 API 패스 설정
+        val call = service.cowImage(user_id, cow_id, UserList().getNum().toString()) //통신 API 패스 설정
 
         call?.enqueue(object : Callback<MultipartBody.Part> {
             override fun onResponse(call: Call<MultipartBody.Part?>, response: Response<MultipartBody.Part?>) {
@@ -366,9 +367,9 @@ class RegistActivity : AppCompatActivity(){
 //                    res = response.toString()
                     Log.d("로그 ","소 이미지 불러오기3 :"+ response.body().toString())
 
-                    Toast.makeText(this@RegistActivity,"통신성공",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"통신성공",Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@RegistActivity,"통신실패",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"통신실패",Toast.LENGTH_SHORT).show()
                 }
             }
 

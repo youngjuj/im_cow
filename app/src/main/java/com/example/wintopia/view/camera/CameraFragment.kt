@@ -218,20 +218,28 @@ class CameraFragment : Fragment() {
             REQUEST_GALLERY -> {
                 val selectedImageURI: Uri? = data!!.data
 
-//                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-//                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-//                val id = "234"
-//                Log.d(TAG, ""+body)
-//                sendImage(id, body)
-
-                Log.d("이미지 경로uri", selectedImageURI!!.path.toString())
                 val path = absolutelyPath(selectedImageURI)
                 val file = File(path)
+
                 val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                 val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
                 var user_id = "test"
                 var cow_id = "100"
+
+                Log.d(TAG, ""+body)
+
+//                sendImage(user_id, cow_id, body)
+//                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+//                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+////                val id = "234"
+                Log.d(TAG, ""+body)
+//                sendImage(id, body)
+
+                Log.d("이미지 경로uri", selectedImageURI!!.path.toString())
+//                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+//                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+
                 Log.d(TAG, ""+body)
 
                 Log.d(TAG, "GALLERY"+body)
@@ -315,9 +323,9 @@ class CameraFragment : Fragment() {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.isSuccessful) {
                     Log.d("로그 ","이미지 전송 :"+response?.body().toString())
-                    Toast.makeText(requireActivity(),"통신성공",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity,"통신성공",Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(requireActivity(),"통신실패",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity,"통신실패",Toast.LENGTH_SHORT).show()
                 }
             }
 
