@@ -62,8 +62,10 @@ interface RetrofitInterface {
     @POST("${API_.COWIMG}")
 //    fun getData(@Query("item") item: String?): Call<String>?
     fun cowImage(
-        @Part ("user_id") id: String,
-        @Part ("cow_id") cow_id: String )
+        @Query ("user_id") id: String,
+        @Query ("cow_id") cow_id: String,
+        @Part ("num") num:String
+    )
     : Call<MultipartBody.Part>
 
 

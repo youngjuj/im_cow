@@ -1,6 +1,8 @@
 package com.example.wintopia.retrofit
 
 import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -15,10 +17,15 @@ object RetrofitClient {
     fun getInstnace(baseUrl:String) : Retrofit {
         Log.d("retrofit instance", "Retrofit Client - getInstnace() called")
 
+        val gson : Gson = GsonBuilder()
+            .setLenient()
+            .create()
+
         if(instance == null){
             // 레트로핏 빌더를 통해 인스턴스 생성
             instance = Retrofit.Builder()
                 .baseUrl(baseUrl)
+//                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }

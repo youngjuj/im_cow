@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
+import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ListItemBinding
 import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.EditActivity
@@ -95,7 +96,9 @@ class ListVOAdapter(private val data:List<MilkCowInfoModel>):
     // RecyclerView에 뿌려줄 item 속 data들 지정
     override fun onBindViewHolder(holder: ListVOViewHolder, position: Int) {
 //        holder.binding.wvItemImg.loadUrl(data[position].pic)
-        holder.binding.wvItemImg.loadUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrcg48Fej-S3muJwRGLbtfNcWcHwEKKfcbrA&usqp=CAU")
+        var cow_id = data[position].id
+        var user_id = UserList().getId().toString()
+        holder.binding.wvItemImg.loadUrl("http://192.168.20.16:11112/image/getImages?user_id=test&cow_id=$cow_id")
         holder.binding.tvItemName.text = data[position].name
         holder.binding.tvItemId.text = "고유번호 : ${data[position].id}"
 

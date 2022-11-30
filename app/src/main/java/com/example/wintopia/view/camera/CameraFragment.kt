@@ -87,6 +87,7 @@ class CameraFragment : Fragment() {
         binding.fbCameraCam.setOnClickListener{
             var cow_id = "100"
             getCowImage("test", cow_id)
+
             Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
             if(checkPermission()) dispatchTakePictureIntent() else requestPermission()
         }
@@ -201,7 +202,7 @@ class CameraFragment : Fragment() {
                     val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
                     var user_id = "test"
-                    var cow_id = "123"
+                    var cow_id = "100"
                     Log.d(TAG, ""+body)
 
                     sendImage(user_id, cow_id, body)
@@ -235,14 +236,14 @@ class CameraFragment : Fragment() {
                 val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                 val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-                var user_id = "test"
-                var cow_id = "123"
                 Log.d(TAG, ""+body)
 
                 Log.d(TAG, "GALLERY"+body)
 
 
                 if(selectedImageURI != null) {
+                    var user_id = "test"
+                    var cow_id = "100"
                     sendImage(user_id, cow_id, body)
 
 
@@ -297,8 +298,6 @@ class CameraFragment : Fragment() {
     }
 
 
-
-
     //웹서버로 이미지전송
     fun sendImage(user_id:String, cow_id:String, image: MultipartBody.Part) {
         Log.d(TAG,"웹서버로 이미지전송")
@@ -337,7 +336,7 @@ class CameraFragment : Fragment() {
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
-        val call = service.cowImage(user_id, cow_id) //통신 API 패스 설정
+        val call = service.cowImage(user_id, cow_id, "d") //통신 API 패스 설정
 
         call?.enqueue(object : Callback<MultipartBody.Part> {
             override fun onResponse(call: Call<MultipartBody.Part?>, response: Response<MultipartBody.Part?>) {
