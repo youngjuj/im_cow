@@ -104,8 +104,13 @@ class EditActivity : AppCompatActivity() {
         }
 
 
+<<<<<<< HEAD
         var milkCowInfoModel = MilkCowInfoModel(etEditId,
                 etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
+=======
+        var milkCowInfoModel = MilkCowInfoModel(etEditId,etEditName,
+                etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
+>>>>>>> phy
 
 //        var milkCowInfoModel = UserList().getNum()?.let {
 //            MilkCowInfoModel(etEditName,
@@ -121,8 +126,13 @@ class EditActivity : AppCompatActivity() {
             viewModel.infoOut(milkCowInfoModel)
         }
 
+<<<<<<< HEAD
         val cowInfo = CowInfo(etEditId,
             etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
+=======
+        val cowInfo = CowInfo(etEditId,etEditName,
+            etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
+>>>>>>> phy
 
         // 수정 후 상세정보페이지 이동
 //        val cowInfo = UserList().getNum()?.let {
