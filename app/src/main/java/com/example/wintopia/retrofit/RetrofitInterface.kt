@@ -57,6 +57,16 @@ interface RetrofitInterface {
     ): Call<String?>?
 
 
+    // cow_id에 맞는 사진 리스트 업로드
+    @Multipart
+    @POST("${API_.COWIMGLIST}")
+    fun cowImageList(
+        @Part ("user_id") id: String,
+        @Part ("cow_id") cow_id: String,
+        @Part file: List<MultipartBody.Part>
+    ) : Call<String?>
+
+
     // cow_id에 맞는 사진 하나
     @Multipart
     @POST("${API_.COWIMG}")

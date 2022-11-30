@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
-import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -30,16 +29,10 @@ import com.example.wintopia.databinding.FragmentCameraBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.utilssd.API_
-import com.example.wintopia.view.utilssd.Constants
 import com.example.wintopia.view.utilssd.Constants.TAG
-import com.google.gson.JsonObject
-import com.squareup.moshi.Json
-import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -194,14 +187,14 @@ class CameraFragment : Fragment() {
 
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {
-                if(resultCode == Activity.RESULT_OK) {
+                if(resultCode == RESULT_OK) {
                     val file = File(currentPhotoPath)
 
                     val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                     val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
                     var user_id = "test"
-                    var cow_id = "123"
+                    var cow_id = "100"
                     Log.d(TAG, ""+body)
 
                     sendImage(user_id, cow_id, body)
@@ -222,7 +215,7 @@ class CameraFragment : Fragment() {
                 }
             }
             REQUEST_GALLERY -> {
-                val selectedImageURI: Uri? = data?.data
+                val selectedImageURI: Uri? = data!!.data
 
 //                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
 //                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
@@ -230,13 +223,14 @@ class CameraFragment : Fragment() {
 //                Log.d(TAG, ""+body)
 //                sendImage(id, body)
 
-                val path = absolutelyPath(selectedImageURI, requireContext())
+                Log.d("이미지 경로uri", selectedImageURI!!.path.toString())
+                val path = absolutelyPath(selectedImageURI)
                 val file = File(path)
                 val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                 val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
                 var user_id = "test"
-                var cow_id = "123"
+                var cow_id = "100"
                 Log.d(TAG, ""+body)
 
                 Log.d(TAG, "GALLERY"+body)
@@ -248,10 +242,10 @@ class CameraFragment : Fragment() {
 
                     binding.imgCameraPic.setImageURI(selectedImageURI)
                 }
-                else Toast.makeText(requireActivity(), "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
+                else Toast.makeText(activity, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
             }
             else -> {
-                Toast.makeText(requireActivity(), "잘못된 접근입니다..", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "잘못된 접근입니다..", Toast.LENGTH_SHORT).show()
             }
     }
     }
@@ -264,8 +258,10 @@ class CameraFragment : Fragment() {
         var launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val imagePath = result.data!!.data
+//                Log.d("이미지경로", "${ imagePath.toString() }")
 
-                val file = File(context?.let { absolutelyPath(imagePath, it.applicationContext) })
+                val file = File("${Environment.getExternalStorageDirectory().absolutePath}"+"${imagePath}")
+                Log.d("이미지경로", "${Environment.getExternalStorageDirectory().absolutePath}"+"${imagePath}")
                 val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                 val body = MultipartBody.Part.createFormData("proFile", file.name, requestFile)
 
@@ -285,15 +281,19 @@ class CameraFragment : Fragment() {
         launcher.launch(chooserIntent)
     }
     // 절대경로 변환
-    fun absolutelyPath(path: Uri?, context : Context): String {
+    fun absolutelyPath(path: Uri?): String {
         var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
-        var c: Cursor? = context.contentResolver.query(path!!, proj, null, null, null)
-        var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        c?.moveToFirst()
+        var c: Cursor? = context?.contentResolver?.query(path!!, proj, null, null, null)
+        var index = c!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        c.moveToFirst()
 
-        var result = c?.getString(index!!)
+        Log.d("절대경로cf", proj.toString())
+        Log.d("절대경로cf", c.toString())
+        Log.d("절대경로cf", index.toString())
+        var result = c.getColumnName(index)
 
         return result!!
+
     }
 
 
