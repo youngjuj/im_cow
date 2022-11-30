@@ -47,9 +47,9 @@ class ListFragment : Fragment() {
         cowInfo("test")
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false)
-        
+
         binding.fbListRegist.setOnClickListener {
-            val intent = Intent(requireActivity(), RegistActivity::class.java)
+            val intent = Intent(activity, RegistActivity::class.java)
             startActivity(intent)
         }
 
@@ -57,11 +57,11 @@ class ListFragment : Fragment() {
         return binding.root
     }
 
-    private fun setItemTouchHelper() {
+    private fun setItemTouchHelper(context: Context) {
 
         ItemTouchHelper(object : ItemTouchHelper.Callback() {
 
-            private val limitScrollX = dipToPx(140f, requireContext()) // 스와이프 범위 제한 140dp
+            private val limitScrollX = dipToPx(140f, context) // 스와이프 범위 제한 140dp
             private var currentScrollX = 0
             private var currentScrollXWhenInActive = 0
             private var initXWhenInActive = 0f
@@ -176,7 +176,7 @@ class ListFragment : Fragment() {
                     listAdapter.reload(data)
 
                     binding.rvList.apply {
-                        layoutManager = LinearLayoutManager(requireContext())
+                        layoutManager = LinearLayoutManager(context)
                         adapter = listAdapter
                         addItemDecoration(ItemDecoration())
 
@@ -184,14 +184,14 @@ class ListFragment : Fragment() {
                             swipeRefreshLayout.isRefreshing = false
                         }
 
-                        setItemTouchHelper()
+                        setItemTouchHelper(context)
 
 
                     }
 //                    Log.d("로그 ",res)
-                    Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_LONG).show()
                 } else {
-                    Toast.makeText(requireActivity(),"통신실패", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireActivity(),"통신실패", Toast.LENGTH_LONG).show()
                 }
             }
 
