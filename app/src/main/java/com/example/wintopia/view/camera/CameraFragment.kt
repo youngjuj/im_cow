@@ -175,11 +175,15 @@ class CameraFragment : Fragment() {
     }
 
     private fun dispatchSelectPictureIntent() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(intent, REQUEST_GALLERY)
+//        val intent = Intent()
+//        intent.type = "image/*"
+//        intent.action = Intent.ACTION_GET_CONTENT
+//        startActivityForResult(intent, REQUEST_GALLERY)
+        Intent(Intent.ACTION_PICK).apply {
+            data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            startActivityForResult(this, REQUEST_GALLERY)
         }
+    }
 
 
 
