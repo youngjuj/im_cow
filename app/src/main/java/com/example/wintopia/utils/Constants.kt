@@ -27,5 +27,6 @@ object API_ {
 
     const val COWIMG : String = "image/getImages"
 
+    const val COWIMGLIST : String = "images/uploadfilesList"
 
 }
