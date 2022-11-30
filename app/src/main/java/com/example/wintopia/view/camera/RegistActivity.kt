@@ -2,7 +2,6 @@ package com.example.wintopia.view.camera
 
 import android.Manifest
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
@@ -51,7 +50,9 @@ class RegistActivity : AppCompatActivity(){
     private val REQUEST_GALLERY = 2
     lateinit var currentPhotoPath: String
     lateinit var img: ImageView
-    var imgList = ArrayList<MultipartBody.Part>()
+
+    var user_id = "test"
+    var cow_id = "100"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +65,9 @@ class RegistActivity : AppCompatActivity(){
 
         binding.btnRegistCancel.setOnClickListener {  }
 
-        binding.btnRegistRegist.setOnClickListener {  }
+        binding.btnRegistRegist.setOnClickListener {
+            viewModel.sendImage(user_id, cow_id, viewModel.imgList)
+        }
 
         // 사진등록 onClickListener
         binding.imgRegistFace.setOnClickListener {
@@ -143,6 +146,16 @@ class RegistActivity : AppCompatActivity(){
 
     // data변경 실시간 반영
     fun observeData() {
+        viewModel.event.observe(this){
+            when(it){
+                "sucess"->{
+                    Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
+                }
+                "failed" -> {
+                    Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
     }
 
@@ -250,14 +263,14 @@ class RegistActivity : AppCompatActivity(){
                     Log.d("file 경로", currentPhotoPath)
 
                     val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                    imgList.add(MultipartBody.Part.createFormData("photos", file.name, requestFile))
+                    viewModel.imgList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
 //                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
                     var user_id = "test"
                     var cow_id = "100"
-                    Log.d(Constants.TAG, ""+imgList)
+                    Log.d(Constants.TAG, ""+viewModel.imgList)
 
-                    sendImage(user_id, cow_id, imgList)
+//                    sendImage(user_id, cow_id, imgList)
 
                     if (Build.VERSION.SDK_INT < 28) {
                         bitmap = MediaStore.Images.Media
@@ -277,18 +290,17 @@ class RegistActivity : AppCompatActivity(){
                 val path = absolutelyPath(this, selectedImageURI)
                 val file = File(path)
                 val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                imgList.add(MultipartBody.Part.createFormData("photos", file.name, requestFile))
+                viewModel.imgList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
 //                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-                var user_id = "test"
-                var cow_id = "111"
-                Log.d(Constants.TAG, "" + imgList)
 
-                Log.d(Constants.TAG, "GALLERY" + imgList)
+                Log.d(Constants.TAG, "" + viewModel.imgList)
+
+                Log.d(Constants.TAG, "GALLERY" + viewModel.imgList)
 
 
                 if (selectedImageURI != null) {
-                    sendImage(user_id, cow_id, imgList)
+//                    sendImage(user_id, cow_id, imgList)
 
                     if (selectedImageURI != null) img?.setImageURI(selectedImageURI)
                     else Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
@@ -323,64 +335,6 @@ class RegistActivity : AppCompatActivity(){
 
 
 
-
-    //웹서버로 이미지전송
-    fun sendImage(user_id:String, cow_id:String, images: List<MultipartBody.Part>) {
-        Log.d(Constants.TAG,"웹서버로 이미지전송")
-
-        //Retrofit 인스턴스 생성
-        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
-        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
-
-
-        val call = service.cowImageList(user_id, cow_id, images) //통신 API 패스 설정
-
-        call?.enqueue(object : Callback<String?> {
-            override fun onResponse(call: Call<String?>, response: Response<String?>) {
-                if (response.isSuccessful) {
-                    Log.d("로그 ","이미지 전송 :"+response?.body().toString())
-                    Toast.makeText(applicationContext,"통신성공",Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(applicationContext,"통신실패",Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<String?>, t: Throwable) {
-                Log.d("로그",t.message.toString())
-            }
-        })
-    }
-
-    //웹서버로 이미지전송
-    fun getCowImage(user_id: String, cow_id:String) {
-        Log.d(Constants.TAG,"소 이미지 불러오기")
-
-        //Retrofit 인스턴스 생성
-        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
-        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
-
-
-        val call = service.cowImage(user_id, cow_id, UserList().getNum().toString()) //통신 API 패스 설정
-
-        call?.enqueue(object : Callback<MultipartBody.Part> {
-            override fun onResponse(call: Call<MultipartBody.Part?>, response: Response<MultipartBody.Part?>) {
-                Log.d(Constants.TAG, "제발..${response}")
-
-                if (response.isSuccessful) {
-//                    res = response.toString()
-                    Log.d("로그 ","소 이미지 불러오기3 :"+ response.body().toString())
-
-                    Toast.makeText(applicationContext,"통신성공",Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(applicationContext,"통신실패",Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<MultipartBody.Part?>, t: Throwable) {
-                Log.d("로그",t.message.toString())
-            }
-        })
-    }
 
 }
 

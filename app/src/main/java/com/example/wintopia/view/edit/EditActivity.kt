@@ -104,13 +104,8 @@ class EditActivity : AppCompatActivity() {
         }
 
 
-<<<<<<< HEAD
         var milkCowInfoModel = MilkCowInfoModel(etEditId,
                 etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
-=======
-        var milkCowInfoModel = MilkCowInfoModel(etEditId,etEditName,
-                etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
->>>>>>> phy
 
 //        var milkCowInfoModel = UserList().getNum()?.let {
 //            MilkCowInfoModel(etEditName,
@@ -126,13 +121,8 @@ class EditActivity : AppCompatActivity() {
             viewModel.infoOut(milkCowInfoModel)
         }
 
-<<<<<<< HEAD
         val cowInfo = CowInfo(etEditId,
             etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
-=======
-        val cowInfo = CowInfo(etEditId,etEditName,
-            etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
->>>>>>> phy
 
         // 수정 후 상세정보페이지 이동
 //        val cowInfo = UserList().getNum()?.let {
@@ -154,7 +144,7 @@ class EditActivity : AppCompatActivity() {
     override fun setIntent(intent: Intent) {
             val intent = intent
             val cowInfo = intent.getSerializableExtra("cowInfo") as CowInfo?
-        binding.wvEditPhoto.loadUrl("http:/${API_.BASE_URL}:11112/image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
+        binding.wvEditPhoto.loadUrl("${API_.BASE_URL}image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
         binding.etEditName.hint = (cowInfo?.name.toString())
             binding.etEditId.hint = (cowInfo?.id.toString())
             binding.etEditBirth.hint = (cowInfo?.birth.toString())

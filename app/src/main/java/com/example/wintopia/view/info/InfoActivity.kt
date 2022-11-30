@@ -114,7 +114,7 @@ class InfoActivity : AppCompatActivity() {
         val intent = intent
         if(intent.getStringExtra("where").equals("list")) {
             cowInfo = intent.getSerializableExtra("infos") as CowInfo
-            binding.wvInfoPhto.loadUrl("http:/${API_.BASE_URL}:11112/image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
+            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
             binding.tvInfoName.text = (cowInfo?.name.toString())
             binding.tvInfoBirth.text = (cowInfo?.birth.toString())
             binding.tvInfoId.text = (cowInfo?.id.toString())
@@ -151,7 +151,7 @@ class InfoActivity : AppCompatActivity() {
 
         } else if(intent.getStringExtra("where").equals("edit")) {
             cowInfo = intent.getSerializableExtra("TEXT") as CowInfo
-            binding.wvInfoPhto.loadUrl("http:/${API_.BASE_URL}:11112/image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
+            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
             binding.tvInfoName.text = (cowInfo?.name.toString())
             binding.tvInfoBirth.text = (cowInfo?.birth.toString())
             binding.tvInfoId.text = (cowInfo?.id.toString())
@@ -207,6 +207,15 @@ class InfoActivity : AppCompatActivity() {
         }
         viewModel.vaccine.observe(this){
             binding.rbInfoVaccine.checkedRadioButtonId
+        }
+        viewModel.pregnancy.observe(this){
+            binding.rbInfoPregnant.checkedRadioButtonId
+        }
+        viewModel.milk.observe(this){
+            binding.rbInfoMilk.checkedRadioButtonId
+        }
+        viewModel.castration.observe(this){
+            binding.rbInfoCas.checkedRadioButtonId
         }
     }
 

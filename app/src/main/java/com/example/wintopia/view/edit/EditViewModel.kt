@@ -18,9 +18,12 @@ class EditViewModel: ViewModel() {
     val name = MutableLiveData<String>()
     val id = MutableLiveData<String>()
     val birth = MutableLiveData<String>()
+    val variety = MutableLiveData<String>()
     val gender = MutableLiveData<String>()
     val vaccine = MutableLiveData<String>()
-    val variety = MutableLiveData<String>()
+    val pregnancy = MutableLiveData<String>()
+    val milk = MutableLiveData<String>()
+    val castration = MutableLiveData<String>()
     val event = MutableLiveData<String>()
 
 
