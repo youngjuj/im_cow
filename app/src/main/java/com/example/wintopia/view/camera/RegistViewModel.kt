@@ -27,16 +27,16 @@ import java.text.SimpleDateFormat
 class RegistViewModel: ViewModel() {
 
     val event = MutableLiveData<String>()
-    val Name = MutableLiveData<String>()
-    val Id = MutableLiveData<String>()
-    val Birth = MutableLiveData<String>()
-    val Variety = MutableLiveData<String>()
-    val Gender = MutableLiveData<String>()
-    val Vaccine = MutableLiveData<String>()
-    val Pregnancy = MutableLiveData<String>()
-    val Milk = MutableLiveData<String>()
-    val Castration = MutableLiveData<String>()
-    val Fax = MutableLiveData<String>()
+    val name = MutableLiveData<String>()
+    val id = MutableLiveData<String>()
+    val birth = MutableLiveData<String>()
+    val variety = MutableLiveData<String>()
+    val gender = MutableLiveData<String>()
+    val vaccine = MutableLiveData<String>()
+    val pregnancy = MutableLiveData<String>()
+    val milk = MutableLiveData<String>()
+    val castration = MutableLiveData<String>()
+    val fax = MutableLiveData<String>()
     val imgList = arrayListOf<MultipartBody.Part>()
 
     fun sendImage(user_id:String, cow_id:String, imgList: ArrayList<MultipartBody.Part>) {
