@@ -45,6 +45,8 @@ android {
 }
 
 dependencies {
+    // LottieFile
+    implementation 'com.airbnb.android:lottie:3.0.7'
     // for retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     // gson 컨버터
