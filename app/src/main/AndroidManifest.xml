@@ -31,7 +31,7 @@
             android:name=".view.info.InfoActivity"
             android:exported="false" />
         <activity
-            android:name=".view.camera.RegistActivity"
+            android:name=".view.regist.RegistActivity"
             android:exported="false" />
         <activity
             android:name=".view.edit.EditActivity"

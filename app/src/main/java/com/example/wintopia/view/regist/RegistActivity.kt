@@ -1,4 +1,4 @@
-package com.example.wintopia.view.camera
+package com.example.wintopia.view.regist
 
 import android.Manifest
 import android.app.Activity
@@ -21,19 +21,15 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wintopia.R
-import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ActivityRegistBinding
-import com.example.wintopia.retrofit.RetrofitClient
-import com.example.wintopia.retrofit.RetrofitInterface
-import com.example.wintopia.view.utilssd.API_
+import com.example.wintopia.dialog.CamDialog
+import com.example.wintopia.view.adapter.RegistAdapter
 import com.example.wintopia.view.utilssd.Constants
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -66,81 +62,93 @@ class RegistActivity : AppCompatActivity(){
         binding.btnRegistCancel.setOnClickListener {  }
 
         binding.btnRegistRegist.setOnClickListener {
-            viewModel.sendImage(cow_id, viewModel.imgList)
+            viewModel.sendImage(cow_id, viewModel.imgFileList)
         }
 
-        // 사진등록 onClickListener
-        binding.imgRegistFace.setOnClickListener {
-            val dialog = CamDialog(this)
-            dialog.show()
-            dialog.setOnCamDialogClickListener(object: CamDialog.CamDialogClickListener {
-                override fun onClick(req: Int) {
-                    resultNum = req
-                    try{// dialog 선택 후 실행 이벤트
-                        if (resultNum == 1) {
-                            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
-                            dialog.dismiss()
-                        } else if (resultNum == 2) {
-                            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
-                            dialog.dismiss()
-                        } else{
-                            dialog.dismiss()
-                        }
-                    } catch (e: Exception) {
-                    }
-                }
+        val registAdapter = RegistAdapter(viewModel.imgList)
+//        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-            })
-            img = binding.imgRegistFace
+        binding.rvRegistPhoto.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = registAdapter
+            binding.rvRegistPhoto.adapter = adapter
+        }
+        binding.rvRegistPhoto.setOnClickListener{
+            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
         }
 
-        binding.imgRegistLeft.setOnClickListener {
-            val dialog = CamDialog(this)
-            dialog.show()
-            dialog.setOnCamDialogClickListener(object: CamDialog.CamDialogClickListener {
-                override fun onClick(req: Int) {
-                    resultNum = req
-                    try{// dialog 선택 후 실행 이벤트
-                        if (resultNum == 1) {
-                            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
-                            dialog.dismiss()
-                        } else if (resultNum == 2) {
-                            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
-                            dialog.dismiss()
-                        } else{
-                            dialog.dismiss()
-                        }
-                    } catch (e: Exception) {
-                    }
-                }
-
-            })
-            img = binding.imgRegistLeft
-        }
-
-        binding.imgRegistRight.setOnClickListener {
-            val dialog = CamDialog(this)
-            dialog.show()
-            dialog.setOnCamDialogClickListener(object: CamDialog.CamDialogClickListener {
-                override fun onClick(req: Int) {
-                    resultNum = req
-                    try{// dialog 선택 후 실행 이벤트
-                        if (resultNum == 1) {
-                            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
-                            dialog.dismiss()
-                        } else if (resultNum == 2) {
-                            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
-                            dialog.dismiss()
-                        } else{
-                            dialog.dismiss()
-                        }
-                    } catch (e: Exception) {
-                    }
-                }
-
-            })
-            img = binding.imgRegistRight
-        }
+//        // 사진등록 onClickListener
+//        binding.imgRegistFace.setOnClickListener {
+//            val dialog = CamDialog(this)
+//            dialog.show()
+//            dialog.setOnCamDialogClickListener(object: CamDialog.CamDialogClickListener {
+//                override fun onClick(req: Int) {
+//                    resultNum = req
+//                    try{// dialog 선택 후 실행 이벤트
+//                        if (resultNum == 1) {
+//                            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
+//                            dialog.dismiss()
+//                        } else if (resultNum == 2) {
+//                            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+//                            dialog.dismiss()
+//                        } else{
+//                            dialog.dismiss()
+//                        }
+//                    } catch (e: Exception) {
+//                    }
+//                }
+//
+//            })
+//            img = binding.imgRegistFace
+//        }
+//
+//        binding.imgRegistLeft.setOnClickListener {
+//            val dialog = CamDialog(this)
+//            dialog.show()
+//            dialog.setOnCamDialogClickListener(object: CamDialog.CamDialogClickListener {
+//                override fun onClick(req: Int) {
+//                    resultNum = req
+//                    try{// dialog 선택 후 실행 이벤트
+//                        if (resultNum == 1) {
+//                            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
+//                            dialog.dismiss()
+//                        } else if (resultNum == 2) {
+//                            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+//                            dialog.dismiss()
+//                        } else{
+//                            dialog.dismiss()
+//                        }
+//                    } catch (e: Exception) {
+//                    }
+//                }
+//
+//            })
+//            img = binding.imgRegistLeft
+//        }
+//
+//        binding.imgRegistRight.setOnClickListener {
+//            val dialog = CamDialog(this)
+//            dialog.show()
+//            dialog.setOnCamDialogClickListener(object: CamDialog.CamDialogClickListener {
+//                override fun onClick(req: Int) {
+//                    resultNum = req
+//                    try{// dialog 선택 후 실행 이벤트
+//                        if (resultNum == 1) {
+//                            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
+//                            dialog.dismiss()
+//                        } else if (resultNum == 2) {
+//                            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+//                            dialog.dismiss()
+//                        } else{
+//                            dialog.dismiss()
+//                        }
+//                    } catch (e: Exception) {
+//                    }
+//                }
+//
+//            })
+//            img = binding.imgRegistRight
+//        }
     }
 
 
@@ -262,7 +270,7 @@ class RegistActivity : AppCompatActivity(){
                     Log.d("file 경로", currentPhotoPath)
 
                     val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                    viewModel.imgList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
+                    viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
 //                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
                     var user_id = "test"
@@ -289,7 +297,7 @@ class RegistActivity : AppCompatActivity(){
                 val path = absolutelyPath(this, selectedImageURI)
                 val file = File(path)
                 val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                viewModel.imgList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
+                viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
 //                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
 

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="regist"
-            type="com.example.wintopia.view.camera.RegistActivity" />
+            type="com.example.wintopia.view.regist.RegistActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

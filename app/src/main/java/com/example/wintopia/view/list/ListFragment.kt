@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -19,7 +18,7 @@ import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentListBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
-import com.example.wintopia.view.camera.RegistActivity
+import com.example.wintopia.view.regist.RegistActivity
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants

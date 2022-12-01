@@ -17,10 +17,8 @@ import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
-import com.google.gson.annotations.SerializedName
 import java.lang.ref.WeakReference
 import java.util.*
-import kotlin.collections.ArrayList
 
 // List에 뿌려줄 item 구성 정보들
 data class ListVO (
