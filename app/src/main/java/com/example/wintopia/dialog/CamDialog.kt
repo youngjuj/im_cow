@@ -1,4 +1,4 @@
-package com.example.wintopia.view.camera
+package com.example.wintopia.dialog
 
 import android.app.Dialog
 import android.content.Context

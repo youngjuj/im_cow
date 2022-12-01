@@ -1,15 +1,7 @@
-package com.example.wintopia.view.camera
+package com.example.wintopia.view.regist
 
-import android.app.Activity
-import android.database.Cursor
-import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.wintopia.data.UserList
@@ -21,8 +13,6 @@ import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
-import java.text.SimpleDateFormat
 
 class RegistViewModel: ViewModel() {
 
@@ -37,9 +27,10 @@ class RegistViewModel: ViewModel() {
     val milk = MutableLiveData<String>()
     val castration = MutableLiveData<String>()
     val fax = MutableLiveData<String>()
-    val imgList = arrayListOf<MultipartBody.Part>()
+    val imgFileList = arrayListOf<MultipartBody.Part>()
+    val imgList = arrayListOf<Uri?>()
 
-    fun sendImage(cow_id:String, imgList: ArrayList<MultipartBody.Part>) {
+    fun sendImage(cow_id:String, imgFileList: ArrayList<MultipartBody.Part>) {
         Log.d(Constants.TAG,"웹서버로 이미지전송")
 
         //Retrofit 인스턴스 생성
@@ -47,7 +38,7 @@ class RegistViewModel: ViewModel() {
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
-        val call = service.cowImageList(cow_id, imgList.toList()) //통신 API 패스 설정
+        val call = service.cowImageList(cow_id, imgFileList.toList()) //통신 API 패스 설정
 
 
         call?.enqueue(object : Callback<String?> {

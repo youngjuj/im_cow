@@ -17,10 +17,8 @@ import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
-import com.google.gson.annotations.SerializedName
 import java.lang.ref.WeakReference
 import java.util.*
-import kotlin.collections.ArrayList
 
 // List에 뿌려줄 item 구성 정보들
 data class ListVO (
@@ -40,10 +38,10 @@ data class ListVO (
 
 
 // RecyclerView 사용에 필수인 Adapter
-class ListVOAdapter(private val data:List<MilkCowInfoModel>):
+class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
     RecyclerView.Adapter<ListVOAdapter.ListVOViewHolder>(){
 
-    private var listData = ArrayList<MilkCowInfoModel>()
+    private var listData = mutableListOf<MilkCowInfoModel>()
 
 
     // RecyclerView ViewHolder
@@ -140,14 +138,16 @@ class ListVOAdapter(private val data:List<MilkCowInfoModel>):
     override fun getItemCount(): Int = data.size
 
 
-    fun setListData(listData: List<MilkCowInfoModel>) {
-        this.listData = listData as ArrayList<MilkCowInfoModel>
+    fun setListData(listData: MutableList<MilkCowInfoModel>) {
+        this.listData = listData
     }
 
     fun removeItem(viewHolder: RecyclerView.ViewHolder) {
         var position = viewHolder.adapterPosition
-        data.drop(position)
+        data.removeAt(position)
         notifyItemRemoved(position)
+//        notifyDataSetChanged()
+        notifyItemChanged(position)
 
     }
 

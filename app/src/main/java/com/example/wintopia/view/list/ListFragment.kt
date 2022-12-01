@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -19,7 +18,7 @@ import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentListBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
-import com.example.wintopia.view.camera.RegistActivity
+import com.example.wintopia.view.regist.RegistActivity
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
@@ -165,13 +164,13 @@ class ListFragment : Fragment() {
 
         val call = service.cowListAll(userId) //통신 API 패스 설정
 
-        call?.enqueue(object : Callback<List<MilkCowInfoModel>> {
-            override fun onResponse(call: Call<List<MilkCowInfoModel>>, response: Response<List<MilkCowInfoModel>>) {
+        call?.enqueue(object : Callback<MutableList<MilkCowInfoModel>> {
+            override fun onResponse(call: Call<MutableList<MilkCowInfoModel>>, response: Response<MutableList<MilkCowInfoModel>>) {
                 if (response.isSuccessful) {
                     Log.d(TAG,""+response?.body().toString())
                     data = response?.body()!!
 
-                    val listAdapter = ListVOAdapter(data)
+                    val listAdapter = ListVOAdapter(data as MutableList<MilkCowInfoModel>)
 
                     listAdapter.reload(data)
 
@@ -195,7 +194,7 @@ class ListFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<MilkCowInfoModel>>, t: Throwable) {
+            override fun onFailure(call: Call<MutableList<MilkCowInfoModel>>, t: Throwable) {
                 Log.d("로그",t.message.toString())
             }
         })
