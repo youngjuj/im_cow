@@ -165,13 +165,13 @@ class ListFragment : Fragment() {
 
         val call = service.cowListAll(userId) //통신 API 패스 설정
 
-        call?.enqueue(object : Callback<List<MilkCowInfoModel>> {
-            override fun onResponse(call: Call<List<MilkCowInfoModel>>, response: Response<List<MilkCowInfoModel>>) {
+        call?.enqueue(object : Callback<MutableList<MilkCowInfoModel>> {
+            override fun onResponse(call: Call<MutableList<MilkCowInfoModel>>, response: Response<MutableList<MilkCowInfoModel>>) {
                 if (response.isSuccessful) {
                     Log.d(TAG,""+response?.body().toString())
                     data = response?.body()!!
 
-                    val listAdapter = ListVOAdapter(data)
+                    val listAdapter = ListVOAdapter(data as MutableList<MilkCowInfoModel>)
 
                     listAdapter.reload(data)
 
@@ -195,7 +195,7 @@ class ListFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<MilkCowInfoModel>>, t: Throwable) {
+            override fun onFailure(call: Call<MutableList<MilkCowInfoModel>>, t: Throwable) {
                 Log.d("로그",t.message.toString())
             }
         })
