@@ -49,9 +49,8 @@ interface RetrofitInterface {
 
     // 사진 하나 저장
     @Multipart
-    @POST("${API_.PHOTOINFOOUT}")
+    @POST("${API_.UPIMAGE}")
     fun getPhoto(
-        @Query ("user_id") user_id: String?,
         @Query ("cow_id") cow_id: String?,
         @Part file: MultipartBody.Part
     ): Call<String?>?
@@ -61,7 +60,6 @@ interface RetrofitInterface {
     @Multipart
     @PUT("${API_.COWIMGLIST}")
     fun cowImageList(
-        @Query ("user_id") user_id: String?,
         @Query ("cow_id") cow_id: String?,
         @Part files: List<MultipartBody.Part>
     ) : Call<String?>
