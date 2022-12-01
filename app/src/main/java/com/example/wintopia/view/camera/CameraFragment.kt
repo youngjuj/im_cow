@@ -232,7 +232,7 @@ class CameraFragment : Fragment() {
                     val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
                     var user_id = "test"
-                    var cow_id = "100"
+                    var cow_id = "1"
                     Log.d(TAG, "" + body)
 
                     sendImage(user_id, cow_id, body)
@@ -283,7 +283,7 @@ class CameraFragment : Fragment() {
 
                 if (selectedImageURI != null) {
                     var user_id = "test"
-                    var cow_id = "100"
+                    var cow_id = "1"
                     sendImage(user_id, cow_id, body)
 
 
@@ -381,39 +381,6 @@ class CameraFragment : Fragment() {
     }
 
 
-    //웹서버로 이미지전송
-    fun getCowImage(user_id: String, cow_id: String) {
-        Log.d(TAG, "소 이미지 불러오기")
-
-        //Retrofit 인스턴스 생성
-        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
-        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
-
-
-        val call = service.cowImage(user_id, cow_id, "d") //통신 API 패스 설정
-
-        call?.enqueue(object : Callback<MultipartBody.Part> {
-            override fun onResponse(
-                call: Call<MultipartBody.Part?>,
-                response: Response<MultipartBody.Part?>
-            ) {
-                Log.d(TAG, "제발..${response}")
-
-                if (response.isSuccessful) {
-//                    res = response.toString()
-                    Log.d("로그 ", "소 이미지 불러오기3 :" + response.body().toString())
-
-                    Toast.makeText(requireActivity(), "통신성공", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireActivity(), "통신실패", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<MultipartBody.Part?>, t: Throwable) {
-                Log.d("로그", t.message.toString())
-            }
-        })
-    }
 
 
 }
