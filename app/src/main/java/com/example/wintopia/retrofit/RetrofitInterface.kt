@@ -35,21 +35,21 @@ interface RetrofitInterface {
 
     //
 //    @FormUrlEncoded
-    @POST("${API_.INFOOUT}")
+    @POST("${API_.COWINFOONE}")
 //    fun getData(@Query("item") item: String?): Call<String>?
     fun getData(@Body item: MilkCowInfoModel): Call<String>?
 
 
 //    @Multipart
     // cow 전체 정보 불러오기
-    @GET("${API_.INFOIN}")
+    @GET("${API_.COWINFOALL}")
 //    fun getData(@Query("item") item: String?): Call<String>?
     fun cowListAll(@Query ("user_id") user_id: String): Call<MutableList<MilkCowInfoModel>>
 
 
     // 사진 하나 저장
     @Multipart
-    @POST("${API_.UPIMAGE}")
+    @POST("${API_.COWIMGUP}")
     fun getPhoto(
         @Query ("cow_id") cow_id: String?,
         @Part file: MultipartBody.Part
@@ -67,7 +67,7 @@ interface RetrofitInterface {
 
     // cow_id에 맞는 사진 하나
     @Multipart
-    @POST("${API_.COWIMG}")
+    @POST("${API_.COWIMGOUT}")
 //    fun getData(@Query("item") item: String?): Call<String>?
     fun cowImage(
         @Query ("user_id") id: String,
