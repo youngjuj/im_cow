@@ -1,25 +1,17 @@
 package com.example.wintopia.view.adapter
 
-import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
 import com.example.wintopia.databinding.RegistItemBinding
 import java.lang.ref.WeakReference
 
-//
-//data class RegistVO {
-//    val uri: Uri
-//}
 
-class RegistAdapter(private val items:ArrayList<Uri>) :
+class RegistAdapter(private val items: List<Uri?>) :
     RecyclerView.Adapter<RegistAdapter.ViewHolder>() {
 
-    private  var data = mutableListOf<Uri>()
     class ViewHolder(val binding: RegistItemBinding) : RecyclerView.ViewHolder(binding.root) {
         private var view = WeakReference(binding)
 
@@ -31,11 +23,18 @@ class RegistAdapter(private val items:ArrayList<Uri>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var img = data[position]
+        var img = items[position]
 
         holder.binding.imgRegistItem.setImageURI(img)
     }
 
     override fun getItemCount(): Int = items.size
 
+//    fun reload(imgdata: MutableList<Uri?>) {
+//        this.data.clear()
+//        this.data.addAll(imgdata)
+//        notifyDataSetChanged()
+//    }
 }
+
+

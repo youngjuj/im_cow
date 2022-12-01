@@ -139,7 +139,7 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
 
 
     fun setListData(listData: MutableList<MilkCowInfoModel>) {
-        this.listData = listData as MutableList<MilkCowInfoModel>
+        this.listData = listData
     }
 
     fun removeItem(viewHolder: RecyclerView.ViewHolder) {

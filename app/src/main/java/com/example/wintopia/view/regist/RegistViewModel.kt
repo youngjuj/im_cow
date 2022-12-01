@@ -28,9 +28,9 @@ class RegistViewModel: ViewModel() {
     val castration = MutableLiveData<String>()
     val fax = MutableLiveData<String>()
     val imgFileList = arrayListOf<MultipartBody.Part>()
-    val imgList = arrayListOf<Uri>()
+    val imgList = arrayListOf<Uri?>()
 
-    fun sendImage(cow_id:String, imgList: ArrayList<MultipartBody.Part>) {
+    fun sendImage(cow_id:String, imgFileList: ArrayList<MultipartBody.Part>) {
         Log.d(Constants.TAG,"웹서버로 이미지전송")
 
         //Retrofit 인스턴스 생성
@@ -38,7 +38,7 @@ class RegistViewModel: ViewModel() {
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
-        val call = service.cowImageList(cow_id, imgList.toList()) //통신 API 패스 설정
+        val call = service.cowImageList(cow_id, imgFileList.toList()) //통신 API 패스 설정
 
 
         call?.enqueue(object : Callback<String?> {
