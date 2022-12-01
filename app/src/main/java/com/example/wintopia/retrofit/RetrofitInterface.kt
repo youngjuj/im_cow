@@ -59,7 +59,6 @@ interface RetrofitInterface {
     @Multipart
     @PUT("${API_.COWIMGLIST}")
     fun cowImageList(
-        @Query ("cow_id") cow_id: String?,
         @Part files: List<MultipartBody.Part>
     ) : Call<String?>
 

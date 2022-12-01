@@ -38,7 +38,7 @@ class RegistViewModel: ViewModel() {
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
-        val call = service.cowImageList(cow_id, imgFileList.toList()) //통신 API 패스 설정
+        val call = service.cowImageList(imgFileList.toList()) //통신 API 패스 설정
 
 
         call?.enqueue(object : Callback<String?> {
