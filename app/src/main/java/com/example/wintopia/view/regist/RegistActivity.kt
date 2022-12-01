@@ -238,6 +238,7 @@ class RegistActivity : AppCompatActivity(){
                 Toast.makeText(this, "잘못된 접근입니다..", Toast.LENGTH_SHORT).show()
             }
         }
+            // 사진 선택 개수 제한
             if(data?.clipData != null) {
                 val count = data.clipData!!.itemCount
                 if(count >5) {
@@ -247,6 +248,7 @@ class RegistActivity : AppCompatActivity(){
                     return
                 }
 
+                // 선택된 사진 리스트에 추가하기
                 viewModel.imgList.clear()
                 viewModel.imgFileList.clear()
                 for (i in 0 until count) {
