@@ -114,7 +114,7 @@ class InfoActivity : AppCompatActivity() {
         val intent = intent
         if(intent.getStringExtra("where").equals("list")) {
             cowInfo = intent.getSerializableExtra("infos") as CowInfo
-            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
+            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
             binding.tvInfoName.text = (cowInfo?.name.toString())
             binding.tvInfoBirth.text = (cowInfo?.birth.toString())
             binding.tvInfoId.text = (cowInfo?.id.toString())

@@ -99,7 +99,7 @@ class ListVOAdapter(private val data:List<MilkCowInfoModel>):
 //        holder.binding.wvItemImg.loadUrl(data[position].pic)
         var cow_id = data[position].id
         var user_id = UserList().getId().toString()
-        holder.binding.wvItemImg.loadUrl("${API_.BASE_URL}image/getImages?user_id=test&cow_id=$cow_id")
+        holder.binding.wvItemImg.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=$cow_id")
         holder.binding.tvItemName.text = data[position].name
         holder.binding.tvItemId.text = "고유번호 : ${data[position].id}"
 
