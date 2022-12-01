@@ -19,14 +19,14 @@ object API_ {
 
     const val LOGIN : String = "loginstr/login"
 
-    const val INFOOUT : String = "info/cowInfoIn"
+    const val COWINFOONE : String = "info/cowInfoOne"
 
-    const val INFOIN : String = "info/infoOut"
+    const val COWINFOALL : String = "info/cowInfoAll"
 
-    const val UPIMAGE : String = "image/upImage"
+    const val COWIMGUP : String = "image/cowImgUp"
 
-    const val COWIMG : String = "image/getImages"
+    const val COWIMGOUT : String = "image/cowImgOut"
 
-    const val COWIMGLIST : String = "image/uploadfilesList"
+    const val COWIMGLIST : String = "image/cowImgList"
 
 }
