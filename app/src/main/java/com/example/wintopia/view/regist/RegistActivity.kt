@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wintopia.R
@@ -191,43 +193,40 @@ class RegistActivity : AppCompatActivity(){
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-//            REQUEST_IMAGE_CAPTURE -> {
-//                Log.v("순서", "onActivityResult img")
+            REQUEST_IMAGE_CAPTURE -> {
+                Log.v("순서", "onActivityResult img")
 //                Log.v("img_request", "${img?.id}")
-//                if(resultCode == Activity.RESULT_OK) {
-//                    val file = File(currentPhotoPath)
-//                    Log.d("file 경로", currentPhotoPath)
-//                    val uri = currentPhotoPath.toUri()
-//                    viewModel.imgList.add(uri)
-//
-//                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-//                    viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
-////                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-//
-//                    var user_id = "test"
-//                    var cow_id = "1"
-//                    Log.d(Constants.TAG, ""+viewModel.imgList)
-//
-////                    sendImage(cow_id, imgList)
-//
-//                    if (Build.VERSION.SDK_INT < 28) {
-//                        bitmap = MediaStore.Images.Media
-//                            .getBitmap(this.contentResolver, Uri.fromFile(file))
-//                    } else {
-//                        val decode = ImageDecoder.createSource(this.contentResolver,
-//                            Uri.fromFile(file))
-//                        bitmap = ImageDecoder.decodeBitmap(decode)
-//                    }
-//                    img?.setImageBitmap(bitmap)
-//
-//                }
-//            }
-            REQUEST_GALLERY -> {
-                val selectedImageURI: Uri? = data?.data
+                if(resultCode == Activity.RESULT_OK) {
+                    val file = File(currentPhotoPath)
+                    Log.d("file 경로", currentPhotoPath)
+                    val uri = currentPhotoPath.toUri()
+                    viewModel.imgList.add(uri)
 
+                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                    viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
+//                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+                    var user_id = "test"
+                    var cow_id = "1"
+                    Log.d(Constants.TAG, ""+viewModel.imgList)
+
+//                    sendImage(cow_id, imgList)
+
+                    if (Build.VERSION.SDK_INT < 28) {
+                        bitmap = MediaStore.Images.Media
+                            .getBitmap(this.contentResolver, Uri.fromFile(file))
+                    } else {
+                        val decode = ImageDecoder.createSource(this.contentResolver,
+                            Uri.fromFile(file))
+                        bitmap = ImageDecoder.decodeBitmap(decode)
+                    }
+//                    img?.setImageBitmap(bitmap)
+
+                }
+            }
+            REQUEST_GALLERY -> {
                 Log.d(Constants.TAG, "" + viewModel.imgList)
                 Log.d(Constants.TAG, "GALLERY" + viewModel.imgList)
-
 //                if (selectedImageURI != null) {
 ////                    sendImage(user_id, cow_id, imgList)
 //
@@ -257,7 +256,6 @@ class RegistActivity : AppCompatActivity(){
                     val file = File(path)
                     val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                     viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
-
                 }
             }
         registAdapter.notifyDataSetChanged()
