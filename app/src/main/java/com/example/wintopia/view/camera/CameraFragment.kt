@@ -60,9 +60,9 @@ class CameraFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        initData()
-        initBinding()
-        observeData()
+//        initData()
+//        initBinding()
+//        observeData()
 
 
         // data binding
@@ -74,56 +74,56 @@ class CameraFragment : Fragment() {
         }
 
         // BottomNavi multipleClick options
-        binding.apply {
-            if (show!!) {
-                fbCameraCam.visibility = View.VISIBLE
-                fbCameraGal.visibility = View.VISIBLE
-            } else {
-                fbCameraCam.visibility = View.GONE
-                fbCameraGal.visibility = View.GONE
-            }
-        }
+//        binding.apply {
+//            if (show!!) {
+//                fbCameraCam.visibility = View.VISIBLE
+//                fbCameraGal.visibility = View.VISIBLE
+//            } else {
+//                fbCameraCam.visibility = View.GONE
+//                fbCameraGal.visibility = View.GONE
+//            }
+//        }
 
         // camera floatting button onClickListener
-//        binding.fbCameraCam.setOnClickListener {
-//            Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
-//            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
-//        }
-//        binding.fbCameraGal.setOnClickListener {
-//            Toast.makeText(requireActivity(), "fbCameraGal", Toast.LENGTH_SHORT).show()
-//            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
-//        }
+        binding.fbCameraCam.setOnClickListener {
+            Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
+            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
+        }
+        binding.fbCameraGal.setOnClickListener {
+            Toast.makeText(requireActivity(), "fbCameraGal", Toast.LENGTH_SHORT).show()
+            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+        }
 
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
-    private fun initBinding() = with(binding){
-        if (show!!) {
-            fbCameraCam.visibility = View.VISIBLE
-            fbCameraGal.visibility = View.VISIBLE
-        } else {
-            fbCameraCam.visibility = View.GONE
-            fbCameraGal.visibility = View.GONE
-        }
-        fbCameraCam.setOnClickListener {
-            Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
-            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
-        }
-        fbCameraGal.setOnClickListener {
-            Toast.makeText(requireActivity(), "fbCameraGal", Toast.LENGTH_SHORT).show()
-            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
-        }
-    }
+//    private fun initBinding() = with(binding){
+//        if (show!!) {
+//            fbCameraCam.visibility = View.VISIBLE
+//            fbCameraGal.visibility = View.VISIBLE
+//        } else {
+//            fbCameraCam.visibility = View.GONE
+//            fbCameraGal.visibility = View.GONE
+//        }
+//        fbCameraCam.setOnClickListener {
+//            Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
+//            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
+//        }
+//        fbCameraGal.setOnClickListener {
+//            Toast.makeText(requireActivity(), "fbCameraGal", Toast.LENGTH_SHORT).show()
+//            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+//        }
+//    }
 
-    private fun initData() {
-
-    }
-
-    private fun observeData() {
-
-    }
+//    private fun initData() {
+//
+//    }
+//
+//    private fun observeData() {
+//
+//    }
 
     // camera 접근 권한 요청
     private fun requestPermission() {
