@@ -52,7 +52,7 @@ class RegistActivity : AppCompatActivity(){
     lateinit var img: ImageView
 
     var user_id = "test"
-    var cow_id = "100"
+    var cow_id = "1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +66,7 @@ class RegistActivity : AppCompatActivity(){
         binding.btnRegistCancel.setOnClickListener {  }
 
         binding.btnRegistRegist.setOnClickListener {
-            viewModel.sendImage(user_id, cow_id, viewModel.imgList)
+            viewModel.sendImage(cow_id, viewModel.imgList)
         }
 
         // 사진등록 onClickListener
@@ -266,10 +266,10 @@ class RegistActivity : AppCompatActivity(){
 //                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
                     var user_id = "test"
-                    var cow_id = "100"
+                    var cow_id = "1"
                     Log.d(Constants.TAG, ""+viewModel.imgList)
 
-//                    sendImage(user_id, cow_id, imgList)
+//                    sendImage(cow_id, imgList)
 
                     if (Build.VERSION.SDK_INT < 28) {
                         bitmap = MediaStore.Images.Media

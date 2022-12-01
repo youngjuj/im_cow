@@ -232,11 +232,10 @@ class CameraFragment : Fragment() {
                     val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                     val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-                    var user_id = "test"
-                    var cow_id = "100"
+                    var cow_id = "1"
                     Log.d(TAG, "" + body)
 
-                    sendImage(user_id, cow_id, body)
+                    sendImage(cow_id, body)
 
 
                     if (Build.VERSION.SDK_INT < 28) {
@@ -266,12 +265,12 @@ class CameraFragment : Fragment() {
 
                 Log.d(TAG, "" + body)
 
-//                sendImage(user_id, cow_id, body)
+//                sendImage(cow_id, body)
 //                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
 //                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 ////                val id = "234"
                 Log.d(TAG, "" + body)
-//                sendImage(id, body)
+//                sendImage(cow_id, body)
 
                 Log.d("이미지 경로uri", selectedImageURI!!.path.toString())
 //                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
@@ -283,9 +282,8 @@ class CameraFragment : Fragment() {
 
 
                 if (selectedImageURI != null) {
-                    var user_id = "test"
-                    var cow_id = "100"
-                    sendImage(user_id, cow_id, body)
+                    var cow_id = "1"
+                    sendImage(cow_id, body)
 
 
                     binding.imgCameraPic.setImageURI(selectedImageURI)
@@ -318,7 +316,7 @@ class CameraFragment : Fragment() {
 
                     Log.d(TAG, file.name)
 
-//                sendImage("123", body)
+//                sendImage("1", body)
                 }
             }
 
@@ -355,7 +353,7 @@ class CameraFragment : Fragment() {
 
 
     //웹서버로 이미지전송
-    fun sendImage(user_id: String, cow_id: String, image: MultipartBody.Part) {
+    fun sendImage(cow_id: String, image: MultipartBody.Part) {
         Log.d(TAG, "웹서버로 이미지전송")
 
         //Retrofit 인스턴스 생성
@@ -363,7 +361,7 @@ class CameraFragment : Fragment() {
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
-        val call = service.getPhoto(user_id, cow_id, image) //통신 API 패스 설정
+        val call = service.getPhoto(cow_id, image) //통신 API 패스 설정
 
         call?.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
@@ -382,39 +380,6 @@ class CameraFragment : Fragment() {
     }
 
 
-    //웹서버로 이미지전송
-    fun getCowImage(user_id: String, cow_id: String) {
-        Log.d(TAG, "소 이미지 불러오기")
-
-        //Retrofit 인스턴스 생성
-        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
-        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
-
-
-        val call = service.cowImage(user_id, cow_id, "d") //통신 API 패스 설정
-
-        call?.enqueue(object : Callback<MultipartBody.Part> {
-            override fun onResponse(
-                call: Call<MultipartBody.Part?>,
-                response: Response<MultipartBody.Part?>
-            ) {
-                Log.d(TAG, "제발..${response}")
-
-                if (response.isSuccessful) {
-//                    res = response.toString()
-                    Log.d("로그 ", "소 이미지 불러오기3 :" + response.body().toString())
-
-                    Toast.makeText(requireActivity(), "통신성공", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireActivity(), "통신실패", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<MultipartBody.Part?>, t: Throwable) {
-                Log.d("로그", t.message.toString())
-            }
-        })
-    }
 
 
 }

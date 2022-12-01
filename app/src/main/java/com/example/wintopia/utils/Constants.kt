@@ -23,7 +23,7 @@ object API_ {
 
     const val INFOIN : String = "info/infoOut"
 
-    const val PHOTOINFOOUT : String = "image/upImages"
+    const val UPIMAGE : String = "image/upImage"
 
     const val COWIMG : String = "image/getImages"
 
