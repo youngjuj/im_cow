@@ -4,6 +4,8 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -45,9 +47,22 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
 
 
     // RecyclerView ViewHolder
-    class ListVOViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ListVOViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(position: Int) {
+
+            hiddenBtnEdt.setOnClickListener {
+
+                    val intent = Intent(binding.root.context, EditActivity::class.java)
+                    intent.putExtra("cowInfo", data[position])
+                    binding.root.context.startActivity(intent)
+            }
+
+
+
+
+        }
         private val view = WeakReference(binding)
-        private lateinit var clItem: ConstraintLayout
+        private lateinit var clItem: FrameLayout
         private lateinit var hiddenBtnEdt: TextView
         private lateinit var hiddenBtnDel: TextView
 
@@ -67,10 +82,7 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
                 hiddenBtnEdt = binding.hiddenBtnEdt
                 hiddenBtnDel = binding.hiddenBtnDel
 
-                hiddenBtnEdt.setOnClickListener {
-                    val intent = Intent(binding.root.context, EditActivity::class.java)
-                    binding.root.context.startActivity(intent)
-                }
+
 
                 hiddenBtnDel.setOnClickListener {
                     onDeleteClick?.let{ onDeleteClick ->
@@ -95,6 +107,7 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
     // RecyclerView에 뿌려줄 item 속 data들 지정
     override fun onBindViewHolder(holder: ListVOViewHolder, position: Int) {
 //        holder.binding.wvItemImg.loadUrl(data[position].pic)
+        holder.bind(position)
         var cow_id = data[position].id
         var user_id = UserList().getId().toString()
         holder.binding.wvItemImg.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=$cow_id")
@@ -118,8 +131,6 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
             putText(holder, position)
 //            val intent = Intent(holder.itemView?.context, InfoActivity::class.java)
 //            ContextCompat.startActivity(holder.itemView.context, intent, null)
-
-
         }
 
         holder.updateView()

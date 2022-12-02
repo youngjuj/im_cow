@@ -143,12 +143,22 @@ class EditActivity : AppCompatActivity() {
 
     override fun setIntent(intent: Intent) {
             val intent = intent
-            val cowInfo = intent.getSerializableExtra("cowInfo") as CowInfo?
+            val cowInfo = intent.getSerializableExtra("cowInfo") as MilkCowInfoModel?
         binding.wvEditPhoto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
+//        Log.d("널?", "${cowInfo?.name.toString()}")
         binding.etEditName.hint = (cowInfo?.name.toString())
             binding.etEditId.hint = (cowInfo?.id.toString())
             binding.etEditBirth.hint = (cowInfo?.birth.toString())
             binding.etEditVariety.hint = (cowInfo?.variety.toString())
+        cowInfo?.let {
+            binding.apply {
+                rbEditMale.isChecked = true
+                rbEditDidnt.isChecked = true
+                rbEditPreg.isChecked = true
+                rbEditMilkY.isChecked = true
+                rbEditCasY.isChecked = true
+            }
+        }?: kotlin.run {
             if (cowInfo?.gender!!.equals("수컷")) {
                 binding.rbEditMale.isChecked = true
             } else {
@@ -181,6 +191,8 @@ class EditActivity : AppCompatActivity() {
                 binding.rbEditCasN.isChecked = true
 
             }
+        }
+
 
     }
 }

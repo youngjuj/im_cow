@@ -1,8 +1,7 @@
 package com.example.wintopia.view.list
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,12 +11,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentListBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
+import com.example.wintopia.utils.SwipeHelperCallback
 import com.example.wintopia.view.regist.RegistActivity
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.API_
@@ -52,105 +51,135 @@ class ListFragment : Fragment() {
             startActivity(intent)
         }
 
+//        var list = arrayListOf<MilkCowInfoModel>()
+//        list.add(
+//            MilkCowInfoModel("100", "얼룩소", "20221202", "얼룩", "암컷", "접종",
+//        "유", "유", "무", 1, 1)
+//        )
+//        val listAdapter = ListVOAdapter(list)
+//
+//        listAdapter.reload(list)
+//
+//        binding.rvList.apply {
+//            layoutManager = LinearLayoutManager(context)
+//            adapter = listAdapter
+//            addItemDecoration(ItemDecoration())
+//
+////                        swipeRefreshLayout.setOnRefreshListener {
+////                            swipeRefreshLayout.isRefreshing = false
+////                        }
+//            var swipeHelperCallback = SwipeHelperCallback().apply {
+//                setClamp(200f)
+//            }
+//            val itemTouchHelper = ItemTouchHelper(swipeHelperCallback)
+//            itemTouchHelper.attachToRecyclerView(binding.rvList)
+//            setOnTouchListener {v, event->
+//                swipeHelperCallback.removePreviousClamp(binding.rvList)
+//                false
+//            }
+//                    }
+//
+//
+
 
         return binding.root
     }
 
-    private fun setItemTouchHelper(context: Context) {
-
-        ItemTouchHelper(object : ItemTouchHelper.Callback() {
-
-            private val limitScrollX = dipToPx(140f, context) // 스와이프 범위 제한 140dp
-            private var currentScrollX = 0
-            private var currentScrollXWhenInActive = 0
-            private var initXWhenInActive = 0f
-            private var firstInActive = false
-
-            override fun getMovementFlags(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder
-            ): Int {
-                val dragFlags = 0
-                val swipeFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-                return makeMovementFlags(dragFlags, swipeFlags)
-            }
-
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return true
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            }
-
-            override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
-                return Integer.MAX_VALUE.toFloat()
-            }
-
-            override fun getSwipeVelocityThreshold(defaultValue: Float): Float {
-                return Integer.MAX_VALUE.toFloat()
-            }
-
-            override fun onChildDraw(
-                c: Canvas,
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                dX: Float,
-                dY: Float,
-                actionState: Int,
-                isCurrentlyActive: Boolean
-            ) {
-                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-                    if (dX == 0f) {
-                        currentScrollX = viewHolder.itemView.scrollX
-                        firstInActive = true
-                    }
-                    if (isCurrentlyActive) {
-                        // 스와이프하기
-                        var scrollOffset = currentScrollX + (-dX).toInt()
-                        if(scrollOffset > limitScrollX) {
-                            scrollOffset = limitScrollX
-                        } else if (scrollOffset < 0) {
-                            scrollOffset = 0
-                        }
-                        viewHolder.itemView.scrollTo(scrollOffset, 0)
-                    } else {
-                         if (firstInActive) {
-                             firstInActive = false
-                             currentScrollXWhenInActive = viewHolder.itemView.scrollX
-                             initXWhenInActive = dX
-                         }
-
-                        if (viewHolder.itemView.scrollX < limitScrollX) {
-                            viewHolder.itemView.scrollTo((currentScrollXWhenInActive * dX / initXWhenInActive).toInt(), 0)
-                        }
-                    }
-                }
-            }
-
-            override fun clearView(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder
-            ) {
-                super.clearView(recyclerView, viewHolder)
-
-                if (viewHolder.itemView.scrollX > limitScrollX) {
-                    viewHolder.itemView.scrollTo(limitScrollX, 0)
-                } else if (viewHolder.itemView.scrollX < 0) {
-                    viewHolder.itemView.scrollTo(0, 0)
-                }
-            }
-        }).apply {
-            attachToRecyclerView(binding.rvList)
-        }
-    }
-
-    private fun dipToPx(dipValue: Float, context: Context): Int {
-        return (dipValue * context.resources.displayMetrics.density).toInt()
-    }
+//    private fun setItemTouchHelper(context: Context) {
+//
+//        ItemTouchHelper(object : ItemTouchHelper.Callback() {
+//
+//            private val limitScrollX = dipToPx(140f, context) // 스와이프 범위 제한 140dp
+//            private var currentScrollX = 0
+//            private var currentScrollXWhenInActive = 0
+//            private var initXWhenInActive = 0f
+//            private var firstInActive = false
+//
+//            override fun getMovementFlags(
+//                recyclerView: RecyclerView,
+//                viewHolder: RecyclerView.ViewHolder
+//            ): Int {
+//                val dragFlags = 0
+//                val swipeFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+//                return makeMovementFlags(dragFlags, swipeFlags)
+//            }
+//
+//            override fun onMove(
+//                recyclerView: RecyclerView,
+//                viewHolder: RecyclerView.ViewHolder,
+//                target: RecyclerView.ViewHolder
+//            ): Boolean {
+//                return true
+//            }
+//
+//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+//            }
+//
+//            override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
+//                return Integer.MAX_VALUE.toFloat()
+//            }
+//
+//            override fun getSwipeVelocityThreshold(defaultValue: Float): Float {
+//                return Integer.MAX_VALUE.toFloat()
+//            }
+//
+//            override fun onChildDraw(
+//                c: Canvas,
+//                recyclerView: RecyclerView,
+//                viewHolder: RecyclerView.ViewHolder,
+//                dX: Float,
+//                dY: Float,
+//                actionState: Int,
+//                isCurrentlyActive: Boolean
+//            ) {
+//                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+//                    if (dX == 0f) {
+//                        currentScrollX = viewHolder.itemView.scrollX
+//                        firstInActive = true
+//                    }
+//                    if (isCurrentlyActive) {
+//                        // 스와이프하기
+//                        var scrollOffset = currentScrollX + (-dX).toInt()
+//                        if(scrollOffset > limitScrollX) {
+//                            scrollOffset = limitScrollX
+//                        } else if (scrollOffset < 0) {
+//                            scrollOffset = 0
+//                        }
+//                        viewHolder.itemView.scrollTo(scrollOffset, 0)
+//                    } else {
+//                         if (firstInActive) {
+//                             firstInActive = false
+//                             currentScrollXWhenInActive = viewHolder.itemView.scrollX
+//                             initXWhenInActive = dX
+//                         }
+//
+//                        if (viewHolder.itemView.scrollX < limitScrollX) {
+//                            viewHolder.itemView.scrollTo((currentScrollXWhenInActive * dX / initXWhenInActive).toInt(), 0)
+//                        }
+//                    }
+//                }
+//            }
+//
+//            override fun clearView(
+//                recyclerView: RecyclerView,
+//                viewHolder: RecyclerView.ViewHolder
+//            ) {
+//                super.clearView(recyclerView, viewHolder)
+//
+//                if (viewHolder.itemView.scrollX > limitScrollX) {
+//                    viewHolder.itemView.scrollTo(limitScrollX, 0)
+//                } else if (viewHolder.itemView.scrollX < 0) {
+//                    viewHolder.itemView.scrollTo(0, 0)
+//                }
+//            }
+//        }).apply {
+//            attachToRecyclerView(binding.rvList)
+//        }
+//    }
+//
+//    private fun dipToPx(dipValue: Float, context: Context): Int {
+//        return (dipValue * context.resources.displayMetrics.density).toInt()
+//    }
 
     // 서버에서 전체 정보 가져오기
     fun  cowInfo(userId: String) {
@@ -165,6 +194,7 @@ class ListFragment : Fragment() {
         val call = service.cowListAll(userId) //통신 API 패스 설정
 
         call?.enqueue(object : Callback<MutableList<MilkCowInfoModel>> {
+            @SuppressLint("ClickableViewAccessibility")
             override fun onResponse(call: Call<MutableList<MilkCowInfoModel>>, response: Response<MutableList<MilkCowInfoModel>>) {
                 if (response.isSuccessful) {
                     Log.d(TAG,""+response?.body().toString())
@@ -179,14 +209,22 @@ class ListFragment : Fragment() {
                         adapter = listAdapter
                         addItemDecoration(ItemDecoration())
 
-                        swipeRefreshLayout.setOnRefreshListener {
-                            swipeRefreshLayout.isRefreshing = false
+//                        swipeRefreshLayout.setOnRefreshListener {
+//                            swipeRefreshLayout.isRefreshing = false
+//                        }
+                        var swipeHelperCallback = SwipeHelperCallback().apply {
+                            setClamp(200f)
                         }
-
-                        setItemTouchHelper(context)
-
-
+                        val itemTouchHelper = ItemTouchHelper(swipeHelperCallback)
+                        itemTouchHelper.attachToRecyclerView(binding.rvList)
+                        setOnTouchListener {v, event->
+                            swipeHelperCallback.removePreviousClamp(binding.rvList)
+                            false
+                        }
                     }
+
+
+//                    binding.rvList.
 //                    Log.d("로그 ",res)
 //                    Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_LONG).show()
                 } else {
