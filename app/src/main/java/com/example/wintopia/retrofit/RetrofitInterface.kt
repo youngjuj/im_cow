@@ -29,7 +29,7 @@ interface RetrofitInterface {
     @GET("${API_.LOGIN}")
     fun  // 모든 유저의 id값만 받아오는 메서드(id 중복체크를 위해)
             getName(@Query("id") id: String?, @Query("pw") pw: String?): Call<UserList?>?
-    @POST("test/signUp")
+    @POST("${API_.SIGNUP}")
     fun  // 모든 유저의 id값만 받아오는 메서드(id 중복체크를 위해)
             getSignUp(@Query("id") id: String?, @Query("pw") pw: String?): Call<UserList?>?
 

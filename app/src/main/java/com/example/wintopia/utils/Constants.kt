@@ -19,6 +19,8 @@ object API_ {
 
     const val LOGIN : String = "login/login"
 
+    const val SIGNUP : String = "login/signUp"
+
     const val COWINFOONE : String = "info/cowInfoOne"
 
     const val COWINFOALL : String = "info/cowInfoAll"
