@@ -4,6 +4,8 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -47,7 +49,7 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
     // RecyclerView ViewHolder
     class ListVOViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         private val view = WeakReference(binding)
-        private lateinit var clItem: ConstraintLayout
+        private lateinit var clItem: FrameLayout
         private lateinit var hiddenBtnEdt: TextView
         private lateinit var hiddenBtnDel: TextView
 
