@@ -74,6 +74,13 @@ interface RetrofitInterface {
     )
     : Call<MultipartBody.Part>
 
+    // cow wish lish
+    @GET("${API_.COWWISH}")
+    fun cowWish(@Query ("cow_id") cow_id: String): Call<String>
+
+
+
+
 
 //    @Multipart
 //    @POST("경로")
