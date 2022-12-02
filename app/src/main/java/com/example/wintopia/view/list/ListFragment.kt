@@ -51,6 +51,36 @@ class ListFragment : Fragment() {
             startActivity(intent)
         }
 
+//        var list = arrayListOf<MilkCowInfoModel>()
+//        list.add(
+//            MilkCowInfoModel("100", "얼룩소", "20221202", "얼룩", "암컷", "접종",
+//        "유", "유", "무", 1, 1)
+//        )
+//        val listAdapter = ListVOAdapter(list)
+//
+//        listAdapter.reload(list)
+//
+//        binding.rvList.apply {
+//            layoutManager = LinearLayoutManager(context)
+//            adapter = listAdapter
+//            addItemDecoration(ItemDecoration())
+//
+////                        swipeRefreshLayout.setOnRefreshListener {
+////                            swipeRefreshLayout.isRefreshing = false
+////                        }
+//            var swipeHelperCallback = SwipeHelperCallback().apply {
+//                setClamp(200f)
+//            }
+//            val itemTouchHelper = ItemTouchHelper(swipeHelperCallback)
+//            itemTouchHelper.attachToRecyclerView(binding.rvList)
+//            setOnTouchListener {v, event->
+//                swipeHelperCallback.removePreviousClamp(binding.rvList)
+//                false
+//            }
+//                    }
+//
+//
+
 
         return binding.root
     }

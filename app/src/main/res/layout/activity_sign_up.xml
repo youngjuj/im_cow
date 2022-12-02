@@ -119,7 +119,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="12"
             app:endIconMode="clear_text"
-            app:helperText="@{SignUpvm.signUpPw2==SignUpvm.signUpPw1 ? @string/test : @string/test2}"
+            app:helperText="@{SignUpvm.signUpPw2.equals(SignUpvm.signUpPw1) ? @string/test : @string/test2}"
             app:helperTextTextColor="#F10606"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
