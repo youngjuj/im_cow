@@ -1,51 +1,29 @@
 package com.example.wintopia.view.info
 
-import android.content.Context
 import android.content.Intent
-import android.database.Cursor
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityInfoBinding
-import com.example.wintopia.retrofit.RetrofitClient
-import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.EditActivity
-import com.example.wintopia.view.edit.EditViewModel
-import com.example.wintopia.view.edit.MilkCowInfoModel
-import com.example.wintopia.view.list.ListVOAdapter
-
 import com.example.wintopia.view.utilssd.Constants.TAG
 import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utilssd.API_
-import com.example.wintopia.view.utilssd.Constants
-import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.io.File
 
 
 class InfoActivity : AppCompatActivity() {
 
     // 데이터 바인딩(1)
     lateinit var binding: ActivityInfoBinding
-    val viewModel: EditViewModel by viewModels()
+    val viewModel: InfoViewModel by viewModels()
     lateinit var cowInfo: CowInfo
     var switch: Int = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +44,7 @@ class InfoActivity : AppCompatActivity() {
 
         // 즐겨찾기 별
         binding.imgInfoStar.setOnClickListener {
+            viewModel.cowWish(binding.tvInfoId.text.toString())
             if (switch == 0) {
                 binding.imgInfoStar.setImageResource(R.drawable.filledstar)
                 switch = 1
@@ -73,7 +52,10 @@ class InfoActivity : AppCompatActivity() {
                 binding.imgInfoStar.setImageResource(R.drawable.star)
                 switch = 0
             }
+            cowWishEvent()
         }
+
+
         // 뒤로가기 버튼
         binding.imgInfoBack.setOnClickListener {
             finish()
@@ -151,7 +133,7 @@ class InfoActivity : AppCompatActivity() {
 
         } else if(intent.getStringExtra("where").equals("edit")) {
             cowInfo = intent.getSerializableExtra("TEXT") as CowInfo
-            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/getImages?user_id=test&cow_id=${cowInfo?.id.toString()}")
+            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id${cowInfo?.id.toString()}")
             binding.tvInfoName.text = (cowInfo?.name.toString())
             binding.tvInfoBirth.text = (cowInfo?.birth.toString())
             binding.tvInfoId.text = (cowInfo?.id.toString())
@@ -218,5 +200,29 @@ class InfoActivity : AppCompatActivity() {
             binding.rbInfoCas.checkedRadioButtonId
         }
     }
+
+
+    fun cowWishEvent() {
+        viewModel.wishEvent.observe(this){
+            when(it){
+                "0" ->{
+                    Toast.makeText(this, "즐겨찾기 해제 완료", Toast.LENGTH_SHORT).show()
+                }
+                "1" ->{
+                    Toast.makeText(this, "즐겨찾기 추가 완료", Toast.LENGTH_SHORT).show()
+                }
+                "fail" -> {
+                    Toast.makeText(this, "즐겨찾기 실패", Toast.LENGTH_SHORT).show()
+                }
+                "fail1" ->{
+                    Toast.makeText(this, "통신상태 불량", Toast.LENGTH_SHORT).show()
+                }
+                "fail2" ->{
+                    Toast.makeText(this, "통신 실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
 
 }

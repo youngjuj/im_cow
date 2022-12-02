@@ -29,4 +29,9 @@ object API_ {
 
     const val COWIMGLIST : String = "image/cowImgList"
 
+    const val COWWISH : String = "info/cowWish"
+
+    const val MYPAGEINFO : String = "info/myPageInfo"
+
+
 }
