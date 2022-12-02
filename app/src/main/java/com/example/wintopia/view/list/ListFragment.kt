@@ -1,5 +1,6 @@
 package com.example.wintopia.view.list
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -163,6 +164,7 @@ class ListFragment : Fragment() {
         val call = service.cowListAll(userId) //통신 API 패스 설정
 
         call?.enqueue(object : Callback<MutableList<MilkCowInfoModel>> {
+            @SuppressLint("ClickableViewAccessibility")
             override fun onResponse(call: Call<MutableList<MilkCowInfoModel>>, response: Response<MutableList<MilkCowInfoModel>>) {
                 if (response.isSuccessful) {
                     Log.d(TAG,""+response?.body().toString())
@@ -177,19 +179,22 @@ class ListFragment : Fragment() {
                         adapter = listAdapter
                         addItemDecoration(ItemDecoration())
 
-                        swipeRefreshLayout.setOnRefreshListener {
-                            swipeRefreshLayout.isRefreshing = false
+//                        swipeRefreshLayout.setOnRefreshListener {
+//                            swipeRefreshLayout.isRefreshing = false
+//                        }
+                        var swipeHelperCallback = SwipeHelperCallback().apply {
+                            setClamp(200f)
+                        }
+                        val itemTouchHelper = ItemTouchHelper(swipeHelperCallback)
+                        itemTouchHelper.attachToRecyclerView(binding.rvList)
+                        setOnTouchListener {v, event->
+                            swipeHelperCallback.removePreviousClamp(binding.rvList)
+                            false
                         }
                     }
-                    var swipeHelperCallback = SwipeHelperCallback().apply {
-                        setClamp(250f)
-                    }
-                    val itemTouchHelper = ItemTouchHelper(swipeHelperCallback)
-                    itemTouchHelper.attachToRecyclerView(binding.rvList)
-                    binding.rvList.setOnTouchListener { _, _ ->
-                        swipeHelperCallback.removePreviousClamp(binding.rvList)
-                        false
-                    }
+
+
+//                    binding.rvList.
 //                    Log.d("로그 ",res)
 //                    Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_LONG).show()
                 } else {
