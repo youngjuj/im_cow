@@ -73,13 +73,13 @@ class InfoActivity : AppCompatActivity() {
 
         // 삭제하기 버튼
         binding.btnInfoDelete.setOnClickListener {
-            Log.d(TAG, " 삭제하기 버튼 클릭")
+            var cow_id = binding.tvInfoId.text.toString()
+            viewModel.cowInfoDelete(cow_id)
+            cowDeleteEvent()
             // 전체 리스트 페이지 이동
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//            finish()
-
-            Toast.makeText(this, "삭제하기", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
     fun replaceFragment(fragment: Fragment) {
@@ -223,6 +223,26 @@ class InfoActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun cowDeleteEvent() {
+        viewModel.deleteEvent.observe(this){
+            when(it){
+                "success" ->{
+                    Toast.makeText(this, "삭제 완료", Toast.LENGTH_SHORT).show()
+                }
+                "fail" -> {
+                    Toast.makeText(this, "삭제 실패, 소의 정보를 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
+                }
+                "fail1" ->{
+                    Toast.makeText(this, "통신상태 불량", Toast.LENGTH_SHORT).show()
+                }
+                "fail2" ->{
+                    Toast.makeText(this, "통신 실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
 
 
 }
