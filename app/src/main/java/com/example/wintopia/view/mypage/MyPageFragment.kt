@@ -41,10 +41,9 @@ class MyPageFragment : Fragment() {
         val savedCheckBox = pref?.getBoolean("checkBox", false)
 
         val user_id = UserList().getId().toString()
-        viewModel.userPageInfo(user_id)
-        myPageEvent()
-
-
+        Log.d(TAG, "$user_id")
+        viewModel.userPageInfo("test")
+//        myPageEvent()
 
         binding.btnMyPageLogout.setOnClickListener(){
             edit?.remove("userId")
@@ -62,7 +61,6 @@ class MyPageFragment : Fragment() {
     }
 
     fun myPageEvent() {
-
         viewModel.myPageCountEvent.observe(requireActivity()){
             when(it){
                 "success" ->{
@@ -82,7 +80,6 @@ class MyPageFragment : Fragment() {
             }
         }
     }
-
 
 
 }

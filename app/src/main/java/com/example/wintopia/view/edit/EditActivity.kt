@@ -116,9 +116,9 @@ class EditActivity : AppCompatActivity() {
 
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
-//        viewModel.infoOut(jsonString.toString())
         if (milkCowInfoModel != null) {
-            viewModel.infoOut(milkCowInfoModel)
+            var cow_id = binding.etEditId.text.toString()
+            viewModel.cowInfoOne(cow_id, milkCowInfoModel)
         }
 
         val cowInfo = CowInfo(etEditId,
