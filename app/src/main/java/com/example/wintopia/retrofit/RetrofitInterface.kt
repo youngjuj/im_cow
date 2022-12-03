@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.wintopia.data.MyPageInfo
 import com.example.wintopia.data.UserList
 import com.example.wintopia.view.edit.MilkCowInfoModel
-import com.example.wintopia.view.list.ListVO
 import com.example.wintopia.view.utilssd.API_
 import com.google.gson.JsonObject
 import com.squareup.moshi.Json
@@ -58,7 +57,7 @@ interface RetrofitInterface {
         @Part files: List<MultipartBody.Part>
     ) : Call<String?>
 
-    // cow wish lish
+    // cow wish list
     @GET("${API_.COWWISH}")
     fun cowWish(@Query ("cow_id") cow_id: String): Call<String>
 
@@ -81,7 +80,7 @@ interface RetrofitInterface {
     @PUT("${API_.COWINFOUPDATE}")
     fun infoUpdate(@Query("cow_id") cow_id: String,
                    @Body item: MilkCowInfoModel
-    ): Call<String>?
+    ): Call<MilkCowInfoModel>?
 
     // Info Delete
     @DELETE("${API_.COWINFODELETE}")
@@ -91,7 +90,11 @@ interface RetrofitInterface {
     @POST("${API_.COWINFOREGIST}")
     fun cowInfoRegist(@Query ("user_id") user_id: String,
                       @Body item: MilkCowInfoModel
-    ): Call<String>
+    ): Call<MilkCowInfoModel>?
+
+    // result of new cow registration
+    @GET("${API_.COWINFOREGIST}")
+    fun getResult(@Query("cow_id") cow_id: String): Call<String>?
 
 
 //    @Multipart

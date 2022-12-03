@@ -78,9 +78,9 @@ class InfoViewModel: ViewModel() {
         val call: Call<String>? = service.cowInfoDelete(cow_id)
         call!!.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>?, response: Response<String?>) {
-                Log.d(Constants.TAG, "onResponse")
+                Log.d(Constants.TAG, "CowInfoDelete onResponse")
                 if (response.isSuccessful()) {
-                    Log.e(Constants.TAG, "onResponse success")
+                    Log.e(Constants.TAG, "CowInfoDelete onResponse success")
 //                        val result: UserList? = response.body()
 
                     // 서버에서 응답받은 데이터

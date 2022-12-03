@@ -17,26 +17,27 @@ import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.EditActivity
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
+import com.example.wintopia.view.info.InfoViewModel
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import java.lang.ref.WeakReference
 import java.util.*
 
 // List에 뿌려줄 item 구성 정보들
-data class ListVO (
-//    val pic: String = "", // 이미지 url 주소
-    val id: String = "",// 젖소 고유번호
-    val name: String = "", // 젖소 이름
-    val birth: String = "",// 젖소 출생일
-    val variety: String = "", // 젖소 종류
-    val gender: String = "", // 젖소 성별
-    val vaccine: String = "", // 백신접종 여부
-    val pregnancy: String = "", // 임신 여부
-    val milk: String = "", // 건유 여부
-    val castration: String = "", // 거세 여부
-    val list: Int = 0,
-    val num: Int = 0
-    )
+//data class ListVO (
+////    val pic: String = "", // 이미지 url 주소
+//    val id: String = "",// 젖소 고유번호
+//    val name: String = "", // 젖소 이름
+//    val birth: String = "",// 젖소 출생일
+//    val variety: String = "", // 젖소 종류
+//    val gender: String = "", // 젖소 성별
+//    val vaccine: String = "", // 백신접종 여부
+//    val pregnancy: String = "", // 임신 여부
+//    val milk: String = "", // 건유 여부
+//    val castration: String = "", // 거세 여부
+//    val list: Int = 0,
+//    val num: Int = 0
+//    )
 
 
 // RecyclerView 사용에 필수인 Adapter
@@ -66,6 +67,7 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
         private lateinit var hiddenBtnEdt: TextView
         private lateinit var hiddenBtnDel: TextView
 
+
         var index = 0
 
         var onDeleteClick:((RecyclerView.ViewHolder) -> Unit)? = null
@@ -88,6 +90,7 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
                     onDeleteClick?.let{ onDeleteClick ->
                         onDeleteClick(this)
                     }
+                    InfoViewModel().cowInfoDelete(data[position].id)
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.example.wintopia.view.regist
 
+import android.content.ContentValues
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.example.wintopia.data.UserList
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
+import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import okhttp3.MultipartBody
@@ -90,6 +92,37 @@ class RegistViewModel: ViewModel() {
         })
     }
 
+    fun registCowInfo(user_id: String, milkCowInfoModel: MilkCowInfoModel) {
+        //Retrofit 인스턴스 생성
+        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
+        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
+
+        val call: Call<MilkCowInfoModel>? = service.cowInfoRegist(user_id, milkCowInfoModel)
+        call!!.enqueue(object : Callback<MilkCowInfoModel?> {
+            override fun onResponse(call: Call<MilkCowInfoModel?>?, response: Response<MilkCowInfoModel?>) {
+                Log.d(Constants.TAG, "InfoUpdate onResponse")
+                if (response.isSuccessful()) {
+                    Log.e(Constants.TAG, "InfoUpdate onResponse success")
+//                        val result: UserList? = response.body()
+
+                    // 서버에서 응답받은 데이터
+                    val result = response.body()
+                    Log.d(ContentValues.TAG, "$result")
+                    event.value = "success"
+
+                } else {
+                    // 서버통신 실패
+                    event.value = "fail1"
+                    Log.e(Constants.TAG, "onResponse fail")
+                }
+            }
+            override fun onFailure(call: Call<MilkCowInfoModel?>?, t: Throwable) {
+                // 통신 실패
+                event.value = "fail2"
+                Log.e(Constants.TAG, "onFailure: " + t.message)
+            }
+        })
+    }
 
 
 }

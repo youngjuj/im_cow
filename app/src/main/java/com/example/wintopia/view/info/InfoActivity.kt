@@ -170,7 +170,6 @@ class InfoActivity : AppCompatActivity() {
         }
     }
 
-//    참고용
     fun observeData() {
         viewModel.id.observe(this){
             binding.tvInfoId.text = it

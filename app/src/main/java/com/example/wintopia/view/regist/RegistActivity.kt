@@ -46,8 +46,6 @@ class RegistActivity : AppCompatActivity(){
     lateinit var currentPhotoPath: String
 
     lateinit var registAdapter: RegistAdapter
-//    var list = ArrayList<Uri>()
-//    lateinit var img: ImageView
 
     var user_id = "test"
     var cow_id = "1"
@@ -62,7 +60,9 @@ class RegistActivity : AppCompatActivity(){
 
         observeData()
 
-        binding.btnRegistCancel.setOnClickListener {  }
+        binding.btnRegistCancel.setOnClickListener {
+            finish()
+        }
 
         binding.btnRegistRegist.setOnClickListener {
             viewModel.sendImage(cow_id, viewModel.imgFileList)
@@ -76,7 +76,6 @@ class RegistActivity : AppCompatActivity(){
             binding.rvRegistPhoto.adapter = adapter
         }
         binding.imgRegistCam.setOnClickListener{
-//            Toast.makeText(this, "리사이클러클릭", Toast.LENGTH_SHORT).show()
             if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
         }
 }
@@ -92,6 +91,28 @@ class RegistActivity : AppCompatActivity(){
                 "failed" -> {
                     Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
                 }
+            }
+        }
+        viewModel.apply {
+            gender.observe(this@RegistActivity) {
+                if (binding.rbRegistMale.isChecked) binding.rbRegistMale.text = it
+                 else binding.rbRegistFemale.text = it
+            }
+            vaccine.observe(this@RegistActivity) {
+                if (binding.rbRegistDid.isChecked) binding.rbRegistDid.text = it
+                else binding.rbRegistDidnt.text = it
+            }
+            pregnancy.observe(this@RegistActivity) {
+                if (binding.rbRegistPreg.isChecked) binding.rbRegistPreg.text = it
+                else binding.rbRegistNonP.text = it
+            }
+            gender.observe(this@RegistActivity) {
+                if (binding.rbRegistMilkY.isChecked) binding.rbRegistMilkY.text = it
+                else binding.rbRegistMilkN.text = it
+            }
+            gender.observe(this@RegistActivity) {
+                if (binding.rbRegistCasY.isChecked) binding.rbRegistCasY.text = it
+                else binding.rbRegistCasN.text = it
             }
         }
 

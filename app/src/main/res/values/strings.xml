@@ -4,4 +4,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="test"></string>
     <string name="test2">비밀번호를 확인해 주세요.</string>
+    <string name="male">수컷</string>
+    <string name="female">암컷</string>
+    <string name="did">접종</string>
+    <string name="didnt">미접종</string>
+    <string name="yes">유</string>
+    <string name="no">무</string>
 </resources>
