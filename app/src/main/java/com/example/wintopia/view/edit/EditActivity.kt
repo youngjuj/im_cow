@@ -67,49 +67,20 @@ class EditActivity : AppCompatActivity() {
 
     fun getText(){
         // 각 텍스트 가져오기
-        var etEditName = viewModel.name.toString()
-        var etEditId = viewModel.id.toString()
-        var etEditBirth = viewModel.birth.toString()
-        var etEditVariety = viewModel.variety.toString()
-        var editGender = viewModel.gender.toString()
-//        binding.rbEditGender.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding.rbEditMale.id -> editGender = "수컷"
-//                binding.rbEditFemale.id -> editGender = "암컷"
-//            }
-//        }
-        var editVaccine = viewModel.vaccine.toString()
-//        binding.rbEditVaccine.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding.rbEditDid.id -> editVaccine = "접종"
-//                binding.rbEditDidnt.id -> editVaccine = "미접종"
-//            }
-//        }
-        var editPreg = viewModel.pregnancy.toString()
-//        binding.rbEditPregnant.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding.rbEditPreg.id -> editPreg = "유"
-//                binding.rbEditNonP.id -> editPreg = "무"
-//            }
-//        }
-        var editMilk = viewModel.milk.toString()
-//        binding.rbEditMilk.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding.rbEditMilkY.id -> editMilk = "유"
-//                binding.rbEditMilkN.id -> editMilk = "무"
-//            }
-//        }
-        var editCas = viewModel.castration.toString()
-//        binding.rbEditCas.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding.rbEditCasY.id -> editCas = "유"
-//                binding.rbEditCasN.id -> editCas = "무"
-//            }
-//        }
+        var etEditName = viewModel.name.value.toString()
+        var etEditId = viewModel.id.value.toString()
+        var etEditBirth = viewModel.birth.value.toString()
+        var etEditVariety = viewModel.variety.value.toString()
+        var editGender = viewModel.gender.value.toString()
+        var editVaccine = viewModel.vaccine.value.toString()
+        var editPreg = viewModel.pregnancy.value.toString()
+        var editMilk = viewModel.milk.value.toString()
+        var editCas = viewModel.castration.value.toString()
+        var editWish = Integer.parseInt(viewModel.wish.value)
 
 
         val milkCowInfoModel = MilkCowInfoModel(etEditId,
-                etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
+                etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,editWish, userNum)
 
 //        var milkCowInfoModel = UserList().getNum()?.let {
 //            MilkCowInfoModel(etEditName,
@@ -120,15 +91,17 @@ class EditActivity : AppCompatActivity() {
 
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
-//        if (milkCowInfoModel != null) {
-//            var cow_id = binding.etEditId.text.toString()
-//            viewModel.cowInfoOne(cow_id, milkCowInfoModel)
-//        }
-
         if (milkCowInfoModel != null) {
             var cow_id = viewModel.id.toString()
             viewModel.infoUpdate(cow_id, milkCowInfoModel)
         }
+
+        // 받아오는건데 데이터는 왜 있을까?
+        if (milkCowInfoModel != null) {
+            var cow_id = binding.etEditId.text.toString()
+            viewModel.cowInfoOne(cow_id, milkCowInfoModel)
+        }
+
 
 
 //        val cowInfo = CowInfo(etEditId,
@@ -151,58 +124,66 @@ class EditActivity : AppCompatActivity() {
         Toast.makeText(this, "수정하기", Toast.LENGTH_SHORT).show()
     }
 
+//    override fun setIntent(intent: Intent) {
+//            val intent = intent
+//            val cowInfo = intent.getSerializableExtra("cowInfo") as MilkCowInfoModel?
+//        binding.wvEditPhoto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
+////        Log.d("널?", "${cowInfo?.name.toString()}")
+//        binding.etEditName.hint = (cowInfo?.name.toString())
+////            binding.etEditId.hint = (cowInfo?.id.toString())
+//        viewModel.id.value = (cowInfo?.id.toString())
+//            binding.etEditBirth.hint = (cowInfo?.birth.toString())
+//            binding.etEditVariety.hint = (cowInfo?.variety.toString())
+//            if (cowInfo?.gender!!.equals("수컷")) {
+//                binding.rbEditMale.isChecked = true
+//            } else {
+//                binding.rbEditFemale.isChecked = true
+//            }
+//
+//            if(cowInfo?.vaccine!!.equals("접종")) {
+//                binding.rbEditDid.isChecked = true
+//            } else {
+//                binding.rbEditDidnt.isChecked = true
+//
+//            }
+//            if (cowInfo?.pregnancy!!.equals("유")) {
+//                binding.rbEditPreg.isChecked = true
+//            } else {
+//                binding.rbEditNonP.isChecked = true
+//
+//            }
+//
+//            if (cowInfo?.milk!!.equals("유")) {
+//                binding.rbEditMilkY.isChecked = true
+//            } else {
+//                binding.rbEditMilkN.isChecked = true
+//
+//            }
+//
+//            if (cowInfo?.castration!!.equals("유")) {
+//                binding.rbEditCasY.isChecked = true
+//            } else {
+//                binding.rbEditCasN.isChecked = true
+//
+//            }
+//
+//    }
+
     override fun setIntent(intent: Intent) {
-            val intent = intent
-            val cowInfo = intent.getSerializableExtra("cowInfo") as MilkCowInfoModel?
+        val intent = intent
+        val cowInfo = intent.getSerializableExtra("cowInfo") as MilkCowInfoModel?
         binding.wvEditPhoto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
 //        Log.d("널?", "${cowInfo?.name.toString()}")
-        binding.etEditName.hint = (cowInfo?.name.toString())
-            binding.etEditId.hint = (cowInfo?.id.toString())
-            binding.etEditBirth.hint = (cowInfo?.birth.toString())
-            binding.etEditVariety.hint = (cowInfo?.variety.toString())
-        cowInfo?.let {
-            binding.apply {
-                rbEditMale.isChecked = true
-                rbEditDidnt.isChecked = true
-                rbEditPreg.isChecked = true
-                rbEditMilkY.isChecked = true
-                rbEditCasY.isChecked = true
-            }
-        }?: kotlin.run {
-            if (cowInfo?.gender!!.equals("수컷")) {
-                binding.rbEditMale.isChecked = true
-            } else {
-                binding.rbEditFemale.isChecked = true
-            }
-
-            if(cowInfo?.vaccine!!.equals("접종")) {
-                binding.rbEditDid.isChecked = true
-            } else {
-                binding.rbEditDidnt.isChecked = true
-
-            }
-            if (cowInfo?.pregnancy!!.equals("유")) {
-                binding.rbEditPreg.isChecked = true
-            } else {
-                binding.rbEditNonP.isChecked = true
-
-            }
-
-            if (cowInfo?.milk!!.equals("유")) {
-                binding.rbEditMilkY.isChecked = true
-            } else {
-                binding.rbEditMilkN.isChecked = true
-
-            }
-
-            if (cowInfo?.castration!!.equals("유")) {
-                binding.rbEditCasY.isChecked = true
-            } else {
-                binding.rbEditCasN.isChecked = true
-
-            }
-        }
-
+        viewModel.name.value = cowInfo?.name.toString()
+        viewModel.id.value = cowInfo?.id.toString()
+        viewModel.birth.value = cowInfo?.birth.toString()
+        viewModel.variety.value = cowInfo?.variety.toString()
+        viewModel.gender.value = cowInfo?.gender.toString()
+        viewModel.vaccine.value = cowInfo?.vaccine.toString()
+        viewModel.pregnancy.value = cowInfo?.pregnancy.toString()
+        viewModel.milk.value = cowInfo?.milk.toString()
+        viewModel.castration.value = cowInfo?.castration.toString()
+        viewModel.wish.value = cowInfo?.list.toString()
 
     }
 

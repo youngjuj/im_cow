@@ -80,7 +80,7 @@ interface RetrofitInterface {
     @PUT("${API_.COWINFOUPDATE}")
     fun infoUpdate(@Query("cow_id") cow_id: String,
                    @Body item: MilkCowInfoModel
-    ): Call<MilkCowInfoModel>?
+    ): Call<String>?
 
     // Info Delete
     @DELETE("${API_.COWINFODELETE}")
@@ -90,7 +90,7 @@ interface RetrofitInterface {
     @POST("${API_.COWINFOREGIST}")
     fun cowInfoRegist(@Query ("user_id") user_id: String,
                       @Body item: MilkCowInfoModel
-    ): Call<MilkCowInfoModel>?
+    ): Call<String>?
 
     // result of new cow registration
     @GET("${API_.COWINFOREGIST}")

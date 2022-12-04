@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
 import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ListItemBinding
-import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.EditActivity
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
@@ -186,7 +185,7 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
 
         Log.v("data확인", data[position].name)
 
-        var milkCowInfoModel = MilkCowInfoModel(infoId,
+        val milkCowInfoModel = MilkCowInfoModel(infoId,
             infoName,infoBirth,infoVariety,infoGender,infoVaccine, infoPregnancy, infoMilk, infoCastration, infoWish, userNum)
 
 
@@ -194,12 +193,12 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
         // 수정 후 상세정보페이지 이동
-        val cowInfo = CowInfo(infoId,
-            infoName,infoBirth,infoVariety,infoGender,infoVaccine,infoPregnancy,infoMilk,infoCastration, infoWish, userNum)
+//        val cowInfo = CowInfo(infoId,
+//            infoName,infoBirth,infoVariety,infoGender,infoVaccine,infoPregnancy,infoMilk,infoCastration, infoWish, userNum)
 
         val intent = Intent(holder.itemView?.context, InfoActivity::class.java)
         intent.putExtra("where", "list")
-        intent.putExtra("infos", cowInfo)
+        intent.putExtra("infos", milkCowInfoModel)
         ContextCompat.startActivity(holder.itemView.context, intent, null)
 
     }

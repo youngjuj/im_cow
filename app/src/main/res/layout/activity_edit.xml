@@ -82,7 +82,7 @@
                 android:id="@+id/imgEditStar"
                 android:layout_width="58dp"
                 android:layout_height="67dp"
-                android:src="@drawable/star"
+                android:src="@{vm.wish.equals(@string/wishN)? @drawable/star : @drawable/filledstar }"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.159"
                 app:layout_constraintStart_toEndOf="@+id/etEditName"
@@ -108,11 +108,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="128dp"
                 android:layout_marginTop="16dp"
+                android:paddingLeft="7dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@{vm.id}"
                 android:textSize="20sp"
+                android:textColor="#000000"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etEditName"
                 android:clickable="false"/>
@@ -135,6 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:paddingLeft="7dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -163,6 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:paddingLeft="7dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -200,7 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="수컷"
-                    android:checked="@{vm.gender.equals(@string/male)}"
+                    android:checked="@{vm.gender.equals(@string/male)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
 
@@ -209,7 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="암컷"
-                    android:checked="@{vm.gender.equals(@string/female)}"
+                    android:checked="@{vm.gender.equals(@string/female)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
             </RadioGroup>
@@ -244,7 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="접종"
-                    android:checked="@{vm.vaccine.equals(@string/did)}"
+                    android:checked="@{vm.vaccine.equals(@string/did)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
 
@@ -253,7 +257,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="미접종"
-                    android:checked="@{vm.vaccine.equals(@string/didnt)}"
+                    android:checked="@{vm.vaccine.equals(@string/didnt)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
             </RadioGroup>
@@ -286,7 +290,7 @@
                     android:layout_height="wrap_content"
                     android:paddingRight="13dp"
                     android:text="유"
-                    android:checked="@{vm.pregnancy.equals(@string/yes)}"
+                    android:checked="@{vm.pregnancy.equals(@string/yes)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
 
@@ -295,7 +299,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="무"
-                    android:checked="@{vm.pregnancy.equals(@string/no)}"
+                    android:checked="@{vm.pregnancy.equals(@string/no)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
             </RadioGroup>
@@ -329,7 +333,7 @@
                     android:layout_height="wrap_content"
                     android:paddingRight="13dp"
                     android:text="유"
-                    android:checked="@{vm.milk.equals(@string/yes)}"
+                    android:checked="@{vm.milk.equals(@string/yes)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
 
@@ -338,7 +342,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="무"
-                    android:checked="@{vm.milk.equals(@string/no)}"
+                    android:checked="@{vm.milk.equals(@string/no)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
             </RadioGroup>
@@ -368,8 +372,9 @@
                     android:id="@+id/rbEditCasY"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingRight="13dp"
                     android:text="유"
-                    android:checked="@{vm.castration.equals(@string/yes)}"
+                    android:checked="@{vm.castration.equals(@string/yes)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
 
@@ -378,7 +383,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="무"
-                    android:checked="@{vm.castration.equals(@string/no)}"
+                    android:checked="@{vm.castration.equals(@string/no)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
             </RadioGroup>
