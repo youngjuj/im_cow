@@ -45,6 +45,9 @@ android {
 }
 
 dependencies {
+
+//    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.5'
     // LottieFile
     implementation 'com.airbnb.android:lottie:3.0.7'
     // for retrofit
