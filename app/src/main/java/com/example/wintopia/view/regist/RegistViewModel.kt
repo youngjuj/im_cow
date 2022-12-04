@@ -19,6 +19,7 @@ import retrofit2.Response
 class RegistViewModel: ViewModel() {
 
     val event = MutableLiveData<String>()
+    val registEvent = MutableLiveData<String>()
     val name = MutableLiveData<String>()
     val id = MutableLiveData<String>()
     val birth = MutableLiveData<String>()
@@ -62,33 +63,37 @@ class RegistViewModel: ViewModel() {
         })
     }
 
-    //웹서버로 이미지전송
-    fun getCowImage(user_id: String, cow_id:String) {
-        Log.d(Constants.TAG,"소 이미지 불러오기")
+    // 이미지 처리랑 같이 고민해보기
+    // 버튼 이벤트 전에 사진 올렸을 때 자동으로 개체 정보 확인해서
+    // 소가 아니면 다시 찍어달라 다이얼로그, 등록 개체는 등록 불가, 미등록 개채는 나머지 정보 입력
+    // 소 정보 신규 등록
+    fun cowInfoRegist(user_id: String, item: MilkCowInfoModel) {
+        Log.d(Constants.TAG,"소 신규 등록 요청")
 
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
-        val call = service.cowImage(user_id, cow_id, UserList().getNum().toString()) //통신 API 패스 설정
+        val call = service.cowInfoRegist(user_id, item) //통신 API 패스 설정
 
-        call?.enqueue(object : Callback<MultipartBody.Part> {
-            override fun onResponse(call: Call<MultipartBody.Part?>, response: Response<MultipartBody.Part?>) {
-                Log.d(Constants.TAG, "제발..${response}")
+        call?.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                Log.d(Constants.TAG, "등록가능..${response}")
 
                 if (response.isSuccessful) {
 //                    res = response.toString()
                     Log.d("로그 ","소 이미지 불러오기3 :"+ response.body().toString())
 
-                    event.value = "success"
+                    registEvent.value = "success"
                 } else {
-                    event.value = "failed"
+                    registEvent.value = "fail1"
                 }
             }
 
-            override fun onFailure(call: Call<MultipartBody.Part?>, t: Throwable) {
+            override fun onFailure(call: Call<String?>, t: Throwable) {
                 Log.d("로그",t.message.toString())
+                registEvent.value = "fail2"
             }
         })
     }
