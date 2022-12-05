@@ -58,6 +58,9 @@ dependencies {
     // 레트로핏 로깅 인터셉터
     implementation "com.squareup.okhttp3:logging-interceptor:4.8.1"
 
+    // 사진 동그랗게 하기
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     // Moshi
     implementation "com.squareup.moshi:moshi:1.14.0"
     implementation 'com.squareup.moshi:moshi-kotlin:1.14.0'
