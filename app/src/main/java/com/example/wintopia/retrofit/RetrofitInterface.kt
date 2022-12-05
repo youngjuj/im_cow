@@ -73,7 +73,7 @@ interface RetrofitInterface {
 
     // cow_id에 맞는 정보 가져오기
     @GET("${API_.COWINFOONE}")
-    fun getData(@Query("cow_id") cow_id: String): Call<MilkCowInfoModel>
+    fun getData(@Query("cow_id") cow_id: String): Call<List<MilkCowInfoModel>>?
 
     //    @FormUrlEncoded
     // cow Info Update
