@@ -1,5 +1,6 @@
 package com.example.wintopia.view.regist
 
+import android.content.ContentValues
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -31,6 +32,7 @@ class RegistViewModel: ViewModel() {
     val fax = MutableLiveData<String>()
     val imgFileList = arrayListOf<MultipartBody.Part>()
     val imgList = arrayListOf<Uri?>()
+    val milkCowInfoModel = MutableLiveData<MilkCowInfoModel>()
 
     fun sendImage(cow_id:String, imgFileList: ArrayList<MultipartBody.Part>) {
         Log.d(Constants.TAG,"웹서버로 이미지전송")
@@ -96,6 +98,37 @@ class RegistViewModel: ViewModel() {
         })
     }
 
+    fun registCowInfo(user_id: String, milkCowInfoModel: MilkCowInfoModel) {
+        //Retrofit 인스턴스 생성
+        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
+        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
+
+        val call: Call<String>? = service.cowInfoRegist(user_id, milkCowInfoModel)
+        call!!.enqueue(object : Callback<String?> {
+            override fun onResponse(call: Call<String?>?, response: Response<String?>) {
+                Log.d(Constants.TAG, "InfoUpdate onResponse")
+                if (response.isSuccessful()) {
+                    Log.e(Constants.TAG, "InfoUpdate onResponse success")
+//                        val result: UserList? = response.body()
+
+                    // 서버에서 응답받은 데이터
+                    val result = response.body()
+                    Log.d(ContentValues.TAG, "$result")
+                    event.value = "success"
+
+                } else {
+                    // 서버통신 실패
+                    event.value = "fail1"
+                    Log.e(Constants.TAG, "onResponse fail")
+                }
+            }
+            override fun onFailure(call: Call<String?>?, t: Throwable) {
+                // 통신 실패
+                event.value = "fail2"
+                Log.e(Constants.TAG, "onFailure: " + t.message)
+            }
+        })
+    }
 
 
 }

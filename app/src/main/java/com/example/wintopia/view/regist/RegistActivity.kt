@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityRegistBinding
 import com.example.wintopia.view.adapter.RegistAdapter
+import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.Constants
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -46,8 +47,6 @@ class RegistActivity : AppCompatActivity(){
     lateinit var currentPhotoPath: String
 
     lateinit var registAdapter: RegistAdapter
-//    var list = ArrayList<Uri>()
-//    lateinit var img: ImageView
 
     var user_id = "test"
     var cow_id = "1"
@@ -62,10 +61,20 @@ class RegistActivity : AppCompatActivity(){
 
         observeData()
 
-        binding.btnRegistCancel.setOnClickListener {  }
+        val milkCowInfo = MilkCowInfoModel(
+            viewModel.id.toString(), viewModel.name.toString(),
+            viewModel.birth.toString(), viewModel.variety.toString(),
+            viewModel.gender.toString(), viewModel.vaccine.toString(),
+            viewModel.pregnancy.toString(), viewModel.milk.toString(),
+            viewModel.castration.toString(), 0, 0)
+
+        binding.btnRegistCancel.setOnClickListener {
+            finish()
+        }
 
         binding.btnRegistRegist.setOnClickListener {
             viewModel.sendImage(cow_id, viewModel.imgFileList)
+            viewModel.registCowInfo(user_id, milkCowInfo)
         }
 
         registAdapter = RegistAdapter(viewModel.imgList)
@@ -76,7 +85,6 @@ class RegistActivity : AppCompatActivity(){
             binding.rvRegistPhoto.adapter = adapter
         }
         binding.imgRegistCam.setOnClickListener{
-//            Toast.makeText(this, "리사이클러클릭", Toast.LENGTH_SHORT).show()
             if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
         }
 }
@@ -92,6 +100,40 @@ class RegistActivity : AppCompatActivity(){
                 "failed" -> {
                     Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
                 }
+            }
+        }
+        viewModel.apply {
+            id.observe(this@RegistActivity) {
+                binding.etRegistId.hint = it
+            }
+            name.observe(this@RegistActivity) {
+                binding.etRegistName.hint = it
+            }
+            birth.observe(this@RegistActivity) {
+                binding.etRegistBirth.hint = it
+            }
+            variety.observe(this@RegistActivity) {
+                binding.etRegistVariety.hint = it
+            }
+            gender.observe(this@RegistActivity) {
+                if (binding.rbRegistMale.isChecked) binding.rbRegistMale.text = it
+                 else binding.rbRegistFemale.text = it
+            }
+            vaccine.observe(this@RegistActivity) {
+                if (binding.rbRegistDid.isChecked) binding.rbRegistDid.text = it
+                else binding.rbRegistDidnt.text = it
+            }
+            pregnancy.observe(this@RegistActivity) {
+                if (binding.rbRegistPreg.isChecked) binding.rbRegistPreg.text = it
+                else binding.rbRegistNonP.text = it
+            }
+            milk.observe(this@RegistActivity) {
+                if (binding.rbRegistMilkY.isChecked) binding.rbRegistMilkY.text = it
+                else binding.rbRegistMilkN.text = it
+            }
+            castration.observe(this@RegistActivity) {
+                if (binding.rbRegistCasY.isChecked) binding.rbRegistCasY.text = it
+                else binding.rbRegistCasN.text = it
             }
         }
 
@@ -292,7 +334,7 @@ class RegistActivity : AppCompatActivity(){
 
 
 
-
+//이미지와 정보들을 엮어서 보내지 않아도 되는걸까?
 
 
 

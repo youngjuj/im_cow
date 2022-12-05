@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
+import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import retrofit2.Call
@@ -28,6 +29,8 @@ class InfoViewModel: ViewModel() {
     val image = MutableLiveData<String>()
     val wishEvent = MutableLiveData<String>()
     val deleteEvent = MutableLiveData<String>()
+    val getEvent = MutableLiveData<String>()
+    var resCowinfo: MilkCowInfoModel? = null
 
 
     fun cowWish(cow_id: String){
@@ -78,9 +81,9 @@ class InfoViewModel: ViewModel() {
         val call: Call<String>? = service.cowInfoDelete(cow_id)
         call!!.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>?, response: Response<String?>) {
-                Log.d(Constants.TAG, "onResponse")
+                Log.d(Constants.TAG, "CowInfoDelete onResponse")
                 if (response.isSuccessful()) {
-                    Log.e(Constants.TAG, "onResponse success")
+                    Log.e(Constants.TAG, "CowInfoDelete onResponse success")
 //                        val result: UserList? = response.body()
 
                     // 서버에서 응답받은 데이터
@@ -101,7 +104,6 @@ class InfoViewModel: ViewModel() {
             }
         })
     }
-
 
 
 

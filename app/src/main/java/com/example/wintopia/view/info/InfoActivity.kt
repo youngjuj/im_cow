@@ -12,6 +12,7 @@ import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityInfoBinding
 import com.example.wintopia.view.edit.CowInfo
 import com.example.wintopia.view.edit.EditActivity
+import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.Constants.TAG
 import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utilssd.API_
@@ -22,8 +23,7 @@ class InfoActivity : AppCompatActivity() {
     // 데이터 바인딩(1)
     lateinit var binding: ActivityInfoBinding
     val viewModel: InfoViewModel by viewModels()
-    lateinit var cowInfo: CowInfo
-    var switch: Int = 0
+    var cowInfo: MilkCowInfoModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,16 +41,21 @@ class InfoActivity : AppCompatActivity() {
         setIntent(intent)
         observeData()
 
+//        cowInfo = MilkCowInfoModel(viewModel.id.value.toString(), viewModel.name.value.toString(), viewModel.birth.value.toString(), viewModel.variety.value.toString(), viewModel.gender.toString(),
+//                                   viewModel.vaccine.value.toString(), viewModel.pregnancy.value.toString(), viewModel.milk.value.toString(), viewModel.castration.value.toString(),
+//                                   viewModel.wishEvent.value!!.toInt(), 0)
+
 
         // 즐겨찾기 별
         binding.imgInfoStar.setOnClickListener {
             viewModel.cowWish(binding.tvInfoId.text.toString())
-            if (switch == 0) {
+            if (viewModel.wishEvent.equals("0")) {
                 binding.imgInfoStar.setImageResource(R.drawable.filledstar)
-                switch = 1
+                viewModel.wishEvent.value = "1"
             } else {
                 binding.imgInfoStar.setImageResource(R.drawable.star)
-                switch = 0
+                viewModel.wishEvent.value = "0"
+
             }
             cowWishEvent()
         }
@@ -92,85 +97,50 @@ class InfoActivity : AppCompatActivity() {
 
 
 
+//
+
     override fun setIntent(intent: Intent) {
         val intent = intent
         if(intent.getStringExtra("where").equals("list")) {
-            cowInfo = intent.getSerializableExtra("infos") as CowInfo
+            cowInfo = intent.getSerializableExtra("infos") as MilkCowInfoModel
             binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
-            binding.tvInfoName.text = (cowInfo?.name.toString())
-            binding.tvInfoBirth.text = (cowInfo?.birth.toString())
-            binding.tvInfoId.text = (cowInfo?.id.toString())
-            Log.d("로그ㅜ", "${cowInfo?.milk.toString()}")
-            if (cowInfo?.gender.toString().equals("수컷")) {
-                binding.rbInfoMale.isChecked = true
-            } else if(cowInfo?.gender.toString().equals("암컷")) {
-                binding.rbInfoFemale.isChecked = true
-            }
-            if (cowInfo?.vaccine.toString().equals("접종")) {
-                binding.rbInfoDid.isChecked = true
-            } else if (cowInfo?.vaccine.toString().equals("미접종")) {
-                binding.rbInfoDidnt.isChecked = true
-            }
-            if (cowInfo?.pregnancy.toString().equals("유")) {
-                binding.rbInfoPreg.isChecked = true
-            } else if (cowInfo?.pregnancy.toString().equals("무")){
-                binding.rbInfoNonP.isChecked = true
-            }
-            if (cowInfo?.milk.toString().equals("유")) {
-                binding.rbInfoMilkY.isChecked = true
-            } else if (cowInfo?.milk.toString().equals("무")){
-                binding.rbInfoMilkN.isChecked = true
-            }
-            if (cowInfo?.castration.toString().equals("유")) {
-                binding.rbInfoCasY.isChecked = true
-            } else if (cowInfo?.castration.toString().equals("무")){
-                binding.rbInfoCasN.isChecked = true
-            }
-            switch = Integer.parseInt(cowInfo?.list.toString())
-            if (switch == 1) {
-                binding.imgInfoStar.setImageResource(R.drawable.filledstar)
-            }
+            Log.d("확인좀..2", cowInfo?.id.toString())
+            viewModel.name.value = (cowInfo?.name.toString())
+            viewModel.id.value = (cowInfo?.id.toString())
+            viewModel.birth.value = (cowInfo?.birth.toString())
+            viewModel.variety.value = (cowInfo?.variety.toString())
+            viewModel.gender.value = (cowInfo?.gender.toString())
+            viewModel.vaccine.value = (cowInfo?.vaccine.toString())
+            viewModel.pregnancy.value = (cowInfo?.pregnancy.toString())
+            viewModel.milk.value = (cowInfo?.milk.toString())
+            viewModel.castration.value = (cowInfo?.castration.toString())
+            viewModel.wishEvent.value = (cowInfo?.list.toString())
+
+
 
         } else if(intent.getStringExtra("where").equals("edit")) {
-            cowInfo = intent.getSerializableExtra("TEXT") as CowInfo
+            cowInfo = intent.getSerializableExtra("TEXT") as MilkCowInfoModel?
+//            cowInfo = viewModel.resCowinfo
+//            Log.d("확인ㅁㅈㅇ용", "$cow_id")
+            Log.d("확인좀..3", cowInfo?.id.toString())
+//            cowInfo = viewModel.cowInfoOne(cow_id.toString())
             binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id${cowInfo?.id.toString()}")
-            binding.tvInfoName.text = (cowInfo?.name.toString())
-            binding.tvInfoBirth.text = (cowInfo?.birth.toString())
-            binding.tvInfoId.text = (cowInfo?.id.toString())
-            if (cowInfo?.gender.toString().equals("수컷")) {
-                binding.rbInfoMale.isChecked = true
-            } else if(cowInfo?.gender.toString().equals("암컷")) {
-                binding.rbInfoFemale.isChecked = true
-            }
-            if (cowInfo?.vaccine.toString().equals("접종")) {
-                binding.rbInfoDid.isChecked = true
-            } else if (cowInfo?.vaccine.toString().equals("미접종")) {
-                binding.rbInfoDidnt.isChecked = true
-            }
-            if (cowInfo?.pregnancy.toString().equals("유")) {
-                binding.rbInfoPreg.isChecked = true
-            } else if (cowInfo?.pregnancy.toString().equals("무")){
-                binding.rbInfoNonP.isChecked = true
-            }
-            if (cowInfo?.milk.toString().equals("유")) {
-                binding.rbInfoMilkY.isChecked = true
-            } else if (cowInfo?.milk.toString().equals("무")){
-                binding.rbInfoMilkN.isChecked = true
-            }
-            if (cowInfo?.castration.toString().equals("유")) {
-                binding.rbInfoCasY.isChecked = true
-            } else if (cowInfo?.castration.toString().equals("무")){
-                binding.rbInfoCasN.isChecked = true
-            }
-            switch = Integer.parseInt(cowInfo?.list.toString())
-            if (switch == 1) {
-                binding.imgInfoStar.setImageResource(R.drawable.filledstar)
-            }
+            viewModel.name.value = (cowInfo?.name.toString())
+            viewModel.id.value = (cowInfo?.id.toString())
+            viewModel.birth.value = (cowInfo?.birth.toString())
+            viewModel.variety.value = (cowInfo?.variety.toString())
+            viewModel.gender.value = (cowInfo?.gender.toString())
+            viewModel.vaccine.value = (cowInfo?.vaccine.toString())
+            viewModel.pregnancy.value = (cowInfo?.pregnancy.toString())
+            viewModel.milk.value = (cowInfo?.milk.toString())
+            viewModel.castration.value = (cowInfo?.castration.toString())
+            viewModel.wishEvent.value = (cowInfo?.list.toString())
 
         }
+
     }
 
-//    참고용
+
     fun observeData() {
         viewModel.id.observe(this){
             binding.tvInfoId.text = it
@@ -199,6 +169,7 @@ class InfoActivity : AppCompatActivity() {
         viewModel.castration.observe(this){
             binding.rbInfoCas.checkedRadioButtonId
         }
+
     }
 
 

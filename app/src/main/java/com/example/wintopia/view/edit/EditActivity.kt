@@ -15,6 +15,9 @@ import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import com.google.gson.Gson
 import com.google.gson.JsonParser
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.Request
+import okhttp3.RequestBody
 import org.json.JSONObject
 
 class EditActivity : AppCompatActivity() {
@@ -24,6 +27,7 @@ class EditActivity : AppCompatActivity() {
     val viewModel: EditViewModel by viewModels()
     var switch: Int = 0
     var userNum: Int = 0
+    var cowInfo: MilkCowInfoModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,7 @@ class EditActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         setIntent(intent)
+        observeData()
 
 
         // 수정하기 버튼
@@ -43,10 +48,7 @@ class EditActivity : AppCompatActivity() {
 
         // 취소버튼
         binding.btnEditCancel.setOnClickListener {
-            Log.d(Constants.TAG, " 취소하기 버튼 클릭")
-            // 이전 상세페이지로 이동
-            val intent2 = Intent(this, InfoActivity::class.java)
-            startActivity(intent2)
+            getText()
             finish()
         }
 
@@ -63,77 +65,40 @@ class EditActivity : AppCompatActivity() {
 
     fun getText(){
         // 각 텍스트 가져오기
-        var etEditName = binding.etEditName.text.toString()
-        var etEditId = binding.etEditId.text.toString()
-        var etEditBirth = binding.etEditBirth.text.toString()
-        var etEditVariety = binding.etEditVariety.text.toString()
-        var editGender: String = ""
-        binding.rbEditGender.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                binding.rbEditMale.id -> editGender = "수컷"
-                binding.rbEditFemale.id -> editGender = "암컷"
-            }
-        }
-        var editVaccine: String = ""
-        binding.rbEditVaccine.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                binding.rbEditDid.id -> editVaccine = "접종"
-                binding.rbEditDidnt.id -> editVaccine = "미접종"
-            }
-        }
-        var editPreg: String = ""
-        binding.rbEditPregnant.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                binding.rbEditPreg.id -> editPreg = "유"
-                binding.rbEditNonP.id -> editPreg = "무"
-            }
-        }
-        var editMilk: String = ""
-        binding.rbEditMilk.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                binding.rbEditMilkY.id -> editMilk = "유"
-                binding.rbEditMilkN.id -> editMilk = "무"
-            }
-        }
-        var editCas: String = ""
-        binding.rbEditCas.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                binding.rbEditCasY.id -> editCas = "유"
-                binding.rbEditCasN.id -> editCas = "무"
-            }
-        }
+        var etEditName = viewModel.name.value.toString()
+        var etEditId = viewModel.id.value.toString()
+        var etEditBirth = viewModel.birth.value.toString()
+        var etEditVariety = viewModel.variety.value.toString()
+        var editGender = viewModel.gender.value.toString()
+        var editVaccine = viewModel.vaccine.value.toString()
+        var editPreg = viewModel.pregnancy.value.toString()
+        var editMilk = viewModel.milk.value.toString()
+        var editCas = viewModel.castration.value.toString()
+        var editWish = Integer.parseInt(viewModel.wish.value)
 
 
-        var milkCowInfoModel = MilkCowInfoModel(etEditId,
-                etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
+        val milkCowInfoModel = MilkCowInfoModel(etEditId,
+                etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,editWish, userNum)
 
-//        var milkCowInfoModel = UserList().getNum()?.let {
-//            MilkCowInfoModel(etEditName,
-//                etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch,
-//                it
-//            )
-//        }
 
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
         if (milkCowInfoModel != null) {
-            var cow_id = binding.etEditId.text.toString()
-            viewModel.cowInfoOne(cow_id, milkCowInfoModel)
+            var cow_id = milkCowInfoModel.id
+            Log.d("있니", milkCowInfoModel.id)
+            viewModel.cowInfoUpdate(cow_id, milkCowInfoModel)
+            Log.d("있니", milkCowInfoModel.name)
+            cowInfo = milkCowInfoModel
+
         }
 
-        val cowInfo = CowInfo(etEditId,
-            etEditName,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch, userNum)
 
-        // 수정 후 상세정보페이지 이동
-//        val cowInfo = UserList().getNum()?.let {
-//            CowInfo(etEditName,
-//                etEditId,etEditBirth,etEditVariety,editGender,editVaccine,editPreg,editMilk,editCas,switch,
-//                it
-//            )
-//        }
+
 
         val intent = Intent(this, InfoActivity::class.java)
         intent.putExtra("where", "edit")
+//        intent.putExtra("TEXT", milkCowInfoModel)
+        Log.d("tqfa", cowInfo?.id.toString())
         intent.putExtra("TEXT", cowInfo)
         startActivity(intent)
         finish()
@@ -141,58 +106,72 @@ class EditActivity : AppCompatActivity() {
         Toast.makeText(this, "수정하기", Toast.LENGTH_SHORT).show()
     }
 
+
     override fun setIntent(intent: Intent) {
-            val intent = intent
-            val cowInfo = intent.getSerializableExtra("cowInfo") as MilkCowInfoModel?
+        val intent = intent
+        val cowInfo = intent.getSerializableExtra("cowInfo") as MilkCowInfoModel?
         binding.wvEditPhoto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
 //        Log.d("널?", "${cowInfo?.name.toString()}")
-        binding.etEditName.hint = (cowInfo?.name.toString())
-            binding.etEditId.hint = (cowInfo?.id.toString())
-            binding.etEditBirth.hint = (cowInfo?.birth.toString())
-            binding.etEditVariety.hint = (cowInfo?.variety.toString())
-        cowInfo?.let {
-            binding.apply {
-                rbEditMale.isChecked = true
-                rbEditDidnt.isChecked = true
-                rbEditPreg.isChecked = true
-                rbEditMilkY.isChecked = true
-                rbEditCasY.isChecked = true
-            }
-        }?: kotlin.run {
-            if (cowInfo?.gender!!.equals("수컷")) {
-                binding.rbEditMale.isChecked = true
-            } else {
-                binding.rbEditFemale.isChecked = true
-            }
+        viewModel.name.value = cowInfo?.name.toString()
+        viewModel.id.value = cowInfo?.id.toString()
+        viewModel.birth.value = cowInfo?.birth.toString()
+        viewModel.variety.value = cowInfo?.variety.toString()
+        viewModel.gender.value = cowInfo?.gender.toString()
+        viewModel.vaccine.value = cowInfo?.vaccine.toString()
+        viewModel.pregnancy.value = cowInfo?.pregnancy.toString()
+        viewModel.milk.value = cowInfo?.milk.toString()
+        viewModel.castration.value = cowInfo?.castration.toString()
+        viewModel.wish.value = cowInfo?.list.toString()
 
-            if(cowInfo?.vaccine!!.equals("접종")) {
-                binding.rbEditDid.isChecked = true
-            } else {
-                binding.rbEditDidnt.isChecked = true
+    }
 
-            }
-            if (cowInfo?.pregnancy!!.equals("유")) {
-                binding.rbEditPreg.isChecked = true
-            } else {
-                binding.rbEditNonP.isChecked = true
 
-            }
-
-            if (cowInfo?.milk!!.equals("유")) {
-                binding.rbEditMilkY.isChecked = true
-            } else {
-                binding.rbEditMilkN.isChecked = true
-
-            }
-
-            if (cowInfo?.castration!!.equals("유")) {
-                binding.rbEditCasY.isChecked = true
-            } else {
-                binding.rbEditCasN.isChecked = true
-
-            }
-        }
-
+    fun observeData() {
+//        viewModel.apply {
+//            id.observe(this@EditActivity) {
+//                binding.etEditId.hint = it
+//            }
+//            name.observe(this@EditActivity) {
+//                binding.etEditName.hint = it
+//            }
+//            birth.observe(this@EditActivity){
+//                binding.etEditBirth.hint = it
+//                }
+//            variety.observe(this@EditActivity){
+//                binding.etEditVariety.hint = it
+//            }
+//            gender.observe(this@EditActivity){
+//                when (binding.rbEditGender.checkedRadioButtonId) {
+//                    binding.rbEditMale.id -> binding.rbEditMale.text
+//                    binding.rbEditFemale.id -> binding.rbEditFemale.text
+//                }
+//            }
+//            vaccine.observe(this@EditActivity){
+//                when (binding.rbEditVaccine.checkedRadioButtonId) {
+//                    binding.rbEditDid.id -> binding.rbEditDid.text
+//                    binding.rbEditDidnt.id -> binding.rbEditDidnt.text
+//                }
+//
+//            }
+//            pregnancy.observe(this@EditActivity){
+//                when (binding.rbEditPregnant.checkedRadioButtonId) {
+//                    binding.rbEditPreg.id -> binding.rbEditPreg.text
+//                    binding.rbEditNonP.id -> binding.rbEditNonP.text
+//                }
+//            }
+//            milk.observe(this@EditActivity){
+//                when (binding.rbEditMilk.checkedRadioButtonId) {
+//                    binding.rbEditMilkY.id -> binding.rbEditMilkY.text
+//                    binding.rbEditMilkN.id -> binding.rbEditMilkN.text
+//                }
+//            }
+//            castration.observe(this@EditActivity){
+//                when (binding.rbEditCas.checkedRadioButtonId) {
+//                    binding.rbEditCasY.id -> binding.rbEditCasY.text
+//                    binding.rbEditCasN.id -> binding.rbEditCasN.text
+//                }
+//            }
+//        }
 
     }
 }

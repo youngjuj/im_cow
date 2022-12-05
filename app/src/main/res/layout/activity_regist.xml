@@ -144,7 +144,7 @@
                 android:ems="10"
                 android:hint="품종 입력"
                 android:inputType="textPersonName"
-                android:text="@={vm.fax}"
+                android:text="@={vm.variety}"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/etRegistBirth"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -271,7 +271,7 @@
                     android:id="@+id/rbRegistDid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="유"
+                    android:text="접종"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
 
@@ -279,7 +279,7 @@
                     android:id="@+id/rbRegistDidnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="무"
+                    android:text="미접종"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
             </RadioGroup>
