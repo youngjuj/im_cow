@@ -2,18 +2,18 @@ package com.example.wintopia.view.regist
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
-import android.os.Build
+import android.os.*
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
@@ -22,10 +22,13 @@ import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.wintopia.MyCustomDialog
+import com.example.wintopia.MyCustomDialogInterface
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityRegistBinding
 import com.example.wintopia.view.adapter.RegistAdapter
 import com.example.wintopia.view.edit.MilkCowInfoModel
+import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utilssd.Constants
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -34,12 +37,16 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 
-class RegistActivity : AppCompatActivity(){
+class RegistActivity : AppCompatActivity(),MyCustomDialogInterface {
 
     // databinding
     lateinit var binding: ActivityRegistBinding
     var resultNum: Int = 0
     val viewModel: RegistViewModel by viewModels()
+    // 바인딩
+    private var mBinding: ActivityRegistBinding? = null
+    // 변수
+    val res = "true"
 
     // 카메라 및 갤러리 연동 변수들
     private val REQUEST_IMAGE_CAPTURE = 1
@@ -58,6 +65,8 @@ class RegistActivity : AppCompatActivity(){
 
         binding.vm = viewModel
         binding.lifecycleOwner = this
+        mBinding = ActivityRegistBinding.inflate(layoutInflater)
+
 
         observeData()
 
@@ -66,7 +75,8 @@ class RegistActivity : AppCompatActivity(){
             viewModel.birth.toString(), viewModel.variety.toString(),
             viewModel.gender.toString(), viewModel.vaccine.toString(),
             viewModel.pregnancy.toString(), viewModel.milk.toString(),
-            viewModel.castration.toString(), 0, 0)
+            viewModel.castration.toString(), 0, 0
+        )
 
         binding.btnRegistCancel.setOnClickListener {
             finish()
@@ -75,7 +85,85 @@ class RegistActivity : AppCompatActivity(){
         binding.btnRegistRegist.setOnClickListener {
             viewModel.sendImage(cow_id, viewModel.imgFileList)
             viewModel.registCowInfo(user_id, milkCowInfo)
+            val myCustomDialog = MyCustomDialog(this, this)
+            // 다이얼로그 밖에 화면 눌러서 끄기 막기
+            myCustomDialog.setCancelable(false)
+            myCustomDialog.show()
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (res.equals("false")) {
+                    val alertDialog = AlertDialog.Builder(this).create()
+                    alertDialog.setTitle("소 사진이 아닙니다.")
+
+                    alertDialog.setButton(
+                        AlertDialog.BUTTON_POSITIVE, "확인"
+                    ) { dialog, which -> dialog.dismiss() }
+                    alertDialog.show()
+
+                    val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                    btnPositive.setOnClickListener {
+                        myCustomDialog.dismiss()
+                        alertDialog.dismiss()
+                    }
+
+                    val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+                    layoutParams.weight = 10f
+                    btnPositive.layoutParams = layoutParams
+
+
+                } else if (res.equals("true")) {
+                    val alertDialog = AlertDialog.Builder(this).create()
+                    alertDialog.setTitle("소를 등록하시겠습니까?")
+
+                    alertDialog.setButton(
+                        AlertDialog.BUTTON_POSITIVE, "취소 하기"
+                    ) { dialog, which -> dialog.dismiss() }
+
+                    alertDialog.setButton(
+                        AlertDialog.BUTTON_NEGATIVE, "등록 하기"
+                    ) { dialog, which -> dialog.dismiss() }
+                    alertDialog.show()
+
+                    val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                    btnPositive.setOnClickListener {
+                        myCustomDialog.dismiss()
+                        alertDialog.dismiss()
+                    }
+                    val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    btnNegative.setOnClickListener {
+                        val intent = Intent(this, MainActivity::class.java)
+//                    intent.putExtra("cowInfo", cowInfo)
+                        startActivity(intent)
+                    }
+
+
+                    val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+                    layoutParams.weight = 10f
+                    btnPositive.layoutParams = layoutParams
+                    btnNegative.layoutParams = layoutParams
+
+                } else {
+                    val alertDialog = AlertDialog.Builder(this).create()
+                    alertDialog.setTitle("이미 등록된 객체입니다!")
+
+                    alertDialog.setButton(
+                        AlertDialog.BUTTON_POSITIVE, "확인"
+                    ) { dialog, which -> dialog.dismiss() }
+                    alertDialog.show()
+
+                    val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                    btnPositive.setOnClickListener {
+                        val intent = Intent(this, MainActivity::class.java)
+//                    intent.putExtra("cowInfo", cowInfo)
+                        startActivity(intent)
+                    }
+                    val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+                    layoutParams.weight = 10f
+                    btnPositive.layoutParams = layoutParams
+                }
+            }, 3000)
+
         }
+
 
         registAdapter = RegistAdapter(viewModel.imgList)
 
@@ -305,7 +393,16 @@ class RegistActivity : AppCompatActivity(){
         registAdapter.notifyDataSetChanged()
         }
 
-        }
+    // Subscribe Button Clicked
+    override fun onLikedBtnClicked() {
+        Toast.makeText(this, "구독버튼 클릭", Toast.LENGTH_SHORT).show()
+    }
+    // Like Button Clikced
+    override fun onSubscribeBtnClicked() {
+        Toast.makeText(this, "좋아요버튼 클릭", Toast.LENGTH_SHORT).show()
+    }
+
+}
 
     // 절대경로 변환
     fun absolutelyPath(ctx: Activity, uri: Uri?): String {
@@ -326,6 +423,9 @@ class RegistActivity : AppCompatActivity(){
 
         return result!!
     }
+
+
+
 
 
 

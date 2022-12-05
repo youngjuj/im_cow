@@ -30,7 +30,7 @@ class InfoViewModel: ViewModel() {
     val wishEvent = MutableLiveData<String>()
     val deleteEvent = MutableLiveData<String>()
     val getEvent = MutableLiveData<String>()
-    var resCowinfo: MilkCowInfoModel? = null
+//    var resCowinfo: MilkCowInfoModel? = null
 
 
     fun cowWish(cow_id: String){
