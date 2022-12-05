@@ -27,6 +27,7 @@
             android:paddingTop="32dp"
             android:layout_marginLeft="90dp"
             android:text="수정"
+            android:clickable="false"
             android:textAlignment="center"
             android:textColor="#fff"
             android:textSize="24dp" />
@@ -40,6 +41,7 @@
             android:paddingTop="32dp"
             android:layout_marginLeft="160dp"
             android:text="삭제"
+            android:clickable="false"
             android:textAlignment="center"
             android:textColor="#fff"
             android:textSize="24dp"

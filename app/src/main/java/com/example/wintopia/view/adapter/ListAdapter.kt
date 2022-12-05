@@ -73,17 +73,17 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
 
         init {
             binding.root.let {
-                binding.root.setOnClickListener{
-                    if(binding.root.scrollX != 0) {
-                        binding.root.scrollTo(0, 0)
-                    }
-                }
-
                 clItem = binding.clItem
                 hiddenBtnEdt = binding.hiddenBtnEdt
                 hiddenBtnDel = binding.hiddenBtnDel
 
-
+                binding.clItem.setOnClickListener{
+                    if(binding.root.scrollX != 0) {
+                        hiddenBtnDel.isClickable = true
+                        hiddenBtnEdt.isClickable = true
+                        binding.root.scrollTo(0, 0)
+                    }
+                }
 
                 hiddenBtnDel.setOnClickListener {
                     onDeleteClick?.let{ onDeleteClick ->
@@ -128,11 +128,8 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
 
 
         // item 선택 onClickListener
-        holder.itemView.setOnClickListener {
-            // item선택시 InfoActivity로 이동
+        holder.binding.clItem.setOnClickListener {
             putText(holder, position)
-//            val intent = Intent(holder.itemView?.context, InfoActivity::class.java)
-//            ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
 
         holder.updateView()
@@ -143,6 +140,9 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
     fun reload(listdata: List<MilkCowInfoModel>) {
         this.listData.clear()
         this.listData.addAll(listdata)
+//        this.listData.add(MilkCowInfoModel("41", "깜찍이", "2022-12-05", "시멘탈",
+//                                           "암컷", "접종", "무", "무", "무",
+//                                            1, 0))
         notifyDataSetChanged()
     }
 

@@ -47,10 +47,12 @@ class EditActivity : AppCompatActivity() {
 
         // 취소버튼
         binding.btnEditCancel.setOnClickListener {
-            Log.d(Constants.TAG, " 취소하기 버튼 클릭")
-            // 이전 상세페이지로 이동
-            val intent2 = Intent(this, InfoActivity::class.java)
-            startActivity(intent2)
+            getText()
+//            Log.d(Constants.TAG, " 취소하기 버튼 클릭")
+//            // 이전 상세페이지로 이동
+//            val intent2 = Intent(this, InfoActivity::class.java)
+//            intent2.putExtra("cancel", milkCowInfoModel)
+//            startActivity(intent2)
             finish()
         }
 
@@ -93,14 +95,17 @@ class EditActivity : AppCompatActivity() {
 
         if (milkCowInfoModel != null) {
             var cow_id = viewModel.id.toString()
-            viewModel.infoUpdate(cow_id, milkCowInfoModel)
+            Log.d("있니", milkCowInfoModel.id)
+            viewModel.cowInfoUpdate(cow_id, milkCowInfoModel)
+            Log.d("있니", milkCowInfoModel.name)
+
         }
 
         // 받아오는건데 데이터는 왜 있을까?
-        if (milkCowInfoModel != null) {
-            var cow_id = binding.etEditId.text.toString()
-            viewModel.cowInfoOne(cow_id, milkCowInfoModel)
-        }
+//        if (milkCowInfoModel != null) {
+//            var cow_id = binding.etEditId.text.toString()
+//            viewModel.cowInfoUpdate(cow_id, milkCowInfoModel)
+//        }
 
 
 
@@ -190,51 +195,56 @@ class EditActivity : AppCompatActivity() {
 
 
     fun observeData() {
-        viewModel.apply {
-            id.observe(this@EditActivity) {
-                binding.etEditId.hint = it
-            }
-            name.observe(this@EditActivity) {
-                binding.etEditName.hint = it
-            }
-            birth.observe(this@EditActivity){
-                binding.etEditBirth.hint = it
-                }
-            variety.observe(this@EditActivity){
-                binding.etEditVariety.hint = it
-            }
-            gender.observe(this@EditActivity){
-                when (binding.rbEditGender.checkedRadioButtonId) {
-                    binding.rbEditMale.id -> binding.rbEditMale.text
-                    binding.rbEditFemale.id -> binding.rbEditFemale.text
-                }
-            }
-            vaccine.observe(this@EditActivity){
-                when (binding.rbEditVaccine.checkedRadioButtonId) {
-                    binding.rbEditDid.id -> binding.rbEditDid.text
-                    binding.rbEditDidnt.id -> binding.rbEditDidnt.text
-                }
-
-            }
-            pregnancy.observe(this@EditActivity){
-                when (binding.rbEditPregnant.checkedRadioButtonId) {
-                    binding.rbEditPreg.id -> binding.rbEditPreg.text
-                    binding.rbEditNonP.id -> binding.rbEditNonP.text
-                }
-            }
-            milk.observe(this@EditActivity){
-                when (binding.rbEditMilk.checkedRadioButtonId) {
-                    binding.rbEditMilkY.id -> binding.rbEditMilkY.text
-                    binding.rbEditMilkN.id -> binding.rbEditMilkN.text
-                }
-            }
-            castration.observe(this@EditActivity){
-                when (binding.rbEditCas.checkedRadioButtonId) {
-                    binding.rbEditCasY.id -> binding.rbEditCasY.text
-                    binding.rbEditCasN.id -> binding.rbEditCasN.text
-                }
-            }
-        }
+//        viewModel.apply {
+//            id.observe(this@EditActivity) {
+//                binding.etEditId.hint = it
+//            }
+//            name.observe(this@EditActivity) {
+//                binding.etEditName.hint = it
+//            }
+//            birth.observe(this@EditActivity){
+//                binding.etEditBirth.hint = it
+//                }
+//            variety.observe(this@EditActivity){
+//                binding.etEditVariety.hint = it
+//            }
+//            gender.observe(this@EditActivity){
+//                when (binding.rbEditGender.checkedRadioButtonId) {
+//                    binding.rbEditMale.id -> binding.rbEditMale.text
+//                    binding.rbEditFemale.id -> binding.rbEditFemale.text
+//                }
+//            }
+//            vaccine.observe(this@EditActivity){
+//                when (binding.rbEditVaccine.checkedRadioButtonId) {
+//                    binding.rbEditDid.id -> binding.rbEditDid.text
+//                    binding.rbEditDidnt.id -> binding.rbEditDidnt.text
+//                }
+//
+//            }
+//            pregnancy.observe(this@EditActivity){
+//                when (binding.rbEditPregnant.checkedRadioButtonId) {
+//                    binding.rbEditPreg.id -> binding.rbEditPreg.text
+//                    binding.rbEditNonP.id -> binding.rbEditNonP.text
+//                }
+//            }
+//            milk.observe(this@EditActivity){
+//                when (binding.rbEditMilk.checkedRadioButtonId) {
+//                    binding.rbEditMilkY.id -> binding.rbEditMilkY.text
+//                    binding.rbEditMilkN.id -> binding.rbEditMilkN.text
+//                }
+//            }
+//            castration.observe(this@EditActivity){
+//                when (binding.rbEditCas.checkedRadioButtonId) {
+//                    binding.rbEditCasY.id -> binding.rbEditCasY.text
+//                    binding.rbEditCasN.id -> binding.rbEditCasN.text
+//                }
+//            }
+//        }
+//        milkCowInfoModel = MilkCowInfoModel(viewModel.id.value.toString(), viewModel.name.value.toString(),
+//                                            viewModel.birth.value.toString(), viewModel.variety.toString(),
+//                                            viewModel.gender.value.toString(), viewModel.vaccine.toString(),
+//                                            viewModel.pregnancy.value.toString(), viewModel.milk.value.toString(),
+//                                            viewModel.castration.value.toString(), Integer.parseInt(viewModel.wish.value), 0)
 
     }
 }

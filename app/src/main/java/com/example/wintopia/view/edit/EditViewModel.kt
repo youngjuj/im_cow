@@ -60,7 +60,7 @@ class EditViewModel: ViewModel() {
         })
     }
 
-    fun infoUpdate(cow_id: String, milkCowInfoModel: MilkCowInfoModel) {
+    fun cowInfoUpdate(cow_id: String, milkCowInfoModel: MilkCowInfoModel) {
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
