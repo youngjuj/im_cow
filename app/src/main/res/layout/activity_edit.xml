@@ -200,20 +200,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/etEditVariety">
 
                 <RadioButton
-                    android:id="@+id/rbEditMale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="수컷"
-                    android:checked="@{vm.gender.equals(@string/male)? true : false }"
-                    tools:layout_editor_absoluteX="100dp"
-                    tools:layout_editor_absoluteY="100dp" />
-
-                <RadioButton
                     android:id="@+id/rbEditFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="암컷"
                     android:checked="@{vm.gender.equals(@string/female)? true : false }"
+                    tools:layout_editor_absoluteX="100dp"
+                    tools:layout_editor_absoluteY="100dp" />
+
+                <RadioButton
+                    android:id="@+id/rbEditMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="수컷"
+                    android:checked="@{vm.gender.equals(@string/male)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
             </RadioGroup>
