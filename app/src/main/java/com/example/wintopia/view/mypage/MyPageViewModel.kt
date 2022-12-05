@@ -19,8 +19,7 @@ class MyPageViewModel: ViewModel() {
     val myPhone = MutableLiveData<String>()
     val myCowCount = MutableLiveData<String>()
     val cowBaby = MutableLiveData<String>()
-    val myCow = MutableLiveData<String>()
-    val myBull = MutableLiveData<String>()
+    val myCowBull = MutableLiveData<String>()
 
     val myPageCountEvent = MutableLiveData<String>()
 
@@ -43,9 +42,9 @@ class MyPageViewModel: ViewModel() {
                     myPhone.value = response.body()?.getPhone().toString()
                     myCowCount.value = response.body()?.getTotalCow().toString()
                     cowBaby.value = response.body()?.getBaby().toString()
-                    myCow.value = response.body()?.getCow().toString()
-                    myBull.value = response.body()?.getBull().toString()
-                    Log.d(ContentValues.TAG, "${myfarm.value}")
+                    myCowBull.value = "${response.body()?.getCow().toString()}" + "/" + "${response.body()?.getBull().toString()}"
+
+                    Log.d(ContentValues.TAG, "${myCowBull.value}")
 
                 } else {
                     // 서버통신 실패

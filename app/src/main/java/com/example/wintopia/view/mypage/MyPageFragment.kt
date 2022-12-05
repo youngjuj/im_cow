@@ -61,6 +61,7 @@ class MyPageFragment : Fragment() {
         Log.d(TAG, "$user_id")
         viewModel.userPageInfo("test")
 //        myPageEvent()
+        observeData()
 
 
 
@@ -118,8 +119,27 @@ class MyPageFragment : Fragment() {
         }
     }
 
+    fun observeData() {
+        viewModel.myfarm.observe(requireActivity()) {
+            binding.tvMyPageMyfarm.text = it
+        }
+        viewModel.myPhone.observe(requireActivity()) {
+            binding.tvMyPhone.text = it
+        }
+        viewModel.myCowCount.observe(requireActivity()) {
+            binding.tvMypageCount.text = it
+        }
+        viewModel.cowBaby.observe(requireActivity()) {
+            binding.tvMypageBaby.text = it
+        }
+        viewModel.myCowBull.observe(requireActivity()) {
+            binding.tvMypageGender.text = it
+        }
 
-    data class ChartData(
+    }
+
+
+        data class ChartData(
         var lableData: String = "",
         var valData: Double = 0.0
     )

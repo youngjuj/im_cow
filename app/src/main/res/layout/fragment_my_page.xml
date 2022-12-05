@@ -32,8 +32,8 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:background="#CAD6F8"
             android:orientation="vertical"
-            android:background="@drawable/background_radius"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,34 +76,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="16dp"
-                    android:text="전화번호:"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvMyPageMyfarm"
-                    android:textColor="#000000" />
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:text="전화번호:"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvMyPageMyfarm" />
 
-                <TextView
-                    android:id="@+id/tvMyPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@android:color/transparent"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text=" 101"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvMyPageMyfarm" />
+                    <TextView
+                        android:id="@+id/tvMyPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="01012341234"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvMyPageMyfarm" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -180,11 +179,12 @@
                         android:layout_height="match_parent"
                         android:layout_margin="15dp"
                         android:layout_weight="1"
-                        android:background="#FFFFFF"
+                        android:background="@drawable/background_radius"
                         android:gravity="center_vertical"
                         android:text="50"
                         android:textAlignment="center"
-                        android:textSize="34sp" />
+                        android:textSize="34sp"
+                        tools:ignore="RtlCompat" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -199,11 +199,12 @@
                         android:layout_height="match_parent"
                         android:layout_margin="15dp"
                         android:layout_weight="1"
-                        android:background="#FFFFFF"
+                        android:background="@drawable/background_radius"
                         android:gravity="center_vertical"
                         android:text="3"
                         android:textAlignment="center"
-                        android:textSize="34sp" />
+                        android:textSize="34sp"
+                        tools:ignore="RtlCompat" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -218,11 +219,12 @@
                         android:layout_height="match_parent"
                         android:layout_margin="15dp"
                         android:layout_weight="1"
-                        android:background="#FFFFFF"
+                        android:background="@drawable/background_radius"
                         android:gravity="center_vertical"
                         android:text="35/15"
                         android:textAlignment="center"
-                        android:textSize="34sp" />
+                        android:textSize="34sp"
+                        tools:ignore="RtlCompat" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
