@@ -127,6 +127,20 @@ class EditActivity : AppCompatActivity() {
 
 
     fun observeData() {
+        if (binding.rbEditMale.isChecked) viewModel.gender.value = "수컷"
+        else viewModel.gender.value = "암컷"
+
+        if (binding.rbEditDid.isChecked) viewModel.vaccine.value = "접종"
+        else viewModel.vaccine.value = "미접종"
+
+        if (binding.rbEditPreg.isChecked) viewModel.pregnancy.value = "유"
+        else viewModel.pregnancy.value = "무"
+
+        if (binding.rbEditMilkY.isChecked) viewModel.milk.value = "유"
+        else viewModel.milk.value = "무"
+
+        if (binding.rbEditCasY.isChecked) viewModel.castration.value = "유"
+        else viewModel.castration.value = "무"
 //        viewModel.apply {
 //            id.observe(this@EditActivity) {
 //                binding.etEditId.hint = it
