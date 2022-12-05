@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
+import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import retrofit2.Call
@@ -28,6 +29,8 @@ class InfoViewModel: ViewModel() {
     val image = MutableLiveData<String>()
     val wishEvent = MutableLiveData<String>()
     val deleteEvent = MutableLiveData<String>()
+    val getEvent = MutableLiveData<String>()
+    var resCowinfo: MilkCowInfoModel? = null
 
 
     fun cowWish(cow_id: String){
@@ -100,6 +103,42 @@ class InfoViewModel: ViewModel() {
                 Log.e(Constants.TAG, "onFailure: " + t.message)
             }
         })
+    }
+
+    fun cowInfoOne(cow_id: String): MilkCowInfoModel?{
+        //Retrofit 인스턴스 생성
+        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
+        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
+//        var cowInfo: MilkCowInfoModel? = null
+        val call: Call<MilkCowInfoModel> = service.getData(cow_id)
+        call!!.enqueue(object : Callback<MilkCowInfoModel> {
+            override fun onResponse(call: Call<MilkCowInfoModel>, response: Response<MilkCowInfoModel>) {
+                Log.d("여기는?", "cowInfoOne onResponse")
+                if (response.isSuccessful()) {
+                    Log.e(Constants.TAG, "cowInfoOne onResponse success")
+                    resCowinfo = response.body()
+//                        val result: UserList? = response.body()
+
+                    // 서버에서 응답받은 데이터
+                    val result = "${response.body()}"
+                    Log.d("확인좀..", "${resCowinfo!!.birth}")
+                    getEvent.value = "success"
+
+
+                } else {
+                    // 서버통신 실패
+                    getEvent.value = "fail1"
+                    Log.e(Constants.TAG, "onResponse fail")
+                }
+            }
+            override fun onFailure(call: Call<MilkCowInfoModel>, t: Throwable) {
+                // 통신 실패
+                getEvent.value = "fail2"
+                Log.e(Constants.TAG, "onFailure: " + t.message)
+            }
+        })
+
+        return resCowinfo as MilkCowInfoModel?
     }
 
 

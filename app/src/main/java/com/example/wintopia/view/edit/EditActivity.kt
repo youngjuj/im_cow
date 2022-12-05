@@ -74,6 +74,12 @@ class EditActivity : AppCompatActivity() {
         var etEditBirth = viewModel.birth.value.toString()
         var etEditVariety = viewModel.variety.value.toString()
         var editGender = viewModel.gender.value.toString()
+//            binding.rbEditGender.apply {
+//            when (checkedRadioButtonId) {
+//                binding.rbEditMale.id -> editGender = "수컷"
+//                binding.rbEditFemale.id -> editGender =  "암컷"
+//            }
+//        }
         var editVaccine = viewModel.vaccine.value.toString()
         var editPreg = viewModel.pregnancy.value.toString()
         var editMilk = viewModel.milk.value.toString()
@@ -94,7 +100,7 @@ class EditActivity : AppCompatActivity() {
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
         if (milkCowInfoModel != null) {
-            var cow_id = viewModel.id.toString()
+            var cow_id = milkCowInfoModel.id
             Log.d("있니", milkCowInfoModel.id)
             viewModel.cowInfoUpdate(cow_id, milkCowInfoModel)
             Log.d("있니", milkCowInfoModel.name)
@@ -122,7 +128,8 @@ class EditActivity : AppCompatActivity() {
 
         val intent = Intent(this, InfoActivity::class.java)
         intent.putExtra("where", "edit")
-        intent.putExtra("TEXT", milkCowInfoModel)
+//        intent.putExtra("TEXT", milkCowInfoModel)
+        intent.putExtra("TEXT", viewModel.id.value.toString())
         startActivity(intent)
         finish()
 

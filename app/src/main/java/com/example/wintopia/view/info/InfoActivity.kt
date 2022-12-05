@@ -118,18 +118,20 @@ class InfoActivity : AppCompatActivity() {
 
 
         } else if(intent.getStringExtra("where").equals("edit")) {
-            cowInfo = intent.getSerializableExtra("TEXT") as MilkCowInfoModel
-            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id${cowInfo.id}")
-            viewModel.name.value = (cowInfo.name)
-            viewModel.id.value = (cowInfo.id)
-            viewModel.birth.value = (cowInfo.birth)
-            viewModel.variety.value = (cowInfo.variety)
-            viewModel.gender.value = (cowInfo.gender)
-            viewModel.vaccine.value = (cowInfo.vaccine)
-            viewModel.pregnancy.value = (cowInfo.pregnancy)
-            viewModel.milk.value = (cowInfo.milk)
-            viewModel.castration.value = (cowInfo.castration)
-            viewModel.wishEvent.value = (cowInfo.list.toString())
+            val cow_id = intent.getStringExtra("TEXT")
+            Log.d("확인ㅁㅈㅇ용", "$cow_id")
+            viewModel.cowInfoOne(cow_id.toString())
+//            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id${cowInfo.id}")
+//            viewModel.name.value = (cowInfo.name)
+//            viewModel.id.value = (cowInfo.id)
+//            viewModel.birth.value = (cowInfo.birth)
+//            viewModel.variety.value = (cowInfo.variety)
+//            viewModel.gender.value = (cowInfo.gender)
+//            viewModel.vaccine.value = (cowInfo.vaccine)
+//            viewModel.pregnancy.value = (cowInfo.pregnancy)
+//            viewModel.milk.value = (cowInfo.milk)
+//            viewModel.castration.value = (cowInfo.castration)
+//            viewModel.wishEvent.value = (cowInfo.list.toString())
 
         }
 

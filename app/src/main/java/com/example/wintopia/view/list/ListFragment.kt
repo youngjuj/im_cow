@@ -88,7 +88,7 @@ class ListFragment : Fragment() {
 
 
     // 서버에서 전체 정보 가져오기
-    fun  cowInfo(userId: String) {
+    fun cowInfo(userId: String) {
         Log.d(Constants.TAG,"웹서버로 이미지전송")
 
         //Retrofit 인스턴스 생성
