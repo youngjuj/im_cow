@@ -163,6 +163,7 @@ class EditActivity : AppCompatActivity() {
                 binding.rbEditCasN.id -> viewModel.castration.value = "무"
             }
         }
+        
 //        if (binding.rbEditMale.isChecked) viewModel.gender.value = "수컷"
 //        else viewModel.gender.value = "암컷"
 //
