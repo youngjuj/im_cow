@@ -63,6 +63,8 @@ class InfoActivity : AppCompatActivity() {
 
         // 뒤로가기 버튼
         binding.imgInfoBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }
 

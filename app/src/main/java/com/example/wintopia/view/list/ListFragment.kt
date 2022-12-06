@@ -115,9 +115,11 @@ class ListFragment : Fragment() {
                         adapter = listAdapter
                         addItemDecoration(ItemDecoration())
 
-//                        swipeRefreshLayout.setOnRefreshListener {
-//                            swipeRefreshLayout.isRefreshing = false
-//                        }
+                        swipeRefreshLayout.setOnRefreshListener {
+                            cowInfo(userId)
+                            swipeRefreshLayout.isRefreshing = false
+                        }
+
                         var swipeHelperCallback = SwipeHelperCallback().apply {
                             setClamp(200f)
                         }

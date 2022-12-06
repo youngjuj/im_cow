@@ -1,5 +1,6 @@
 package com.example.wintopia.view.list
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,16 +10,24 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wintopia.R
 import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ListItemBinding
+import com.example.wintopia.retrofit.RetrofitClient
+import com.example.wintopia.retrofit.RetrofitInterface
+import com.example.wintopia.utils.SwipeHelperCallback
 import com.example.wintopia.view.edit.EditActivity
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.info.InfoViewModel
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -96,6 +105,7 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
 
         fun updateView() {
             binding.root.scrollTo(0, 0)
+//            cowInfo("test")
         }
     }
 
@@ -201,6 +211,46 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
         intent.putExtra("infos", milkCowInfoModel)
         ContextCompat.startActivity(holder.itemView.context, intent, null)
 
+    }
+
+    fun cowInfo(userId: String) {
+        Log.d(Constants.TAG,"웹서버로 이미지전송")
+
+        //Retrofit 인스턴스 생성
+        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
+//        val retrofit = Retrofit.Builder().baseUrl(API_.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build()
+        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
+
+
+        val call = service.cowListAll(userId) //통신 API 패스 설정
+
+        call?.enqueue(object : Callback<MutableList<MilkCowInfoModel>> {
+            @SuppressLint("ClickableViewAccessibility")
+            override fun onResponse(call: Call<MutableList<MilkCowInfoModel>>, response: Response<MutableList<MilkCowInfoModel>>) {
+                if (response.isSuccessful) {
+                    Log.d(Constants.TAG, "" + response?.body().toString())
+                    val data = response?.body()!!
+                    listData = data
+
+
+//                        swipeRefreshLayout.setOnRefreshListener {
+//                            swipeRefreshLayout.isRefreshing = false
+//                        }
+
+
+//                    binding.rvList.
+//                    Log.d("로그 ",res)
+//                    Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_LONG).show()
+                } else {
+//                    Toast.makeText(requireActivity(),"통신실패", Toast.LENGTH_LONG).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<MutableList<MilkCowInfoModel>>, t: Throwable) {
+                Log.d("로그",t.message.toString())
+            }
+        })
     }
 
 }
