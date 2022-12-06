@@ -31,7 +31,7 @@
             android:name=".view.regist.RegistInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".Custom_dialog"
+            android:name=".dialog.Custom_dialog"
             android:exported="false" />
         <activity
             android:name=".view.info.InfoActivity"

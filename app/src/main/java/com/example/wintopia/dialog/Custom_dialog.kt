@@ -1,7 +1,8 @@
-package com.example.wintopia
+package com.example.wintopia.dialog
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.wintopia.R
 
 class Custom_dialog : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

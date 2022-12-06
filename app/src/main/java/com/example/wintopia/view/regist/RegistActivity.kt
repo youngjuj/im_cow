@@ -2,33 +2,26 @@ package com.example.wintopia.view.regist
 
 import android.Manifest
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.wintopia.MyCustomDialog
-import com.example.wintopia.MyCustomDialogInterface
+import com.example.wintopia.dialog.MyCustomDialogInterface
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityRegistBinding
 import com.example.wintopia.view.adapter.RegistAdapter
-import com.example.wintopia.view.edit.MilkCowInfoModel
-import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utilssd.Constants
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -37,7 +30,7 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 
-class RegistActivity : AppCompatActivity(),MyCustomDialogInterface {
+class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 
     // databinding
     lateinit var binding: ActivityRegistBinding

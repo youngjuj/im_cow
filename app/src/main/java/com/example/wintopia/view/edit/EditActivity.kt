@@ -49,6 +49,21 @@ class EditActivity : AppCompatActivity() {
 
         // 수정하기 버튼
         binding.btnEditEdit.setOnClickListener {
+        if (binding.rbEditMale.isChecked) viewModel.gender.value = "수컷"
+        else viewModel.gender.value = "암컷"
+
+        if (binding.rbEditDid.isChecked) viewModel.vaccine.value = "접종"
+        else viewModel.vaccine.value = "미접종"
+
+        if (binding.rbEditPreg.isChecked) viewModel.pregnancy.value = "유"
+        else viewModel.pregnancy.value = "무"
+
+        if (binding.rbEditMilkY.isChecked) viewModel.milk.value = "유"
+        else viewModel.milk.value = "무"
+
+        if (binding.rbEditCasY.isChecked) viewModel.castration.value = "유"
+        else viewModel.castration.value = "무"
+
             getText()
         }
 
@@ -133,36 +148,36 @@ class EditActivity : AppCompatActivity() {
 
 
     fun observeData() {
-        binding.rbEditGender.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                binding.rbEditMale.id -> viewModel.gender.value = "수컷"
-                binding.rbEditFemale.id -> viewModel.gender.value = "암컷"
-            }
-        }
-        binding.rbEditVaccine.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                binding.rbEditDid.id -> viewModel.vaccine.value = "접종"
-                binding.rbEditDidnt.id -> viewModel.vaccine.value = "미접종"
-            }
-        }
-        binding.rbEditPregnant.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                binding.rbEditPreg.id -> viewModel.pregnancy.value = "유"
-                binding.rbEditNonP.id -> viewModel.pregnancy.value = "무"
-            }
-        }
-        binding.rbEditMilk.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                binding.rbEditMilkY.id -> viewModel.milk.value = "유"
-                binding.rbEditMilkN.id -> viewModel.milk.value = "무"
-            }
-        }
-        binding.rbEditGender.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                binding.rbEditCasY.id -> viewModel.castration.value = "유"
-                binding.rbEditCasN.id -> viewModel.castration.value = "무"
-            }
-        }
+//        binding.rbEditGender.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                binding.rbEditMale.id -> viewModel.gender.value = "수컷"
+//                binding.rbEditFemale.id -> viewModel.gender.value = "암컷"
+//            }
+//        }
+//        binding.rbEditVaccine.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                binding.rbEditDid.id -> viewModel.vaccine.value = "접종"
+//                binding.rbEditDidnt.id -> viewModel.vaccine.value = "미접종"
+//            }
+//        }
+//        binding.rbEditPregnant.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                binding.rbEditPreg.id -> viewModel.pregnancy.value = "유"
+//                binding.rbEditNonP.id -> viewModel.pregnancy.value = "무"
+//            }
+//        }
+//        binding.rbEditMilk.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                binding.rbEditMilkY.id -> viewModel.milk.value = "유"
+//                binding.rbEditMilkN.id -> viewModel.milk.value = "무"
+//            }
+//        }
+//        binding.rbEditGender.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                binding.rbEditCasY.id -> viewModel.castration.value = "유"
+//                binding.rbEditCasN.id -> viewModel.castration.value = "무"
+//            }
+//        }
 
 //        if (binding.rbEditMale.isChecked) viewModel.gender.value = "수컷"
 //        else viewModel.gender.value = "암컷"
