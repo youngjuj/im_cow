@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentCameraBinding
 import com.example.wintopia.retrofit.RetrofitClient
@@ -48,6 +49,7 @@ class CameraFragment : Fragment() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private val REQUEST_GALLERY = 2
     lateinit var currentPhotoPath: String
+    var oneImgEvent = MutableLiveData<String>()
 
 
     lateinit var binding: FragmentCameraBinding
@@ -364,8 +366,10 @@ class CameraFragment : Fragment() {
         call?.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.isSuccessful) {
-                    Log.d("로그 ", "이미지 전송 :" + response?.body().toString())
-//                    Toast.makeText(activity, "통신성공", Toast.LENGTH_SHORT).show()
+                    Log.d("로그 ", "이미지 전송 :" + response.body().toString())
+                    oneImgEvent.value = response.body().toString()
+//                    Toast.makeText(activity, "통신성공 ${oneImgEvent.value}", Toast.LENGTH_SHORT).show()
+
                 } else {
                     Toast.makeText(activity, "통신실패", Toast.LENGTH_SHORT).show()
                 }
@@ -378,6 +382,14 @@ class CameraFragment : Fragment() {
     }
 
 
+    fun responseImg(res: String){
+        if (oneImgEvent.value.equals("false")){
+//            소 아님
+
+        }else if (oneImgEvent.value.equals("true")){
+
+        }
+    }
 
 
 }
