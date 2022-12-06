@@ -1,4 +1,4 @@
-package com.example.wintopia
+package com.example.wintopia.dialog
 
 import android.app.Dialog
 import android.content.Context
@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import com.example.wintopia.databinding.ActivityCustomDialogBinding
-import com.example.wintopia.view.regist.RegistActivity
 
 class MyCustomDialog(context: Context, MyCustomDialogInterface: MyCustomDialogInterface) : Dialog(context) {
     private var mBinding: ActivityCustomDialogBinding? = null

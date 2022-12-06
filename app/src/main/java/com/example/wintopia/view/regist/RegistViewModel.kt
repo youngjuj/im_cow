@@ -42,7 +42,7 @@ class RegistViewModel: ViewModel() {
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
-        val call = service.cowImageList(imgFileList.toList()) //통신 API 패스 설정
+        val call = service.cowImageList(imgFileList) //통신 API 패스 설정
 
 
         call?.enqueue(object : Callback<String?> {
@@ -106,9 +106,9 @@ class RegistViewModel: ViewModel() {
         val call: Call<String>? = service.cowInfoRegist(user_id, milkCowInfoModel)
         call!!.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>?, response: Response<String?>) {
-                Log.d(Constants.TAG, "InfoUpdate onResponse")
+                Log.d(Constants.TAG, "registCowInfo onResponse")
                 if (response.isSuccessful()) {
-                    Log.e(Constants.TAG, "InfoUpdate onResponse success")
+                    Log.e(Constants.TAG, "registCowInfo onResponse success")
 //                        val result: UserList? = response.body()
 
                     // 서버에서 응답받은 데이터

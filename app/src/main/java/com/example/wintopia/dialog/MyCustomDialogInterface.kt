@@ -1,4 +1,4 @@
-package com.example.wintopia
+package com.example.wintopia.dialog
 
 interface MyCustomDialogInterface {
     fun onLikedBtnClicked()

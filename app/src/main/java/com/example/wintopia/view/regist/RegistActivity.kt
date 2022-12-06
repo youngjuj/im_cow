@@ -2,33 +2,26 @@ package com.example.wintopia.view.regist
 
 import android.Manifest
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.wintopia.MyCustomDialog
-import com.example.wintopia.MyCustomDialogInterface
+import com.example.wintopia.dialog.MyCustomDialogInterface
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityRegistBinding
 import com.example.wintopia.view.adapter.RegistAdapter
-import com.example.wintopia.view.edit.MilkCowInfoModel
-import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utilssd.Constants
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -37,7 +30,7 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 
-class RegistActivity : AppCompatActivity(),MyCustomDialogInterface {
+class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 
     // databinding
     lateinit var binding: ActivityRegistBinding
@@ -65,116 +58,115 @@ class RegistActivity : AppCompatActivity(),MyCustomDialogInterface {
 
         binding.vm = viewModel
         binding.lifecycleOwner = this
+        // 뷰바인딩
         mBinding = ActivityRegistBinding.inflate(layoutInflater)
 
 
         observeData()
 
-        val milkCowInfo = MilkCowInfoModel(
-            viewModel.id.toString(), viewModel.name.toString(),
-            viewModel.birth.toString(), viewModel.variety.toString(),
-            viewModel.gender.toString(), viewModel.vaccine.toString(),
-            viewModel.pregnancy.toString(), viewModel.milk.toString(),
-            viewModel.castration.toString(), 0, 0
-        )
-
-        binding.btnRegistCancel.setOnClickListener {
-            finish()
-        }
-
-        binding.btnRegistRegist.setOnClickListener {
-            viewModel.sendImage(cow_id, viewModel.imgFileList)
-            viewModel.registCowInfo(user_id, milkCowInfo)
-            val myCustomDialog = MyCustomDialog(this, this)
-            // 다이얼로그 밖에 화면 눌러서 끄기 막기
-            myCustomDialog.setCancelable(false)
-            myCustomDialog.show()
-            Handler(Looper.getMainLooper()).postDelayed({
-                if (res.equals("false")) {
-                    val alertDialog = AlertDialog.Builder(this).create()
-                    alertDialog.setTitle("소 사진이 아닙니다.")
-
-                    alertDialog.setButton(
-                        AlertDialog.BUTTON_POSITIVE, "확인"
-                    ) { dialog, which -> dialog.dismiss() }
-                    alertDialog.show()
-
-                    val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                    btnPositive.setOnClickListener {
-                        myCustomDialog.dismiss()
-                        alertDialog.dismiss()
-                    }
-
-                    val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
-                    layoutParams.weight = 10f
-                    btnPositive.layoutParams = layoutParams
-
-
-                } else if (res.equals("true")) {
-                    val alertDialog = AlertDialog.Builder(this).create()
-                    alertDialog.setTitle("소를 등록하시겠습니까?")
-
-                    alertDialog.setButton(
-                        AlertDialog.BUTTON_POSITIVE, "취소 하기"
-                    ) { dialog, which -> dialog.dismiss() }
-
-                    alertDialog.setButton(
-                        AlertDialog.BUTTON_NEGATIVE, "등록 하기"
-                    ) { dialog, which -> dialog.dismiss() }
-                    alertDialog.show()
-
-                    val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                    btnPositive.setOnClickListener {
-                        myCustomDialog.dismiss()
-                        alertDialog.dismiss()
-                    }
-                    val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    btnNegative.setOnClickListener {
-                        val intent = Intent(this, MainActivity::class.java)
-//                    intent.putExtra("cowInfo", cowInfo)
-                        startActivity(intent)
-                    }
-
-
-                    val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
-                    layoutParams.weight = 10f
-                    btnPositive.layoutParams = layoutParams
-                    btnNegative.layoutParams = layoutParams
-
-                } else {
-                    val alertDialog = AlertDialog.Builder(this).create()
-                    alertDialog.setTitle("이미 등록된 객체입니다!")
-
-                    alertDialog.setButton(
-                        AlertDialog.BUTTON_POSITIVE, "확인"
-                    ) { dialog, which -> dialog.dismiss() }
-                    alertDialog.show()
-
-                    val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                    btnPositive.setOnClickListener {
-                        val intent = Intent(this, MainActivity::class.java)
-//                    intent.putExtra("cowInfo", cowInfo)
-                        startActivity(intent)
-                    }
-                    val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
-                    layoutParams.weight = 10f
-                    btnPositive.layoutParams = layoutParams
-                }
-            }, 3000)
-
-        }
-
+//        binding.btnRegistCancel.setOnClickListener {
+//            finish()
+//        }
 
         registAdapter = RegistAdapter(viewModel.imgList)
 
         binding.rvRegistPhoto.apply {
+
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = registAdapter
             binding.rvRegistPhoto.adapter = adapter
         }
-        binding.imgRegistCam.setOnClickListener{
+        binding.btnRegisPhoto.setOnClickListener {
             if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
+
         }
+
+        binding.btnRegistRegist.setOnClickListener {
+            viewModel.sendImage(cow_id, viewModel.imgFileList)
+            val intent = Intent(this, RegistInfoActivity::class.java)
+            startActivity(intent)
+
+//            val myCustomDialog = MyCustomDialog(this, this)
+//            // 다이얼로그 밖에 화면 눌러서 끄기 막기
+//            myCustomDialog.setCancelable(false)
+//            myCustomDialog.show()
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                if (res.equals("false")) {
+//                    val alertDialog = AlertDialog.Builder(this).create()
+//                    alertDialog.setTitle("소 사진이 아닙니다.")
+//
+//                    alertDialog.setButton(
+//                        AlertDialog.BUTTON_POSITIVE, "확인"
+//                    ) { dialog, which -> dialog.dismiss() }
+//                    alertDialog.show()
+//
+//                    val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+//                    btnPositive.setOnClickListener {
+//                        myCustomDialog.dismiss()
+//                        alertDialog.dismiss()
+//                    }
+//
+//                    val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+//                    layoutParams.weight = 10f
+//                    btnPositive.layoutParams = layoutParams
+//
+//
+//                } else if (res.equals("true")) {
+//                    val alertDialog = AlertDialog.Builder(this).create()
+//                    alertDialog.setTitle("소를 등록하시겠습니까?")
+//
+//                    alertDialog.setButton(
+//                        AlertDialog.BUTTON_POSITIVE, "취소 하기"
+//                    ) { dialog, which -> dialog.dismiss() }
+//
+//                    alertDialog.setButton(
+//                        AlertDialog.BUTTON_NEGATIVE, "등록 하기"
+//                    ) { dialog, which -> dialog.dismiss() }
+//                    alertDialog.show()
+//
+//                    val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+//                    btnPositive.setOnClickListener {
+//                        myCustomDialog.dismiss()
+//                        alertDialog.dismiss()
+//                    }
+//                    val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+//                    btnNegative.setOnClickListener {
+//                        val intent = Intent(this, MainActivity::class.java)
+////                    intent.putExtra("cowInfo", cowInfo)
+//                        startActivity(intent)
+//                    }
+//
+//
+//                    val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+//                    layoutParams.weight = 10f
+//                    btnPositive.layoutParams = layoutParams
+//                    btnNegative.layoutParams = layoutParams
+//
+//                } else {
+//                    val alertDialog = AlertDialog.Builder(this).create()
+//                    alertDialog.setTitle("이미 등록된 객체입니다!")
+//
+//                    alertDialog.setButton(
+//                        AlertDialog.BUTTON_POSITIVE, "확인"
+//                    ) { dialog, which -> dialog.dismiss() }
+//                    alertDialog.show()
+//
+//                    val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+//                    btnPositive.setOnClickListener {
+//                        val intent = Intent(this, MainActivity::class.java)
+////                    intent.putExtra("cowInfo", cowInfo)
+//                        startActivity(intent)
+//                    }
+//                    val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+//                    layoutParams.weight = 10f
+//                    btnPositive.layoutParams = layoutParams
+//                }
+//            }, 3000)
+//
+        }
+
+
+
 }
 
 
@@ -188,40 +180,6 @@ class RegistActivity : AppCompatActivity(),MyCustomDialogInterface {
                 "failed" -> {
                     Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
                 }
-            }
-        }
-        viewModel.apply {
-            id.observe(this@RegistActivity) {
-                binding.etRegistId.hint = it
-            }
-            name.observe(this@RegistActivity) {
-                binding.etRegistName.hint = it
-            }
-            birth.observe(this@RegistActivity) {
-                binding.etRegistBirth.hint = it
-            }
-            variety.observe(this@RegistActivity) {
-                binding.etRegistVariety.hint = it
-            }
-            gender.observe(this@RegistActivity) {
-                if (binding.rbRegistMale.isChecked) binding.rbRegistMale.text = it
-                 else binding.rbRegistFemale.text = it
-            }
-            vaccine.observe(this@RegistActivity) {
-                if (binding.rbRegistDid.isChecked) binding.rbRegistDid.text = it
-                else binding.rbRegistDidnt.text = it
-            }
-            pregnancy.observe(this@RegistActivity) {
-                if (binding.rbRegistPreg.isChecked) binding.rbRegistPreg.text = it
-                else binding.rbRegistNonP.text = it
-            }
-            milk.observe(this@RegistActivity) {
-                if (binding.rbRegistMilkY.isChecked) binding.rbRegistMilkY.text = it
-                else binding.rbRegistMilkN.text = it
-            }
-            castration.observe(this@RegistActivity) {
-                if (binding.rbRegistCasY.isChecked) binding.rbRegistCasY.text = it
-                else binding.rbRegistCasN.text = it
             }
         }
 
@@ -323,37 +281,37 @@ class RegistActivity : AppCompatActivity(),MyCustomDialogInterface {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            REQUEST_IMAGE_CAPTURE -> {
-                Log.v("순서", "onActivityResult img")
-//                Log.v("img_request", "${img?.id}")
-                if(resultCode == Activity.RESULT_OK) {
-                    val file = File(currentPhotoPath)
-                    Log.d("file 경로", currentPhotoPath)
-                    val uri = currentPhotoPath.toUri()
-                    viewModel.imgList.add(uri)
-
-                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                    viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
-//                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-
-                    var user_id = "test"
-                    var cow_id = "1"
-                    Log.d(Constants.TAG, ""+viewModel.imgList)
-
-//                    sendImage(cow_id, imgList)
-
-                    if (Build.VERSION.SDK_INT < 28) {
-                        bitmap = MediaStore.Images.Media
-                            .getBitmap(this.contentResolver, Uri.fromFile(file))
-                    } else {
-                        val decode = ImageDecoder.createSource(this.contentResolver,
-                            Uri.fromFile(file))
-                        bitmap = ImageDecoder.decodeBitmap(decode)
-                    }
-//                    img?.setImageBitmap(bitmap)
-
-                }
-            }
+//            REQUEST_IMAGE_CAPTURE -> {
+//                Log.v("순서", "onActivityResult img")
+////                Log.v("img_request", "${img?.id}")
+//                if(resultCode == Activity.RESULT_OK) {
+//                    val file = File(currentPhotoPath)
+//                    Log.d("file 경로", currentPhotoPath)
+//                    val uri = currentPhotoPath.toUri()
+//                    viewModel.imgList.add(uri)
+//
+//                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+//                    viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
+////                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+//
+//                    var user_id = "test"
+//                    var cow_id = "1"
+//                    Log.d("가즈아", ""+viewModel.imgList)
+//
+////                    sendImage(cow_id, imgList)
+//
+//                    if (Build.VERSION.SDK_INT < 28) {
+//                        bitmap = MediaStore.Images.Media
+//                            .getBitmap(this.contentResolver, Uri.fromFile(file))
+//                    } else {
+//                        val decode = ImageDecoder.createSource(this.contentResolver,
+//                            Uri.fromFile(file))
+//                        bitmap = ImageDecoder.decodeBitmap(decode)
+//                    }
+////                    img?.setImageBitmap(bitmap)
+//
+//                }
+//            }
             REQUEST_GALLERY -> {
                 Log.d(Constants.TAG, "" + viewModel.imgList)
                 Log.d(Constants.TAG, "GALLERY" + viewModel.imgList)
@@ -389,6 +347,7 @@ class RegistActivity : AppCompatActivity(),MyCustomDialogInterface {
                     val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                     viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
                 }
+                Log.d(Constants.TAG, "이미지 리스트에 추가 완료")
             }
         registAdapter.notifyDataSetChanged()
         }
