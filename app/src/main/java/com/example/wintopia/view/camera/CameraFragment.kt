@@ -53,7 +53,7 @@ class CameraFragment : Fragment() {
     private val REQUEST_GALLERY = 2
     lateinit var currentPhotoPath: String
     var oneImgEvent = MutableLiveData<String>()
-    lateinit var resCowinfo: MilkCowInfoModel
+//    lateinit var resCowinfo: MilkCowInfoModel
 
 
     lateinit var binding: FragmentCameraBinding
@@ -398,10 +398,9 @@ class CameraFragment : Fragment() {
         }
         else {
             // 해당 개체 조회 후 인텐트
-            cowInfoOne(oneImgEvent.value.toString())
-            val milkCowInfoModel = resCowinfo
+            val milkCowInfoModel = cowInfoOne(oneImgEvent.value.toString())
             val intent = Intent(requireActivity(), InfoActivity::class.java)
-            Log.d("CameraFragment", "${milkCowInfoModel.id}")
+            Log.d("CameraFragment", "${milkCowInfoModel?.id}")
             intent.putExtra("where", "camera")
             intent.putExtra("camera", milkCowInfoModel as MilkCowInfoModel)
             startActivity(intent)
@@ -409,10 +408,11 @@ class CameraFragment : Fragment() {
         }
     }
 
-    fun cowInfoOne(cow_id: String){
+    fun cowInfoOne(cow_id: String): MilkCowInfoModel?{
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
+        var resCowinfo: MilkCowInfoModel? = null
 
         val call: Call<List<MilkCowInfoModel>>? = service.getData(cow_id)
         call!!.enqueue(object : Callback<List<MilkCowInfoModel>> {
@@ -441,7 +441,8 @@ class CameraFragment : Fragment() {
                 Log.e(Constants.TAG, "onFailure: " + t.message)
             }
         })
-//        return resCowinfo
+        return resCowinfo
     }
+
 }
 
