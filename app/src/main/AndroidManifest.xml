@@ -28,13 +28,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".RegistInfoActivity"
+            android:name=".view.regist.RegistInfoActivity"
             android:exported="false" />
         <activity
             android:name=".Custom_dialog"
-            android:exported="false" />
-        <activity
-            android:name=".custom_dialog"
             android:exported="false" />
         <activity
             android:name=".view.info.InfoActivity"

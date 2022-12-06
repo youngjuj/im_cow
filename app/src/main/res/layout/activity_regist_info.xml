@@ -159,7 +159,7 @@
         app:srcCompat="@drawable/star" />
 
     <Button
-        android:id="@+id/btnRegistCancel"
+        android:id="@+id/btnRegistInfoCancel"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginBottom="28dp"
@@ -171,15 +171,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnRegistRegist"
+        android:id="@+id/btnRegistInfoRegist"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/background_radius"
         android:text="등록하기"
-        app:layout_constraintBottom_toBottomOf="@+id/btnRegistCancel"
-        app:layout_constraintEnd_toStartOf="@+id/btnRegistCancel"
+        app:layout_constraintBottom_toBottomOf="@+id/btnRegistInfoCancel"
+        app:layout_constraintEnd_toStartOf="@+id/btnRegistInfoCancel"
         app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rbRegistCas"
@@ -203,6 +203,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="수컷"
+
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="100dp" />
 

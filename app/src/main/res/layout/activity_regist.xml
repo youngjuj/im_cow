@@ -18,6 +18,7 @@
                 android:id="@+id/imgRegistCow"
                 android:layout_width="216dp"
                 android:layout_height="271dp"
+                android:layout_marginTop="56dp"
                 android:alpha="0.3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -27,12 +28,33 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRegistPhoto"
-                android:layout_width="289dp"
-                android:layout_height="300dp"
-                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginTop="80dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imgRegistCow" />
+
+            <Button
+                android:id="@+id/btnRegisPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="68dp"
+                android:text="사진찾기"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvRegistPhoto" />
+
+            <Button
+                android:id="@+id/btnRegistRegist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:text="등록하기"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.123"
+                app:layout_constraintStart_toEndOf="@+id/btnRegisPhoto"
+                app:layout_constraintTop_toTopOf="@+id/btnRegisPhoto" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
