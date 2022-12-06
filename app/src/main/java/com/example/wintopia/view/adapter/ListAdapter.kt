@@ -120,6 +120,7 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
     // RecyclerView에 뿌려줄 item 속 data들 지정
     override fun onBindViewHolder(holder: ListVOViewHolder, position: Int) {
 //        holder.binding.wvItemImg.loadUrl(data[position].pic)
+
         holder.bind(position)
         var cow_id = data[position].id
         var user_id = UserList().getId().toString()

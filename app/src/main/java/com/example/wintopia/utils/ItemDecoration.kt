@@ -1,4 +1,4 @@
-package com.example.wintopia.view.list
+package com.example.wintopia.utils
 
 import android.graphics.Rect
 import android.view.View

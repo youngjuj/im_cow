@@ -9,14 +9,15 @@
     </data>
 <FrameLayout
     android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginLeft="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         android:background="@drawable/background_radius"
         android:gravity="right|center_vertical">
 
@@ -27,7 +28,6 @@
             android:layout_gravity="center"
             android:background="#ffc0cb"
             android:paddingTop="32dp"
-            android:layout_marginRight="2dp"
             android:layout_marginLeft="88dp"
             android:text="수정"
             android:clickable="false"
@@ -37,10 +37,10 @@
 
         <TextView
             android:id="@+id/hiddenBtnDel"
-            android:layout_width="66dp"
+            android:layout_width="67dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_marginRight="7dp"
+            android:layout_marginRight="1dp"
             android:background="@drawable/background_half_radius_right"
             android:paddingTop="32dp"
             android:layout_marginLeft="158dp"
@@ -61,15 +61,18 @@
         android:id="@+id/clItem"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_margin="7dp"
-        android:background="@drawable/background_radius">
+        android:layout_margin="10dp"
+        android:background="@drawable/background_radius"
+
+        >
 
 
         <WebView
             android:id="@+id/wvItemImg"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="80dp"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
             android:background="@drawable/background_radius" />
 
         <TextView
@@ -78,17 +81,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="얼룩이"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="120dp"
             android:textColor="#2E2E2E"
             android:textSize="30sp"/>
 
         <TextView
             android:id="@+id/tvItemId"
-            android:layout_width="151dp"
+            android:layout_width="150dp"
             android:layout_height="19dp"
             android:text="고유번호 : 22111001"
             android:layout_marginTop="60dp"
-            android:layout_marginLeft="100dp" />
+            android:layout_marginLeft="120dp" />
     </FrameLayout>
 
 </FrameLayout>

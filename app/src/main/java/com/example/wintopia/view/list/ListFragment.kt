@@ -113,7 +113,7 @@ class ListFragment : Fragment() {
                     binding.rvList.apply {
                         layoutManager = LinearLayoutManager(context)
                         adapter = listAdapter
-                        addItemDecoration(ItemDecoration())
+//                        addItemDecoration(ItemDecoration())
 
                         swipeRefreshLayout.setOnRefreshListener {
                             cowInfo(userId)

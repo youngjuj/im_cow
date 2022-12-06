@@ -20,8 +20,9 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/linearLayout4"
                 android:layout_width="0dp"
-                android:layout_height="250dp"
+                android:layout_height="300dp"
                 android:background="#B4DAF8"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,8 +56,8 @@
             <WebView
                 android:id="@+id/wvEditPhoto"
                 android:layout_width="350dp"
-                android:layout_height="153dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,16 +68,16 @@
                 android:id="@+id/etEditName"
                 android:layout_width="200dp"
                 android:layout_height="67dp"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="44dp"
                 android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:hint="얼룩이"
+                android:inputType="textPersonName"
                 android:text="@={vm.name}"
                 android:textSize="34sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wvEditPhoto" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
             <ImageView
                 android:id="@+id/imgEditStar"
