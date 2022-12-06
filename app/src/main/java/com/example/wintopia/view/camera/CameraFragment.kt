@@ -53,7 +53,7 @@ class CameraFragment : Fragment() {
     private val REQUEST_GALLERY = 2
     lateinit var currentPhotoPath: String
     var oneImgEvent = MutableLiveData<String>()
-    var resCowinfo: List<MilkCowInfoModel>? = null
+    lateinit var resCowinfo: MilkCowInfoModel
 
 
     lateinit var binding: FragmentCameraBinding
@@ -372,6 +372,7 @@ class CameraFragment : Fragment() {
                 if (response.isSuccessful) {
                     Log.d("로그 ", "이미지 전송 :" + response.body().toString())
                     oneImgEvent.value = response.body().toString()
+                    responseImg(oneImgEvent.value.toString())
 //                    Toast.makeText(activity, "통신성공 ${oneImgEvent.value}", Toast.LENGTH_SHORT).show()
 
                 } else {
@@ -396,16 +397,18 @@ class CameraFragment : Fragment() {
         }
         else {
             // 해당 개체 조회 후 인텐트
-            val milkCowInfoModel = cowInfoOne(oneImgEvent.value.toString())?.get(0)
+            cowInfoOne(oneImgEvent.value.toString())
+            val milkCowInfoModel = resCowinfo
             val intent = Intent(requireActivity(), InfoActivity::class.java)
+            Log.d("CameraFragment", "${milkCowInfoModel.id}")
             intent.putExtra("where", "camera")
-            intent.putExtra("camera", milkCowInfoModel)
+            intent.putExtra("camera", milkCowInfoModel as MilkCowInfoModel)
             startActivity(intent)
 
         }
     }
 
-    fun cowInfoOne(cow_id: String): List<MilkCowInfoModel>? {
+    fun cowInfoOne(cow_id: String){
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
@@ -417,9 +420,10 @@ class CameraFragment : Fragment() {
                 if (response.isSuccessful()) {
                     Log.e(Constants.TAG, "onResponse success")
 //                        val result: UserList? = response.body()
-                    val res = response.body()
-                    resCowinfo = res
+                    val res = response.body()?.get(0)
+                    resCowinfo = MilkCowInfoModel(res!!.id, res.name, res.birth, res.variety, res.gender, res.vaccine, res.pregnancy, res.milk, res.castration, res.list, res.num)
                     // 서버에서 응답받은 데이터
+
                     val result = "${response.body()}"
                     Log.d("뭐야", "$result")
 //                    event.value = "success"
@@ -436,7 +440,7 @@ class CameraFragment : Fragment() {
                 Log.e(Constants.TAG, "onFailure: " + t.message)
             }
         })
-        return resCowinfo
+//        return resCowinfo
     }
 }
 
