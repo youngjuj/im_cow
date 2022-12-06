@@ -47,8 +47,7 @@ interface RetrofitInterface {
         @Query ("user_id") id: String,
         @Query ("cow_id") cow_id: String,
         @Part ("num") num:String
-    )
-            : Call<MultipartBody.Part>
+    ): Call<MultipartBody.Part>
 
     // cow_id에 맞는 사진 리스트 업로드
     @Multipart

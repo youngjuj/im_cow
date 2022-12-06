@@ -203,7 +203,7 @@ class MyPageFragment : Fragment() {
         lineDataSet2.setDrawHighlightIndicators(false)
 
         lineDataSet3.color = Color.rgb(166, 208, 227)
-        lineDataSet2.circleColors = mutableListOf(Color.rgb(178, 223, 138))
+        lineDataSet3.circleColors = mutableListOf(Color.rgb(166, 208, 227))
         lineDataSet3.circleRadius = 6f
         lineDataSet3.lineWidth= 4f
         lineDataSet3.setDrawValues(false)
@@ -213,7 +213,7 @@ class MyPageFragment : Fragment() {
         lineDataSet3.setDrawHighlightIndicators(false)
 
         lineDataSet4.color = Color.rgb(31, 120, 180)
-        lineDataSet4.setCircleColor(Color.rgb(31, 120, 180))
+        lineDataSet4.circleColors = mutableListOf(Color.rgb(31, 120, 180))
         lineDataSet4.circleRadius = 6f
         lineDataSet4.lineWidth= 4f
         lineDataSet4.setDrawValues(false)
@@ -286,11 +286,11 @@ class MyPageFragment : Fragment() {
         val barDataSet1 = BarDataSet(barEntries1, "전체개체")
         barDataSet1.color = Color.rgb(255, 155, 155)
         val barDataSet2 = BarDataSet(barEntries2, "임신개체")
-        barDataSet2.setColors(Color.rgb(178, 223, 138))
+        barDataSet2.color = Color.rgb(178, 223, 138)
         val barDataSet3 = BarDataSet(barEntries3, "건유개체")
-        barDataSet2.setColors(Color.rgb(166, 208, 227))
+        barDataSet3.color = Color.rgb(166, 208, 227)
         val barDataSet4 = BarDataSet(barEntries4, "거세개체")
-        barDataSet3.setColors(Color.rgb(31, 120, 180))
+        barDataSet4.color = Color.rgb(31, 120, 180)
 
         val months = arrayOf("8월", "9월", "10월", "11월")
         val data = BarData(barDataSet1, barDataSet2, barDataSet3, barDataSet4)
