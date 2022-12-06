@@ -29,7 +29,10 @@ import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentCameraBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
+import com.example.wintopia.view.edit.MilkCowInfoModel
+import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.utilssd.API_
+import com.example.wintopia.view.utilssd.Constants
 import com.example.wintopia.view.utilssd.Constants.TAG
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -50,6 +53,7 @@ class CameraFragment : Fragment() {
     private val REQUEST_GALLERY = 2
     lateinit var currentPhotoPath: String
     var oneImgEvent = MutableLiveData<String>()
+    var resCowinfo: List<MilkCowInfoModel>? = null
 
 
     lateinit var binding: FragmentCameraBinding
@@ -384,13 +388,55 @@ class CameraFragment : Fragment() {
 
     fun responseImg(res: String){
         if (oneImgEvent.value.equals("false")){
-//            소 아님
+            // 소 아님 (dialog 필요)
+
 
         }else if (oneImgEvent.value.equals("true")){
+            // 소 맞음(dialog 필요)
+        }
+        else {
+            // 해당 개체 조회 후 인텐트
+            val milkCowInfoModel = cowInfoOne(oneImgEvent.value.toString())?.get(0)
+            val intent = Intent(requireActivity(), InfoActivity::class.java)
+            intent.putExtra("where", "camera")
+            intent.putExtra("camera", milkCowInfoModel)
+            startActivity(intent)
 
         }
     }
 
+    fun cowInfoOne(cow_id: String): List<MilkCowInfoModel>? {
+        //Retrofit 인스턴스 생성
+        val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
+        val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
+        val call: Call<List<MilkCowInfoModel>>? = service.getData(cow_id)
+        call!!.enqueue(object : Callback<List<MilkCowInfoModel>> {
+            override fun onResponse(call: Call<List<MilkCowInfoModel>>, response: Response<List<MilkCowInfoModel>>) {
+                Log.d(Constants.TAG, "onResponse")
+                if (response.isSuccessful()) {
+                    Log.e(Constants.TAG, "onResponse success")
+//                        val result: UserList? = response.body()
+                    val res = response.body()
+                    resCowinfo = res
+                    // 서버에서 응답받은 데이터
+                    val result = "${response.body()}"
+                    Log.d("뭐야", "$result")
+//                    event.value = "success"
+
+                } else {
+                    // 서버통신 실패
+//                    event.value = "fail1"
+                    Log.e(Constants.TAG, "onResponse fail")
+                }
+            }
+            override fun onFailure(call: Call<List<MilkCowInfoModel>>, t: Throwable) {
+                // 통신 실패
+//                event.value = "fail2"
+                Log.e(Constants.TAG, "onFailure: " + t.message)
+            }
+        })
+        return resCowinfo
+    }
 }
 
