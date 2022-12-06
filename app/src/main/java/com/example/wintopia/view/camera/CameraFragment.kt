@@ -101,6 +101,8 @@ class CameraFragment : Fragment() {
         }
 
 
+
+
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -389,7 +391,6 @@ class CameraFragment : Fragment() {
     fun responseImg(res: String){
         if (oneImgEvent.value.equals("false")){
             // 소 아님 (dialog 필요)
-
 
         }else if (oneImgEvent.value.equals("true")){
             // 소 맞음(dialog 필요)
