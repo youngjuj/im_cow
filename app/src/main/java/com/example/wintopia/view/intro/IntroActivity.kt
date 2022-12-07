@@ -20,5 +20,6 @@ class IntroActivity : AppCompatActivity() {
 
             finish() // 처음실행 한 번만 필요한거라 finish
         }, 5000)
+
     }
 }
