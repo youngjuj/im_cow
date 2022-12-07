@@ -101,6 +101,8 @@ class CameraFragment : Fragment() {
         }
 
 
+
+
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -390,20 +392,13 @@ class CameraFragment : Fragment() {
     fun responseImg(res: String){
         if (res.equals("false")){
             // 소 아님 (dialog 필요)
-
-
-        }else if (res.equals("true")){
+        }else if (oneImgEvent.value.equals("true")){
             // 소 맞음(dialog 필요)
         }
         else {
             // 해당 개체 조회 후 인텐트
-            val milkCowInfoModel = cowInfoOne(res)
-            val intent = Intent(requireActivity(), InfoActivity::class.java)
-            Log.d("CameraFragment", milkCowInfoModel.id)
-            intent.putExtra("where", "camera")
-            intent.putExtra("camera", milkCowInfoModel as MilkCowInfoModel)
-            startActivity(intent)
-
+            var cow_id = oneImgEvent.value.toString()
+            cowInfoOne(cow_id)
         }
     }
 
@@ -418,13 +413,15 @@ class CameraFragment : Fragment() {
                 Log.d(Constants.TAG, "onResponse")
                 if (response.isSuccessful()) {
                     Log.e(Constants.TAG, "onResponse success")
-//                        val result: UserList? = response.body()
-                    val res = response.body()!![0]
-                    resCowinfo = MilkCowInfoModel(res.id, res.name, res.birth, res.variety, res.gender, res.vaccine, res.pregnancy, res.milk, res.castration, res.list, res.num)
                     // 서버에서 응답받은 데이터
-
                     val result = "${response.body()}"
-                    Log.d("뭐야", "${res.id}")
+                    val intent = Intent(requireActivity(), InfoActivity::class.java)
+                    Log.d("값 확인", "${result.toString()}")
+                    Log.d("뭐야2222", "$result")
+
+                    intent.putExtra("where", "camera")
+                    intent.putExtra("camera", result as MilkCowInfoModel)
+                    startActivity(intent)
 //                    event.value = "success"
 
                 } else {
@@ -439,7 +436,6 @@ class CameraFragment : Fragment() {
                 Log.e(Constants.TAG, "onFailure: " + t.message)
             }
         })
-        return resCowinfo as MilkCowInfoModel
     }
 
 }
