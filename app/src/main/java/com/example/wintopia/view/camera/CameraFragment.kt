@@ -10,9 +10,7 @@ import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.ImageDecoder
 import android.net.Uri
-import android.os.Build
-import android.os.Bundle
-import android.os.Environment
+import android.os.*
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,16 +23,19 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentCameraBinding
 import com.example.wintopia.dialog.MyCustomDialog
+import com.example.wintopia.dialog.MyCustomDialogInterface
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.main.MainActivity
+import com.example.wintopia.view.regist.RegistInfoActivity
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import com.example.wintopia.view.utilssd.Constants.TAG
@@ -49,7 +50,7 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 
-class CameraFragment : Fragment() {
+class CameraFragment: DialogFragment(), MyCustomDialogInterface {
     private var show: Boolean? = null
 
     // 카메라 및 갤러리 연동 변수들
@@ -376,11 +377,10 @@ class CameraFragment : Fragment() {
         call?.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.isSuccessful) {
-                    Log.d("로그 ", "이미지 전송 :" + response.body().toString())
+                    responseImg()
                     oneImgEvent.value = response.body().toString()
                     Log.d("값?", oneImgEvent.value.toString())
 //                    Toast.makeText(activity, "통신성공 ${oneImgEvent.value}", Toast.LENGTH_SHORT).show()
-                    responseImg(oneImgEvent.value.toString())
 
                 } else {
                     Toast.makeText(activity, "통신실패", Toast.LENGTH_SHORT).show()
@@ -393,20 +393,98 @@ class CameraFragment : Fragment() {
     }
 
 
-    fun responseImg(res: String){
-        if (res.equals("false")){
-            // 소 아님 (dialog 필요)
+    fun responseImg(){
+//        Log.d("값res", oneImgEvent.value.toSt6ring())
 
-        }else if (oneImgEvent.value.equals("true")){
-            // 소 맞음(dialog 필요)
+        val myCustomDialog = MyCustomDialog(requireContext(), this)
+        // 다이얼로그 밖에 화면 눌러서 끄기 막기
+        myCustomDialog.setCancelable(false)
+        myCustomDialog.show()
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (oneImgEvent.value.toString() == "false"){
+                // 소 아님 (dialog 필요)
+                val alertDialog = AlertDialog.Builder(context).create()
+                alertDialog.setTitle("소 사진이 아닙니다.")
 
-        }
-        else {
-            // 해당 개체 조회 후 인텐트
-            var cow_id = oneImgEvent.value.toString()
-            cowInfoOne(cow_id)
-        }
+                alertDialog.setButton(
+                    AlertDialog.BUTTON_POSITIVE, "확인"
+                ) { dialog, which -> dialog.dismiss() }
+                alertDialog.show()
+
+                val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                btnPositive.setOnClickListener {
+                    myCustomDialog.dismiss()
+                    alertDialog.dismiss()
+                }
+
+                val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+                layoutParams.weight = 10f
+                btnPositive.layoutParams = layoutParams
+
+
+            }else if (oneImgEvent.value.toString() == "true"){
+                // 소 맞음(dialog 필요)
+                val alertDialog = AlertDialog.Builder(context).create()
+                alertDialog.setTitle("소를 등록하시겠습니까?")
+
+                alertDialog.setButton(
+                    AlertDialog.BUTTON_POSITIVE, "취소 하기"
+                ) { dialog, which -> dialog.dismiss() }
+
+                alertDialog.setButton(
+                    AlertDialog.BUTTON_NEGATIVE, "등록 하기"
+                ) { dialog, which -> dialog.dismiss() }
+                alertDialog.show()
+
+                val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                btnPositive.setOnClickListener {
+                    myCustomDialog.dismiss()
+                    alertDialog.dismiss()
+                }
+                val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                btnNegative.setOnClickListener {
+                    val intent = Intent(requireActivity(), RegistInfoActivity::class.java)
+                    startActivity(intent)
+//                        val intent = Intent(this, MainActivity::class.java)
+////                    intent.putExtra("cowInfo", cowInfo)
+//                        startActivity(intent)
+                }
+
+
+                val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+                layoutParams.weight = 10f
+                btnPositive.layoutParams = layoutParams
+                btnNegative.layoutParams = layoutParams
+
+            }
+            else {
+                // 해당 개체 조회 후 인텐트
+                var cow_id = oneImgEvent.value.toString()
+                val alertDialog = AlertDialog.Builder(context).create()
+                alertDialog.setTitle("등록된 객체입니다!")
+
+                alertDialog.setButton(
+                    AlertDialog.BUTTON_POSITIVE, "확인"
+                ) { dialog, which -> dialog.dismiss() }
+                alertDialog.show()
+
+                val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                btnPositive.setOnClickListener {
+                    cowInfoOne(cow_id)
+                    myCustomDialog.dismiss()
+                    alertDialog.dismiss()
+//                    val intent = Intent(requireActivity(), MainActivity::class.java)
+////                    intent.putExtra("cowInfo", cowInfo)
+//                    startActivity(intent)
+                }
+                val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+                layoutParams.weight = 10f
+                btnPositive.layoutParams = layoutParams
+            }
+        }, 3000)
     }
+
+
 
     fun cowInfoOne(cow_id: String){
         //Retrofit 인스턴스 생성
@@ -428,6 +506,7 @@ class CameraFragment : Fragment() {
                     intent.putExtra("where", "camera")
                     intent.putExtra("camera", result as MilkCowInfoModel)
                     startActivity(intent)
+//                    requireActivity().finish()
 //                    event.value = "success"
 
                 } else {
@@ -442,6 +521,11 @@ class CameraFragment : Fragment() {
                 Log.e(Constants.TAG, "onFailure: " + t.message)
             }
         })
+    }
+    override fun onLikedBtnClicked() {
+    }
+
+    override fun onSubscribeBtnClicked() {
     }
 }
 

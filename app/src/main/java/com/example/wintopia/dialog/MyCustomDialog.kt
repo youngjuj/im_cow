@@ -6,9 +6,10 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import com.example.wintopia.databinding.ActivityCustomDialogBinding
+import com.example.wintopia.databinding.FragmentCustomDialog1Binding
 
 class MyCustomDialog(context: Context, MyCustomDialogInterface: MyCustomDialogInterface) : Dialog(context) {
-    private var mBinding: ActivityCustomDialogBinding? = null
+    private var mBinding: FragmentCustomDialog1Binding? = null
     private val binding get() = mBinding!!
 
     val image = String
@@ -24,18 +25,18 @@ class MyCustomDialog(context: Context, MyCustomDialogInterface: MyCustomDialogIn
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = ActivityCustomDialogBinding.inflate(layoutInflater)
+        mBinding = FragmentCustomDialog1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // 배경 투명하게
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        binding.subscribeBtn.setOnClickListener {
-            this.myCustomDialogInterface?.onSubscribeBtnClicked()
-
-        }
-        binding.likeBtn.setOnClickListener {
-            this.myCustomDialogInterface?.onLikedBtnClicked()
-        }
+//        binding.subscribeBtn.setOnClickListener {
+//            this.myCustomDialogInterface?.onSubscribeBtnClicked()
+//
+//        }
+//        binding.likeBtn.setOnClickListener {
+//            this.myCustomDialogInterface?.onLikedBtnClicked()
+//        }
     }
 }

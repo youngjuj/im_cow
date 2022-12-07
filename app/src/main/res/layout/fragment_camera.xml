@@ -6,16 +6,17 @@
     android:id="@+id/flCamera"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/nocow"
     tools:context=".view.camera.CameraFragment">
 
-    <TextView
-        android:id="@+id/tvCameraTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="젖소 키우는 꿀팁?"
-        android:textSize="40sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/tvCameraTitle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="젖소 키우는 꿀팁?"-->
+<!--        android:textSize="40sp" />-->
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -26,6 +27,7 @@
         android:layout_marginLeft="240dp"
         android:layout_marginBottom="200dp"
         android:clickable="true"
+        app:tint="@null"
         android:src="@drawable/camera"
         app:backgroundTint="#656644" />
 
@@ -36,6 +38,8 @@
         android:layout_gravity="bottom"
         android:layout_marginLeft="120dp"
         android:layout_marginBottom="200dp"
+        app:tint="@null"
+        app:rippleColor="#00FFFFFF"
         android:clickable="true"
         android:src="@drawable/gallery"
         app:backgroundTint="#656644" />
@@ -45,7 +49,17 @@
         android:layout_width="300dp"
         android:layout_height="400dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/standingcow" />
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loding"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:layout_constraintVertical_bias="1.0"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/ufo" />
 
 </FrameLayout>
 </layout>
