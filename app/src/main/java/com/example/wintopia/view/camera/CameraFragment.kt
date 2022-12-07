@@ -396,8 +396,10 @@ class CameraFragment : Fragment() {
     fun responseImg(res: String){
         if (res.equals("false")){
             // 소 아님 (dialog 필요)
+
         }else if (oneImgEvent.value.equals("true")){
             // 소 맞음(dialog 필요)
+
         }
         else {
             // 해당 개체 조회 후 인텐트
