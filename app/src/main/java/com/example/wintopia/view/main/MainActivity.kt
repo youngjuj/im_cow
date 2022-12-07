@@ -49,8 +49,6 @@ class MainActivity : AppCompatActivity() {
         binding.bnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tab1 -> {
-                    Toast.makeText(this, "List화면", Toast.LENGTH_SHORT).show()
-
                     supportFragmentManager.beginTransaction().replace(
                         R.id.fl, ListFragment()
                     ).commit()
@@ -59,10 +57,6 @@ class MainActivity : AppCompatActivity() {
 //                    var intent = Intent(this, CameraFragment::class.java)
 //                    intent.putExtra("show", show)
 //                    startActivity(intent)
-
-
-                    Toast.makeText(this, "카메라 화면", Toast.LENGTH_SHORT).show()
-
                     setDataAtFragment(CameraFragment(), show)
                     show = !show
 //                    var fragment = CameraFragment()
@@ -78,8 +72,6 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 R.id.tab3 -> {
-                    Toast.makeText(this, "내농장 화면", Toast.LENGTH_SHORT).show()
-
                     supportFragmentManager.beginTransaction().replace(
                         R.id.fl, MyPageFragment()
                     ).commit()

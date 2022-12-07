@@ -27,8 +27,9 @@
             android:layout_marginRight="24dp"
             android:layout_marginBottom="130dp"
             android:clickable="true"
-            android:src="@android:drawable/ic_menu_add"
+            android:src="@drawable/plus"
             app:backgroundTint="#656644"
+            app:tint="@null"
             app:rippleColor="#00FFFFFF" />
 
     </FrameLayout>

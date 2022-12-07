@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.core.content.ContextCompat
 import com.example.wintopia.R
 import com.example.wintopia.view.login.LoginActivity
 
@@ -20,5 +21,8 @@ class IntroActivity : AppCompatActivity() {
 
             finish() // 처음실행 한 번만 필요한거라 finish
         }, 5000)
+
+        window.statusBarColor = ContextCompat.getColor(this, R.color.intorStatus)
+
     }
 }
