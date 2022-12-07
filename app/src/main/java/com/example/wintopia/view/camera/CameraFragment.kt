@@ -398,13 +398,8 @@ class CameraFragment : Fragment() {
         }
         else {
             // 해당 개체 조회 후 인텐트
-            val milkCowInfoModel = cowInfoOne(oneImgEvent.value.toString())
-            val intent = Intent(requireActivity(), InfoActivity::class.java)
-            Log.d("CameraFragment", "${milkCowInfoModel?.id}")
-            intent.putExtra("where", "camera")
-            intent.putExtra("camera", milkCowInfoModel as MilkCowInfoModel)
-            startActivity(intent)
-
+            var cow_id = oneImgEvent.value.toString()
+            cowInfoOne(cow_id)
         }
     }
 
@@ -420,13 +415,16 @@ class CameraFragment : Fragment() {
                 Log.d(Constants.TAG, "onResponse")
                 if (response.isSuccessful()) {
                     Log.e(Constants.TAG, "onResponse success")
-//                        val result: UserList? = response.body()
-                    val res = response.body()?.get(0)
-                    resCowinfo = MilkCowInfoModel(res!!.id, res.name, res.birth, res.variety, res.gender, res.vaccine, res.pregnancy, res.milk, res.castration, res.list, res.num)
                     // 서버에서 응답받은 데이터
-
                     val result = "${response.body()}"
-                    Log.d("뭐야", "$result")
+                    val intent = Intent(requireActivity(), InfoActivity::class.java)
+                    Log.d("값 확인", "${result.toString()}")
+                    Log.d("뭐야2222", "$result")
+
+                    intent.putExtra("where", "camera")
+                    intent.putExtra("camera", result as MilkCowInfoModel)
+                    startActivity(intent)
+
 //                    event.value = "success"
 
                 } else {
