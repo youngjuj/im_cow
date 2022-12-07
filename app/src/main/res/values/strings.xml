@@ -11,4 +11,6 @@
     <string name="no">무</string>
     <string name="wishY">1</string>
     <string name="wishN">0</string>
+    <string name="edit">수\n정</string>
+    <string name="delete">삭\n제</string>
 </resources>
