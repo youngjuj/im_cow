@@ -414,7 +414,7 @@ class CameraFragment : Fragment() {
                 if (response.isSuccessful()) {
                     Log.e(Constants.TAG, "onResponse success")
                     // 서버에서 응답받은 데이터
-                    val result = "${response.body()}"
+                    val result = response.body()!!.get(0)
                     val intent = Intent(requireActivity(), InfoActivity::class.java)
                     Log.d("값 확인", "${result.toString()}")
                     Log.d("뭐야2222", "$result")
