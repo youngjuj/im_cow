@@ -27,7 +27,9 @@
         android:layout_marginBottom="200dp"
         android:clickable="true"
         android:src="@drawable/camera"
-        app:backgroundTint="#656644" />
+        app:backgroundTint="#656644"
+        app:tint="@null"
+        app:rippleColor="#00FFFFFF"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbCameraGal"
@@ -37,6 +39,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginBottom="200dp"
         android:clickable="true"
+        app:tint="@null"
         android:src="@drawable/gallery"
         app:backgroundTint="#656644" />
 
