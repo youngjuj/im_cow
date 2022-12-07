@@ -16,6 +16,7 @@ import com.example.wintopia.databinding.FragmentCameraBinding
 import com.example.wintopia.view.camera.CameraFragment
 import com.example.wintopia.view.list.ListFragment
 import com.example.wintopia.view.mypage.MyPageFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +40,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
+
+
 
         supportFragmentManager.beginTransaction().replace(
             R.id.fl, ListFragment()
