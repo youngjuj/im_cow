@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="602dp" />
+            app:layout_constraintGuide_end="57dp" />
 
         <!--    <Button-->
         <!--        android:id="@+id/btnLogout"-->
@@ -67,18 +67,21 @@
             android:id="@+id/bnv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_radius"
+            android:elevation="3dp"
+            app:itemIconTint="@drawable/menu_selector_color"
+            app:itemTextColor="@drawable/menu_selector_color"
             app:labelVisibilityMode="labeled"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fl"
             app:layout_constraintVertical_bias="1.0"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:elevation="3dp"
-            android:background="@drawable/background_radius"
             app:menu="@menu/select" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/tab1"
-        android:icon="@android:drawable/btn_star_big_on"
+        android:icon="@drawable/list"
         android:title="list" />
     <item
         android:id="@+id/tab2"

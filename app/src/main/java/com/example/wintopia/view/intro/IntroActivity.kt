@@ -24,5 +24,6 @@ class IntroActivity : AppCompatActivity() {
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.intorStatus)
 
+
     }
 }
