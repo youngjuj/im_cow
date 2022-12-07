@@ -372,14 +372,14 @@ class CameraFragment : Fragment() {
                 if (response.isSuccessful) {
                     Log.d("로그 ", "이미지 전송 :" + response.body().toString())
                     oneImgEvent.value = response.body().toString()
-                    responseImg(oneImgEvent.value.toString())
+                    Log.d("값?", oneImgEvent.value.toString())
 //                    Toast.makeText(activity, "통신성공 ${oneImgEvent.value}", Toast.LENGTH_SHORT).show()
+                    responseImg(oneImgEvent.value.toString())
 
                 } else {
                     Toast.makeText(activity, "통신실패", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<String?>, t: Throwable) {
                 Log.d("로그", t.message.toString())
             }
@@ -388,18 +388,18 @@ class CameraFragment : Fragment() {
 
 
     fun responseImg(res: String){
-        if (oneImgEvent.value.equals("false")){
+        if (res.equals("false")){
             // 소 아님 (dialog 필요)
 
 
-        }else if (oneImgEvent.value.equals("true")){
+        }else if (res.equals("true")){
             // 소 맞음(dialog 필요)
         }
         else {
             // 해당 개체 조회 후 인텐트
-            val milkCowInfoModel = cowInfoOne(oneImgEvent.value.toString())
+            val milkCowInfoModel = cowInfoOne(res)
             val intent = Intent(requireActivity(), InfoActivity::class.java)
-            Log.d("CameraFragment", "${milkCowInfoModel?.id}")
+            Log.d("CameraFragment", milkCowInfoModel.id)
             intent.putExtra("where", "camera")
             intent.putExtra("camera", milkCowInfoModel as MilkCowInfoModel)
             startActivity(intent)
@@ -407,25 +407,24 @@ class CameraFragment : Fragment() {
         }
     }
 
-    fun cowInfoOne(cow_id: String): MilkCowInfoModel?{
+    fun cowInfoOne(cow_id: String){
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
-        var resCowinfo: MilkCowInfoModel? = null
 
-        val call: Call<List<MilkCowInfoModel>>? = service.getData(cow_id)
+        val call: Call<List<MilkCowInfoModel>> = service.getData(cow_id)
         call!!.enqueue(object : Callback<List<MilkCowInfoModel>> {
             override fun onResponse(call: Call<List<MilkCowInfoModel>>, response: Response<List<MilkCowInfoModel>>) {
                 Log.d(Constants.TAG, "onResponse")
                 if (response.isSuccessful()) {
                     Log.e(Constants.TAG, "onResponse success")
 //                        val result: UserList? = response.body()
-                    val res = response.body()?.get(0)
-                    resCowinfo = MilkCowInfoModel(res!!.id, res.name, res.birth, res.variety, res.gender, res.vaccine, res.pregnancy, res.milk, res.castration, res.list, res.num)
+                    val res = response.body()!![0]
+                    resCowinfo = MilkCowInfoModel(res.id, res.name, res.birth, res.variety, res.gender, res.vaccine, res.pregnancy, res.milk, res.castration, res.list, res.num)
                     // 서버에서 응답받은 데이터
 
                     val result = "${response.body()}"
-                    Log.d("뭐야", "$result")
+                    Log.d("뭐야", "${res.id}")
 //                    event.value = "success"
 
                 } else {
@@ -440,7 +439,7 @@ class CameraFragment : Fragment() {
                 Log.e(Constants.TAG, "onFailure: " + t.message)
             }
         })
-        return resCowinfo
+        return resCowinfo as MilkCowInfoModel
     }
 
 }
