@@ -18,32 +18,32 @@
         android:textSize="40sp" />
 
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbCameraCam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:layout_gravity="bottom"
         android:layout_marginLeft="240dp"
         android:layout_marginBottom="200dp"
-        android:src="@drawable/camera"/>
+        android:clickable="true"
+        android:src="@drawable/camera"
+        app:backgroundTint="#656644" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbCameraGal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
+        android:layout_gravity="bottom"
         android:layout_marginLeft="120dp"
         android:layout_marginBottom="200dp"
-        android:layout_gravity="bottom"
+        android:clickable="true"
         android:src="@drawable/gallery"
-        />
+        app:backgroundTint="#656644" />
 
     <ImageView
         android:id="@+id/imgCameraPic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/standingcow" />
 

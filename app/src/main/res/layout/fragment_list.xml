@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <FrameLayout
         android:id="@+id/flList"
@@ -23,10 +24,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_marginBottom="120dp"
             android:layout_marginRight="24dp"
+            android:layout_marginBottom="130dp"
             android:clickable="true"
-            android:src="@android:drawable/ic_menu_add" />
+            android:src="@android:drawable/ic_menu_add"
+            app:backgroundTint="#656644"
+            app:rippleColor="#00FFFFFF" />
 
     </FrameLayout>
 </layout>
