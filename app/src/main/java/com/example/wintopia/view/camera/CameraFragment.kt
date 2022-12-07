@@ -3,6 +3,7 @@ package com.example.wintopia.view.camera
 import android.Manifest.permission.CAMERA
 import android.app.Activity
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -17,6 +18,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -27,10 +29,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentCameraBinding
+import com.example.wintopia.dialog.MyCustomDialog
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
+import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
 import com.example.wintopia.view.utilssd.Constants.TAG
@@ -437,6 +441,5 @@ class CameraFragment : Fragment() {
             }
         })
     }
-
 }
 
