@@ -21,6 +21,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F8EFE6"
     tools:context=".view.login.LoginActivity"
     >
 
@@ -29,7 +30,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@color/teal_200"
+        android:background="#937F76"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,16 +124,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etLoginPw_layout" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/btnLoginLgin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="24dp"
-        android:text="로그인"
         android:background="@drawable/background_radius"
+        android:text="로그인"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkbox" />
 
@@ -147,7 +149,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnLoginLgin"
         />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/btnLoginJoin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

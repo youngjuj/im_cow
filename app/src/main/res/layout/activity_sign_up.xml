@@ -16,18 +16,21 @@
     <ScrollView
         android:id="@+id/svSignUpRoot"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#F8EFE6"
+        >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.signup.SignUpActivity">
+        tools:context=".view.signup.SignUpActivity"
+        >
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@color/teal_200"
+            android:background="#937F76"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -146,7 +149,7 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/etJoinPw2_layout">
 
-            <Button
+            <android.widget.Button
                 android:id="@+id/btnJoinJoin"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
@@ -159,7 +162,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etJoinPw2" />
 
-            <Button
+            <android.widget.Button
                 android:id="@+id/btnJoinback"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
