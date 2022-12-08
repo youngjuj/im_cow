@@ -126,6 +126,8 @@ class RegistViewModel: ViewModel() {
 
                     var result = response.body()
 
+                    cowInfoEvent = result as MilkCowInfoModel
+
                     ///// 수정////////
 //                    val intent = Intent(requireActivity(), InfoActivity::class.java)
 //                    Log.d("값 확인", "${result.toString()}")

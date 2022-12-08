@@ -457,10 +457,9 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                     ///// 수정////////
 
 
-
-//                    val intent = Intent(this, MainActivity::class.java)
-//                    intent.putExtra("cowInfo", cowInfo)
-//                    startActivity(intent)
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("cowInfo", viewModel.cowInfoEvent)
+                    startActivity(intent)
                 }
                 val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
                 layoutParams.weight = 10f
