@@ -75,7 +75,10 @@ class RegistInfoActivity : AppCompatActivity(), MyCustomDialogInterface {
                 etRegistInfoPreg, etRegistInfoMilk, etRegistInfoCas, 0, 0)
 
             viewModel.registCowInfo(user_id, milkCowInfo)
-            observeData(milkCowInfo)
+//            observeData(milkCowInfo)
+
+            observeData()
+
         }
 
         binding.btnRegistInfoCancel.setOnClickListener {
@@ -89,15 +92,34 @@ class RegistInfoActivity : AppCompatActivity(), MyCustomDialogInterface {
     }
 
 
-    fun observeData(milkCow: MilkCowInfoModel) {
-        viewModel.registEvent.observe(this){
-            when(it){
-                "sucess"->{
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("where", "registInfo")
-                    intent.putExtra("registInfo", milkCow)
-                    startActivity(intent)
-                    finish()
+//    fun observeData(milkCow: MilkCowInfoModel) {
+//        viewModel.registEvent.observe(this){
+//            when(it){
+//                "sucess"-> {
+//                    val intent = Intent(this, MainActivity::class.java)
+//                    intent.putExtra("where", "registInfo")
+//                    intent.putExtra("registInfo", milkCow)
+//                    startActivity(intent)
+//                    finish()
+//                }
+//                "failed" -> {                }
+//            }
+//        }
+//    }
+
+    override fun onLikedBtnClicked() {
+    }
+
+    override fun onSubscribeBtnClicked() {
+    }
+
+
+    // data변경 실시간 반영
+    fun observeData() {
+        viewModel.registEvent.observe(this) {
+            when (it) {
+                "success" -> {
+
                     // 개체 등록 성공
                     val alertDialog = AlertDialog.Builder(this).create()
                     alertDialog.setTitle("등록이 완료되었습니다.")
@@ -122,7 +144,7 @@ class RegistInfoActivity : AppCompatActivity(), MyCustomDialogInterface {
                     btnPositive.layoutParams = layoutParams
 
                 }
-                "failed" -> {
+                "fail1" -> {
                     Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
                     // 소 아님 (dialog 필요)
                     val alertDialog = AlertDialog.Builder(this).create()
@@ -143,16 +165,11 @@ class RegistInfoActivity : AppCompatActivity(), MyCustomDialogInterface {
                     val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
                     layoutParams.weight = 10f
                     btnPositive.layoutParams = layoutParams
-
                 }
+
             }
         }
-    }
 
-    override fun onLikedBtnClicked() {
-    }
-
-    override fun onSubscribeBtnClicked() {
     }
 }
 
