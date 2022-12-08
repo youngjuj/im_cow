@@ -127,13 +127,13 @@ class RegistViewModel: ViewModel() {
                     var result = response.body()
 
                     ///// 수정////////
-                    val intent = Intent(requireActivity(), InfoActivity::class.java)
-                    Log.d("값 확인", "${result.toString()}")
-                    Log.d("뭐야2222", "$result")
-
-                    intent.putExtra("where", "camera")
-                    intent.putExtra("camera", result as MilkCowInfoModel)
-                    startActivity(intent)
+//                    val intent = Intent(requireActivity(), InfoActivity::class.java)
+//                    Log.d("값 확인", "${result.toString()}")
+//                    Log.d("뭐야2222", "$result")
+//
+//                    intent.putExtra("where", "camera")
+//                    intent.putExtra("camera", result as MilkCowInfoModel)
+//                    startActivity(intent)
 
                 } else {
                     // 서버통신 실패

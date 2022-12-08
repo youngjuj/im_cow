@@ -30,7 +30,6 @@
         app:tint="@null"
         android:src="@drawable/camera"
         app:backgroundTint="#656644"
-        app:tint="@null"
         app:rippleColor="#00FFFFFF"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -43,7 +42,6 @@
         app:tint="@null"
         app:rippleColor="#00FFFFFF"
         android:clickable="true"
-        app:tint="@null"
         android:src="@drawable/gallery"
         app:backgroundTint="#656644" />
 
