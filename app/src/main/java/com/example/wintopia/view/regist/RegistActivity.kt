@@ -74,9 +74,9 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 
         observeData()
 
-//        binding.btnRegistCancel.setOnClickListener {
-//            finish()
-//        }
+        binding.btnRegistBack.setOnClickListener {
+            finish()
+        }
 
         registAdapter = RegistAdapter(viewModel.imgList)
 
@@ -267,6 +267,7 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                 btnNegative.setOnClickListener {
                     val intent = Intent(this, RegistInfoActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
 
 
@@ -297,7 +298,6 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                     viewModel.eventCowId.value = ""
                     viewModel.event.value = ""
                     viewModel.imgFileList.clear()
-                    ///// 수정////////
 
                     val intent = Intent(this, InfoActivity::class.java)
                     intent.putExtra("where", "regist")
@@ -328,8 +328,7 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                     Log.d("Regist값2", data.name)
                     intent.putExtra("regist", data)
                     startActivity(intent)
-
-//
+                    finish()
                 }
                 val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
                 layoutParams.weight = 10f

@@ -28,6 +28,9 @@ class RegistInfoActivity : AppCompatActivity() {
         val user_id = "test"
 
         binding.btnRegistInfoRegist.setOnClickListener {
+            // 다이얼 달아죠
+            
+            binding.btnRegistInfoRegist.isClickable = false
             if (binding.rbRegistMale.isChecked) viewModel.gender.value =  "수컷"
             else viewModel.gender.value = "암컷"
 
@@ -73,71 +76,17 @@ class RegistInfoActivity : AppCompatActivity() {
 
 
     fun observeData() {
-        viewModel.event.observe(this){
+        viewModel.registEvent.observe(this){
             when(it){
                 "sucess"->{
-//                    Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
                 "failed" -> {
                     Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-//        viewModel.apply {
-////            name.observe(this@RegistInfoActivity) {
-////                binding.etRegistName.text = it
-////            }
-////            birth.observe(this@RegistInfoActivity) {
-////                binding.etRegistBirth.hint = it
-////            }
-////            variety.observe(this@RegistInfoActivity) {
-////                binding.etRegistVariety.hint = it
-////            }
-//            gender.observe(this@RegistInfoActivity) {
-//                binding.rbRegistGender.setOnCheckedChangeListener { group, checkedId ->
-//                    when (checkedId) {
-//                        binding.rbRegistMale.id -> viewModel.gender.value = "수컷"
-//                        binding.rbRegistFemale.id -> viewModel.gender.value = "암컷"
-//                    }
-//                }
-//                vaccine.observe(this@RegistInfoActivity) {
-//                    binding.rbRegistVaccine.setOnCheckedChangeListener { group, checkedId ->
-//                        when (checkedId) {
-//                            binding.rbRegistDid.id -> viewModel.vaccine.value = "접종"
-//                            binding.rbRegistDidnt.id -> viewModel.vaccine.value = "미접종"
-//                        }
-//                    }
-//                }
-//                pregnancy.observe(this@RegistInfoActivity) {
-//                    binding.rbRegistPregnant.setOnCheckedChangeListener { group, checkedId ->
-//                        when (checkedId) {
-//                            binding.rbRegistPreg.id -> viewModel.pregnancy.value = "유"
-//                            binding.rbRegistNonP.id -> viewModel.pregnancy.value = "무"
-//                        }
-//                    }
-//                }
-//                milk.observe(this@RegistInfoActivity) {
-//                    binding.rbRegistMilk.setOnCheckedChangeListener { group, checkedId ->
-//                        when (checkedId) {
-//                            binding.rbRegistMilkY.id -> viewModel.milk.value = "유"
-//                            binding.rbRegistMilkN.id -> viewModel.milk.value = "무"
-//                        }
-//                    }
-//                }
-//                castration.observe(this@RegistInfoActivity) {
-//                    binding.rbRegistCas.setOnCheckedChangeListener { group, checkedId ->
-//                        when (checkedId) {
-//                            binding.rbRegistCasY.id -> viewModel.castration.value = "유"
-//                            binding.rbRegistCasN.id -> viewModel.castration.value = "무"
-//                        }
-//                    }
-//                }
-
-//            }
-
-//        }
-
     }
 }
