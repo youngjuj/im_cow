@@ -102,12 +102,8 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                 // 이미지 통신
                 viewModel.sendImage(cow_id, viewModel.imgFileList)
             }
-
-
             listImgEvent()
-
         }
-
     }
 
 
