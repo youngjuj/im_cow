@@ -76,7 +76,6 @@ class RegistViewModel: ViewModel() {
         })
     }
 
-    // 이미지 처리랑 같이 고민해보기
     // 버튼 이벤트 전에 사진 올렸을 때 자동으로 개체 정보 확인해서
     // 소가 아니면 다시 찍어달라 다이얼로그, 등록 개체는 등록 불가, 미등록 개채는 나머지 정보 입력
     // 소 정보 신규 등록
@@ -130,15 +129,6 @@ class RegistViewModel: ViewModel() {
                                                     result.gender, result.vaccine, result.pregnancy, result.milk,
                                                     result.castration, result.list, result.num)
                     Log.d("viewmodel 값", cowInfoEvent!!.id)
-
-                    ///// 수정////////
-//                    val intent = Intent(requireActivity(), InfoActivity::class.java)
-//                    Log.d("값 확인", "${result.toString()}")
-//                    Log.d("뭐야2222", "$result")
-//
-//                    intent.putExtra("where", "camera")
-//                    intent.putExtra("camera", result as MilkCowInfoModel)
-//                    startActivity(intent)
 
                 } else {
                     // 서버통신 실패

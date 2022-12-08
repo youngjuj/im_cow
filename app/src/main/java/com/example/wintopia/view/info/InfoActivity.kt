@@ -41,10 +41,6 @@ class InfoActivity : AppCompatActivity() {
         setIntent(intent)
         observeData()
 
-//        cowInfo = MilkCowInfoModel(viewModel.id.value.toString(), viewModel.name.value.toString(), viewModel.birth.value.toString(), viewModel.variety.value.toString(), viewModel.gender.toString(),
-//                                   viewModel.vaccine.value.toString(), viewModel.pregnancy.value.toString(), viewModel.milk.value.toString(), viewModel.castration.value.toString(),
-//                                   viewModel.wishEvent.value!!.toInt(), 0)
-
 
         // 즐겨찾기 별
         binding.imgInfoStar.setOnClickListener {

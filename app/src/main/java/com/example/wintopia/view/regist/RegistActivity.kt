@@ -112,13 +112,6 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 
         }
 
-
-
-
-
-
-
-
     }
 
 
@@ -172,107 +165,23 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
         }
     }
 
-    // camera intent && image파일 생성
-    fun dispatchTakePictureIntent() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            if (takePictureIntent.resolveActivity(this.packageManager) != null) {
-                val photoFile: File? =
-                    try {
-                        createImageFile()
-                    } catch (ex: IOException) {
-                        Log.d("Camera오류", "그림파일 만드는 중 에러생김")
-                        null
-                    }
-                if (Build.VERSION.SDK_INT < 24) {
-                    if(photoFile != null) {
-                        val photoURI = Uri.fromFile(photoFile)
-                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-                    }
-                } else {
-                    photoFile?.also {
-                        val photoURI: Uri = FileProvider.getUriForFile(
-                            this, "com.example.wintopia.fileprovider", it
-                        )
-                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-                    }
-                }
-            }
-
-        }
-    }
-
-    // camera로 찍은 파일 저장하기
-    fun createImageFile(): File {
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(java.util.Date())
-        val storageDir: File? = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        return File.createTempFile(
-            "JPEG_${timeStamp}_",
-            ".jpg",
-            storageDir
-        ).apply { currentPhotoPath = absolutePath }
-    }
-
     // gallery에서 사진 선택
     fun dispatchSelectPictureIntent() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         startActivityForResult(intent, REQUEST_GALLERY)
-//        Intent(Intent.ACTION_PICK).apply {
-//            data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-//            startActivityForResult(this, REQUEST_GALLERY)
-//        }
     }
 
 
     // camera로 찍어서 저장한 파일 imageview로 띄워주기
-    lateinit var bitmap: Bitmap
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-//            REQUEST_IMAGE_CAPTURE -> {
-//                Log.v("순서", "onActivityResult img")
-////                Log.v("img_request", "${img?.id}")
-//                if(resultCode == Activity.RESULT_OK) {
-//                    val file = File(currentPhotoPath)
-//                    Log.d("file 경로", currentPhotoPath)
-//                    val uri = currentPhotoPath.toUri()
-//                    viewModel.imgList.add(uri)
-//
-//                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-//                    viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
-////                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-//
-//                    var user_id = "test"
-//                    var cow_id = "1"
-//                    Log.d("가즈아", ""+viewModel.imgList)
-//
-////                    sendImage(cow_id, imgList)
-//
-//                    if (Build.VERSION.SDK_INT < 28) {
-//                        bitmap = MediaStore.Images.Media
-//                            .getBitmap(this.contentResolver, Uri.fromFile(file))
-//                    } else {
-//                        val decode = ImageDecoder.createSource(this.contentResolver,
-//                            Uri.fromFile(file))
-//                        bitmap = ImageDecoder.decodeBitmap(decode)
-//                    }
-////                    img?.setImageBitmap(bitmap)
-//
-//                }
-//            }
             REQUEST_GALLERY -> {
                 Log.d(Constants.TAG, "" + viewModel.imgList)
                 Log.d(Constants.TAG, "GALLERY" + viewModel.imgList)
-//                if (selectedImageURI != null) {
-////                    sendImage(user_id, cow_id, imgList)
-//
-//                    if (selectedImageURI != null) img?.setImageURI(selectedImageURI)
-//                    else Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
-//                }
             }
             else -> {
                 Toast.makeText(this, "잘못된 접근입니다..", Toast.LENGTH_SHORT).show()
@@ -281,13 +190,9 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
             // 사진 선택 개수 제한
             if(data?.clipData != null) {
                 val count = data.clipData!!.itemCount
-                if(count != 5) {
+                if(count < 5) {
                     Toast.makeText(applicationContext, "사진을 5장 선택해주세요.", Toast.LENGTH_SHORT).show()
                 }
-//                else if(count <3) {
-//                    Toast.makeText(applicationContext, "사진은 최소 3장을 선택해주세요.", Toast.LENGTH_SHORT).show()
-//                    return
-//                }
 
                 // 선택된 사진 리스트에 추가하기
                 viewModel.imgList.clear()
@@ -421,7 +326,7 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                             dataWish,
                             dataNum)
                     Log.d("Regist값2", data.name)
-                    intent.putExtra("cowInfo", data)
+                    intent.putExtra("regist", data)
                     startActivity(intent)
 
 //
@@ -479,18 +384,5 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 
         return result!!
     }
-
-
-
-
-
-
-
-
-
-
-
-//이미지와 정보들을 엮어서 보내지 않아도 되는걸까?
-
 
 
