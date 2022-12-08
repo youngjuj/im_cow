@@ -25,6 +25,7 @@ class RegistAdapter(private val items: List<Uri?>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var img = items[position]
 
+//        holder.binding.imgRegistItem.imageMatrix.
         holder.binding.imgRegistItem.setImageURI(img)
     }
 
