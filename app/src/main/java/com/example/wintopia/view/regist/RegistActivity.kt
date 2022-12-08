@@ -2,6 +2,7 @@ package com.example.wintopia.view.regist
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
@@ -11,6 +12,7 @@ import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
@@ -21,7 +23,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wintopia.dialog.MyCustomDialogInterface
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityRegistBinding
+import com.example.wintopia.dialog.Custumdialog
+import com.example.wintopia.dialog.MyCustomDialog
 import com.example.wintopia.view.adapter.RegistAdapter
+import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utilssd.Constants
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -50,6 +55,8 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 
     var user_id = "test"
     var cow_id = "1"
+
+    lateinit var myCustomDialog: Custumdialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,11 +87,22 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
             if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
 
         }
-
+        // 등록하기 버튼 클릭시
         binding.btnRegistRegist.setOnClickListener {
+            // 커스텀 다이얼 띄우기
+            myCustomDialog = Custumdialog(this, this)
+            // 다이얼로그 밖에 화면 눌러서 끄기 막기
+            myCustomDialog.setCancelable(false)
+            myCustomDialog.show()
+            // 이미지 통신
             viewModel.sendImage(cow_id, viewModel.imgFileList)
-            val intent = Intent(this, RegistInfoActivity::class.java)
-            startActivity(intent)
+            listImgEvent()
+
+//            if (viewModel.event.value.toString() == "success"){
+//                val intent = Intent(this, RegistInfoActivity::class.java)
+//                startActivity(intent)
+//            }
+
 
 //            val myCustomDialog = MyCustomDialog(this, this)
 //            // 다이얼로그 밖에 화면 눌러서 끄기 막기
@@ -162,12 +180,18 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 //                    btnPositive.layoutParams = layoutParams
 //                }
 //            }, 3000)
-//
+
+
         }
 
 
 
-}
+
+
+
+
+
+    }
 
 
     // data변경 실시간 반영
@@ -329,12 +353,13 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
             // 사진 선택 개수 제한
             if(data?.clipData != null) {
                 val count = data.clipData!!.itemCount
-                if(count >5) {
-                    Toast.makeText(applicationContext, "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_SHORT).show()
-                } else if(count <3) {
-                    Toast.makeText(applicationContext, "사진은 최소 3장을 선택해주세요.", Toast.LENGTH_SHORT).show()
-                    return
+                if(count != 5) {
+                    Toast.makeText(applicationContext, "사진을 5장 선택해주세요.", Toast.LENGTH_SHORT).show()
                 }
+//                else if(count <3) {
+//                    Toast.makeText(applicationContext, "사진은 최소 3장을 선택해주세요.", Toast.LENGTH_SHORT).show()
+//                    return
+//                }
 
                 // 선택된 사진 리스트에 추가하기
                 viewModel.imgList.clear()
@@ -352,13 +377,120 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
         registAdapter.notifyDataSetChanged()
         }
 
-    // Subscribe Button Clicked
-    override fun onLikedBtnClicked() {
-        Toast.makeText(this, "구독버튼 클릭", Toast.LENGTH_SHORT).show()
+
+
+    fun dialogEvent(myCustomDialog: Custumdialog){
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (viewModel.eventCowId.value.toString() == "false"){
+                // 소 아님 (dialog 필요)
+                val alertDialog = AlertDialog.Builder(this).create()
+                alertDialog.setTitle("소 사진이 아닙니다.")
+
+                alertDialog.setButton(
+                    AlertDialog.BUTTON_POSITIVE, "확인"
+                ) { dialog, which -> dialog.dismiss() }
+                alertDialog.show()
+
+                val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                btnPositive.setOnClickListener {
+                    myCustomDialog.dismiss()
+                    alertDialog.dismiss()
+                }
+
+                val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+                layoutParams.weight = 10f
+                btnPositive.layoutParams = layoutParams
+
+
+            }else if (viewModel.eventCowId.value.toString() == "true"){
+                // 소 맞음(dialog 필요)
+                val alertDialog = AlertDialog.Builder(this).create()
+                alertDialog.setTitle("미등록 개체입니다. \n소를 등록하시겠습니까?")
+
+                alertDialog.setButton(
+                    AlertDialog.BUTTON_POSITIVE, "취소 하기"
+                ) { dialog, which -> dialog.dismiss() }
+
+                alertDialog.setButton(
+                    AlertDialog.BUTTON_NEGATIVE, "등록 하기"
+                ) { dialog, which -> dialog.dismiss() }
+                alertDialog.show()
+
+                val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                btnPositive.setOnClickListener {
+                    myCustomDialog.dismiss()
+                    alertDialog.dismiss()
+                }
+                val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                btnNegative.setOnClickListener {
+                    val intent = Intent(this, RegistInfoActivity::class.java)
+                    startActivity(intent)
+//                        val intent = Intent(this, MainActivity::class.java)
+////                    intent.putExtra("cowInfo", cowInfo)
+//                        startActivity(intent)
+                }
+
+
+                val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+                layoutParams.weight = 10f
+                btnPositive.layoutParams = layoutParams
+                btnNegative.layoutParams = layoutParams
+
+            }
+            else {
+                // 해당 개체 조회 후 인텐트
+                var cow_id = viewModel.eventCowId.value.toString()
+                Log.d("여기 들어와?", cow_id)
+                val alertDialog = AlertDialog.Builder(this).create()
+                alertDialog.setTitle("등록된 객체입니다!")
+
+                alertDialog.setButton(
+                    AlertDialog.BUTTON_POSITIVE, "확인"
+                ) { dialog, which -> dialog.dismiss() }
+                alertDialog.show()
+
+                val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                btnPositive.setOnClickListener {
+                    viewModel.cowInfoOne(cow_id)
+                    myCustomDialog.dismiss()
+                    alertDialog.dismiss()
+                    ///// 수정////////
+
+
+
+//                    val intent = Intent(this, MainActivity::class.java)
+//                    intent.putExtra("cowInfo", cowInfo)
+//                    startActivity(intent)
+                }
+                val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
+                layoutParams.weight = 10f
+                btnPositive.layoutParams = layoutParams
+            }
+        }, 3000)
     }
-    // Like Button Clikced
+
+    override fun onLikedBtnClicked() {
+    }
     override fun onSubscribeBtnClicked() {
-        Toast.makeText(this, "좋아요버튼 클릭", Toast.LENGTH_SHORT).show()
+    }
+
+    fun listImgEvent() {
+        viewModel.event.observe(this){
+            when(it){
+                "success" ->{
+                    dialogEvent(myCustomDialog)
+                }
+                "fail" -> {
+                    Toast.makeText(this, "통신실패", Toast.LENGTH_SHORT).show()
+                }
+                "fail1" ->{
+                    Toast.makeText(this, "통신상태불량", Toast.LENGTH_SHORT).show()
+                }
+                "fail2" ->{
+                    Toast.makeText(this, "통신 실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
 }

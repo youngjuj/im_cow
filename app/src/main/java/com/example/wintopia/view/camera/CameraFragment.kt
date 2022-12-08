@@ -59,6 +59,7 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
     lateinit var currentPhotoPath: String
     var oneImgEvent = MutableLiveData<String>()
 //    lateinit var resCowinfo: MilkCowInfoModel
+    lateinit var myCustomDialog: MyCustomDialog
 
 
     lateinit var binding: FragmentCameraBinding
@@ -249,7 +250,6 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
 
                     sendImage(body)
 
-
                     if (Build.VERSION.SDK_INT < 28) {
                         val bitmap = MediaStore.Images.Media
                             .getBitmap(requireActivity().contentResolver, Uri.fromFile(file))
@@ -366,18 +366,18 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
     //웹서버로 이미지전송
     fun sendImage(image: MultipartBody.Part) {
         Log.d(TAG, "웹서버로 이미지전송")
+        responseImg()
 
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
-
-
         val call = service.getPhoto(image) //통신 API 패스 설정
 
         call?.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.isSuccessful) {
-                    responseImg()
+//                    responseImg()
+                    dialogEvent(myCustomDialog)
                     oneImgEvent.value = response.body().toString()
                     Log.d("값?", oneImgEvent.value.toString())
 //                    Toast.makeText(activity, "통신성공 ${oneImgEvent.value}", Toast.LENGTH_SHORT).show()
@@ -394,12 +394,14 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
 
 
     fun responseImg(){
-//        Log.d("값res", oneImgEvent.value.toSt6ring())
-
-        val myCustomDialog = MyCustomDialog(requireContext(), this)
+        myCustomDialog = MyCustomDialog(requireContext(), this)
         // 다이얼로그 밖에 화면 눌러서 끄기 막기
         myCustomDialog.setCancelable(false)
         myCustomDialog.show()
+    }
+
+    fun dialogEvent(myCustomDialog:MyCustomDialog){
+
         Handler(Looper.getMainLooper()).postDelayed({
             if (oneImgEvent.value.toString() == "false"){
                 // 소 아님 (dialog 필요)
@@ -425,7 +427,7 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
             }else if (oneImgEvent.value.toString() == "true"){
                 // 소 맞음(dialog 필요)
                 val alertDialog = AlertDialog.Builder(context).create()
-                alertDialog.setTitle("소를 등록하시겠습니까?")
+                alertDialog.setTitle("미등록 개체입니다. \n소를 등록하시겠습니까?")
 
                 alertDialog.setButton(
                     AlertDialog.BUTTON_POSITIVE, "취소 하기"
@@ -483,6 +485,8 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
             }
         }, 3000)
     }
+
+
 
 
 

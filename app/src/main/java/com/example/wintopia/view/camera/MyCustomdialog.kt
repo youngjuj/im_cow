@@ -6,7 +6,7 @@ import com.example.wintopia.R
 
 
 
-class Custom_dialog : Fragment() {
+class MyCustomdialog : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

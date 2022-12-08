@@ -23,7 +23,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class LoginActivity : AppCompatActivity() {
+class
+LoginActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding
     val viewModel: LoginViewModel by viewModels()

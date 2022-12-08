@@ -69,8 +69,6 @@ class RegistInfoActivity : AppCompatActivity() {
 
 
 
-
-
     }
 
 
@@ -78,7 +76,9 @@ class RegistInfoActivity : AppCompatActivity() {
         viewModel.event.observe(this){
             when(it){
                 "sucess"->{
-                    Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                 }
                 "failed" -> {
                     Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
