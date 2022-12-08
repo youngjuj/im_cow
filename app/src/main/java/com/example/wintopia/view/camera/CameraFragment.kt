@@ -35,6 +35,7 @@ import com.example.wintopia.retrofit.RetrofitInterface
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.main.MainActivity
+import com.example.wintopia.view.regist.RegistActivity
 import com.example.wintopia.view.regist.RegistInfoActivity
 import com.example.wintopia.view.utilssd.API_
 import com.example.wintopia.view.utilssd.Constants
@@ -445,7 +446,7 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
                 }
                 val btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
                 btnNegative.setOnClickListener {
-                    val intent = Intent(requireActivity(), RegistInfoActivity::class.java)
+                    val intent = Intent(requireActivity(), RegistActivity::class.java)
                     startActivity(intent)
 //                        val intent = Intent(this, MainActivity::class.java)
 ////                    intent.putExtra("cowInfo", cowInfo)
