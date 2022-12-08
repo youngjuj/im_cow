@@ -7,11 +7,11 @@
         android:title="list" />
     <item
         android:id="@+id/tab2"
-        android:icon="@android:drawable/stat_notify_chat"
+        android:icon="@drawable/cowface"
         android:title="camera" />
     <item
         android:id="@+id/tab3"
-        android:icon="@android:drawable/ic_menu_edit"
-        android:title="myPage" />
+        android:icon="@drawable/mypage"
+        android:title="myFarm" />
 
 </menu>
