@@ -1,5 +1,4 @@
 package com.example.wintopia.dialog
-
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
