@@ -6,7 +6,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
@@ -17,18 +16,15 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wintopia.dialog.MyCustomDialogInterface
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityRegistBinding
 import com.example.wintopia.dialog.Custumdialog
-import com.example.wintopia.dialog.MyCustomDialog
 import com.example.wintopia.view.adapter.RegistAdapter
 import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
-import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utilssd.Constants
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
