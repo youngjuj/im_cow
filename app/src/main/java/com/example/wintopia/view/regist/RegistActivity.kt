@@ -26,6 +26,8 @@ import com.example.wintopia.databinding.ActivityRegistBinding
 import com.example.wintopia.dialog.Custumdialog
 import com.example.wintopia.dialog.MyCustomDialog
 import com.example.wintopia.view.adapter.RegistAdapter
+import com.example.wintopia.view.edit.MilkCowInfoModel
+import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.main.MainActivity
 import com.example.wintopia.view.utilssd.Constants
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -441,6 +443,7 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                 // 해당 개체 조회 후 인텐트
                 var cow_id = viewModel.eventCowId.value.toString()
                 Log.d("여기 들어와?", cow_id)
+                viewModel.cowInfoOne(cow_id)
                 val alertDialog = AlertDialog.Builder(this).create()
                 alertDialog.setTitle("등록된 객체입니다!")
 
@@ -451,15 +454,40 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 
                 val btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
                 btnPositive.setOnClickListener {
-                    viewModel.cowInfoOne(cow_id)
                     myCustomDialog.dismiss()
                     alertDialog.dismiss()
                     ///// 수정////////
 
+                    val intent = Intent(this, InfoActivity::class.java)
+                    intent.putExtra("where", "regist")
+                    Log.d("Regist값", viewModel.cowInfoEvent?.id.toString())
+                    val dataId = viewModel.cowInfoEvent?.id.toString()
+                    val dataName = viewModel.cowInfoEvent?.name.toString()
+                    val dataBirth = viewModel.cowInfoEvent?.birth.toString()
+                    val dataVariety = viewModel.cowInfoEvent?.variety.toString()
+                    val dataGender = viewModel.cowInfoEvent?.gender.toString()
+                    val dataVaccine = viewModel.cowInfoEvent?.vaccine.toString()
+                    val dataPreg = viewModel.cowInfoEvent?.pregnancy.toString()
+                    val dataMilk = viewModel.cowInfoEvent?.milk.toString()
+                    val dataCast = viewModel.cowInfoEvent?.castration.toString()
+                    val dataWish = viewModel.cowInfoEvent?.list!!.toInt()
+                    val dataNum = viewModel.cowInfoEvent?.num!!.toInt()
 
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("cowInfo", viewModel.cowInfoEvent)
+                    val data = MilkCowInfoModel(dataId,
+                            dataName,
+                            dataBirth,
+                            dataVariety,
+                            dataGender,
+                            dataVaccine,
+                            dataPreg,
+                            dataMilk,
+                            dataCast,
+                            dataWish,
+                            dataNum)
+                    Log.d("Regist값2", data.name)
+                    intent.putExtra("cowInfo", data)
                     startActivity(intent)
+
                 }
                 val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
                 layoutParams.weight = 10f

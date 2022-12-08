@@ -43,7 +43,7 @@ class RegistViewModel: ViewModel() {
     val imgFileList = arrayListOf<MultipartBody.Part>()
     val imgList = arrayListOf<Uri?>()
     val milkCowInfoModel = MutableLiveData<MilkCowInfoModel>()
-    lateinit var cowInfoEvent: MilkCowInfoModel
+    var cowInfoEvent: MilkCowInfoModel? = null
 
     fun sendImage(cow_id:String, imgFileList: ArrayList<MultipartBody.Part>) {
         Log.d(Constants.TAG,"웹서버로 이미지전송")
@@ -124,9 +124,12 @@ class RegistViewModel: ViewModel() {
                 Log.d(Constants.TAG, "onResponse")
                 if (response.isSuccessful()) {
 
-                    var result = response.body()
+                    var result = response.body()!!.get(0)
 
-                    cowInfoEvent = result as MilkCowInfoModel
+                    cowInfoEvent = MilkCowInfoModel(result.id, result.name, result.birth, result.variety,
+                                                    result.gender, result.vaccine, result.pregnancy, result.milk,
+                                                    result.castration, result.list, result.num)
+                    Log.d("viewmodel 값", cowInfoEvent!!.id)
 
                     ///// 수정////////
 //                    val intent = Intent(requireActivity(), InfoActivity::class.java)
