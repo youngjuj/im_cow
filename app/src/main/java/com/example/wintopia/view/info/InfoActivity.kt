@@ -113,10 +113,8 @@ class InfoActivity : AppCompatActivity() {
             viewModel.milk.value = (cowInfo?.milk.toString())
             viewModel.castration.value = (cowInfo?.castration.toString())
             viewModel.wishEvent.value = (cowInfo?.list.toString())
-
-
-
-        } else if(intent.getStringExtra("where").equals("edit")) {
+        }
+        else if(intent.getStringExtra("where").equals("edit")) {
             cowInfo = intent.getSerializableExtra("TEXT") as MilkCowInfoModel?
 //            cowInfo = viewModel.resCowinfo
 //            Log.d("확인ㅁㅈㅇ용", "$cow_id")
@@ -135,7 +133,6 @@ class InfoActivity : AppCompatActivity() {
             viewModel.wishEvent.value = (cowInfo?.list.toString())
 
         }
-
         else if(intent.getStringExtra("where").equals("camera")) {
             cowInfo = intent.getSerializableExtra("camera") as MilkCowInfoModel?
 //            cowInfo = viewModel.resCowinfo
@@ -155,9 +152,27 @@ class InfoActivity : AppCompatActivity() {
             viewModel.wishEvent.value = (cowInfo?.list.toString())
 
         }
-
         else if(intent.getStringExtra("where").equals("regist")) {
             cowInfo = intent.getSerializableExtra("regist") as MilkCowInfoModel?
+//            cowInfo = viewModel.resCowinfo
+//            Log.d("확인ㅁㅈㅇ용", "$cow_id")
+            Log.d("확인좀..3", cowInfo?.id.toString())
+//            cowInfo = viewModel.cowInfoOne(cow_id.toString())
+            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id${cowInfo?.id.toString()}")
+            viewModel.name.value = (cowInfo?.name.toString())
+            viewModel.id.value = (cowInfo?.id.toString())
+            viewModel.birth.value = (cowInfo?.birth.toString())
+            viewModel.variety.value = (cowInfo?.variety.toString())
+            viewModel.gender.value = (cowInfo?.gender.toString())
+            viewModel.vaccine.value = (cowInfo?.vaccine.toString())
+            viewModel.pregnancy.value = (cowInfo?.pregnancy.toString())
+            viewModel.milk.value = (cowInfo?.milk.toString())
+            viewModel.castration.value = (cowInfo?.castration.toString())
+            viewModel.wishEvent.value = (cowInfo?.list.toString())
+
+        }
+        else if(intent.getStringExtra("where").equals("registInfo")) {
+            cowInfo = intent.getSerializableExtra("registInfo") as MilkCowInfoModel?
 //            cowInfo = viewModel.resCowinfo
 //            Log.d("확인ㅁㅈㅇ용", "$cow_id")
             Log.d("확인좀..3", cowInfo?.id.toString())

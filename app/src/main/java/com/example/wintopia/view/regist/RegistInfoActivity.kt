@@ -29,7 +29,7 @@ class RegistInfoActivity : AppCompatActivity() {
 
         binding.btnRegistInfoRegist.setOnClickListener {
             // 다이얼 달아죠
-            
+
             binding.btnRegistInfoRegist.isClickable = false
             if (binding.rbRegistMale.isChecked) viewModel.gender.value =  "수컷"
             else viewModel.gender.value = "암컷"
@@ -61,7 +61,7 @@ class RegistInfoActivity : AppCompatActivity() {
                 etRegistInfoPreg, etRegistInfoMilk, etRegistInfoCas, 0, 0)
 
             viewModel.registCowInfo(user_id, milkCowInfo)
-            observeData()
+            observeData(milkCowInfo)
         }
 
         binding.btnRegistInfoCancel.setOnClickListener {
@@ -75,11 +75,13 @@ class RegistInfoActivity : AppCompatActivity() {
     }
 
 
-    fun observeData() {
+    fun observeData(milkCow: MilkCowInfoModel) {
         viewModel.registEvent.observe(this){
             when(it){
                 "sucess"->{
                     val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("where", "registInfo")
+                    intent.putExtra("registInfo", milkCow)
                     startActivity(intent)
                     finish()
                 }
