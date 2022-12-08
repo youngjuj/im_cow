@@ -19,7 +19,7 @@ import com.example.wintopia.view.edit.MilkCowInfoModel
 import com.example.wintopia.view.info.InfoActivity
 import com.example.wintopia.view.main.MainActivity
 
-class RegistInfoActivity : AppCompatActivity() {
+class RegistInfoActivity : AppCompatActivity(), MyCustomDialogInterface {
 
     lateinit var binding: ActivityRegistInfoBinding
     val viewModel: RegistViewModel by viewModels()
@@ -40,7 +40,7 @@ class RegistInfoActivity : AppCompatActivity() {
             // 다이얼 달아죠
             binding.btnRegistInfoRegist.isClickable = false
             // 커스텀 다이얼 띄우기
-            myCustomDialog = Custumdialog(this, this@RegistInfoActivity)
+            myCustomDialog = Custumdialog(this, this)
             // 다이얼로그 밖에 화면 눌러서 끄기 막기
             myCustomDialog.setCancelable(false)
             myCustomDialog.show()
@@ -147,6 +147,12 @@ class RegistInfoActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onLikedBtnClicked() {
+    }
+
+    override fun onSubscribeBtnClicked() {
     }
 }
 
