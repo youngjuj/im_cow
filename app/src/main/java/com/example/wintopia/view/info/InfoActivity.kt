@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.wintopia.R
 import com.example.wintopia.databinding.ActivityInfoBinding
 import com.example.wintopia.view.edit.CowInfo
@@ -27,16 +29,18 @@ class InfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.grey)
+
 //        setContentView(R.layout.activity_info)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_info)
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
         // webView에 띄울 이미지 관련 설정들
-        binding.wvInfoPhto.settings.useWideViewPort = true
-        binding.wvInfoPhto.settings.loadWithOverviewMode = true
-        binding.wvInfoPhto.settings.builtInZoomControls = true
-        binding.wvInfoPhto.settings.setSupportZoom(true)
+//        binding.wvInfoPhto.settings.useWideViewPort = true
+//        binding.wvInfoPhto.settings.loadWithOverviewMode = true
+//        binding.wvInfoPhto.settings.builtInZoomControls = true
+//        binding.wvInfoPhto.settings.setSupportZoom(true)
 
         setIntent(intent)
         observeData()
@@ -101,8 +105,12 @@ class InfoActivity : AppCompatActivity() {
         val intent = intent
         if(intent.getStringExtra("where").equals("list")) {
             cowInfo = intent.getSerializableExtra("infos") as MilkCowInfoModel
-            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
-            Log.d("확인좀..2", cowInfo?.id.toString())
+            Glide.with(this)
+                .load("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
+                .override(340, 200)
+                .fitCenter()
+                .centerCrop()
+                .into(binding.imgInfoPhoto)
             viewModel.name.value = (cowInfo?.name.toString())
             viewModel.id.value = (cowInfo?.id.toString())
             viewModel.birth.value = (cowInfo?.birth.toString())
@@ -116,11 +124,12 @@ class InfoActivity : AppCompatActivity() {
         }
         else if(intent.getStringExtra("where").equals("edit")) {
             cowInfo = intent.getSerializableExtra("TEXT") as MilkCowInfoModel?
-//            cowInfo = viewModel.resCowinfo
-//            Log.d("확인ㅁㅈㅇ용", "$cow_id")
-            Log.d("확인좀..3", cowInfo?.id.toString())
-//            cowInfo = viewModel.cowInfoOne(cow_id.toString())
-            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id${cowInfo?.id.toString()}")
+            Glide.with(this)
+                .load("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
+                .override(340, 200)
+                .fitCenter()
+                .centerCrop()
+                .into(binding.imgInfoPhoto)
             viewModel.name.value = (cowInfo?.name.toString())
             viewModel.id.value = (cowInfo?.id.toString())
             viewModel.birth.value = (cowInfo?.birth.toString())
@@ -135,11 +144,12 @@ class InfoActivity : AppCompatActivity() {
         }
         else if(intent.getStringExtra("where").equals("camera")) {
             cowInfo = intent.getSerializableExtra("camera") as MilkCowInfoModel?
-//            cowInfo = viewModel.resCowinfo
-//            Log.d("확인ㅁㅈㅇ용", "$cow_id")
-            Log.d("확인좀..3", cowInfo?.id.toString())
-//            cowInfo = viewModel.cowInfoOne(cow_id.toString())
-            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id${cowInfo?.id.toString()}")
+            Glide.with(this)
+                .load("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
+                .override(340, 200)
+                .fitCenter()
+                .centerCrop()
+                .into(binding.imgInfoPhoto)
             viewModel.name.value = (cowInfo?.name.toString())
             viewModel.id.value = (cowInfo?.id.toString())
             viewModel.birth.value = (cowInfo?.birth.toString())
@@ -154,11 +164,12 @@ class InfoActivity : AppCompatActivity() {
         }
         else if(intent.getStringExtra("where").equals("regist")) {
             cowInfo = intent.getSerializableExtra("regist") as MilkCowInfoModel?
-//            cowInfo = viewModel.resCowinfo
-//            Log.d("확인ㅁㅈㅇ용", "$cow_id")
-            Log.d("확인좀..3", cowInfo?.id.toString())
-//            cowInfo = viewModel.cowInfoOne(cow_id.toString())
-            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id${cowInfo?.id.toString()}")
+            Glide.with(this)
+                .load("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
+                .override(340, 200)
+                .fitCenter()
+                .centerCrop()
+                .into(binding.imgInfoPhoto)
             viewModel.name.value = (cowInfo?.name.toString())
             viewModel.id.value = (cowInfo?.id.toString())
             viewModel.birth.value = (cowInfo?.birth.toString())
@@ -173,11 +184,12 @@ class InfoActivity : AppCompatActivity() {
         }
         else if(intent.getStringExtra("where").equals("registInfo")) {
             cowInfo = intent.getSerializableExtra("registInfo") as MilkCowInfoModel?
-//            cowInfo = viewModel.resCowinfo
-//            Log.d("확인ㅁㅈㅇ용", "$cow_id")
-            Log.d("확인좀..3", cowInfo?.id.toString())
-//            cowInfo = viewModel.cowInfoOne(cow_id.toString())
-            binding.wvInfoPhto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id${cowInfo?.id.toString()}")
+            Glide.with(this)
+                .load("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
+                .override(340, 200)
+                .fitCenter()
+                .centerCrop()
+                .into(binding.imgInfoPhoto)
             viewModel.name.value = (cowInfo?.name.toString())
             viewModel.id.value = (cowInfo?.id.toString())
             viewModel.birth.value = (cowInfo?.birth.toString())

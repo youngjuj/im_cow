@@ -24,68 +24,68 @@
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background="#f3f3f3"
+                android:layout_height="340dp"
+                android:background="@drawable/background_radius_grey"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                </LinearLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                android:elevation="@dimen/cardview_default_elevation">
             </LinearLayout>
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="84dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/imgInfoBack"
+                android:layout_marginTop="24dp"
                 android:text="상세정보"
-                android:textColor="#4F443F"
-                android:textSize="30dp"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="#937F76"
+                android:textSize="34dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:translationZ="20dp"/>
 
-
-            <WebView
-                android:id="@+id/wvInfoPhto"
+            <androidx.cardview.widget.CardView
                 android:layout_width="330dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="36dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
-                tools:src="@tools:sample/avatars"
-                />
+                android:translationZ="20dp"
+                app:cardCornerRadius="20dp">
 
+                <ImageView
+                    android:id="@+id/imgInfoPhoto"
+                    android:layout_width="330dp"
+                    android:layout_height="200dp"
+                    tools:src="@tools:sample/avatars" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tvInfoName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="32dp"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="26dp"
                 android:background="@android:color/transparent"
-                android:ems="5"
+                android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@{vm.name}"
                 android:textColor="#000000"
                 android:textSize="34sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wvInfoPhto" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
             <ImageView
                 android:id="@+id/imgInfoStar"
-                android:layout_width="58dp"
-                android:layout_height="67dp"
-                android:src="@{vm.wishEvent.equals(@string/wishN)? @drawable/star : @drawable/filledstar }"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@{vm.wishEvent.equals(@string/wishN)? @drawable/emptyheart : @drawable/filledheart }"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.159"
+                app:layout_constraintHorizontal_bias="0.488"
                 app:layout_constraintStart_toEndOf="@+id/tvInfoName"
                 app:layout_constraintTop_toTopOf="@+id/tvInfoName" />
 
@@ -95,25 +95,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="16dp"
+                android:paddingLeft="4dp"
                 android:text="고유번호:"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvInfoName"
-                android:textColor="#000000" />
+                app:layout_constraintTop_toBottomOf="@+id/tvInfoName"/>
 
             <TextView
                 android:id="@+id/tvInfoId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="128dp"
+                android:layout_marginStart="160dp"
                 android:layout_marginTop="16dp"
                 android:paddingLeft="7dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:text="@{vm.id}"
-                android:textColor="#000000"
                 android:textSize="20sp"
+                android:textColor="#000000"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvInfoName" />
 
@@ -121,7 +121,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="18dp"
                 android:text="출  생  일:"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -133,11 +133,10 @@
                 android:id="@+id/tvInfoBirth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="18dp"
                 android:paddingLeft="7dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:text="@{vm.birth}"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -150,7 +149,8 @@
                 android:id="@+id/textView15"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="18dp"
+                android:paddingLeft="4dp"
                 android:text="품　　종:"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -162,11 +162,10 @@
                 android:id="@+id/tvInfoVariety"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="18dp"
                 android:paddingLeft="7dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:text="@{vm.variety}"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -179,78 +178,21 @@
                 android:id="@+id/textView17"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="18dp"
+                android:paddingLeft="4dp"
                 android:text="성　　별:"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView15"
                 app:layout_constraintStart_toStartOf="@+id/textView15"
                 app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="백　　신:"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView17"
-                app:layout_constraintStart_toStartOf="@+id/textView17"
-                app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="젖소임신:"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView18"
-                app:layout_constraintStart_toStartOf="@+id/textView18"
-                app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="젖소건유:"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView19"
-                app:layout_constraintStart_toStartOf="@+id/textView19"
-                app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="젖소거세:"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView20"
-                app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-
-            <View
-                android:id="@+id/viewView"
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                app:layout_constraintTop_toBottomOf="@id/rbInfoCas"
-                />
-
             <RadioGroup
                 android:id="@+id/rbInfoGender"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="-10dp"
                 app:layout_constraintEnd_toEndOf="@+id/tvInfoVariety"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/tvInfoVariety"
@@ -261,6 +203,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="암컷"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:checked="@{vm.gender.equals(@string/female)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp"
@@ -277,12 +221,26 @@
                     android:clickable="false"/>
 
             </RadioGroup>
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:paddingLeft="4dp"
+                android:text="백　　신:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView17"
+                app:layout_constraintStart_toStartOf="@+id/textView17"
+                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+
             <RadioGroup
                 android:id="@+id/rbInfoVaccine"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="@+id/rbInfoGender"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/rbInfoGender"
@@ -294,6 +252,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="접종"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:checked="@{vm.vaccine.equals(@string/did)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp"
@@ -311,12 +271,25 @@
                     android:clickable="false"/>
 
             </RadioGroup>
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:paddingLeft="4dp"
+                android:text="임신여부:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView18"
+                app:layout_constraintStart_toStartOf="@+id/textView18"
+                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
             <RadioGroup
                 android:id="@+id/rbInfoPregnant"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="14dp"
                 app:layout_constraintEnd_toEndOf="@+id/rbInfoVaccine"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/rbInfoVaccine"
@@ -329,6 +302,8 @@
                     android:layout_height="wrap_content"
                     android:paddingRight="13dp"
                     android:text="유"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:checked="@{vm.pregnancy.equals(@string/yes)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp"
@@ -346,12 +321,26 @@
                     android:clickable="false"/>
 
             </RadioGroup>
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:paddingLeft="4dp"
+                android:text="건유여부:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView19"
+                app:layout_constraintStart_toStartOf="@+id/textView19"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+
             <RadioGroup
                 android:id="@+id/rbInfoMilk"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="14dp"
                 app:layout_constraintEnd_toEndOf="@+id/rbInfoPregnant"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/rbInfoPregnant"
@@ -362,8 +351,10 @@
                     android:id="@+id/rbInfoMilkY"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="13dp"
                     android:text="유"
+                    android:paddingRight="13dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:checked="@{vm.milk.equals(@string/yes)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp"
@@ -381,12 +372,26 @@
                     android:clickable="false"/>
 
             </RadioGroup>
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:paddingLeft="4dp"
+                android:text="거세여부:"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView20"
+                app:layout_constraintStart_toStartOf="@+id/textView20"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+
             <RadioGroup
                 android:id="@+id/rbInfoCas"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="@+id/rbInfoMilk"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/rbInfoMilk"
@@ -398,6 +403,8 @@
                     android:layout_height="wrap_content"
                     android:paddingRight="13dp"
                     android:text="유"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:checked="@{vm.castration.equals(@string/yes)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp"
@@ -415,46 +422,51 @@
                     android:clickable="false"/>
 
             </RadioGroup>
+            <View
+                android:id="@+id/viewView"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                app:layout_constraintTop_toBottomOf="@id/rbInfoCas"
+                />
 
             <android.widget.Button
                 android:id="@+id/btnInfoEdit"
-                android:layout_width="150dp"
+                android:layout_width="130dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/background_radius"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/background_radius_brown"
                 android:text="수정하기"
                 app:layout_constraintBottom_toBottomOf="@+id/btnInfoDelete"
                 app:layout_constraintEnd_toStartOf="@+id/btnInfoDelete"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.571"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewView"
-                app:layout_constraintVertical_bias="0.0"
-                />
+                app:layout_constraintVertical_bias="0.0" />
+
             <android.widget.Button
                 android:id="@+id/btnInfoDelete"
-                android:layout_width="150dp"
+                android:layout_width="130dp"
                 android:layout_height="50dp"
-                android:layout_marginBottom="52dp"
-                android:background="@drawable/background_radius"
+                android:layout_marginEnd="64dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_radius_brown"
                 android:text="삭제하기"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.793"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/viewView"
-                />
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/imgInfoBack"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:src="@drawable/btnback"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/btnback" />
+                app:srcCompat="@drawable/btnback"
+                android:translationZ="20dp"/>
 
             <!--        <ImageView-->
             <!--            android:id="@+id/imageView9"-->

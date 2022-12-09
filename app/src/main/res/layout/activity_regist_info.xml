@@ -7,323 +7,323 @@
             name="vm"
             type="com.example.wintopia.view.regist.RegistViewModel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.regist.RegistInfoActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.regist.RegistInfoActivity">
 
-    <EditText
-        android:id="@+id/etRegistName"
-        android:layout_width="200dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="60dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:hint="이름 입력"
-        android:inputType="textPersonName"
-        android:text="@={vm.name}"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199" />
+        <EditText
+            android:id="@+id/etRegistName"
+            android:layout_width="200dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="60dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="이름 입력"
+            android:inputType="textPersonName"
+            android:text="@={vm.name}"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.199" />
 
-    <TextView
-        android:id="@+id/textView40"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="50dp"
-        android:text="출  생  일:"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRegistName" />
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="50dp"
+            android:text="출  생  일:"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistName" />
 
-    <EditText
-        android:id="@+id/etRegistBirth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:hint="출생일 입력"
-        android:inputType="textPersonName"
-        android:paddingLeft="7dp"
-        android:text="@={vm.birth}"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView40"
-        app:layout_constraintTop_toBottomOf="@+id/etRegistName" />
-
-    <TextView
-        android:id="@+id/textView41"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="품　　종:"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView40"
-        app:layout_constraintStart_toStartOf="@+id/textView40"
-        app:layout_constraintTop_toBottomOf="@+id/textView40" />
-
-    <TextView
-        android:id="@+id/textView42"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="성　　별:"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView41"
-        app:layout_constraintStart_toStartOf="@+id/textView41"
-        app:layout_constraintTop_toBottomOf="@+id/textView41" />
-
-
-    <TextView
-        android:id="@+id/textView43"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="백　　신:"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView42"
-        app:layout_constraintStart_toStartOf="@+id/textView42"
-        app:layout_constraintTop_toBottomOf="@+id/textView42" />
-
-    <EditText
-        android:id="@+id/etRegistVariety"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:hint="품종 입력"
-        android:inputType="textPersonName"
-        android:paddingLeft="7dp"
-        android:text="@={vm.variety}"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/etRegistBirth"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etRegistBirth"
-        app:layout_constraintTop_toBottomOf="@+id/etRegistBirth" />
-
-    <TextView
-        android:id="@+id/textView44"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="임신여부:"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView43"
-        app:layout_constraintStart_toStartOf="@+id/textView43"
-        app:layout_constraintTop_toBottomOf="@+id/textView43" />
-
-    <TextView
-        android:id="@+id/textView45"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="건유여부:"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView44"
-        app:layout_constraintStart_toStartOf="@+id/textView44"
-        app:layout_constraintTop_toBottomOf="@+id/textView44" />
-
-    <TextView
-        android:id="@+id/textView46"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="거세여부:"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView45"
-        app:layout_constraintStart_toStartOf="@+id/textView45"
-        app:layout_constraintTop_toBottomOf="@+id/textView45" />
-
-
-    <ImageView
-        android:id="@+id/imgRegistWish"
-        android:layout_width="37dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/star"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.307"
-        app:layout_constraintStart_toEndOf="@+id/etRegistName"
-        app:layout_constraintTop_toTopOf="@+id/etRegistName"
-        app:srcCompat="@drawable/star" />
-
-    <android.widget.Button
-        android:id="@+id/btnRegistInfoCancel"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="28dp"
-        android:background="@drawable/background_radius"
-        android:text="취소하기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.823"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <android.widget.Button
-        android:id="@+id/btnRegistInfoRegist"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/background_radius"
-        android:text="등록하기"
-        app:layout_constraintBottom_toBottomOf="@+id/btnRegistInfoCancel"
-        app:layout_constraintEnd_toStartOf="@+id/btnRegistInfoCancel"
-        app:layout_constraintHorizontal_bias="0.36"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbRegistCas"
-        app:layout_constraintVertical_bias="1.0" />
-
-
-
-    <RadioGroup
-        android:id="@+id/rbRegistGender"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/etRegistVariety"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etRegistVariety"
-        app:layout_constraintTop_toBottomOf="@+id/etRegistVariety">
-
-        <RadioButton
-            android:id="@+id/rbRegistMale"
+        <EditText
+            android:id="@+id/etRegistBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="수컷"
+            android:layout_marginTop="50dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="출생일 입력"
+            android:inputType="textPersonName"
+            android:paddingLeft="7dp"
+            android:text="@={vm.birth}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/textView40"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistName" />
 
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="100dp" />
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="품　　종:"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView40"
+            app:layout_constraintStart_toStartOf="@+id/textView40"
+            app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
-        <RadioButton
-            android:id="@+id/rbRegistFemale"
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="성　　별:"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView41"
+            app:layout_constraintStart_toStartOf="@+id/textView41"
+            app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="백　　신:"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView42"
+            app:layout_constraintStart_toStartOf="@+id/textView42"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+        <EditText
+            android:id="@+id/etRegistVariety"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="암컷"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="100dp" />
-    </RadioGroup>
-    <RadioGroup
-        android:id="@+id/rbRegistVaccine"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/rbRegistGender"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/rbRegistGender"
-        app:layout_constraintTop_toBottomOf="@+id/rbRegistGender">
+            android:layout_marginTop="18dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="품종 입력"
+            android:inputType="textPersonName"
+            android:paddingLeft="7dp"
+            android:text="@={vm.variety}"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistBirth"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/etRegistBirth"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistBirth" />
 
-        <RadioButton
-            android:id="@+id/rbRegistDid"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="접종"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="100dp" />
+            android:layout_marginTop="18dp"
+            android:text="임신여부:"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView43"
+            app:layout_constraintStart_toStartOf="@+id/textView43"
+            app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
-        <RadioButton
-            android:id="@+id/rbRegistDidnt"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="미접종"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="100dp" />
-    </RadioGroup>
-    <RadioGroup
-        android:id="@+id/rbRegistPregnant"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="@+id/rbRegistVaccine"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/rbRegistVaccine"
-        app:layout_constraintTop_toBottomOf="@+id/rbRegistVaccine">
+            android:layout_marginTop="18dp"
+            android:text="건유여부:"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView44"
+            app:layout_constraintStart_toStartOf="@+id/textView44"
+            app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
-        <RadioButton
-            android:id="@+id/rbRegistPreg"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="유"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="100dp" />
+            android:layout_marginTop="18dp"
+            android:text="거세여부:"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView45"
+            app:layout_constraintStart_toStartOf="@+id/textView45"
+            app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
-        <RadioButton
-            android:id="@+id/rbRegistNonP"
+
+        <ImageView
+            android:id="@+id/imgRegistWish"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/star"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.307"
+            app:layout_constraintStart_toEndOf="@+id/etRegistName"
+            app:layout_constraintTop_toTopOf="@+id/etRegistName"
+            app:srcCompat="@drawable/star" />
+
+        <android.widget.Button
+            android:id="@+id/btnRegistInfoCancel"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/background_radius_brown"
+            android:text="취소하기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.823"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <android.widget.Button
+            android:id="@+id/btnRegistInfoRegist"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_radius_brown"
+            android:text="등록하기"
+            app:layout_constraintBottom_toBottomOf="@+id/btnRegistInfoCancel"
+            app:layout_constraintEnd_toStartOf="@+id/btnRegistInfoCancel"
+            app:layout_constraintHorizontal_bias="0.36"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rbRegistCas"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+
+        <RadioGroup
+            android:id="@+id/rbRegistGender"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="무"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="100dp" />
-    </RadioGroup>
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/etRegistVariety"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/etRegistVariety"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistVariety">
 
-    <RadioGroup
-        android:id="@+id/rbRegistMilk"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="13dp"
-        app:layout_constraintEnd_toEndOf="@+id/rbRegistPregnant"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/rbRegistPregnant"
-        app:layout_constraintTop_toBottomOf="@+id/rbRegistPregnant">
+            <RadioButton
+                android:id="@+id/rbRegistMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수컷"
 
-        <RadioButton
-            android:id="@+id/rbRegistMilkY"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+
+            <RadioButton
+                android:id="@+id/rbRegistFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="암컷"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+        </RadioGroup>
+        <RadioGroup
+            android:id="@+id/rbRegistVaccine"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="유"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="100dp" />
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/rbRegistGender"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/rbRegistGender"
+            app:layout_constraintTop_toBottomOf="@+id/rbRegistGender">
 
-        <RadioButton
-            android:id="@+id/rbRegistMilkN"
+            <RadioButton
+                android:id="@+id/rbRegistDid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="접종"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+
+            <RadioButton
+                android:id="@+id/rbRegistDidnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="미접종"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+        </RadioGroup>
+        <RadioGroup
+            android:id="@+id/rbRegistPregnant"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="무"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="100dp" />
-    </RadioGroup>
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/rbRegistVaccine"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/rbRegistVaccine"
+            app:layout_constraintTop_toBottomOf="@+id/rbRegistVaccine">
 
-    <RadioGroup
-        android:id="@+id/rbRegistCas"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/rbRegistMilk"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/rbRegistMilk"
-        app:layout_constraintTop_toBottomOf="@+id/rbRegistMilk">
+            <RadioButton
+                android:id="@+id/rbRegistPreg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="유"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
 
-        <RadioButton
-            android:id="@+id/rbRegistCasY"
+            <RadioButton
+                android:id="@+id/rbRegistNonP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="무"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rbRegistMilk"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="유"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="100dp" />
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="13dp"
+            app:layout_constraintEnd_toEndOf="@+id/rbRegistPregnant"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/rbRegistPregnant"
+            app:layout_constraintTop_toBottomOf="@+id/rbRegistPregnant">
 
-        <RadioButton
-            android:id="@+id/rbRegistCasN"
+            <RadioButton
+                android:id="@+id/rbRegistMilkY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="유"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+
+            <RadioButton
+                android:id="@+id/rbRegistMilkN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="무"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rbRegistCas"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="무"
-            tools:layout_editor_absoluteX="100dp"
-            tools:layout_editor_absoluteY="100dp" />
-    </RadioGroup>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/rbRegistMilk"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/rbRegistMilk"
+            app:layout_constraintTop_toBottomOf="@+id/rbRegistMilk">
+
+            <RadioButton
+                android:id="@+id/rbRegistCasY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="유"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+
+            <RadioButton
+                android:id="@+id/rbRegistCasN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="무"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

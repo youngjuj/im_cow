@@ -4,6 +4,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.wintopia.R
 import com.example.wintopia.databinding.RegistItemBinding
 import java.lang.ref.WeakReference
@@ -23,10 +24,12 @@ class RegistAdapter(private val items: List<Uri?>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var img = items[position]
-
-//        holder.binding.imgRegistItem.imageMatrix.
-        holder.binding.imgRegistItem.setImageURI(img)
+        Glide.with(holder.itemView.context)
+            .load(items[position])
+            .override(380, 280)
+            .fitCenter()
+            .centerCrop()
+            .into(holder.binding.imgRegistItem)
     }
 
     override fun getItemCount(): Int = items.size

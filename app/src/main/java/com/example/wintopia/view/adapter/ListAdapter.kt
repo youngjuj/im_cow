@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.wintopia.R
 import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ListItemBinding
@@ -73,8 +74,8 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
         }
         private val view = WeakReference(binding)
         private lateinit var clItem: FrameLayout
-        private lateinit var hiddenBtnEdt: TextView
-        private lateinit var hiddenBtnDel: TextView
+        private lateinit var hiddenBtnEdt: FrameLayout
+        private lateinit var hiddenBtnDel: FrameLayout
 
 
         var index = 0
@@ -124,19 +125,28 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
         holder.bind(position)
         var cow_id = data[position].id
         var user_id = UserList().getId().toString()
-        holder.binding.wvItemImg.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=$cow_id")
+        Glide.with(holder.itemView)
+            .load("${API_.BASE_URL}image/cowImgOut?cow_id=$cow_id")
+            .override(80, 80)
+            .into(holder.binding.imgItemImg)
+
         holder.binding.tvItemName.text = data[position].name
-        holder.binding.tvItemId.text = "고유번호 : ${data[position].id}"
+        holder.binding.tvItemVariety.text = "품종 : ${data[position].variety}"
+        holder.binding.tvItemBirth.text = "출생일 : ${data[position].birth}"
+        holder.binding.imgItemWish.apply {
+            if (data[position].list == 1)
+                setImageResource(R.drawable.filledheart) else setImageResource(R.drawable.emptyheart)
+        }
 
         holder.onDeleteClick = {
             removeItem(it)
         }
 
         // webView에 띄울 이미지 관련 설정들
-        holder.binding.wvItemImg.settings.useWideViewPort = true
-        holder.binding.wvItemImg.settings.loadWithOverviewMode = true
-        holder.binding.wvItemImg.settings.builtInZoomControls = true
-        holder.binding.wvItemImg.settings.setSupportZoom(true)
+//        holder.binding.wvItemImg.settings.useWideViewPort = true
+//        holder.binding.wvItemImg.settings.loadWithOverviewMode = true
+//        holder.binding.wvItemImg.settings.builtInZoomControls = true
+//        holder.binding.wvItemImg.settings.setSupportZoom(true)
 
 
         // item 선택 onClickListener

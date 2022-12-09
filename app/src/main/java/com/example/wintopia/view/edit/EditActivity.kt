@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.example.wintopia.R
 import com.example.wintopia.data.UserList
 import com.example.wintopia.databinding.ActivityEditBinding
@@ -33,16 +35,12 @@ class EditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_edit)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.grey)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit)
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
-//        try {
-//            observeData()
-//        } catch (e: Exception) {
-//
-//        }
         setIntent(intent)
         observeData()
 
@@ -68,7 +66,7 @@ class EditActivity : AppCompatActivity() {
         }
 
         // 취소버튼
-        binding.btnEditCancel.setOnClickListener {
+        binding.btnEditBack.setOnClickListener {
             getText()
             finish()
         }
@@ -131,7 +129,12 @@ class EditActivity : AppCompatActivity() {
     override fun setIntent(intent: Intent) {
         val intent = intent
         val cowInfo = intent.getSerializableExtra("cowInfo") as MilkCowInfoModel?
-        binding.wvEditPhoto.loadUrl("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
+        Glide.with(this)
+            .load("${API_.BASE_URL}image/cowImgOut?cow_id=${cowInfo?.id.toString()}")
+            .override(340, 200)
+            .fitCenter()
+            .centerCrop()
+            .into(binding.imgEditPhoto)
 //        Log.d("널?", "${cowInfo?.name.toString()}")
         viewModel.name.value = cowInfo?.name.toString()
         viewModel.id.value = cowInfo?.id.toString()
@@ -148,96 +151,6 @@ class EditActivity : AppCompatActivity() {
 
 
     fun observeData() {
-//        binding.rbEditGender.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding.rbEditMale.id -> viewModel.gender.value = "수컷"
-//                binding.rbEditFemale.id -> viewModel.gender.value = "암컷"
-//            }
-//        }
-//        binding.rbEditVaccine.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding.rbEditDid.id -> viewModel.vaccine.value = "접종"
-//                binding.rbEditDidnt.id -> viewModel.vaccine.value = "미접종"
-//            }
-//        }
-//        binding.rbEditPregnant.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding.rbEditPreg.id -> viewModel.pregnancy.value = "유"
-//                binding.rbEditNonP.id -> viewModel.pregnancy.value = "무"
-//            }
-//        }
-//        binding.rbEditMilk.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding.rbEditMilkY.id -> viewModel.milk.value = "유"
-//                binding.rbEditMilkN.id -> viewModel.milk.value = "무"
-//            }
-//        }
-//        binding.rbEditGender.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                binding.rbEditCasY.id -> viewModel.castration.value = "유"
-//                binding.rbEditCasN.id -> viewModel.castration.value = "무"
-//            }
-//        }
-
-//        if (binding.rbEditMale.isChecked) viewModel.gender.value = "수컷"
-//        else viewModel.gender.value = "암컷"
-//
-//        if (binding.rbEditDid.isChecked) viewModel.vaccine.value = "접종"
-//        else viewModel.vaccine.value = "미접종"
-//
-//        if (binding.rbEditPreg.isChecked) viewModel.pregnancy.value = "유"
-//        else viewModel.pregnancy.value = "무"
-//
-//        if (binding.rbEditMilkY.isChecked) viewModel.milk.value = "유"
-//        else viewModel.milk.value = "무"
-//
-//        if (binding.rbEditCasY.isChecked) viewModel.castration.value = "유"
-//        else viewModel.castration.value = "무"
-//        viewModel.apply {
-//            id.observe(this@EditActivity) {
-//                binding.etEditId.hint = it
-//            }
-//            name.observe(this@EditActivity) {
-//                binding.etEditName.hint = it
-//            }
-//            birth.observe(this@EditActivity){
-//                binding.etEditBirth.hint = it
-//                }
-//            variety.observe(this@EditActivity){
-//                binding.etEditVariety.hint = it
-//            }
-//            gender.observe(this@EditActivity){
-//                when (binding.rbEditGender.checkedRadioButtonId) {
-//                    binding.rbEditMale.id -> binding.rbEditMale.text
-//                    binding.rbEditFemale.id -> binding.rbEditFemale.text
-//                }
-//            }
-//            vaccine.observe(this@EditActivity){
-//                when (binding.rbEditVaccine.checkedRadioButtonId) {
-//                    binding.rbEditDid.id -> binding.rbEditDid.text
-//                    binding.rbEditDidnt.id -> binding.rbEditDidnt.text
-//                }
-//
-//            }
-//            pregnancy.observe(this@EditActivity){
-//                when (binding.rbEditPregnant.checkedRadioButtonId) {
-//                    binding.rbEditPreg.id -> binding.rbEditPreg.text
-//                    binding.rbEditNonP.id -> binding.rbEditNonP.text
-//                }
-//            }
-//            milk.observe(this@EditActivity){
-//                when (binding.rbEditMilk.checkedRadioButtonId) {
-//                    binding.rbEditMilkY.id -> binding.rbEditMilkY.text
-//                    binding.rbEditMilkN.id -> binding.rbEditMilkN.text
-//                }
-//            }
-//            castration.observe(this@EditActivity){
-//                when (binding.rbEditCas.checkedRadioButtonId) {
-//                    binding.rbEditCasY.id -> binding.rbEditCasY.text
-//                    binding.rbEditCasN.id -> binding.rbEditCasN.text
-//                }
-//            }
-//        }
 
     }
 }
