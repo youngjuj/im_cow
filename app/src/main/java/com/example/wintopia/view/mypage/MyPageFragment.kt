@@ -36,6 +36,8 @@ class MyPageFragment : Fragment() {
     private val TAG = this.javaClass.simpleName
     lateinit var lineChart: LineChart
     //선 그래프
+//    private var lineChart: LineChart? = null
+//    private val chartData = ArrayList<ChartData>()
     val entryChart1 = ArrayList<Entry>() // 데이터를 담을 Arraylist
     val entryChart2 = ArrayList<Entry>()
     val entryChart3 = ArrayList<Entry>()
@@ -49,12 +51,14 @@ class MyPageFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
+        // Inflate the layout for this fragment
 
         val pref = context?.getSharedPreferences("userId", 0)
         val edit = pref?.edit() // 수정모드
         val savedCheckBox = pref?.getBoolean("checkBox", false)
 
         val user_id = UserList().getId().toString()
+        Log.d(TAG, "$user_id")
         viewModel.userPageInfo("test")
 //        myPageEvent()
         observeData()
@@ -76,6 +80,7 @@ class MyPageFragment : Fragment() {
         lineChart.invalidate()
         // 차트 터치 disable
         lineChart.setTouchEnabled(true)
+
 
 
         binding.btnMyPageLogout.setOnClickListener(){
@@ -166,7 +171,11 @@ class MyPageFragment : Fragment() {
             LineDataSet(entryChart4, "거세개체")
 
         val lineDataSet = arrayOf(lineDataSet1, lineDataSet2, lineDataSet3, lineDataSet4)
-        val color = mutableListOf<Int>(R.color.chart1, R.color.chart2, R.color.chart3, R.color.chart4)
+        val color = mutableListOf<Int>(
+            Color.rgb(255, 155, 155),
+            Color.rgb(255, 155, 155),
+            Color.rgb(178, 223, 138),
+            Color.rgb(31, 120, 180))
 
         // 해당 LineDataSet의 색 설정 :: 각 Line 과 관련된 세팅은 여기서 설정한다.
         for (i: Int in 0..3){
@@ -239,9 +248,14 @@ class MyPageFragment : Fragment() {
         val barDataSet4 = BarDataSet(barEntries4, "거세개체")
 
         val barDataSet = arrayOf(barDataSet1, barDataSet2, barDataSet3, barDataSet4)
-        val color = mutableListOf<Int>(R.color.chart1, R.color.chart2, R.color.chart3, R.color.chart4)
+        val color = mutableListOf<Int>(
+            Color.rgb(255, 155, 155),
+            Color.rgb(255, 155, 155),
+            Color.rgb(178, 223, 138),
+            Color.rgb(31, 120, 180))
 
         for (i: Int in 0..3) barDataSet[i].color = (color[i])
+
 
         val months = arrayOf("8월", "9월", "10월", "11월")
         val data = BarData(barDataSet1, barDataSet2, barDataSet3, barDataSet4)
