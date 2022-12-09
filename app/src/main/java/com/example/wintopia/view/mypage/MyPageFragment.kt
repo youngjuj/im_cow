@@ -154,26 +154,12 @@ class MyPageFragment : Fragment() {
         var yValueList3 = arrayOf<Float>(3f, 5f, 7f, 7f, 8f, 6f)
         var yValueList4 = arrayOf<Float>(7f, 9f, 9f, 10f, 11f, 11f)
 
-//        var yValueName = arrayOf(entryChart1, entryChart2, entryChart3, entryChart4)
-//        var yValueList = arrayOf(yValueList1, yValueList2, yValueList3, yValueList4)
-//        for (i in 1..6){
-//            yValueName[i].add(Entry(xValueList[i], yValueList[i][i]))
-//        }
-
-        for (i in xValueList){
-            entryChart1.add(Entry(xValueList[i.toInt()], yValueList1[i.toInt()]))
-        }
-
-        for (i in xValueList){
-            entryChart2.add(Entry(xValueList[i.toInt()], yValueList2[i.toInt()]))
-        }
-
-        for (i in xValueList){
-            entryChart3.add(Entry(xValueList[i.toInt()], yValueList3[i.toInt()]))
-        }
-
-        for (i in xValueList){
-            entryChart4.add(Entry(xValueList[i.toInt()], yValueList4[i.toInt()]))
+        var yValueName = arrayOf(entryChart1, entryChart2, entryChart3, entryChart4)
+        var yValueList = arrayOf(yValueList1, yValueList2, yValueList3, yValueList4)
+        for (a: Int in 0..3){
+            for (i: Int in 0..5){
+                yValueName[a].add(Entry(xValueList[i], yValueList[a][i]))
+            }
         }
 
         // 데이터가 담긴 Arraylist 를 LineDataSet 으로 변환한다.
@@ -186,52 +172,31 @@ class MyPageFragment : Fragment() {
         val lineDataSet4 =
             LineDataSet(entryChart4, "거세개체")
 
+        val lineDataSet = arrayOf(lineDataSet1, lineDataSet2, lineDataSet3, lineDataSet4)
+        val color = mutableListOf<Int>(Color.rgb(255, 155, 155), Color.rgb(255, 155, 155), Color.rgb(178, 223, 138), Color.rgb(31, 120, 180))
+
         // 해당 LineDataSet의 색 설정 :: 각 Line 과 관련된 세팅은 여기서 설정한다.
-        lineDataSet1.color = Color.rgb(255, 155, 155)
-        lineDataSet1.circleColors = mutableListOf(Color.rgb(255, 155, 155))
-        lineDataSet1.circleRadius = 6f
-        lineDataSet1.lineWidth = 4f
-        lineDataSet1.setDrawValues(false)
-        lineDataSet1.setDrawCircleHole(true)
-        lineDataSet1.setDrawCircles(true)
-        lineDataSet1.setDrawHorizontalHighlightIndicator(false)
-        lineDataSet1.setDrawHighlightIndicators(false)
+        for (i: Int in 0..3){
+            lineDataSet[i].color = (color[i])
+            lineDataSet[i].circleColors = mutableListOf(color[i])
+            lineDataSet[i].circleRadius = 6f
+            lineDataSet[i].lineWidth = 4f
+            lineDataSet[i].setDrawValues(false)
+            lineDataSet[i].setDrawCircleHole(true)
+            lineDataSet[i].setDrawCircles(true)
+            lineDataSet[i].setDrawHorizontalHighlightIndicator(false)
+            lineDataSet[i].setDrawHighlightIndicators(false)
+        }
 
-        lineDataSet2.color = Color.rgb(178, 223, 138)
-        lineDataSet2.circleColors = mutableListOf(Color.rgb(178, 223, 138))
-        lineDataSet2.circleRadius = 6f
-        lineDataSet2.lineWidth = 4f
-        lineDataSet2.setDrawValues(false)
-        lineDataSet2.setDrawCircleHole(true)
-        lineDataSet2.setDrawCircles(true)
-        lineDataSet2.setDrawHorizontalHighlightIndicator(false)
-        lineDataSet2.setDrawHighlightIndicators(false)
-
-        lineDataSet3.color = Color.rgb(166, 208, 227)
-        lineDataSet3.circleColors = mutableListOf(Color.rgb(166, 208, 227))
-        lineDataSet3.circleRadius = 6f
-        lineDataSet3.lineWidth= 4f
-        lineDataSet3.setDrawValues(false)
-        lineDataSet3.setDrawCircleHole(true)
-        lineDataSet3.setDrawCircles(true)
-        lineDataSet3.setDrawHorizontalHighlightIndicator(false)
-        lineDataSet3.setDrawHighlightIndicators(false)
-
-        lineDataSet4.color = Color.rgb(31, 120, 180)
-        lineDataSet4.circleColors = mutableListOf(Color.rgb(31, 120, 180))
-        lineDataSet4.circleRadius = 6f
-        lineDataSet4.lineWidth= 4f
-        lineDataSet4.setDrawValues(false)
-        lineDataSet4.setDrawCircleHole(true)
-        lineDataSet4.setDrawCircles(true)
-        lineDataSet4.setDrawHorizontalHighlightIndicator(false)
-        lineDataSet4.setDrawHighlightIndicators(false)
 
         // 해당 LineDataSet 을 적용될 차트에 들어갈 DataSet 에 넣는다.
-        chartData.addDataSet(lineDataSet1)
-        chartData.addDataSet(lineDataSet2)
-        chartData.addDataSet(lineDataSet3)
-        chartData.addDataSet(lineDataSet4)
+        for (i: Int in 0..3){
+            chartData.addDataSet(lineDataSet[i])
+        }
+//        chartData.addDataSet(lineDataSet1)
+//        chartData.addDataSet(lineDataSet2)
+//        chartData.addDataSet(lineDataSet3)
+//        chartData.addDataSet(lineDataSet4)
 
         //바텀 좌표 값
         val xAxis: XAxis = lineChart.xAxis
@@ -269,6 +234,14 @@ class MyPageFragment : Fragment() {
         var xValueList = arrayOf<Float>(0f, 1f, 2f, 3f, 4f, 5f)
         var yValueList1 = arrayOf<Float>(25f, 28f, 29f, 29f, 30f, 31f)
         //entryChart1에 좌표 데이터를 담는다.
+//        for (a: Int in 0..3){
+//            for (i: Int in 0..5){
+//                barEntries[a].add(BarEntry(xValueList[i.toInt()], yValueList1[i.toInt()]))
+//            }
+//        }
+
+
+
         for (i in xValueList){
             barEntries1.add(BarEntry(xValueList[i.toInt()], yValueList1[i.toInt()]))
         }
