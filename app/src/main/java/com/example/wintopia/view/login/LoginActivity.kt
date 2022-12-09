@@ -38,8 +38,8 @@ LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_login)
         window.statusBarColor = ContextCompat.getColor(this, R.color.brown)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.vm = viewModel
         binding.lifecycleOwner = this
@@ -79,8 +79,6 @@ LoginActivity : AppCompatActivity() {
         val savedId = pref.getString("userId", "").toString()
         val savedPw = pref.getString("userPw", "").toString()
         val savedChceckBox = pref.getBoolean("checkBox", false)
-        Log.d(TAG, "savedId : ${savedId}, savedPw : ${savedPw}, savedCheckBox : ${savedChceckBox}")
-
         if (savedChceckBox != true){
 
         } else {

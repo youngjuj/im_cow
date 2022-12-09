@@ -32,30 +32,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.lang.ref.WeakReference
 import java.util.*
-
-// List에 뿌려줄 item 구성 정보들
-//data class ListVO (
-////    val pic: String = "", // 이미지 url 주소
-//    val id: String = "",// 젖소 고유번호
-//    val name: String = "", // 젖소 이름
-//    val birth: String = "",// 젖소 출생일
-//    val variety: String = "", // 젖소 종류
-//    val gender: String = "", // 젖소 성별
-//    val vaccine: String = "", // 백신접종 여부
-//    val pregnancy: String = "", // 임신 여부
-//    val milk: String = "", // 건유 여부
-//    val castration: String = "", // 거세 여부
-//    val list: Int = 0,
-//    val num: Int = 0
-//    )
-
-
 // RecyclerView 사용에 필수인 Adapter
 class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
     RecyclerView.Adapter<ListVOAdapter.ListVOViewHolder>(){
 
     private var listData = mutableListOf<MilkCowInfoModel>()
-
 
     // RecyclerView ViewHolder
     inner class ListVOViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -68,15 +49,11 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
                     binding.root.context.startActivity(intent)
             }
 
-
-
-
         }
         private val view = WeakReference(binding)
         private lateinit var clItem: FrameLayout
         private lateinit var hiddenBtnEdt: FrameLayout
         private lateinit var hiddenBtnDel: FrameLayout
-
 
         var index = 0
 
@@ -107,7 +84,6 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
 
         fun updateView() {
             binding.root.scrollTo(0, 0)
-//            cowInfo("test")
         }
     }
 
@@ -120,7 +96,6 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
 
     // RecyclerView에 뿌려줄 item 속 data들 지정
     override fun onBindViewHolder(holder: ListVOViewHolder, position: Int) {
-//        holder.binding.wvItemImg.loadUrl(data[position].pic)
 
         holder.bind(position)
         var cow_id = data[position].id
@@ -142,29 +117,19 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
             removeItem(it)
         }
 
-        // webView에 띄울 이미지 관련 설정들
-//        holder.binding.wvItemImg.settings.useWideViewPort = true
-//        holder.binding.wvItemImg.settings.loadWithOverviewMode = true
-//        holder.binding.wvItemImg.settings.builtInZoomControls = true
-//        holder.binding.wvItemImg.settings.setSupportZoom(true)
-
-
         // item 선택 onClickListener
         holder.binding.clItem.setOnClickListener {
             putText(holder, position)
         }
 
         holder.updateView()
-//        reload(listData)
 
     }
 
     fun reload(listdata: List<MilkCowInfoModel>) {
         this.listData.clear()
         this.listData.addAll(listdata)
-//        this.listData.add(MilkCowInfoModel("41", "깜찍이", "2022-12-05", "시멘탈",
-//                                           "암컷", "접종", "무", "무", "무",
-//                                            1, 0))
+
         notifyDataSetChanged()
     }
 
@@ -181,9 +146,6 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
         var position = viewHolder.adapterPosition
         data.removeAt(position)
         notifyItemRemoved(position)
-//        notifyDataSetChanged()
-//        notifyItemChanged(position)
-
     }
 
     fun swapData(fromPosition: Int, toPosition: Int) {
@@ -214,10 +176,6 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
 
         Log.d(Constants.TAG, " 수정완료 버튼 클릭, ${milkCowInfoModel}")
 
-        // 수정 후 상세정보페이지 이동
-//        val cowInfo = CowInfo(infoId,
-//            infoName,infoBirth,infoVariety,infoGender,infoVaccine,infoPregnancy,infoMilk,infoCastration, infoWish, userNum)
-
         val intent = Intent(holder.itemView?.context, InfoActivity::class.java)
         intent.putExtra("where", "list")
         intent.putExtra("infos", milkCowInfoModel)
@@ -230,7 +188,6 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
 
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
-//        val retrofit = Retrofit.Builder().baseUrl(API_.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
@@ -244,23 +201,12 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
                     val data = response?.body()!!
                     listData = data
 
-
-//                        swipeRefreshLayout.setOnRefreshListener {
-//                            swipeRefreshLayout.isRefreshing = false
-//                        }
-
-
-//                    binding.rvList.
-//                    Log.d("로그 ",res)
-//                    Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_LONG).show()
                 } else {
-//                    Toast.makeText(requireActivity(),"통신실패", Toast.LENGTH_LONG).show()
 
                 }
             }
 
             override fun onFailure(call: Call<MutableList<MilkCowInfoModel>>, t: Throwable) {
-                Log.d("로그",t.message.toString())
             }
         })
     }

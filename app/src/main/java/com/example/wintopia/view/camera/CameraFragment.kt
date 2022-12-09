@@ -25,6 +25,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentCameraBinding
 import com.example.wintopia.dialog.MyCustomDialog
@@ -58,7 +59,6 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
     private val REQUEST_GALLERY = 2
     lateinit var currentPhotoPath: String
     var oneImgEvent = MutableLiveData<String>()
-//    lateinit var resCowinfo: MilkCowInfoModel
     lateinit var myCustomDialog: MyCustomDialog
 
 
@@ -72,11 +72,6 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-//        initData()
-//        initBinding()
-//        observeData()
-
-
         // data binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_camera, container, false)
 
@@ -84,17 +79,6 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
         arguments?.let {
             show = it.getBoolean("data")
         }
-
-        // BottomNavi multipleClick options
-//        binding.apply {
-//            if (show!!) {
-//                fbCameraCam.visibility = View.VISIBLE
-//                fbCameraGal.visibility = View.VISIBLE
-//            } else {
-//                fbCameraCam.visibility = View.GONE
-//                fbCameraGal.visibility = View.GONE
-//            }
-//        }
 
         // camera floatting button onClickListener
         binding.fbCameraCam.setOnClickListener {
@@ -106,38 +90,9 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
             if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
         }
 
-
-
-
         // Inflate the layout for this fragment
         return binding.root
     }
-
-//    private fun initBinding() = with(binding){
-//        if (show!!) {
-//            fbCameraCam.visibility = View.VISIBLE
-//            fbCameraGal.visibility = View.VISIBLE
-//        } else {
-//            fbCameraCam.visibility = View.GONE
-//            fbCameraGal.visibility = View.GONE
-//        }
-//        fbCameraCam.setOnClickListener {
-//            Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
-//            if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
-//        }
-//        fbCameraGal.setOnClickListener {
-//            Toast.makeText(requireActivity(), "fbCameraGal", Toast.LENGTH_SHORT).show()
-//            if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
-//        }
-//    }
-
-//    private fun initData() {
-//
-//    }
-//
-//    private fun observeData() {
-//
-//    }
 
     // camera 접근 권한 요청
     private fun requestPermission() {
@@ -222,13 +177,9 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
     }
 
     private fun dispatchSelectPictureIntent() {
-//        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-////        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-////        galleryVariable.launch(intent)
-//        startActivityForResult(intent, REQUEST_GALLERY)
+
         Intent(Intent.ACTION_PICK).apply {
             data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-//            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             startActivityForResult(this, REQUEST_GALLERY)
         }
     }
@@ -240,6 +191,7 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
 
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {
+                if (currentPhotoPath != null){
                 if (resultCode == RESULT_OK) {
                     val file = File(currentPhotoPath)
 
@@ -248,56 +200,51 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
 
                     Log.d(TAG, "" + body)
 
-                    sendImage(body)
 
                     if (Build.VERSION.SDK_INT < 28) {
                         val bitmap = MediaStore.Images.Media
                             .getBitmap(requireActivity().contentResolver, Uri.fromFile(file))
                         binding.imgCameraPic.setImageBitmap(bitmap)
 
-                    } else {
+                    } else if (Build.VERSION.SDK_INT >= 28) {
                         val decode = ImageDecoder.createSource(
                             requireActivity().contentResolver,
                             Uri.fromFile(file)
                         )
                         val bitmap = ImageDecoder.decodeBitmap(decode)
                         binding.imgCameraPic.setImageBitmap(bitmap)
+                    } else {
+                        Toast.makeText(context, "오류", Toast.LENGTH_SHORT).show()
                     }
+                    sendImage(body)
 
+                } }else {
+                    Toast.makeText(context, "오류", Toast.LENGTH_SHORT).show()
                 }
             }
             REQUEST_GALLERY -> {
-                val selectedImageURI: Uri? = data!!.data
+                val selectedImageURI: Uri? = data?.data
+                if (selectedImageURI == null) {
+                    Toast.makeText(context, "사진 입력 오류", Toast.LENGTH_SHORT).show()
+                } else {
+                    val path = absolutelyPath(requireActivity(), selectedImageURI)
+                    val file = File(path)
 
-                val path = absolutelyPath(requireActivity(), selectedImageURI)
-                val file = File(path)
+                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+                    sendImage(body)
+                    Glide.with(requireContext())
+                        .load(selectedImageURI)
+                        .override(300, 400)
+                        .fitCenter()
+                        .into(binding.imgCameraPic)
 
-                Log.d(TAG, "" + body)
-
-//                sendImage(cow_id, body)
-//                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-//                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-////                val id = "234"
-                Log.d(TAG, "" + body)
-//                sendImage(cow_id, body)
-
-                Log.d("이미지 경로uri", selectedImageURI!!.path.toString())
-//                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-//                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-
-                Log.d(TAG, "" + body)
-
-                Log.d(TAG, "GALLERY" + body)
-
+                }
 
                 if (selectedImageURI != null) {
-                    sendImage(body)
 
 
-                    binding.imgCameraPic.setImageURI(selectedImageURI)
                 } else Toast.makeText(activity, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
             }
             else -> {
@@ -306,47 +253,10 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
         }
     }
 
-
-    fun getProFileImage() {
-        Log.d(TAG, "사진변경 호출")
-
-        var launcher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == RESULT_OK) {
-                    val imagePath = result.data!!.data
-//                Log.d("이미지경로", "${ imagePath.toString() }")
-
-                    val file =
-                        File("${Environment.getExternalStorageDirectory().absolutePath}" + "${imagePath}")
-                    Log.d(
-                        "이미지경로",
-                        "${Environment.getExternalStorageDirectory().absolutePath}" + "${imagePath}"
-                    )
-                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                    val body = MultipartBody.Part.createFormData("proFile", file.name, requestFile)
-
-                    Log.d(TAG, file.name)
-
-//                sendImage("1", body)
-                }
-            }
-
-        val chooserIntent = Intent(Intent.ACTION_CHOOSER)
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        intent.type = "image/*"
-        chooserIntent.putExtra(Intent.EXTRA_INTENT, intent)
-        chooserIntent.putExtra(Intent.EXTRA_TITLE, "사용할 앱을 선택해주세요.")
-
-
-        launcher.launch(chooserIntent)
-    }
-
     // 절대경로 변환
     fun absolutelyPath(ctx: Activity, uri: Uri?): String {
         var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
         var c: Cursor? = ctx.contentResolver.query(uri!!, proj, null, null, null)
-//        var index = c!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-//        c?.moveToFirst()
 
         if (c == null) {
             result = uri?.path.toString()
@@ -356,8 +266,6 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
             result = c.getString(index)
             c.close()
         }
-
-        Log.d("경로로그", result.toString())
 
         return result!!
     }
@@ -376,18 +284,13 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
         call?.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.isSuccessful) {
-//                    responseImg()
                     dialogEvent(myCustomDialog)
                     oneImgEvent.value = response.body().toString()
-                    Log.d("값?", oneImgEvent.value.toString())
-//                    Toast.makeText(activity, "통신성공 ${oneImgEvent.value}", Toast.LENGTH_SHORT).show()
 
                 } else {
-                    Toast.makeText(activity, "통신실패", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                Log.d("로그", t.message.toString())
             }
         })
     }
@@ -447,9 +350,6 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
                 btnNegative.setOnClickListener {
                     val intent = Intent(requireActivity(), RegistActivity::class.java)
                     startActivity(intent)
-//                        val intent = Intent(this, MainActivity::class.java)
-////                    intent.putExtra("cowInfo", cowInfo)
-//                        startActivity(intent)
                 }
 
 
@@ -475,9 +375,6 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
                     cowInfoOne(cow_id)
                     myCustomDialog.dismiss()
                     alertDialog.dismiss()
-//                    val intent = Intent(requireActivity(), MainActivity::class.java)
-////                    intent.putExtra("cowInfo", cowInfo)
-//                    startActivity(intent)
                 }
                 val layoutParams = btnPositive.layoutParams as LinearLayout.LayoutParams
                 layoutParams.weight = 10f
@@ -485,10 +382,6 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
             }
         }, 3000)
     }
-
-
-
-
 
     fun cowInfoOne(cow_id: String){
         //Retrofit 인스턴스 생성
@@ -504,25 +397,17 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
                     // 서버에서 응답받은 데이터
                     val result = response.body()!!.get(0)
                     val intent = Intent(requireActivity(), InfoActivity::class.java)
-                    Log.d("값 확인", "${result.toString()}")
-                    Log.d("뭐야2222", "$result")
 
                     intent.putExtra("where", "camera")
                     intent.putExtra("camera", result as MilkCowInfoModel)
                     startActivity(intent)
-//                    requireActivity().finish()
-//                    event.value = "success"
 
                 } else {
                     // 서버통신 실패
-//                    event.value = "fail1"
-                    Log.e(Constants.TAG, "onResponse fail")
                 }
             }
             override fun onFailure(call: Call<List<MilkCowInfoModel>>, t: Throwable) {
                 // 통신 실패
-//                event.value = "fail2"
-                Log.e(Constants.TAG, "onFailure: " + t.message)
             }
         })
     }

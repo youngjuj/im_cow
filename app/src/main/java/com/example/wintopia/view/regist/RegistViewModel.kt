@@ -46,8 +46,6 @@ class RegistViewModel: ViewModel() {
     var cowInfoEvent: MilkCowInfoModel? = null
 
     fun sendImage(cow_id:String, imgFileList: ArrayList<MultipartBody.Part>) {
-        Log.d(Constants.TAG,"웹서버로 이미지전송")
-
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
@@ -59,7 +57,6 @@ class RegistViewModel: ViewModel() {
         call?.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.isSuccessful) {
-                    Log.d("로그 ","리스트 전송 :"+response?.body().toString())
                     event.value = "success"
                     eventCowId.value = response?.body().toString()
 
@@ -71,7 +68,6 @@ class RegistViewModel: ViewModel() {
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                Log.d("로그",t.message.toString())
             }
         })
     }
@@ -87,26 +83,21 @@ class RegistViewModel: ViewModel() {
         val call: Call<String>? = service.cowInfoRegist(user_id, milkCowInfoModel)
         call!!.enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>?, response: Response<String?>) {
-                Log.d(Constants.TAG, "registCowInfo onResponse")
                 if (response.isSuccessful()) {
-                    Log.e(Constants.TAG, "registCowInfo onResponse success")
 //                        val result: UserList? = response.body()
 
                     // 서버에서 응답받은 데이터
                     val result = response.body()
-                    Log.d(ContentValues.TAG, "$result")
                     registEvent.value = "success"
 
                 } else {
                     // 서버통신 실패
                     registEvent.value = "fail1"
-                    Log.e(Constants.TAG, "onResponse fail")
                 }
             }
             override fun onFailure(call: Call<String?>?, t: Throwable) {
                 // 통신 실패
                 registEvent.value = "fail2"
-                Log.e(Constants.TAG, "onFailure: " + t.message)
             }
         })
     }
@@ -120,7 +111,6 @@ class RegistViewModel: ViewModel() {
         val call: Call<List<MilkCowInfoModel>> = service.getData(cow_id)
         call!!.enqueue(object : Callback<List<MilkCowInfoModel>> {
             override fun onResponse(call: Call<List<MilkCowInfoModel>>, response: Response<List<MilkCowInfoModel>>) {
-                Log.d(Constants.TAG, "onResponse")
                 if (response.isSuccessful()) {
 
                     var result = response.body()!!.get(0)
@@ -128,18 +118,13 @@ class RegistViewModel: ViewModel() {
                     cowInfoEvent = MilkCowInfoModel(result.id, result.name, result.birth, result.variety,
                                                     result.gender, result.vaccine, result.pregnancy, result.milk,
                                                     result.castration, result.list, result.num)
-                    Log.d("viewmodel 값", cowInfoEvent!!.id)
 
                 } else {
                     // 서버통신 실패
-//                    event.value = "fail1"
-                    Log.e(Constants.TAG, "onResponse fail")
                 }
             }
             override fun onFailure(call: Call<List<MilkCowInfoModel>>, t: Throwable) {
                 // 통신 실패
-//                event.value = "fail2"
-                Log.e(Constants.TAG, "onFailure: " + t.message)
             }
         })
     }

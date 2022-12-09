@@ -38,7 +38,6 @@ class EditViewModel: ViewModel() {
                 Log.d(Constants.TAG, "InfoUpdate onResponse")
                 if (response.isSuccessful()) {
                     Log.e(Constants.TAG, "InfoUpdate onResponse success")
-//                        val result: UserList? = response.body()
 
                     // 서버에서 응답받은 데이터
                     val result = response.body()

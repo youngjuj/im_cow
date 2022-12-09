@@ -33,8 +33,8 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_sign_up)
         window.statusBarColor = ContextCompat.getColor(this, R.color.brown)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         binding.signUpvm = viewModel
         binding.lifecycleOwner = this
@@ -58,17 +58,7 @@ class SignUpActivity : AppCompatActivity() {
 
     fun signUpEvent() {
 
-        // signUpPw2를 관찰해서
         observeData()
-//        viewModel.signUpPw2.observe(this){
-//            binding.edt.text = it
-//            // helper text 변경
-//            if (it == binding.etJoinPw1.toString()){
-//                binding.etJoinPw2Layout.helperText = ""
-//            }else{
-//                binding.etJoinPw2Layout.helperText = "비밀번호를 확인해주세요"
-//            }
-//        }
 
         viewModel.event.observe(this){
             when(it){

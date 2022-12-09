@@ -36,8 +36,6 @@ class MyPageFragment : Fragment() {
     private val TAG = this.javaClass.simpleName
     lateinit var lineChart: LineChart
     //선 그래프
-//    private var lineChart: LineChart? = null
-//    private val chartData = ArrayList<ChartData>()
     val entryChart1 = ArrayList<Entry>() // 데이터를 담을 Arraylist
     val entryChart2 = ArrayList<Entry>()
     val entryChart3 = ArrayList<Entry>()
@@ -51,14 +49,12 @@ class MyPageFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
-        // Inflate the layout for this fragment
 
         val pref = context?.getSharedPreferences("userId", 0)
         val edit = pref?.edit() // 수정모드
         val savedCheckBox = pref?.getBoolean("checkBox", false)
 
         val user_id = UserList().getId().toString()
-        Log.d(TAG, "$user_id")
         viewModel.userPageInfo("test")
 //        myPageEvent()
         observeData()

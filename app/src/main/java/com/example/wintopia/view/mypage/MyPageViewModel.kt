@@ -31,10 +31,7 @@ class MyPageViewModel: ViewModel() {
         val call: Call<MyPageInfo>? = service.mypageInfo(user_id)
         call!!.enqueue(object : Callback<MyPageInfo?> {
             override fun onResponse(call: Call<MyPageInfo?>?, response: Response<MyPageInfo?>) {
-                Log.d(Constants.TAG, "onResponse")
                 if (response.isSuccessful()) {
-                    Log.e(Constants.TAG, "onResponse success")
-//                        val result: UserList? = response.body()
                     myPageCountEvent.value = "success"
                     // 서버에서 응답받은 데이터
                     val result = "${response.body()}"
@@ -43,19 +40,14 @@ class MyPageViewModel: ViewModel() {
                     myCowCount.value = response.body()?.getTotalCow().toString()
                     cowBaby.value = response.body()?.getBaby().toString()
                     myCowBull.value = "${response.body()?.getCow().toString()}" + "/" + "${response.body()?.getBull().toString()}"
-
-                    Log.d(ContentValues.TAG, "${myCowBull.value}")
-
                 } else {
                     // 서버통신 실패
                     myPageCountEvent.value = "fail1"
-                    Log.e(Constants.TAG, "onResponse fail")
                 }
             }
             override fun onFailure(call: Call<MyPageInfo?>?, t: Throwable) {
                 // 통신 실패
                 myPageCountEvent.value = "fail2"
-                Log.e(Constants.TAG, "onFailure: " + t.message)
             }
         })
     }

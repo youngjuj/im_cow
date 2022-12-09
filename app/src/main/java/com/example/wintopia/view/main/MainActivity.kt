@@ -54,22 +54,8 @@ class MainActivity : AppCompatActivity() {
                     ).commit()
                 }
                 R.id.tab2 -> {
-//                    var intent = Intent(this, CameraFragment::class.java)
-//                    intent.putExtra("show", show)
-//                    startActivity(intent)
                     setDataAtFragment(CameraFragment(), show)
                     show = !show
-//                    var fragment = CameraFragment()
-//
-//                    val bundle = Bundle()
-//                    bundle.putString("data", "^^")
-//
-//                    fragment.arguments = bundle
-//
-//                    supportFragmentManager.beginTransaction().replace(
-//                        R.id.fl, fragment
-//                    ).commit()
-
                 }
                 R.id.tab3 -> {
                     supportFragmentManager.beginTransaction().replace(

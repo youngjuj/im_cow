@@ -34,7 +34,6 @@ class ListFragment : Fragment() {
     lateinit var binding: FragmentListBinding
     lateinit var data: List<MilkCowInfoModel>
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,50 +49,13 @@ class ListFragment : Fragment() {
             val intent = Intent(activity, RegistActivity::class.java)
             startActivity(intent)
         }
-
-//        var list = arrayListOf<MilkCowInfoModel>()
-//        list.add(
-//            MilkCowInfoModel("100", "얼룩소", "20221202", "얼룩", "암컷", "접종",
-//        "유", "유", "무", 1, 1)
-//        )
-//        val listAdapter = ListVOAdapter(list)
-//
-//        listAdapter.reload(list)
-//
-//        binding.rvList.apply {
-//            layoutManager = LinearLayoutManager(context)
-//            adapter = listAdapter
-//            addItemDecoration(ItemDecoration())
-//
-////                        swipeRefreshLayout.setOnRefreshListener {
-////                            swipeRefreshLayout.isRefreshing = false
-////                        }
-//            var swipeHelperCallback = SwipeHelperCallback().apply {
-//                setClamp(200f)
-//            }
-//            val itemTouchHelper = ItemTouchHelper(swipeHelperCallback)
-//            itemTouchHelper.attachToRecyclerView(binding.rvList)
-//            setOnTouchListener {v, event->
-//                swipeHelperCallback.removePreviousClamp(binding.rvList)
-//                false
-//            }
-//                    }
-//
-//
-
-
         return binding.root
     }
 
-
-
     // 서버에서 전체 정보 가져오기
     fun cowInfo(userId: String) {
-        Log.d(Constants.TAG,"웹서버로 이미지전송")
-
         //Retrofit 인스턴스 생성
         val retrofit = RetrofitClient.getInstnace(API_.BASE_URL)
-//        val retrofit = Retrofit.Builder().baseUrl(API_.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(RetrofitInterface::class.java) // 레트로핏 인터페이스 객체 구현
 
 
@@ -113,7 +75,6 @@ class ListFragment : Fragment() {
                     binding.rvList.apply {
                         layoutManager = LinearLayoutManager(context)
                         adapter = listAdapter
-//                        addItemDecoration(ItemDecoration())
 
                         swipeRefreshLayout.setOnRefreshListener {
                             cowInfo(userId)
@@ -131,12 +92,7 @@ class ListFragment : Fragment() {
                         }
                     }
 
-
-//                    binding.rvList.
-//                    Log.d("로그 ",res)
-//                    Toast.makeText(requireActivity(),"통신성공", Toast.LENGTH_LONG).show()
                 } else {
-//                    Toast.makeText(requireActivity(),"통신실패", Toast.LENGTH_LONG).show()
                 }
             }
 

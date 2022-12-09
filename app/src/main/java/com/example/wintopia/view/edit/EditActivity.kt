@@ -34,7 +34,6 @@ class EditActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_edit)
         window.statusBarColor = ContextCompat.getColor(this, R.color.grey)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit)
@@ -43,9 +42,6 @@ class EditActivity : AppCompatActivity() {
 
         setIntent(intent)
         observeData()
-
-//        binding.etEditId.isClickable = false
-//        binding.etEditId.isActivated = false
 
         // 수정하기 버튼
         binding.btnEditEdit.setOnClickListener {
@@ -118,7 +114,6 @@ class EditActivity : AppCompatActivity() {
 
         val intent = Intent(this, InfoActivity::class.java)
         intent.putExtra("where", "edit")
-//        intent.putExtra("TEXT", milkCowInfoModel)
         Log.d("tqfa", cowInfo?.id.toString())
         intent.putExtra("TEXT", cowInfo)
         startActivity(intent)
@@ -137,7 +132,6 @@ class EditActivity : AppCompatActivity() {
             .fitCenter()
             .centerCrop()
             .into(binding.imgEditPhoto)
-//        Log.d("널?", "${cowInfo?.name.toString()}")
         viewModel.name.value = cowInfo?.name.toString()
         viewModel.id.value = cowInfo?.id.toString()
         viewModel.birth.value = cowInfo?.birth.toString()
