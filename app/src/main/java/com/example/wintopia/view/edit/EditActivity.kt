@@ -44,6 +44,8 @@ class EditActivity : AppCompatActivity() {
         setIntent(intent)
         observeData()
 
+//        binding.etEditId.isClickable = false
+//        binding.etEditId.isActivated = false
 
         // 수정하기 버튼
         binding.btnEditEdit.setOnClickListener {

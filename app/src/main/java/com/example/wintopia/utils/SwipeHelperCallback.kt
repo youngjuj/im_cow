@@ -64,7 +64,7 @@ class SwipeHelperCallback: ItemTouchHelper.Callback() {
             val x = clampViewPositionHorizontal(view, dX, isClamped, isCurrentlyActive)
 
             if (x == -clamp) {
-                getView(viewHolder).animate().translationX(-320f).setDuration(100L).start()
+                getView(viewHolder).animate().translationX(-340f).setDuration(100L).start()
                 return
             }
 
