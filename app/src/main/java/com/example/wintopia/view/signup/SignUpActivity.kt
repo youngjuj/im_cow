@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.DataBindingUtil
@@ -33,6 +34,7 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_sign_up)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.brown)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         binding.signUpvm = viewModel
         binding.lifecycleOwner = this

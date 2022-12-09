@@ -10,4 +10,8 @@
     <color name="intorStatus">#E37772</color>
     <color name="grey">#f3f3f3</color>
     <color name="brown">#937F76</color>
+    <color name="chart1">#ff9b9b</color>
+    <color name="chart2">#b2df8a</color>
+    <color name="chart3">#a6d0e3</color>
+    <color name="chart4">#1f78b4</color>
 </resources>

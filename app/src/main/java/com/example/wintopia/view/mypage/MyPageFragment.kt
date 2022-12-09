@@ -82,7 +82,6 @@ class MyPageFragment : Fragment() {
         lineChart.setTouchEnabled(true)
 
 
-
         binding.btnMyPageLogout.setOnClickListener(){
             edit?.remove("userId")
             edit?.clear()
@@ -157,9 +156,7 @@ class MyPageFragment : Fragment() {
         var yValueName = arrayOf(entryChart1, entryChart2, entryChart3, entryChart4)
         var yValueList = arrayOf(yValueList1, yValueList2, yValueList3, yValueList4)
         for (a: Int in 0..3){
-            for (i: Int in 0..5){
-                yValueName[a].add(Entry(xValueList[i], yValueList[a][i]))
-            }
+            for (i: Int in 0..5) yValueName[a].add(Entry(xValueList[i], yValueList[a][i]))
         }
 
         // 데이터가 담긴 Arraylist 를 LineDataSet 으로 변환한다.
@@ -173,7 +170,7 @@ class MyPageFragment : Fragment() {
             LineDataSet(entryChart4, "거세개체")
 
         val lineDataSet = arrayOf(lineDataSet1, lineDataSet2, lineDataSet3, lineDataSet4)
-        val color = mutableListOf<Int>(Color.rgb(255, 155, 155), Color.rgb(255, 155, 155), Color.rgb(178, 223, 138), Color.rgb(31, 120, 180))
+        val color = mutableListOf<Int>(R.color.chart1, R.color.chart2, R.color.chart3, R.color.chart4)
 
         // 해당 LineDataSet의 색 설정 :: 각 Line 과 관련된 세팅은 여기서 설정한다.
         for (i: Int in 0..3){
@@ -190,13 +187,7 @@ class MyPageFragment : Fragment() {
 
 
         // 해당 LineDataSet 을 적용될 차트에 들어갈 DataSet 에 넣는다.
-        for (i: Int in 0..3){
-            chartData.addDataSet(lineDataSet[i])
-        }
-//        chartData.addDataSet(lineDataSet1)
-//        chartData.addDataSet(lineDataSet2)
-//        chartData.addDataSet(lineDataSet3)
-//        chartData.addDataSet(lineDataSet4)
+        for (i: Int in 0..3) chartData.addDataSet(lineDataSet[i])
 
         //바텀 좌표 값
         val xAxis: XAxis = lineChart.xAxis
@@ -220,7 +211,6 @@ class MyPageFragment : Fragment() {
         yRAxis.setDrawLabels(false)
         yRAxis.setDrawAxisLine(false)
         yRAxis.setDrawGridLines(false)
-
     }
 
 
@@ -231,49 +221,36 @@ class MyPageFragment : Fragment() {
         val barEntries3 = ArrayList<BarEntry>()
         val barEntries4 = ArrayList<BarEntry>()
 
+        val barEntries = arrayOf(barEntries1, barEntries2, barEntries3, barEntries4)
+
         var xValueList = arrayOf<Float>(0f, 1f, 2f, 3f, 4f, 5f)
+
         var yValueList1 = arrayOf<Float>(25f, 28f, 29f, 29f, 30f, 31f)
-        //entryChart1에 좌표 데이터를 담는다.
-//        for (a: Int in 0..3){
-//            for (i: Int in 0..5){
-//                barEntries[a].add(BarEntry(xValueList[i.toInt()], yValueList1[i.toInt()]))
-//            }
-//        }
-
-
-
-        for (i in xValueList){
-            barEntries1.add(BarEntry(xValueList[i.toInt()], yValueList1[i.toInt()]))
-        }
-
         var yValueList2 = arrayOf<Float>(4f, 5f, 6f, 6f, 7f, 5f)
-        for (i in xValueList){
-            barEntries2.add(BarEntry(xValueList[i.toInt()], yValueList2[i.toInt()]))
-        }
-
         var yValueList3 = arrayOf<Float>(3f, 5f, 7f, 7f, 8f, 6f)
-        for (i in xValueList){
-            barEntries3.add(BarEntry(xValueList[i.toInt()], yValueList3[i.toInt()]))
-        }
-
         var yValueList4 = arrayOf<Float>(7f, 9f, 9f, 10f, 11f, 11f)
-        for (i in xValueList){
-            barEntries4.add(BarEntry(xValueList[i.toInt()], yValueList4[i.toInt()]))
+
+        var yValueList = arrayOf(yValueList1, yValueList2, yValueList3, yValueList4)
+
+        //entryChart1에 좌표 데이터를 담는다.
+        for (a: Int in 0..3){
+            for (i: Int in 0..5) barEntries[a].add(BarEntry(xValueList[i], yValueList[a][i]))
         }
 
         val barDataSet1 = BarDataSet(barEntries1, "전체개체")
-        barDataSet1.color = Color.rgb(255, 155, 155)
         val barDataSet2 = BarDataSet(barEntries2, "임신개체")
-        barDataSet2.color = Color.rgb(178, 223, 138)
         val barDataSet3 = BarDataSet(barEntries3, "건유개체")
-        barDataSet3.color = Color.rgb(166, 208, 227)
         val barDataSet4 = BarDataSet(barEntries4, "거세개체")
-        barDataSet4.color = Color.rgb(31, 120, 180)
+
+        val barDataSet = arrayOf(barDataSet1, barDataSet2, barDataSet3, barDataSet4)
+        val color = mutableListOf<Int>(R.color.chart1, R.color.chart2, R.color.chart3, R.color.chart4)
+
+        for (i: Int in 0..3) barDataSet[i].color = (color[i])
 
         val months = arrayOf("8월", "9월", "10월", "11월")
         val data = BarData(barDataSet1, barDataSet2, barDataSet3, barDataSet4)
         var barChart = binding.chartWeek
-        barChart.setData(data)
+        barChart.data = data
 
         val xAxis: XAxis = barChart.xAxis
         xAxis.valueFormatter = IndexAxisValueFormatter(months)
