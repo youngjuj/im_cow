@@ -95,14 +95,4 @@ interface RetrofitInterface {
     @GET("${API_.COWINFOREGIST}")
     fun getResult(@Query("cow_id") cow_id: String): Call<String>?
 
-
-//    @Multipart
-//    @POST("경로")
-//    fun writeStory(
-//        @Header("Authorization") Authorization: String,
-//        @Part imageList : List<MultipartBody.Part?>,
-//        @Part("postData") postData : RequestBody
-//    ) : Call<StoryResponse>
-
-
 }

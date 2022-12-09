@@ -75,7 +75,6 @@ class RegistInfoActivity : AppCompatActivity(), MyCustomDialogInterface {
                 etRegistInfoPreg, etRegistInfoMilk, etRegistInfoCas, 0, 0)
 
             viewModel.registCowInfo(user_id, milkCowInfo)
-//            observeData(milkCowInfo)
 
             observeData()
 
@@ -90,22 +89,6 @@ class RegistInfoActivity : AppCompatActivity(), MyCustomDialogInterface {
 
 
     }
-
-
-//    fun observeData(milkCow: MilkCowInfoModel) {
-//        viewModel.registEvent.observe(this){
-//            when(it){
-//                "sucess"-> {
-//                    val intent = Intent(this, MainActivity::class.java)
-//                    intent.putExtra("where", "registInfo")
-//                    intent.putExtra("registInfo", milkCow)
-//                    startActivity(intent)
-//                    finish()
-//                }
-//                "failed" -> {                }
-//            }
-//        }
-//    }
 
     override fun onLikedBtnClicked() {
     }

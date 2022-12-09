@@ -31,12 +31,5 @@ class MyCustomDialog(context: Context, MyCustomDialogInterface: MyCustomDialogIn
         // 배경 투명하게
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-//        binding.subscribeBtn.setOnClickListener {
-//            this.myCustomDialogInterface?.onSubscribeBtnClicked()
-//
-//        }
-//        binding.likeBtn.setOnClickListener {
-//            this.myCustomDialogInterface?.onLikedBtnClicked()
-//        }
     }
 }

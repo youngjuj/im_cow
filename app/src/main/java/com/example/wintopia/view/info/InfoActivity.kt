@@ -36,12 +36,6 @@ class InfoActivity : AppCompatActivity() {
         binding.vm = viewModel
         binding.lifecycleOwner = this
 
-        // webView에 띄울 이미지 관련 설정들
-//        binding.wvInfoPhto.settings.useWideViewPort = true
-//        binding.wvInfoPhto.settings.loadWithOverviewMode = true
-//        binding.wvInfoPhto.settings.builtInZoomControls = true
-//        binding.wvInfoPhto.settings.setSupportZoom(true)
-
         setIntent(intent)
         observeData()
 
@@ -89,17 +83,6 @@ class InfoActivity : AppCompatActivity() {
             finish()
         }
     }
-    fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(fragment.id, fragment)
-        fragmentTransaction.commit()
-    }
-
-
-
-
-//
 
     override fun setIntent(intent: Intent) {
         val intent = intent

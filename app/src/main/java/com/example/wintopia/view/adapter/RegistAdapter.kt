@@ -34,11 +34,6 @@ class RegistAdapter(private val items: List<Uri?>) :
 
     override fun getItemCount(): Int = items.size
 
-//    fun reload(imgdata: MutableList<Uri?>) {
-//        this.data.clear()
-//        this.data.addAll(imgdata)
-//        notifyDataSetChanged()
-//    }
 }
 
 

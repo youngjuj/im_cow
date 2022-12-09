@@ -172,11 +172,8 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 
         when (requestCode) {
             REQUEST_GALLERY -> {
-                Log.d(Constants.TAG, "" + viewModel.imgList)
-                Log.d(Constants.TAG, "GALLERY" + viewModel.imgList)
             }
             else -> {
-                Toast.makeText(this, "잘못된 접근입니다..", Toast.LENGTH_SHORT).show()
             }
         }
             // 사진 선택 개수 제한
@@ -197,7 +194,6 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                     val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                     viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
                 }
-                Log.d(Constants.TAG, "이미지 리스트에 추가 완료")
             }
         registAdapter.notifyDataSetChanged()
         }
@@ -206,7 +202,6 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 
     fun dialogEvent(myCustomDialog: Custumdialog){
         Handler(Looper.getMainLooper()).postDelayed({
-            Log.d("확인좀..333333", viewModel.eventCowId.value.toString())
             if (viewModel.eventCowId.value.toString() == "false"){
                 // 소 아님 (dialog 필요)
                 val alertDialog = AlertDialog.Builder(this).create()
@@ -224,7 +219,6 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                     viewModel.eventCowId.value = ""
                     viewModel.event.value = ""
                     viewModel.imgFileList.clear()
-                    Log.d("확인확인44444", viewModel.eventCowId.value.toString())
 
                 }
 
@@ -272,7 +266,6 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
             else {
                 // 해당 개체 조회 후 인텐트
                 var cow_id = viewModel.eventCowId.value.toString()
-                Log.d("여기 들어와?", cow_id)
                 viewModel.cowInfoOne(cow_id)
                 val alertDialog = AlertDialog.Builder(this).create()
                 alertDialog.setTitle("등록된 객체입니다!")
@@ -293,7 +286,6 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
 
                     val intent = Intent(this, InfoActivity::class.java)
                     intent.putExtra("where", "regist")
-                    Log.d("Regist값", viewModel.cowInfoEvent?.id.toString())
                     val dataId = viewModel.cowInfoEvent?.id.toString()
                     val dataName = viewModel.cowInfoEvent?.name.toString()
                     val dataBirth = viewModel.cowInfoEvent?.birth.toString()
@@ -317,7 +309,6 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                             dataCast,
                             dataWish,
                             dataNum)
-                    Log.d("Regist값2", data.name)
                     intent.putExtra("regist", data)
                     startActivity(intent)
                     finish()
@@ -338,7 +329,6 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
         viewModel.event.observe(this){
             when(it){
                 "success" ->{
-                    Log.d("확인55555", it)
                     dialogEvent(myCustomDialog)
                 }
                 "fail" -> {
@@ -370,8 +360,6 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
             result = c.getString(index)
             c.close()
         }
-
-        Log.d("경로로그", result.toString())
 
         return result!!
     }

@@ -471,17 +471,6 @@
                 app:srcCompat="@drawable/btnback"
                 android:translationZ="20dp"/>
 
-            <!--        <ImageView-->
-            <!--            android:id="@+id/imageView9"-->
-            <!--            android:layout_width="50dp"-->
-            <!--            android:layout_height="50dp"-->
-            <!--            android:layout_marginStart="16dp"-->
-            <!--            android:layout_marginTop="16dp"-->
-            <!--            android:src="@drawable/back"-->
-
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

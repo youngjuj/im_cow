@@ -14,7 +14,6 @@ object RetrofitClient {
 
     // 레트로핏 클라이언트(인스턴스) 선언
     private var instance : Retrofit? = null
-//    private lateinit var instance : Retrofit
 
     //레트로핏 클라이언트 가져오기
     fun getInstnace(baseUrl:String) : Retrofit {

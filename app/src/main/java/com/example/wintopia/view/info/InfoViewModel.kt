@@ -30,7 +30,6 @@ class InfoViewModel: ViewModel() {
     val wishEvent = MutableLiveData<String>()
     val deleteEvent = MutableLiveData<String>()
     val getEvent = MutableLiveData<String>()
-//    var resCowinfo: MilkCowInfoModel? = null
 
 
     fun cowWish(cow_id: String){
@@ -44,7 +43,6 @@ class InfoViewModel: ViewModel() {
                 Log.d(Constants.TAG, "onResponse")
                 if (response.isSuccessful()) {
                     Log.e(Constants.TAG, "onResponse success")
-//                        val result: UserList? = response.body()
 
                     // 서버에서 응답받은 데이터
                     val result = "${response.body()}"
@@ -84,7 +82,6 @@ class InfoViewModel: ViewModel() {
                 Log.d(Constants.TAG, "CowInfoDelete onResponse")
                 if (response.isSuccessful()) {
                     Log.e(Constants.TAG, "CowInfoDelete onResponse success")
-//                        val result: UserList? = response.body()
 
                     // 서버에서 응답받은 데이터
                     val result = "${response.body()}"

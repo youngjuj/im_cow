@@ -34,15 +34,10 @@ class SignUpViewModel: ViewModel() {
         val call: Call<UserList?>? = service.getSignUp(id, pw)
         call!!.enqueue(object : Callback<UserList?> {
             override fun onResponse(call: Call<UserList?>?, response: Response<UserList?>) {
-                Log.d(Constants.TAG, "SignUp onResponse")
                 if (response.isSuccessful()) {
-                    Log.e(Constants.TAG, "SignUp onResponse success")
-//                    val result: UserList? = response.body()
-
                     // 서버에서 응답받은 데이터를 TextView에 넣어준다.
                     var userId = "${response.body()?.getId()}"
                     var userPw = "${response.body()?.getPw()}"
-
                     // id, pw가 서버에서 받아온 userId, userPw와 같다면
                     if (userId.equals(id) and userPw.equals(pw)) {
                         event.value = "success"
@@ -53,14 +48,12 @@ class SignUpViewModel: ViewModel() {
                 } else {
                     // 서버통신 실패
                     event.value = "fail1"
-                    Log.e(Constants.TAG, "SignUp onResponse fail")
                 }
             }
 
             override fun onFailure(call: Call<UserList?>?, t: Throwable) {
                 // 통신 실패
                 event.value = "fail2"
-                Log.e(Constants.TAG, "SignUp onFailure: " + t.message)
             }
         })
 

@@ -35,8 +35,6 @@ class CamDialog(
         binding.tvRegistDCam.setOnClickListener {
             listener.onClick(1)
             dialog.dismiss()
-
-            Toast.makeText(context, "사진클릭클릭", Toast.LENGTH_SHORT).show()
         }
 
         binding.tvRegistDGal.setOnClickListener{

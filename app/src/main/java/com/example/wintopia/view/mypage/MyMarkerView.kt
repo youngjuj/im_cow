@@ -14,8 +14,6 @@ import com.github.mikephil.charting.utils.Utils
 
 public class MyMarkerView(context: Context?, layoutResource: Int) :
     MarkerView(context, layoutResource) {
-//    val view = LayoutInflater.from(context).inflate(R.layout.customview,this,false)
-//    addView(view)
 
     private var tvContent: TextView = findViewById<View>() as TextView
 
