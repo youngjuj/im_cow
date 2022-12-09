@@ -25,6 +25,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
 import com.example.wintopia.R
 import com.example.wintopia.databinding.FragmentCameraBinding
 import com.example.wintopia.dialog.MyCustomDialog
@@ -240,6 +241,7 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
 
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {
+                if (currentPhotoPath != null){
                 if (resultCode == RESULT_OK) {
                     val file = File(currentPhotoPath)
 
@@ -248,56 +250,73 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
 
                     Log.d(TAG, "" + body)
 
-                    sendImage(body)
 
                     if (Build.VERSION.SDK_INT < 28) {
                         val bitmap = MediaStore.Images.Media
                             .getBitmap(requireActivity().contentResolver, Uri.fromFile(file))
                         binding.imgCameraPic.setImageBitmap(bitmap)
 
-                    } else {
+                    } else if (Build.VERSION.SDK_INT >= 28) {
                         val decode = ImageDecoder.createSource(
                             requireActivity().contentResolver,
                             Uri.fromFile(file)
                         )
                         val bitmap = ImageDecoder.decodeBitmap(decode)
                         binding.imgCameraPic.setImageBitmap(bitmap)
+                    } else {
+                        Toast.makeText(context, "오류", Toast.LENGTH_SHORT).show()
                     }
+                    sendImage(body)
 
+                } }else {
+                    Toast.makeText(context, "오류", Toast.LENGTH_SHORT).show()
                 }
             }
             REQUEST_GALLERY -> {
-                val selectedImageURI: Uri? = data!!.data
+                val selectedImageURI: Uri? = data?.data
+                if (selectedImageURI == null) {
+                    Toast.makeText(context, "사진 입력 오류", Toast.LENGTH_SHORT).show()
+                } else {
+                    val path = absolutelyPath(requireActivity(), selectedImageURI)
+                    val file = File(path)
 
-                val path = absolutelyPath(requireActivity(), selectedImageURI)
-                val file = File(path)
+                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                    val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-
-                Log.d(TAG, "" + body)
+                    Log.d(TAG, "" + body)
 
 //                sendImage(cow_id, body)
 //                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
 //                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 ////                val id = "234"
-                Log.d(TAG, "" + body)
+                    Log.d(TAG, "" + body)
 //                sendImage(cow_id, body)
 
-                Log.d("이미지 경로uri", selectedImageURI!!.path.toString())
+                    Log.d("이미지 경로uri", selectedImageURI!!.path.toString())
 //                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
 //                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-                Log.d(TAG, "" + body)
+                    Log.d(TAG, "" + body)
 
-                Log.d(TAG, "GALLERY" + body)
+                    Log.d(TAG, "GALLERY" + body)
+
+                    sendImage(body)
+                    Glide.with(requireContext())
+                        .load(selectedImageURI)
+                        .override(300, 400)
+                        .fitCenter()
+                        .into(binding.imgCameraPic)
+//                    binding.imgCameraPic.setImageURI(selectedImageURI)
+
+
+                }
+
+
 
 
                 if (selectedImageURI != null) {
-                    sendImage(body)
 
 
-                    binding.imgCameraPic.setImageURI(selectedImageURI)
                 } else Toast.makeText(activity, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
             }
             else -> {
