@@ -146,27 +146,32 @@ class MyPageFragment : Fragment() {
 
     fun lineEvent(){
 
+        //entryChart에 좌표 데이터를 담는다.
         var xValueList = arrayOf<Float>(0f, 1f, 2f, 3f, 4f, 5f)
+
         var yValueList1 = arrayOf<Float>(25f, 28f, 29f, 29f, 30f, 31f)
-        //entryChart1에 좌표 데이터를 담는다.
+        var yValueList2 = arrayOf<Float>(4f, 5f, 6f, 6f, 7f, 5f)
+        var yValueList3 = arrayOf<Float>(3f, 5f, 7f, 7f, 8f, 6f)
+        var yValueList4 = arrayOf<Float>(7f, 9f, 9f, 10f, 11f, 11f)
+
+//        var yValueName = arrayOf(entryChart1, entryChart2, entryChart3, entryChart4)
+//        var yValueList = arrayOf(yValueList1, yValueList2, yValueList3, yValueList4)
+//        for (i in 1..6){
+//            yValueName[i].add(Entry(xValueList[i], yValueList[i][i]))
+//        }
+
         for (i in xValueList){
             entryChart1.add(Entry(xValueList[i.toInt()], yValueList1[i.toInt()]))
         }
 
-        var yValueList2 = arrayOf<Float>(4f, 5f, 6f, 6f, 7f, 5f)
-        //entryChart2에 좌표 데이터를 담는다.
         for (i in xValueList){
             entryChart2.add(Entry(xValueList[i.toInt()], yValueList2[i.toInt()]))
         }
 
-        //entryChart3에 좌표 데이터를 담는다.
-        var yValueList3 = arrayOf<Float>(3f, 5f, 7f, 7f, 8f, 6f)
         for (i in xValueList){
             entryChart3.add(Entry(xValueList[i.toInt()], yValueList3[i.toInt()]))
         }
 
-        //entryChart4에 좌표 데이터를 담는다.
-        var yValueList4 = arrayOf<Float>(7f, 9f, 9f, 10f, 11f, 11f)
         for (i in xValueList){
             entryChart4.add(Entry(xValueList[i.toInt()], yValueList4[i.toInt()]))
         }
