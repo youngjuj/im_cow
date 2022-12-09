@@ -11,6 +11,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">#F8EFE6</item>
-        <!-- Customize your theme here. -->
+        <!-- Status bar text color. -->
+        <item name="android:windowLightStatusBar">true</item>
+
     </style>
 </resources>

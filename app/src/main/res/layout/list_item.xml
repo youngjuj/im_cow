@@ -7,178 +7,263 @@
             name="list"
             type="com.example.wintopia.view.list.ListFragment" />
     </data>
-<FrameLayout
-    android:layout_height="120dp"
-    android:layout_width="match_parent"
->
-<!--    <FrameLayout-->
-<!--        android:id="@+id/clItem"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_margin="10dp"-->
-<!--        android:background="@drawable/background_radius"-->
-<!--        android:translationZ="10dp"-->
-<!--        >-->
-
-
-<!--        <WebView-->
-<!--            android:id="@+id/wvItemImg"-->
-<!--            android:layout_width="90dp"-->
-<!--            android:layout_height="80dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginLeft="15dp"-->
-<!--            android:background="@drawable/background_radius" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvItemName"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="15dp"-->
-<!--            android:text="얼룩이"-->
-<!--            android:layout_marginStart="120dp"-->
-<!--            android:textColor="#2E2E2E"-->
-<!--            android:textSize="30sp"/>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvItemId"-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="19dp"-->
-<!--            android:text="고유번호 : 22111001"-->
-<!--            android:layout_marginTop="60dp"-->
-<!--            android:layout_marginLeft="120dp" />-->
-<!--    </FrameLayout>-->
-
-    <androidx.cardview.widget.CardView
+    <FrameLayout
+        android:layout_height="140dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="15dp"
-        app:cardCornerRadius="36dp"
-        android:gravity="right|center_vertical">
-        <TextView
-            android:id="@+id/hiddenBtnEdt"
-            android:layout_width="88dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:paddingTop="24dp"
-            android:layout_marginLeft="78dp"
-            android:background="@drawable/background_half_radius_right"
-            android:text="@string/edit"
-            android:clickable="false"
-            android:elevation="@dimen/cardview_default_elevation"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:translationZ="10dp"/>
-
-        <TextView
-            android:id="@+id/hiddenBtnDel"
-            android:layout_width="88dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="144dp"
-            android:background="#ffc0cb"
-            android:clickable="false"
-            android:elevation="@dimen/cardview_default_elevation"
-            android:paddingTop="24dp"
-            android:text="@string/delete"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:paddingLeft="34dp"
-            tools:layout_editor_absoluteY="10dp" />
+        >
+        <!--    <FrameLayout-->
+        <!--        android:id="@+id/clItem"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="100dp"-->
+        <!--        android:layout_margin="10dp"-->
+        <!--        android:background="@drawable/background_radius"-->
+        <!--        android:translationZ="10dp"-->
+        <!--        >-->
 
 
-    </androidx.cardview.widget.CardView>
+        <!--        <WebView-->
+        <!--            android:id="@+id/wvItemImg"-->
+        <!--            android:layout_width="90dp"-->
+        <!--            android:layout_height="80dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginLeft="15dp"-->
+        <!--            android:background="@drawable/background_radius" />-->
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/clItem"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="15dp"
-        app:cardCornerRadius="36dp"
-        android:translationZ="10dp"
-        android:gravity="right|center_vertical">
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvItemName"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="15dp"-->
+        <!--            android:text="얼룩이"-->
+        <!--            android:layout_marginStart="120dp"-->
+        <!--            android:textColor="#2E2E2E"-->
+        <!--            android:textSize="30sp"/>-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvItemId"-->
+        <!--            android:layout_width="150dp"-->
+        <!--            android:layout_height="19dp"-->
+        <!--            android:text="고유번호 : 22111001"-->
+        <!--            android:layout_marginTop="60dp"-->
+        <!--            android:layout_marginLeft="120dp" />-->
+        <!--    </FrameLayout>-->
+
         <androidx.cardview.widget.CardView
-            android:layout_width="78dp"
-            android:layout_height="78dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="10dp"
             android:layout_marginLeft="15dp"
-            app:cardCornerRadius="50dp">
-        <WebView
-            android:id="@+id/wvItemImg"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/background_radius" />
+            app:cardCornerRadius="12dp"
+            android:gravity="right|center_vertical">
+
+            <FrameLayout
+                android:id="@+id/hiddenBtnEdt"
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:paddingTop="24dp"
+                android:paddingLeft="92dp"
+                android:layout_marginLeft="38dp"
+                android:background="@drawable/background_half_radius_right"
+                android:clickable="false"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:translationZ="16dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:paddingTop="14dp"
+                    android:paddingLeft="16dp"
+                    android:src="@drawable/btnedit"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="48dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="18sp"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:text="수정"/>
+                <!--            android:id="@+id/hiddenBtnEdt"-->
+                <!--            android:layout_width="150dp"-->
+                <!--            android:layout_height="120dp"-->
+                <!--            android:layout_gravity="center"-->
+                <!--            android:paddingTop="24dp"-->
+                <!--            android:paddingLeft="90dp"-->
+                <!--            android:layout_marginLeft="40dp"-->
+                <!--            android:background="@drawable/background_half_radius_right"-->
+                <!--            android:clickable="false"-->
+                <!--            android:elevation="@dimen/cardview_default_elevation"-->
+                <!--            android:textAlignment="center"-->
+                <!--            android:textColor="#fff"-->
+                <!--            android:textSize="20dp"-->
+                <!--            android:translationZ="10dp"/>-->
+
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/hiddenBtnDel"
+                android:layout_width="92dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="140dp"
+                android:background="#A75F46"
+                android:clickable="false"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:paddingTop="24dp"
+                android:paddingLeft="24dp"
+                android:translationZ="10dp">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:paddingTop="12dp"
+                    android:src="@drawable/btndelete"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="48dp"
+                    android:paddingLeft="4dp"
+                    android:textSize="18sp"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:text="삭제"/>
+            </FrameLayout>
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/hiddenBtnDel"-->
+            <!--            android:layout_width="88dp"-->
+            <!--            android:layout_height="120dp"-->
+            <!--            android:layout_gravity="center"-->
+            <!--            android:layout_marginLeft="144dp"-->
+            <!--            android:background="#ffc0cb"-->
+            <!--            android:clickable="false"-->
+            <!--            android:elevation="@dimen/cardview_default_elevation"-->
+            <!--            android:paddingTop="24dp"-->
+            <!--            android:text="@string/delete"-->
+            <!--            android:textColor="#fff"-->
+            <!--            android:textSize="20dp"-->
+            <!--            android:paddingLeft="30dp"-->
+            <!--            tools:layout_editor_absoluteY="10dp" />-->
+
+
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/tvItemName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="얼룩이"
-            android:layout_marginStart="120dp"
-            android:textColor="#E0C2A6"
-            android:textSize="34sp"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/clItem"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            app:cardCornerRadius="12dp"
+            android:translationZ="10dp"
+            android:gravity="right|center_vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                app:cardCornerRadius="12dp">
+                <ImageView
+                    android:id="@+id/imgItemImg"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
+                <!--        <WebView-->
+                <!--            android:id="@+id/wvItemImg"-->
+                <!--            android:layout_width="80dp"-->
+                <!--            android:layout_height="80dp"-->
+                <!--            android:background="@drawable/background_radius" />-->
+            </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/tvItemId"
-            android:layout_width="150dp"
-            android:layout_height="19dp"
-            android:text="고유번호 : 22111001"
-            android:textColor="#E0C2A6"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="120dp" />
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/tvItemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="얼룩이"
+                android:layout_marginStart="130dp"
+                android:textColor="#E0C2A6"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:id="@+id/tvItemVariety"
+                android:layout_width="150dp"
+                android:layout_height="19dp"
+                android:text="품종 : 브라운스위스"
+                android:textColor="#E0C2A6"
+                android:layout_marginTop="58dp"
+                android:layout_marginLeft="130dp" />
+
+            <TextView
+                android:id="@+id/tvItemBirth"
+                android:layout_width="150dp"
+                android:layout_height="19dp"
+                android:text="출생일 : 22111001"
+                android:textColor="#E0C2A6"
+                android:layout_marginTop="80dp"
+                android:layout_marginLeft="130dp" />
+
+            <ImageView
+                android:id="@+id/imgItemWish"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="290dp"
+                android:translationZ="20dp"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:src="@drawable/emptyheart"
+                />
+
+        </androidx.cardview.widget.CardView>
 
 
-<!--    <FrameLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginRight="20dp"-->
-<!--        android:layout_marginLeft="15dp"-->
-<!--        android:background="@drawable/background_radius"-->
-<!--        android:gravity="right|center_vertical">-->
+        <!--    <FrameLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="100dp"-->
+        <!--        android:layout_marginTop="10dp"-->
+        <!--        android:layout_marginRight="20dp"-->
+        <!--        android:layout_marginLeft="15dp"-->
+        <!--        android:background="@drawable/background_radius"-->
+        <!--        android:gravity="right|center_vertical">-->
 
-<!--        <TextView-->
-<!--            android:layout_width="66dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:background="#ffc0cb"-->
-<!--            android:paddingTop="32dp"-->
-<!--            android:layout_marginLeft="88dp"-->
-<!--            android:text="수정"-->
-<!--            android:clickable="false"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="#fff"-->
-<!--            android:textSize="24dp" />-->
+        <!--        <TextView-->
+        <!--            android:layout_width="66dp"-->
+        <!--            android:layout_height="100dp"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:background="#ffc0cb"-->
+        <!--            android:paddingTop="32dp"-->
+        <!--            android:layout_marginLeft="88dp"-->
+        <!--            android:text="수정"-->
+        <!--            android:clickable="false"-->
+        <!--            android:textAlignment="center"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:textSize="24dp" />-->
 
-<!--        <TextView-->
-<!--            android:layout_width="66dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginRight="6dp"-->
-<!--            android:background="@drawable/background_half_radius_right"-->
-<!--            android:paddingTop="32dp"-->
-<!--            android:layout_marginLeft="158dp"-->
-<!--            android:text="삭제"-->
-<!--            android:clickable="false"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="#fff"-->
-<!--            android:textSize="24dp"-->
-<!--            tools:layout_editor_absoluteY="10dp" />-->
+        <!--        <TextView-->
+        <!--            android:layout_width="66dp"-->
+        <!--            android:layout_height="100dp"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginRight="6dp"-->
+        <!--            android:background="@drawable/background_half_radius_right"-->
+        <!--            android:paddingTop="32dp"-->
+        <!--            android:layout_marginLeft="158dp"-->
+        <!--            android:text="삭제"-->
+        <!--            android:clickable="false"-->
+        <!--            android:textAlignment="center"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:textSize="24dp"-->
+        <!--            tools:layout_editor_absoluteY="10dp" />-->
         <!--    <View-->
         <!--        android:background="#ddd"-->
         <!--        app:layout_constraintBottom_toBottomOf="parent"-->
         <!--        android:layout_width="match_parent"-->
         <!--        android:layout_height="0.8dp"/>-->
-<!--    </FrameLayout>-->
+        <!--    </FrameLayout>-->
 
 
 
-</FrameLayout>
+    </FrameLayout>
 </layout>

@@ -9,64 +9,64 @@
             type="com.example.wintopia.view.regist.RegistViewModel" />
     </data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.regist.RegistActivity">
+
+        <ImageView
+            android:id="@+id/imgRegistCow"
+            android:layout_width="216dp"
+            android:layout_height="271dp"
+            android:layout_marginTop="56dp"
+            android:alpha="0.3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/standingcow" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRegistPhoto"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".view.regist.RegistActivity">
+            android:layout_height="280dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgRegistCow" />
 
-            <ImageView
-                android:id="@+id/imgRegistCow"
-                android:layout_width="216dp"
-                android:layout_height="271dp"
-                android:layout_marginTop="56dp"
-                android:alpha="0.3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/standingcow" />
+        <android.widget.Button
+            android:id="@+id/btnRegisPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="68dp"
+            android:background="@drawable/background_radius_brown"
+            android:text="사진찾기"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvRegistPhoto" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvRegistPhoto"
-                android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:layout_marginTop="80dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imgRegistCow" />
+        <android.widget.Button
+            android:id="@+id/btnRegistRegist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:background="@drawable/background_radius_brown"
+            android:text="등록하기"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.123"
+            app:layout_constraintStart_toEndOf="@+id/btnRegisPhoto"
+            app:layout_constraintTop_toTopOf="@+id/btnRegisPhoto" />
 
-            <android.widget.Button
-                android:id="@+id/btnRegisPhoto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="68dp"
-                android:background="@drawable/background_radius"
-                android:text="사진찾기"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvRegistPhoto" />
-
-            <android.widget.Button
-                android:id="@+id/btnRegistRegist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:background="@drawable/background_radius"
-                android:text="등록하기"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.123"
-                app:layout_constraintStart_toEndOf="@+id/btnRegisPhoto"
-                app:layout_constraintTop_toTopOf="@+id/btnRegisPhoto" />
-
-            <ImageView
-                android:id="@+id/btnRegistBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/btnback" />
+        <ImageView
+            android:id="@+id/btnRegistBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/btnback" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
