@@ -173,7 +173,7 @@ class MyPageFragment : Fragment() {
         val lineDataSet = arrayOf(lineDataSet1, lineDataSet2, lineDataSet3, lineDataSet4)
         val color = mutableListOf<Int>(
             Color.rgb(255, 155, 155),
-            Color.rgb(255, 155, 155),
+            Color.rgb(166, 208, 227),
             Color.rgb(178, 223, 138),
             Color.rgb(31, 120, 180))
 
@@ -250,7 +250,7 @@ class MyPageFragment : Fragment() {
         val barDataSet = arrayOf(barDataSet1, barDataSet2, barDataSet3, barDataSet4)
         val color = mutableListOf<Int>(
             Color.rgb(255, 155, 155),
-            Color.rgb(255, 155, 155),
+            Color.rgb(166, 208, 227),
             Color.rgb(178, 223, 138),
             Color.rgb(31, 120, 180))
 
