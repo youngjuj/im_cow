@@ -97,10 +97,10 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
                 }
 
                 hiddenBtnDel.setOnClickListener {
+                    InfoViewModel().cowInfoDelete(data[position].id)
                     onDeleteClick?.let{ onDeleteClick ->
                         onDeleteClick(this)
                     }
-                    InfoViewModel().cowInfoDelete(data[position].id)
                 }
             }
         }
@@ -182,7 +182,7 @@ class ListVOAdapter(private val data:MutableList<MilkCowInfoModel>):
         data.removeAt(position)
         notifyItemRemoved(position)
 //        notifyDataSetChanged()
-        notifyItemChanged(position)
+//        notifyItemChanged(position)
 
     }
 

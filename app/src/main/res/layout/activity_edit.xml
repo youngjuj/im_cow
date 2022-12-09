@@ -112,13 +112,13 @@
 
 
 
-            <EditText
+            <TextView
                 android:id="@+id/etEditId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="130dp"
                 android:layout_marginTop="16dp"
-                android:paddingLeft="7dp"
+                android:paddingLeft="37dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -127,7 +127,7 @@
                 android:textColor="#000000"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etEditName"
-                android:clickable="false"/>
+                android:clickable="false" />
 
 
             <TextView
@@ -148,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:paddingLeft="7dp"
+                android:paddingLeft="37dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -178,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:paddingLeft="7dp"
+                android:paddingLeft="37dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -207,7 +207,7 @@
                 android:layout_height="30dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="16dp"
-                android:layout_marginLeft="-10dp"
+                android:layout_marginLeft="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/etEditVariety"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/etEditVariety"
@@ -219,7 +219,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="암컷"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="30dp"
                     android:layout_marginLeft="10dp"
                     android:checked="@{vm.gender.equals(@string/female)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
@@ -263,7 +263,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="접종"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="30dp"
                     android:layout_marginLeft="10dp"
                     android:checked="@{vm.vaccine.equals(@string/did)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
@@ -309,7 +309,7 @@
                     android:paddingRight="13dp"
                     android:text="유"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="30dp"
                     android:checked="@{vm.pregnancy.equals(@string/yes)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
@@ -355,7 +355,7 @@
                     android:text="유"
                     android:paddingRight="13dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="30dp"
                     android:checked="@{vm.milk.equals(@string/yes)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="100dp" />
@@ -398,7 +398,7 @@
                     android:layout_height="wrap_content"
                     android:paddingRight="13dp"
                     android:text="유"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="30dp"
                     android:layout_marginLeft="10dp"
                     android:checked="@{vm.castration.equals(@string/yes)? true : false }"
                     tools:layout_editor_absoluteX="100dp"
