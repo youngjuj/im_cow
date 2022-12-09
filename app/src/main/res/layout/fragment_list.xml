@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_marginRight="24dp"
-            android:layout_marginBottom="130dp"
+            android:layout_marginBottom="60dp"
             android:clickable="true"
             android:src="@drawable/plus"
             app:backgroundTint="#656644"
