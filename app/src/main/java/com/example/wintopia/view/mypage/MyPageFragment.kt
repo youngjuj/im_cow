@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -50,6 +51,8 @@ class MyPageFragment : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
 
+//        if (binding.linearLayout.scrollY <= -30) requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.beige)
+
         val pref = context?.getSharedPreferences("userId", 0)
         val edit = pref?.edit() // 수정모드
         val savedCheckBox = pref?.getBoolean("checkBox", false)
@@ -58,12 +61,6 @@ class MyPageFragment : Fragment() {
         viewModel.userPageInfo("test")
 //        myPageEvent()
         observeData()
-
-
-
-
-
-
 
 
         barChartSetting()
