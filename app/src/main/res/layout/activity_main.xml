@@ -38,7 +38,7 @@
             android:id="@+id/fl"
             android:layout_width="match_parent"
             android:layout_height="770dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="0dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="@+id/bnv"
             app:layout_constraintHorizontal_bias="0.0"
