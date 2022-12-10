@@ -13,6 +13,7 @@
             type="com.example.wintopia.view.mypage.MyPageViewModel" />
     </data>
     <FrameLayout
+        android:id="@+id/flMypage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.mypage.MyPageFragment">
@@ -20,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clMypage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <FrameLayout

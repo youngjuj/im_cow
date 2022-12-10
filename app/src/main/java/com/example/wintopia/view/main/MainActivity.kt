@@ -54,17 +54,22 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().replace(
                         R.id.fl, ListFragment()
                     ).commit()
+                    binding.ic.root.isVisible = true
+                    window.statusBarColor = ContextCompat.getColor(this, R.color.beige)
                 }
                 R.id.tab2 -> {
                     setDataAtFragment(CameraFragment(), show)
                     show = !show
+                    binding.ic.root.isVisible = true
+                    window.statusBarColor = ContextCompat.getColor(this, R.color.beige)
+
                 }
                 R.id.tab3 -> {
                     supportFragmentManager.beginTransaction().replace(
                         R.id.fl, MyPageFragment()
                     ).commit()
-//                    binding.ic.tvAppBer.isVisible = false
                     binding.ic.root.isVisible = false
+                    binding.fl.minimumHeight = 830
                     window.statusBarColor = ContextCompat.getColor(this, R.color.myPage)
                 }
             }
