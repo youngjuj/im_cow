@@ -69,8 +69,8 @@ class MainActivity : AppCompatActivity() {
                         R.id.fl, MyPageFragment()
                     ).commit()
                     binding.ic.root.isVisible = false
-                    binding.fl.minimumHeight = 830
                     window.statusBarColor = ContextCompat.getColor(this, R.color.myPage)
+                    binding.fl.layoutParams.height = 2000
                 }
             }
 

@@ -51,8 +51,10 @@ class MyPageFragment : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_page, container, false)
 
-//        if (binding.linearLayout.scrollY <= -30) requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.beige)
-
+//        binding.linearLayout.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+//            if (scrollY <= -10) requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.beige)
+//
+//        }
         val pref = context?.getSharedPreferences("userId", 0)
         val edit = pref?.edit() // 수정모드
         val savedCheckBox = pref?.getBoolean("checkBox", false)
