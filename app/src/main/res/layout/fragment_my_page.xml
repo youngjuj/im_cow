@@ -32,17 +32,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:elevation="@dimen/cardview_default_elevation">
+
                     <LinearLayout
                         android:id="@+id/linearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
                         android:background="@drawable/background_half_radius_bottom"
-                        android:orientation="vertical"
-                        >
+                        android:backgroundTint="#2CDDDDDD"
+                        android:orientation="vertical">
+
+<!--                        <View-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="300dp"-->
+<!--                            android:background="#2CDDDDDD" />-->
+
+
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp">
+
                             <TextView
                                 android:id="@+id/tvMyPageMyfarm"
                                 android:layout_width="match_parent"
@@ -53,6 +62,7 @@
                                 android:text="얼룩이 보급 팜"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
+
                             <TextView
                                 android:id="@+id/textView2"
                                 android:layout_width="90dp"
@@ -60,7 +70,8 @@
                                 android:layout_marginStart="20dp"
                                 android:layout_marginTop="70dp"
                                 android:text="전화번호:"
-                                android:textSize="20sp"/>
+                                android:textSize="20sp" />
+
                             <TextView
                                 android:id="@+id/tvMyPhone"
                                 android:layout_width="wrap_content"
@@ -73,10 +84,12 @@
                                 android:text="01012341234"
                                 android:textSize="20sp" />
                         </FrameLayout>
+
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp">
+
                             <TextView
                                 android:id="@+id/tvMypageCount"
                                 android:layout_width="90dp"
@@ -88,6 +101,7 @@
                                 android:textAlignment="center"
                                 android:textSize="30sp"
                                 tools:ignore="RtlCompat" />
+
                             <TextView
                                 android:id="@+id/tvMypageBaby"
                                 android:layout_width="90dp"
@@ -99,6 +113,7 @@
                                 android:textAlignment="center"
                                 android:textSize="30sp"
                                 tools:ignore="RtlCompat" />
+
                             <TextView
                                 android:id="@+id/tvMypageGender"
                                 android:layout_width="90dp"
@@ -111,33 +126,37 @@
                                 android:textSize="30sp"
                                 tools:ignore="RtlCompat" />
                         </FrameLayout>
+
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp">
+
                             <TextView
                                 android:id="@+id/textView5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="개체 수"
                                 android:layout_marginStart="26dp"
+                                android:text="개체 수"
                                 android:textAlignment="center"
                                 android:textSize="20sp" />
+
                             <TextView
                                 android:id="@+id/textView8"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="신생우"
                                 android:layout_marginStart="150dp"
+                                android:text="신생우"
                                 android:textAlignment="center"
                                 android:textSize="20sp" />
+
                             <TextView
                                 android:id="@+id/textView9"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="254dp"
                                 android:layout_weight="1"
                                 android:text="암소/숫소"
-                                android:layout_marginStart="254dp"
                                 android:textAlignment="center"
                                 android:textSize="20sp" />
                         </FrameLayout>
