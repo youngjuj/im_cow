@@ -3,6 +3,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.TypedValue
+import android.util.TypedValue.COMPLEX_UNIT_DIP
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -56,21 +58,22 @@ class MainActivity : AppCompatActivity() {
                     ).commit()
                     binding.ic.root.isVisible = true
                     window.statusBarColor = ContextCompat.getColor(this, R.color.beige)
+                    binding.fl.layoutParams.height = 2290
                 }
                 R.id.tab2 -> {
                     setDataAtFragment(CameraFragment(), show)
                     show = !show
                     binding.ic.root.isVisible = true
                     window.statusBarColor = ContextCompat.getColor(this, R.color.beige)
-
+                    binding.fl.layoutParams.height = 2290
                 }
                 R.id.tab3 -> {
                     supportFragmentManager.beginTransaction().replace(
                         R.id.fl, MyPageFragment()
                     ).commit()
                     binding.ic.root.isVisible = false
-                    binding.fl.minimumHeight = 830
                     window.statusBarColor = ContextCompat.getColor(this, R.color.myPage)
+                    binding.fl.layoutParams.height = 2320
                 }
             }
 
