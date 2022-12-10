@@ -17,7 +17,7 @@
         android:id="@+id/svSignUpRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F8EFE6"
+        android:background="#937F76"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,26 +26,52 @@
             tools:context=".view.signup.SignUpActivity"
             >
 
+
+            <View
+                android:layout_width="288dp"
+                android:layout_height="84dp"
+                android:background="@drawable/top_round"
+                android:layout_marginTop="36dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="52dp"
+                android:text="I'm cow"
+                android:textSize="48dp"
+                android:textColor="#937F76"
+                android:fontFamily="@font/kotra"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="#937F76"
+                android:layout_width="350dp"
+                android:layout_height="600dp"
+                android:layout_marginTop="156dp"
+                android:background="@drawable/top_round"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </LinearLayout>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/edt"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="180dp"
                 android:gravity="center_horizontal"
-                android:text="회원가입"
-                android:textColor="#FFFFFF"
+                android:text="로그인"
+                android:textColor="#937F76"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,19 +79,16 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etJoinId_layout"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
                 app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:boxStrokeColor="#00D4A3"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+                app:layout_constraintTop_toBottomOf="@+id/edt">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etJoinId"
@@ -77,23 +100,20 @@
                     android:text="@={SignUpvm.signUpId}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/edt" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etJoinPw1_layout"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginStart="24dp"
                 app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:boxStrokeColor="#00D4A3"
                 app:endIconMode="clear_text"
                 android:hint="PassWord 입력"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etJoinId_layout">
 
@@ -111,12 +131,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etJoinPw2_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
                 android:hint="PassWord 확인"
                 app:boxStrokeColor="#00D4A3"
                 app:counterEnabled="true"
@@ -125,7 +143,6 @@
                 app:helperText="@{SignUpvm.signUpPw2.equals(SignUpvm.signUpPw1) ? @string/test : @string/test2}"
                 app:helperTextTextColor="#F10606"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etJoinPw1_layout"
                 app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent">
@@ -140,59 +157,60 @@
                     android:text="@={SignUpvm.signUpPw2}" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="48dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/etJoinPw2_layout">
 
                 <android.widget.Button
                     android:id="@+id/btnJoinJoin"
-                    android:layout_width="160dp"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
                     android:background="@drawable/background_radius_brown"
                     android:text="회원가입"
+                    android:textColor="#F8EFE6"
+                    android:layout_marginTop="100dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etJoinPw2" />
+                    app:layout_constraintTop_toBottomOf="@+id/etJoinPw2_layout" />
+
+
+                <TextView
+                    android:id="@+id/or"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="OR"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnJoinJoin"
+                    />
 
                 <android.widget.Button
                     android:id="@+id/btnJoinback"
-                    android:layout_width="160dp"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="16dp"
+                    android:textColor="#F8EFE6"
                     android:background="@drawable/background_radius_brown"
                     android:text="돌아가기"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etJoinPw2" />
+                    app:layout_constraintTop_toBottomOf="@+id/or"
+                    />
 
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="120dp"
                 android:text="Copyright 2022. WINTOPIA All rights reserved."
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                app:layout_constraintTop_toBottomOf="@+id/btnJoinback" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/textView"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

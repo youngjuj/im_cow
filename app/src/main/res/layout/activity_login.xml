@@ -21,54 +21,101 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F8EFE6"
+            android:background="#937F76"
             tools:context=".view.login.LoginActivity"
             >
 
+            <View
+                android:layout_width="288dp"
+                android:layout_height="84dp"
+                android:background="@drawable/top_round"
+                android:layout_marginTop="36dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+<!--            <TextView-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_marginTop="48dp"-->
+<!--                android:fontFamily="@font/kotra"-->
+<!--                android:background="@drawable/cow2"-->
+<!--                android:textSize="50dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.22"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="52dp"
+                android:text="I'm cow"
+                android:textSize="48dp"
+                android:textColor="#937F76"
+                android:fontFamily="@font/kotra"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginTop="94dp"-->
+<!--                android:text="Welcome to my farm !"-->
+<!--                android:fontFamily="@font/kotra"-->
+<!--                android:textSize="14dp"-->
+<!--                android:layout_marginLeft="64dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                />-->
+
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="#937F76"
+                android:layout_width="350dp"
+                android:layout_height="600dp"
+                android:layout_marginTop="156dp"
+                android:background="@drawable/top_round"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-            </LinearLayout>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/edt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="180dp"
                 android:gravity="center_horizontal"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
                 android:text="로그인"
+                android:textColor="#937F76"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etLoginId_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:boxStrokeColor="#00D4A3"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:boxStrokeColor="#937F76"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/edt"
+                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLoginId"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:ems="10"
                     android:hint="ID 입력"
@@ -76,31 +123,26 @@
                     android:text="@={vm.id}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                    />
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etLoginPw_layout"
-                android:layout_width="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginStart="24dp"
-                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:boxStrokeColor="#00D4A3"
-                app:endIconMode="clear_text"
                 android:hint="PassWord 입력"
+                app:boxStrokeColor="#937F76"
+                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etLoginId_layout"
-                >
+                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLoginPw"
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:inputType="textPassword"
                     android:text="@={vm.pw}"
@@ -115,8 +157,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="28dp"
+                android:layout_marginEnd="56dp"
                 android:text="자동 로그인"
+                android:textColor="#937F76"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -125,15 +168,15 @@
 
             <android.widget.Button
                 android:id="@+id/btnLoginLgin"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="120dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/background_radius_brown"
                 android:text="로그인"
+                android:textColor="#F8EFE6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkbox" />
 
@@ -150,13 +193,12 @@
 
             <android.widget.Button
                 android:id="@+id/btnLoginJoin"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
                 android:background="@drawable/background_radius_brown"
                 android:text="회원가입"
+                android:textColor="#F8EFE6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/or" />
@@ -166,16 +208,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="120dp"
+                android:textColor="#F8EFE6"
                 android:text="Copyright 2022. WINTOPIA All rights reserved."
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnLoginJoin" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
