@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.ImageDecoder
+import android.media.SoundPool
 import android.net.Uri
 import android.os.*
 import android.provider.MediaStore
@@ -80,12 +81,21 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
             show = it.getBoolean("data")
         }
 
+        // sound effect
+        val soundPool = SoundPool.Builder().build()
+        var soundId :Int = 0
+        soundId = soundPool.load(requireContext(), R.raw.cow, 1)
+
         // camera floatting button onClickListener
         binding.fbCameraCam.setOnClickListener {
+            soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f)
+
             Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
             if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
         }
         binding.fbCameraGal.setOnClickListener {
+            soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f)
+
             Toast.makeText(requireActivity(), "fbCameraGal", Toast.LENGTH_SHORT).show()
             if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
         }
