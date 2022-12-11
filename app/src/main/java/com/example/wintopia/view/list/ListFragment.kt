@@ -2,6 +2,7 @@ package com.example.wintopia.view.list
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.SoundPool
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -45,7 +46,13 @@ class ListFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false)
 
+        // sound effect
+        val soundPool = SoundPool.Builder().build()
+        var soundId :Int = 0
+        soundId = soundPool.load(requireContext(), R.raw.cow2, 1)
+
         binding.fbListRegist.setOnClickListener {
+            soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f)
             val intent = Intent(activity, RegistActivity::class.java)
             startActivity(intent)
         }
