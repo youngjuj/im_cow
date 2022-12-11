@@ -44,14 +44,14 @@ class InfoActivity : AppCompatActivity() {
         binding.imgInfoStar.setOnClickListener {
             viewModel.cowWish(binding.tvInfoId.text.toString())
             if (viewModel.wishEvent.equals("0")) {
-                binding.imgInfoStar.setImageResource(R.drawable.filledstar)
+                binding.imgInfoStar.setImageResource(R.drawable.filledheart)
                 viewModel.wishEvent.value = "1"
             } else {
-                binding.imgInfoStar.setImageResource(R.drawable.star)
+                binding.imgInfoStar.setImageResource(R.drawable.emptyheart)
                 viewModel.wishEvent.value = "0"
 
             }
-            cowWishEvent()
+//            cowWishEvent()
         }
 
 

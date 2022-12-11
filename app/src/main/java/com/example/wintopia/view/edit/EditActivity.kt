@@ -72,9 +72,9 @@ class EditActivity : AppCompatActivity() {
         // 즐겨찾기 별
         binding.imgEditStar.setOnClickListener {
             if (switch == 0)
-            {binding.imgEditStar.setImageResource(R.drawable.filledstar)
+            {binding.imgEditStar.setImageResource(R.drawable.filledheart)
             switch = 1}
-            else {binding.imgEditStar.setImageResource(R.drawable.star)
+            else {binding.imgEditStar.setImageResource(R.drawable.emptyheart)
             switch = 0}
         }
 
