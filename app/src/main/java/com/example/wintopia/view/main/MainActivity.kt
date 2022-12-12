@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                     binding.ic.root.isVisible = true
                     window.statusBarColor = ContextCompat.getColor(this, R.color.beige)
                     val sampleDp = 770
-                    val dpi = resources.displayMetrics.densityDpi
+                    val dpi = resources.displayMetrics.density
                     val value = (sampleDp * dpi).toInt()
 
                     binding.fl.layoutParams.height = value
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                     binding.ic.root.isVisible = true
                     window.statusBarColor = ContextCompat.getColor(this, R.color.beige)
                     val sampleDp = 770
-                    val dpi = resources.displayMetrics.densityDpi
+                    val dpi = resources.displayMetrics.density
                     val value = (sampleDp * dpi).toInt()
                     binding.fl.layoutParams.height = value
                 }
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
                     binding.ic.root.isVisible = false
                     window.statusBarColor = ContextCompat.getColor(this, R.color.myPage)
                     val sampleDp = 830
-                    val dpi = resources.displayMetrics.densityDpi
+                    val dpi = resources.displayMetrics.density
                     val value = (sampleDp * dpi).toInt()
                     binding.fl.layoutParams.height = value
                 }
