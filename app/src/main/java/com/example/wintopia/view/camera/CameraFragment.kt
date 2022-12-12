@@ -90,13 +90,13 @@ class CameraFragment: DialogFragment(), MyCustomDialogInterface {
         binding.fbCameraCam.setOnClickListener {
             soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f)
 
-            Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireActivity(), "fbCameraCam", Toast.LENGTH_SHORT).show()
             if (checkPermission()) dispatchTakePictureIntent() else requestPermission()
         }
         binding.fbCameraGal.setOnClickListener {
             soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f)
 
-            Toast.makeText(requireActivity(), "fbCameraGal", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireActivity(), "fbCameraGal", Toast.LENGTH_SHORT).show()
             if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
         }
 
