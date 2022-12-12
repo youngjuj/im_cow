@@ -14,49 +14,128 @@
         android:layout_height="match_parent"
         tools:context=".view.regist.RegistActivity">
 
-        <ImageView
-            android:id="@+id/imgRegistCow"
-            android:layout_width="216dp"
-            android:layout_height="271dp"
-            android:layout_marginTop="56dp"
-            android:alpha="0.3"
+        <FrameLayout
+            android:id="@+id/flRegistCaution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/btnRegisPhoto"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/standingcow" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="330dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_corner_sky_white"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="!주의해주세요!"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="1. 첫번째로 선택된 사진이 \n젖소의 대표사진이 됩니다."
+                    android:textColor="#000000"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="2. 사진은 정면 1장, 우측 2장, \n좌측 2장 선택을 권장합니다."
+                    android:textColor="#000000"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="(사진 선택시 총 5장 선택은 필수입니다!)"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="3. 사진은 등록할 개체 \n한 마리만 나오게 해주세요."
+                    android:textColor="#000000"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="4. 개체조회는 등록시 촬영한 \n각도와 비슷하게 찍어주세요."
+                    android:textColor="#000000"
+                    android:textSize="22sp" />
+            </LinearLayout>
+        </FrameLayout>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imgRegistCow"-->
+<!--            android:layout_width="216dp"-->
+<!--            android:layout_height="271dp"-->
+<!--            android:layout_marginTop="100dp"-->
+<!--            android:alpha="0.3"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.497"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:srcCompat="@drawable/standingcow" />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRegistPhoto"
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="180dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgRegistCow" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+
 
         <android.widget.Button
             android:id="@+id/btnRegisPhoto"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/background_radius_brown"
             android:text="사진찾기"
+            app:layout_constraintBottom_toTopOf="@+id/btnRegistRegist"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvRegistPhoto" />
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <android.widget.Button
             android:id="@+id/btnRegistRegist"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/background_radius_brown"
             android:text="등록하기"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnRegisPhoto" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/btnRegistBack"

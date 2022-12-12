@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wintopia.dialog.MyCustomDialogInterface
@@ -85,12 +86,12 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
         // 사진찾기 버튼
         binding.btnRegisPhoto.setOnClickListener {
             if (checkPermission()) dispatchSelectPictureIntent() else requestPermission()
-
+            binding.flRegistCaution.isVisible = false
         }
         // 등록하기 버튼 클릭시
         binding.btnRegistRegist.setOnClickListener {
-            Log.d("6666666", "여기 들어와?")
             if ((viewModel.imgFileList).size < 5){
+                binding.flRegistCaution.isVisible = true
                 Toast.makeText(this, "사진을 5장 추가해 주세요.", Toast.LENGTH_SHORT).show()
             } else {
                 // 커스텀 다이얼 띄우기
@@ -180,8 +181,9 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
             if(data?.clipData != null) {
                 val count = data.clipData!!.itemCount
                 if(count < 5) {
+                    binding.flRegistCaution.isVisible = true
                     Toast.makeText(applicationContext, "사진을 5장 선택해주세요.", Toast.LENGTH_SHORT).show()
-                }
+                } else {
 
                 // 선택된 사진 리스트에 추가하기
                 viewModel.imgList.clear()
@@ -193,6 +195,7 @@ class RegistActivity : AppCompatActivity(), MyCustomDialogInterface {
                     val file = File(path)
                     val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                     viewModel.imgFileList.add(MultipartBody.Part.createFormData("files", file.name, requestFile))
+                }
                 }
             }
         registAdapter.notifyDataSetChanged()
