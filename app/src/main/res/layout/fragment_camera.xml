@@ -29,11 +29,11 @@
         android:layout_gravity="bottom"
         android:layout_marginLeft="110dp"
         android:layout_marginBottom="60dp"
-        app:tint="@null"
-        app:rippleColor="#00FFFFFF"
         android:clickable="true"
         android:src="@drawable/gallery"
-        app:backgroundTint="#656644" />
+        app:backgroundTint="#656644"
+        app:rippleColor="#00FFFFFF"
+        app:tint="@null" />
 
     <ImageView
         android:id="@+id/imgCameraPic"
