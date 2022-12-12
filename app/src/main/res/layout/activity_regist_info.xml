@@ -160,7 +160,7 @@
 
         <android.widget.Button
             android:id="@+id/btnRegistInfoCancel"
-            android:layout_width="150dp"
+            android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_marginBottom="28dp"
             android:background="@drawable/background_radius_brown"
@@ -172,7 +172,7 @@
 
         <android.widget.Button
             android:id="@+id/btnRegistInfoRegist"
-            android:layout_width="150dp"
+            android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
