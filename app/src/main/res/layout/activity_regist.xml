@@ -14,10 +14,22 @@
         android:layout_height="match_parent"
         tools:context=".view.regist.RegistActivity">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loding"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:translationZ="1dp"
+            app:lottie_rawRes="@raw/ufo404" />
+
         <FrameLayout
             android:id="@+id/flRegistCaution"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
             app:layout_constraintBottom_toTopOf="@+id/btnRegisPhoto"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +46,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="!주의해주세요!"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -44,8 +56,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="1. 첫번째로 선택된 사진이 \n젖소의 대표사진이 됩니다."
                     android:textColor="#000000"
                     android:textSize="22sp" />
@@ -53,8 +65,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="2. 사진은 정면 1장, 우측 2장, \n좌측 2장 선택을 권장합니다."
                     android:textColor="#000000"
                     android:textSize="22sp" />
@@ -62,8 +74,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="(사진 선택시 총 5장 선택은 필수입니다!)"
                     android:textColor="#000000"
                     android:textSize="16sp" />
@@ -71,8 +83,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="3. 사진은 등록할 개체 \n한 마리만 나오게 해주세요."
                     android:textColor="#000000"
                     android:textSize="22sp" />
@@ -80,8 +92,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="4. 개체조회는 등록시 촬영한 \n각도와 비슷하게 찍어주세요."
                     android:textColor="#000000"
