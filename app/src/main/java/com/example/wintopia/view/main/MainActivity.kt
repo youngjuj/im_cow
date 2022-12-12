@@ -58,14 +58,21 @@ class MainActivity : AppCompatActivity() {
                     ).commit()
                     binding.ic.root.isVisible = true
                     window.statusBarColor = ContextCompat.getColor(this, R.color.beige)
-                    binding.fl.layoutParams.height = 2290
+                    val sampleDp = 770
+                    val dpi = resources.displayMetrics.densityDpi
+                    val value = (sampleDp * dpi).toInt()
+
+                    binding.fl.layoutParams.height = value
                 }
                 R.id.tab2 -> {
                     setDataAtFragment(CameraFragment(), show)
                     show = !show
                     binding.ic.root.isVisible = true
                     window.statusBarColor = ContextCompat.getColor(this, R.color.beige)
-                    binding.fl.layoutParams.height = 2290
+                    val sampleDp = 770
+                    val dpi = resources.displayMetrics.densityDpi
+                    val value = (sampleDp * dpi).toInt()
+                    binding.fl.layoutParams.height = value
                 }
                 R.id.tab3 -> {
                     supportFragmentManager.beginTransaction().replace(
@@ -73,7 +80,10 @@ class MainActivity : AppCompatActivity() {
                     ).commit()
                     binding.ic.root.isVisible = false
                     window.statusBarColor = ContextCompat.getColor(this, R.color.myPage)
-                    binding.fl.layoutParams.height = 2320
+                    val sampleDp = 830
+                    val dpi = resources.displayMetrics.densityDpi
+                    val value = (sampleDp * dpi).toInt()
+                    binding.fl.layoutParams.height = value
                 }
             }
 

@@ -29,7 +29,8 @@
         tools:targetApi="31">
         <activity
             android:name=".view.intro.IntroActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,28 +39,36 @@
         </activity>
         <activity
             android:name=".view.regist.RegistInfoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".dialog.Custom_dialog"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.info.InfoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.regist.RegistActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.edit.EditActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.signup.SignUpActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.login.LoginActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.main.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
 
         <provider
