@@ -49,6 +49,9 @@ object API_ {
     // 개체 정보 전체 불러오기
     const val COWINFOALL : String = "info/cowInfoAll"
 
+    // 개체 즐겨찾기 전체 불러오기
+    const val COWINFOWISH : String = "info/cowInfoWish"
+
     // 개체 정보 하나 불러오기
     const val COWINFOONE : String = "info/cowInfoOne"
 

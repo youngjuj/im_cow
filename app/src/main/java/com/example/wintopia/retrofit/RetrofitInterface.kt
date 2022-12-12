@@ -64,6 +64,10 @@ interface RetrofitInterface {
     @GET("${API_.MYPAGEINFO}")
     fun mypageInfo(@Query ("user_id") user_id: String): Call<MyPageInfo>
 
+    // cow 즐겨찾기 불러오기
+    @GET("${API_.COWINFOWISH}")
+    fun cowInfoWish(@Query ("user_id") user_id: String
+    ): Call <MutableList<MilkCowInfoModel>>
     //    @Multipart
     // cow 전체 정보 불러오기
     @GET("${API_.COWINFOALL}")

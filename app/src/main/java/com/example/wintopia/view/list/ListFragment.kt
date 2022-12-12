@@ -8,12 +8,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.wintopia.R
+import com.example.wintopia.databinding.ActivityMainBinding
 import com.example.wintopia.databinding.FragmentListBinding
 import com.example.wintopia.retrofit.RetrofitClient
 import com.example.wintopia.retrofit.RetrofitInterface
@@ -45,6 +47,7 @@ class ListFragment : Fragment() {
         cowInfo("test")
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false)
+
 
         // sound effect
         val soundPool = SoundPool.Builder().build()
