@@ -19,6 +19,7 @@ import com.example.wintopia.databinding.ActivityMainBinding
 import com.example.wintopia.databinding.FragmentCameraBinding
 import com.example.wintopia.view.camera.CameraFragment
 import com.example.wintopia.view.list.ListFragment
+import com.example.wintopia.view.list.WishFragment
 import com.example.wintopia.view.mypage.MyPageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -44,6 +45,12 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
+
+        binding.ic.lottieView.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(
+                R.id.fl, WishFragment()
+            ).commit()
+        }
 
 
 
