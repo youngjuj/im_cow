@@ -151,12 +151,12 @@
             android:layout_width="37dp"
             android:layout_height="37dp"
             android:layout_marginTop="32dp"
-            android:src="@drawable/star"
+            android:src="@drawable/emptyheart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.307"
             app:layout_constraintStart_toEndOf="@+id/etRegistName"
             app:layout_constraintTop_toTopOf="@+id/etRegistName"
-            app:srcCompat="@drawable/star" />
+            app:srcCompat="@drawable/emptyheart" />
 
         <android.widget.Button
             android:id="@+id/btnRegistInfoCancel"
