@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="180dp"
                 android:gravity="center_horizontal"
-                android:text="로그인"
+                android:text="회원가입"
                 android:textColor="#937F76"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"

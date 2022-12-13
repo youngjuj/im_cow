@@ -119,7 +119,7 @@ class EditActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
 
-        Toast.makeText(this, "수정하기", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "수정이 완료되었습니다.", Toast.LENGTH_SHORT).show()
     }
 
 
