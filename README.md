@@ -106,7 +106,7 @@
 ![wintopia_ERD](https://user-images.githubusercontent.com/111676264/209074853-1c186fc8-9718-429e-ad4d-a6b959440c05.png)
 <br>
 
-## ⚙ 화면 UI 
+## ⚙ 화면 UI 설계
 ![Group 15](https://user-images.githubusercontent.com/111676264/209075856-a3d2e5fa-71a8-4c49-ad68-164b4427e5be.png)
 <br>
 
