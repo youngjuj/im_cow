@@ -134,8 +134,38 @@
 ![4](https://user-images.githubusercontent.com/111676264/209076504-8c212642-9446-48b3-ac17-f4071bc90f61.png)
 <br>
 
-## 👨‍👩‍👦‍👦 팀원 역할
-![5](https://user-images.githubusercontent.com/111676264/209076715-696e26a2-6d7f-4fd7-966d-352f6bb1befb.png)
+## 👨‍👩‍👦‍👦 나의 역할
+### Android
+
+- Fragment를 활용한 화면 구성
+    - Navigation bottom에 Fragment를 연결하여 사용자의 편의성 증대
+- DataBinding을 활용한 MVVM 패턴 구현
+    - 데이터 변경에 대한 동적 처리로 불필요한 코딩 감소, 가독성 증가
+    - MVVM 패턴 구현으로 View와 Model간 의존성 최소화
+- recycler view를 활용한 리스트 구현
+    - recyler view를 이용하여 제한된 영역 내에서 유연성 증대
+- 리스트 아이템의 swipe 구현
+    - swipe를 통한 수정, 삭제 기능 구현으로 사용자의 편의성 증대
+- Retrofit 을 활용한 데이터 서버통신
+    - 이미지를 많이 활용하는 앱의 특성에 적합한 형태로 데이터 활용
+- 갤러리 및 카메라 연동
+- Glide를 활용한 Image 리스트 구현
+    - 이미지를 많이 활용하는 앱의 특성에 맞는 형태로 화면에 배치
+- Floatting button
+    - 신규 개체 등록 기능을 연결하여 사용자의 편의성 증대
+- Radio button
+    - 직접 타이핑 할 일을 줄여 사용자의 편의성 증대
+- 즐겨찾기 버튼
+    - 사용자가 자주 찾는 개체를 표시
+    - 즐겨찾기가 표시된 개체는 즐겨찾기 리스트로 모아서 제공
+- 앱 UX
+    - 사용자의 가독성 증대
+
+### Github
+
+- repository 생성, 유지 및 보수
+    - 팀원별 branch 분리로 master 코드 오류 최소화
+    - commit, push 등의 과정에서 발생한 오류 해결
 
 
 ## 🤾‍♂️ 트러블슈팅
